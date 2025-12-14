@@ -19,3 +19,7 @@ Usage:  (required AHK v1.1.34+)
    use the parameterless FindText() to get the default object
 
 Excel file is just a fake identity!
+Setting:
+- screen: 1280x800
+- graphic: min
+- window mode

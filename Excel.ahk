@@ -1,3 +1,7 @@
+; screen: 1280x800
+; graphic: min
+; window mode
+
 F1::
 stopR := False
 Loop
@@ -44,7 +48,7 @@ Loop
 		}
 	}
 
-	Sleep, 700
+	Sleep, 500
 }
 return
 
