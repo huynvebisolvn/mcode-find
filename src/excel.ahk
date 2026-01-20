@@ -2,92 +2,141 @@
 ; graphic: min
 ; window mode
 
-F1::
-stopR := False
-Refresh:="|<>*142$59.zkzzzzzzzzz0TzzzzzzzDEDzzzzzzy7yDzxzbzzwTyDzszbzzlzyTzlzzzzbzwTzXzzzzDzwzz7sC34TztzyDWA00zznzwzSNX1zzbztz0ni3zzDznw1bAbzyTzbtnCNDzszzDX6QnDzXzy0UAlaDyDzw10NrC7sTzzzzzzy0wzzzzzzzz0Tzzzzzzz"
-if (ok:=FindText(RefreshX := "wait", RefreshY := 0.5, 328-150000, 115-150000, 328+150000, 115+150000, 0, 0, Refresh))
-{
-	MouseMove, RefreshX, RefreshY
-	PlusMax:="|<>*207$29.zzrzzzz7zzzw7zzzk7zzz27zzwC7zzky7zz3y7zwDy7zkzy7z3zy7wDzy7kzry63z7y0Dw7yATk7wRz27xzwC7zzky3zy3y3zwDy7zwTwTzxzxzk"
-	if (ok:=FindText(PlusMaxX := "wait", PlusMaxY := 0.5, 1219-150000, 568-150000, 1219+150000, 568+150000, 0, 0, PlusMax))
-	{
-		MouseMove, PlusMaxX, PlusMaxY
-		Buy:="|<>*103$37.800000C0Q0007US0003kD0001s7U000y7k000T3skkz/VAMMrotaAA0yQn660TCFX33zXslVX7lwQklXswCQtlwC7DwTy63bqDQ000001"
-		if (ok:=FindText(BuyX := "wait", BuyY := 0.5, 1204-150000, 667-150000, 1204+150000, 667+150000, 0, 0, Buy))
-		{
-			MouseMove, BuyX, BuyY
-			; main logic
-			Loop
-			{
-				if stopR
-					break
-				PriceTarget150:="|<>*191$71.000000000000000000000000000000000000000000000000000000000000000000000000000000000000047wC00000000wDwz00000001sQ3i00000001ks6C00000003VUQA000000073wsQ0000000C7xks0000000QATVk0000000s0z300000001k1yC00000003U7iQ000000073yTk0000000C7sTU0000000000000000000000000000000000000000000000000000000000000001"
-				if (ok:=FindText(FirstTargetX := "wait", FirstTargetY := 0.5, 1044-150000, 666-150000, 1044+150000, 666+150000, 0, 0, PriceTarget150))
-				{
-					MouseClick, left, PlusMaxX, PlusMaxY
-					MouseClick, left, BuyX, BuyY
-					Sleep, 200
-					MouseClick, left, 600, 100
-				}
-				else
-				{
-					MouseClick, left, RefreshX, RefreshY
-				}
-				Sleep, 500
-			}
-		}
-	}
+; Global variables
+global SelectedPriceTarget := ""
+global PriceTargets := {}
+global stopLoop := False
+
+; Load Price Targets from config file
+LoadPriceTargets() {
+    global PriceTargets
+    PriceTargets := {}
+    
+    configFile := A_ScriptDir . "\config.txt"
+    if !FileExist(configFile) {
+        MsgBox, 48, Error, File config.txt not found!
+        return false
+    }
+    
+    Loop, Read, %configFile%
+    {
+        line := A_LoopReadLine
+        ; Skip empty lines and comments
+        if (line = "" || SubStr(line, 1, 1) = ";")
+            continue
+        
+        ; Parse line: Name=Value
+        pos := InStr(line, "=")
+        if (pos > 0) {
+            name := SubStr(line, 1, pos-1)
+            value := SubStr(line, pos+1)
+            PriceTargets[name] := value
+        }
+    }
+    return true
 }
+
+; Show GUI to select Price Target
+F1::
+ShowPriceTargetSelector()
 return
 
+; Show GUI to select Price Target
+ShowPriceTargetSelector() {
+    global SelectedPriceTarget, PriceTargets
+    
+    ; Load price targets from config file
+    if !LoadPriceTargets() {
+        return
+    }
+    
+    ; Create GUI
+    Gui, PriceSelect:New
+    Gui, Font, s10
+    Gui, Add, Text,, Select Price Target:
+    
+    ; Create dropdown list with all available price targets
+    targetList := ""
+    for targetName, targetValue in PriceTargets {
+        if (targetList != "")
+            targetList .= "|"
+        targetList .= targetName
+    }
+    
+    Gui, Add, DropDownList, vSelectedTarget w200, %targetList%
+    Gui, Add, Button, gStartScript Default w200, Start (F1)
+    Gui, Add, Button, gCloseGUI w200, Cancel
+    Gui, Show,, Price Target Selector
+    return
+    
+    StartScript:
+        Gui, Submit, NoHide
+        Gui, Destroy
+        
+        if (SelectedTarget = "") {
+            MsgBox, 48, Warning, Please select a Price Target!
+            return
+        }
+        
+        SelectedPriceTarget := PriceTargets[SelectedTarget]
+        RunPriceTargetScript()
+    return
+    
+    CloseGUI:
+    PriceSelectGuiClose:
+        Gui, Destroy
+    return
+}
+
+; Main script - unified for all price targets
+RunPriceTargetScript() {
+    global SelectedPriceTarget, stopLoop
+    
+    stopLoop := False
+    Refresh:="|<>*142$59.zkzzzzzzzzz0TzzzzzzzDEDzzzzzzy7yDzxzbzzwTyDzszbzzlzyTzlzzzzbzwTzXzzzzDzwzz7sC34TztzyDWA00zznzwzSNX1zzbztz0ni3zzDznw1bAbzyTzbtnCNDzszzDX6QnDzXzy0UAlaDyDzw10NrC7sTzzzzzzy0wzzzzzzzz0Tzzzzzzz"
+    if (ok:=FindText(RefreshX := "wait", RefreshY := 0.5, 328-150000, 115-150000, 328+150000, 115+150000, 0, 0, Refresh))
+    {
+        MouseMove, RefreshX, RefreshY
+        PlusMax:="|<>*207$29.zzrzzzz7zzzw7zzzk7zzz27zzwC7zzky7zz3y7zwDy7zkzy7z3zy7wDzy7kzry63z7y0Dw7yATk7wRz27xzwC7zzky3zy3y3zwDy7zwTwTzxzxzk"
+        if (ok:=FindText(PlusMaxX := "wait", PlusMaxY := 0.5, 1219-150000, 568-150000, 1219+150000, 568+150000, 0, 0, PlusMax))
+        {
+            MouseMove, PlusMaxX, PlusMaxY
+            Buy:="|<>*103$37.800000C0Q0007US0003kD0001s7U000y7k000T3skkz/VAMMrotaAA0yQn660TCFX33zXslVX7lwQklXswCQtlwC7DwTy63bqDQ000001"
+            if (ok:=FindText(BuyX := "wait", BuyY := 0.5, 1204-150000, 667-150000, 1204+150000, 667+150000, 0, 0, Buy))
+            {
+                MouseMove, BuyX, BuyY
+                ; main logic
+                Loop
+                {
+                    if stopLoop
+                        break
+                    ; Use the selected price target from GUI
+                    if (ok:=FindText(FirstTargetX := "wait", FirstTargetY := 0.5, 1044-150000, 666-150000, 1044+150000, 666+150000, 0, 0, SelectedPriceTarget))
+                    {
+                        MouseClick, left, PlusMaxX, PlusMaxY
+                        MouseClick, left, BuyX, BuyY
+                        Sleep, 200
+                        MouseClick, left, 600, 100
+                    }
+                    else
+                    {
+                        MouseClick, left, RefreshX, RefreshY
+                    }
+                    Sleep, 500
+                }
+            }
+        }
+    }
+    return
+}
 
 F2::
-stopR := False
-Refresh:="|<>*142$59.zkzzzzzzzzz0TzzzzzzzDEDzzzzzzy7yDzxzbzzwTyDzszbzzlzyTzlzzzzbzwTzXzzzzDzwzz7sC34TztzyDWA00zznzwzSNX1zzbztz0ni3zzDznw1bAbzyTzbtnCNDzszzDX6QnDzXzy0UAlaDyDzw10NrC7sTzzzzzzy0wzzzzzzzz0Tzzzzzzz"
-if (ok:=FindText(RefreshX := "wait", RefreshY := 0.5, 328-150000, 115-150000, 328+150000, 115+150000, 0, 0, Refresh))
-{
-	MouseMove, RefreshX, RefreshY
-	PlusMax:="|<>*207$29.zzrzzzz7zzzw7zzzk7zzz27zzwC7zzky7zz3y7zwDy7zkzy7z3zy7wDzy7kzry63z7y0Dw7yATk7wRz27xzwC7zzky3zy3y3zwDy7zwTwTzxzxzk"
-	if (ok:=FindText(PlusMaxX := "wait", PlusMaxY := 0.5, 1219-150000, 568-150000, 1219+150000, 568+150000, 0, 0, PlusMax))
-	{
-		MouseMove, PlusMaxX, PlusMaxY
-		Buy:="|<>*103$37.800000C0Q0007US0003kD0001s7U000y7k000T3skkz/VAMMrotaAA0yQn660TCFX33zXslVX7lwQklXswCQtlwC7DwTy63bqDQ000001"
-		if (ok:=FindText(BuyX := "wait", BuyY := 0.5, 1204-150000, 667-150000, 1204+150000, 667+150000, 0, 0, Buy))
-		{
-			MouseMove, BuyX, BuyY
-			; main logic
-			Loop
-			{
-				if stopR
-					break
-				PriceTarget45:="|<>*190$71.000000000000000000000000000000000000000000000000000000000000000000000000037w000000000DDw000000000SQ0000000001ws0000000003tU000000000Bnw000000000Pbw000000001bAQ000000007T0s00000000Dy1k00000000Tw7U000000001ny0000000003bs000000000000000000000000000000000000000000000000000000000000000000000000000001"
-				if (ok:=FindText(FirstTargetX := "wait", FirstTargetY := 0.5, 1044-150000, 666-150000, 1044+150000, 666+150000, 0, 0, PriceTarget45))
-				{
-					MouseClick, left, PlusMaxX, PlusMaxY
-					MouseClick, left, BuyX, BuyY
-					Sleep, 200
-					MouseClick, left, 600, 100
-				}
-				else
-				{
-					MouseClick, left, RefreshX, RefreshY
-				}
-				Sleep, 500
-			}
-		}
-	}
-}
-return
-
-
-F3::
-stopR := False
+global stopLoop
+stopLoop := False
 Loop
 {
-	if stopR
+	if stopLoop
 		break
-
-
 	Cd:="|<>*118$51.zzzzzzwzzzzzzzzXzzzzzzzkDzzzzzzw0zzzzzzz03zzzzzzs0Dzzzzzy00zzzzzzU03zzzzzs00Dzzzzy001zzzzzs00Tzzzzzk07zzzxzy01zzzz61o0TzzzUkDk7zzzsA0z1zzzw2U3wTzzzU00Drzzzs003zzzzz000zzzzzU00Tzzzzs00zzzzzz00Dzzzzzk01zzzzzy1kDzzzw"
 	if (ok:=FindText(X, Y, 1142-150000, 426-150000, 1142+150000, 426+150000, 0, 0, Cd))
 	{
@@ -109,8 +158,25 @@ Loop
 }
 return
 
-~Esc::
-stopR := True
+PgDn::
+	global stopLoop
+	stopLoop := False
+	Loop
+	{
+		if stopLoop
+		   break
+		Send, {r down}
+		Sleep, 2700
+		Send, {Shift}
+		Sleep, 50
+		Send, {r up}
+		Sleep, 400
+	}
+return
+
+~rbutton::
+global stopLoop
+stopLoop := True
 return
 
 ;===== Copy The Following Functions To Your Own Code Just once =====
