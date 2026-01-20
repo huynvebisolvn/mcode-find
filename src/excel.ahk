@@ -4,6 +4,7 @@
 
 ; Global variables
 global SelectedPriceTarget := ""
+global SelectedTarget := ""
 global PriceTargets := {}
 global stopLoop := False
 
@@ -43,7 +44,7 @@ return
 
 ; Show GUI to select Price Target
 ShowPriceTargetSelector() {
-    global SelectedPriceTarget, PriceTargets
+    global SelectedPriceTarget, PriceTargets, SelectedTarget
     
     ; Load price targets from config file
     if !LoadPriceTargets() {
@@ -64,7 +65,7 @@ ShowPriceTargetSelector() {
     }
     
     Gui, Add, DropDownList, vSelectedTarget w200, %targetList%
-    Gui, Add, Button, gStartScript Default w200, Start (F1)
+    Gui, Add, Button, gStartScript Default w200, Start
     Gui, Add, Button, gCloseGUI w200, Cancel
     Gui, Show,, Price Target Selector
     return
