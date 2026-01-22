@@ -37,6 +37,16 @@ LoadPriceTargets() {
     return true
 }
 
+ChangeResolutionOnly(TargetWidth, TargetHeight) {
+    cD := 32
+    rR := 60
+    VarSetCapacity(dM,156,0), NumPut(156,2,&dM,36)
+    DllCall("EnumDisplaySettingsA", UInt,0, UInt,-1, UInt,&dM)
+    NumPut(0x5c0000,dM,40)
+    NumPut(cD,dM,104), NumPut(TargetWidth,dM,108), NumPut(TargetHeight,dM,112), NumPut(rR,dM,120)
+    Return DllCall("ChangeDisplaySettingsA", UInt,&dM, UInt,0)
+}
+
 ; Show GUI to select Price Target
 F1::
 ShowPriceTargetSelector()
@@ -66,7 +76,7 @@ ShowPriceTargetSelector() {
     
     Gui, Add, DropDownList, vSelectedTarget w200, %targetList%
     Gui, Add, Button, gStartScript Default w200, Start
-    Gui, Add, Button, gCloseGUI w200, Cancel
+    Gui, Add, Button, gResolution Default w200, 1280x800
     Gui, Show,, Price Target Selector
     return
     
@@ -82,10 +92,9 @@ ShowPriceTargetSelector() {
         SelectedPriceTarget := PriceTargets[SelectedTarget]
         RunPriceTargetScript()
     return
-    
-    CloseGUI:
-    PriceSelectGuiClose:
-        Gui, Destroy
+
+    Resolution:
+      ChangeResolutionOnly(1280,800)
     return
 }
 
