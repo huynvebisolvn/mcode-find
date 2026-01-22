@@ -20,6 +20,9 @@ Usage:  (required AHK v1.1.34+)
 
 Excel file is just a fake identity!
 Setting:
-- screen: 1280x800
-- graphic: min
-- window mode
+- Graphic: min
+- Window mode
+- Screen PowerShell:
+```
+Set-DisplayResolution -Width 1280 -Height 800
+```
