@@ -124,7 +124,7 @@ RunPriceTargetScript() {
                 if stopLoop
                     break
                 ; Use the selected price target from GUI
-                if (ok:=FindText(FirstTargetX, FirstTargetY, 1075-150000, 585-150000, 1075+150000, 585+150000, 0, 0, SelectedPriceTarget))
+                if (ok:=FindText(FirstTargetX := "wait", FirstTargetY := 0.5, 1075-150000, 585-150000, 1075+150000, 585+150000, 0, 0, SelectedPriceTarget))
                 {
                     MouseClick, left, PlusMaxX, PlusMaxY
                     Send, {v down}
@@ -137,7 +137,7 @@ RunPriceTargetScript() {
                 {
                     MouseClick, left, RefreshX, RefreshY
                 }
-                Sleep, 950
+                Sleep, 500
             }
         }
     }
