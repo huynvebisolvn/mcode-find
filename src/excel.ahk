@@ -144,33 +144,165 @@ RunPriceTargetScript() {
     return
 }
 
-F2::
-global stopLoop
-stopLoop := False
-Loop
-{
-    if stopLoop
-        break
-    Cd:="|<>*118$51.zzzzzzwzzzzzzzzXzzzzzzzkDzzzzzzw0zzzzzzz03zzzzzzs0Dzzzzzy00zzzzzzU03zzzzzs00Dzzzzy001zzzzzs00Tzzzzzk07zzzxzy01zzzz61o0TzzzUkDk7zzzsA0z1zzzw2U3wTzzzU00Drzzzs003zzzzz000zzzzzU00Tzzzzs00zzzzzz00Dzzzzzk01zzzzzy1kDzzzw"
-    if (ok:=FindText(X, Y, 1142-150000, 426-150000, 1142+150000, 426+150000, 0, 0, Cd))
-    {
-        MouseClick, left, X, Y
+; 1 GiaVi, 3 LuaNuoc, Lua
+CanhThachTuy() {
+	global stopLoop
+	stopLoop := False
 
-        Merged:="|<>*155$59.zzzzzzzzzTzzzzzzzzsxxzzzzzDwzttzzzzyTuwnnzzzzwzztbbxzzztzzlDC21z0kC300NYtyNaNbAwn9nwtCTiNtbHbtmQUAnnAbDnYtANbaN4Tb9mMmDA21zCHY1UySQ7yRjQLbzztzzzzzzzztnzzzzzzzzvbzzzzzzk"
-        if (ok:=FindText(MergedX := "wait", MergedY := 2, 816-150000, 247-150000, 816+150000, 247+150000, 0, 0, Merged))
-        {
-            MouseClick, left, MergedX, MergedY
+	Loop
+	{
+		if stopLoop
+		   break
+		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
+		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
+		{
+			MouseClick, left, GiaViX, GiaViY
+			LuaNuoc:="|<>*131$39.zzwTzzzzz1zzzzzs3zzzzz03zzzzs0Tzzxy03zzyDU00zzWM001zwqU003y3k000DVU0000Mk00001wE00001y0001/Yo000/Tzc001DwG000yzhqU0E7z2i000zzU000Tzz000Dzzs00Tzzzzzy3zzzts1zzzV00zzzzsETzzzw1kDzzzU01zzzsNVzzzzX7zzzzynwDzzzUTzzzzyFzzzzzXDDzzzwvrzzzzyzzzU"
+			if (ok:=FindText(LuaNuocX, LuaNuocY, 162-150000, 147-150000, 162+150000, 147+150000, 0, 0, LuaNuoc))
+			{
+				MouseClick, left, LuaNuocX, LuaNuocY
+				MouseClick, left, LuaNuocX, LuaNuocY
+				MouseClick, left, LuaNuocX, LuaNuocY
 
-            Nhan:="|<>*98$60.0000000000w0AS00C000y0AS00T000T0AS00z000T0AS00vU00TUAS00lU00TkAS000000TkAS000000NsAST0zUtwNwATzVzlzyMwATzX7lzyMSAT7U3twSMTAS7U1tsSMDAS3U3tsCM7wS3UztsCs7wS3VztsCs3wS3XVtsCs1wS3bVtsCs1wS3bVtsCs0wC3bntsCs0QC3XztsCs0QS3XttsC000000U00000000000000000004000U"
-            if (ok:=FindText(NhanX := "wait", NhanY := 2, 1184-150000, 409-150000, 1184+150000, 409+150000, 0, 0, Nhan))
-            {
-                MouseClick, left, NhanX, NhanY
-            }
-        }
-    }
-    Sleep, 1000
+				MouseClick, left, 1000, 650
+				Sleep, 3000
+				MouseClick, left, 600, 300
+			}
+		}
+		Sleep, 500
+	}
+	return
 }
+
+; 3 GiaVi, 1 ThuySanCap1, Bang
+SashimiCaBac() {
+	global stopLoop
+	stopLoop := False
+
+	Loop
+	{
+		if stopLoop
+		   break
+		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
+		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
+		{
+			MouseClick, left, GiaViX, GiaViY
+			MouseClick, left, GiaViX, GiaViY
+			MouseClick, left, GiaViX, GiaViY
+			ThuySanCap1:="|<>*127$34.Tzzzzwzzzzznzzzzz1zzzzw7zzzzkTzzzzUPzzzy3XzzzwM3zzzs0Dzzzc0Dzzzk0zzzzU0zzzy01zzzw07zzzs0DzzyU0Tzzx00zzzs01zzzk03zzzU0Dzzz00Dzzy00zzzw01zzzs07zzzk0DzzzU0Tzzz01zzzy07zzzw0Dzzzs0zzzzk7zzzzkDzzzzkTzzzzUzzzzzVzzzzzm"
+			if (ok:=FindText(ThuySanCap1X, ThuySanCap1Y, 154-150000, 142-150000, 154+150000, 142+150000, 0, 0, ThuySanCap1))
+			{
+				MouseClick, left, ThuySanCap1X, ThuySanCap1Y
+
+				MouseClick, left, 1000, 650
+				Sleep, 3000
+				MouseClick, left, 600, 300
+			}
+		}
+		Sleep, 500
+	}
+	return
+}
+
+; 3 GiaVi, 1 Ga, Lua, Tho
+GaAnMay() {
+	global stopLoop
+	stopLoop := False
+
+	Loop
+	{
+		if stopLoop
+		   break
+		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
+		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
+		{
+			MouseClick, left, GiaViX, GiaViY
+			MouseClick, left, GiaViX, GiaViY
+			MouseClick, left, GiaViX, GiaViY
+			Ga:="|<>*142$45.zzzzsTzzzzy003zzzy0007zzz0000Dzz00000zzk00003zy00000TzUQ0011zw60106Dy000709zW00000DkE00Rk1Us003zo00000zy000007y0A0000z03k000Dk0y0M01w0TsTk0D07zrzE3k3zyT00zzzzk007zzzy001zzzzls0TzzzwDsDzzzzXzzzzzzwzzzzzzw"
+			if (ok:=FindText(GaX, GaY, 161-150000, 148-150000, 161+150000, 148+150000, 0, 0, Ga))
+			{
+				MouseClick, left, GaX, GaY
+
+				MouseClick, left, 1000, 650
+				Sleep, 3000
+				MouseClick, left, 600, 300
+			}
+		}
+		Sleep, 500
+	}
+	return
+}
+
+; 3 GiaVi, 1 Thit, Lua
+LauThitTho() {
+	global stopLoop
+	stopLoop := False
+
+	Loop
+	{
+		if stopLoop
+		   break
+		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
+		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
+		{
+			MouseClick, left, GiaViX, GiaViY
+			MouseClick, left, GiaViX, GiaViY
+			MouseClick, left, GiaViX, GiaViY
+
+			Thit:="|<>*135$43.zzzzs3zzzzzk0zzzzzUCDzzzz0E3zzzy000zzzy000Dzzw000jzzs00Trzzs000Dzzs00Njrzs044znzs0137kzs806O/zs012TXzk000jrzs000Hrzs8ESS7zk80+S7zk8480Lzk006E/zs000C7zw00077zy000ZXzz0017dzz00200Tzk00A0Tzs1UM4TzyAkDWTzzqM71Dzzzg31Dzzzy1djzzzz0Vjzzzzk4zzzzzw2zzzzzz3Tzzzzzvjzzzzzzrzzzk"
+			if (ok:=FindText(ThitX, ThitY, 242-150000, 148-150000, 242+150000, 148+150000, 0, 0, Thit))
+			{
+				MouseClick, left, ThitX, ThitY
+
+				MouseClick, left, 1000, 650
+				Sleep, 3000
+				MouseClick, left, 600, 300
+			}
+		}
+		Sleep, 500
+	}
+	return
+}
+
+F2::
+    ; Create GUI
+    Gui, PriceSelect:New
+    Gui, Font, s10
+
+  Gui, Add, Button, gNauAn1 Default w200, CanhThachTuy (Hoa)
+  Gui, Add, Button, gNauAn2 w200, SashimiCaBac (Bang)
+	Gui, Add, Button, gNauAn3 w200, GaAnMay (Hoa + Tho)
+	Gui, Add, Button, gNauAn4 w200, LauThitTho (Hoa)
+    Gui, Show,, Nau An
+    return
+
+    NauAn1:
+	  Gui, Submit, NoHide
+	  Gui, Destroy
+	  CanhThachTuy()
+    return
+
+    NauAn2:
+	  Gui, Submit, NoHide
+	  Gui, Destroy
+	  SashimiCaBac()
+	return
+
+    NauAn3:
+	  Gui, Submit, NoHide
+	  Gui, Destroy
+	  GaAnMay()
+	return
+
+    NauAn4:
+	  Gui, Submit, NoHide
+	  Gui, Destroy
+	  LauThitTho()
+    return
+
 return
+
 
 PgDn::
     global stopLoop
@@ -187,6 +319,7 @@ PgDn::
         Sleep, 400
     }
 return
+
 
 ~rbutton::
 global stopLoop
