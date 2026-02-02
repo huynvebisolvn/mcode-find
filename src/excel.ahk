@@ -48,11 +48,6 @@ ChangeResolutionOnly(TargetWidth, TargetHeight) {
 }
 
 ; Show GUI to select Price Target
-F1::
-ShowPriceTargetSelector()
-return
-
-; Show GUI to select Price Target
 ShowPriceTargetSelector() {
     global SelectedPriceTarget, PriceTargets, SelectedTarget
     
@@ -144,180 +139,228 @@ RunPriceTargetScript() {
     return
 }
 
+
+
+Chuphinh() {
+    Send, {F9}
+    Sleep, 500
+    Send, {Enter}
+    Thoat:="|<>*111$46.zsTzzszzz3zzzlzzsSTzDXzz3lzwT7zsS3zVyDz3w7w7wTszwDVzwzTzsQDzzvzzkVzzzTzzUDzzzzzz9zzzzzzwbzzzzzzUTzzzzzw0zzzTzzVVzzvvzwD3zwTnzVy7z3zXsDw3sTz7lzsT3zyDbznsTzwSTzT3zzszzzsTzzlzzz3zzzXzzsTzzz7zz3zy"
+    if (ok:=FindText(ThoatX := "wait", ThoatY := 3, 1153-150000, 99-150000, 1153+150000, 99+150000, 0, 0, Thoat))
+    {
+      MouseClick, left, ThoatX, ThoatY
+    }
+    Sleep, 1000
+    Send, {Esc}
+    return
+}
+
+Monghoaluc() {
+    Send, {Enter}
+    Sleep, 500
+    MouseClick, left, 35, 150
+    Sleep, 500
+    MouseClick, left, 280, 295
+    Sleep, 500
+    Send, {Esc}
+    return
+}
+
+Haocam() {
+    Send, {F11}
+    Sleep, 1000
+    MouseClick, left, 500, 500
+    Sleep, 2000
+    MouseClick, left, 1200, 170
+    Sleep, 1000
+    MouseClick, left, 825, 270
+    Tang:="|<>*109$42.0000000zwEU0007sTU0003UD00003U000003U000003UTXS0y3Uzbz3y3U3rj7C3U1r7663UDr7663Uzr7763Ulr77w3Vlr73k3Vzr7203Uzr77w00M007y000007D006006600C007i004007wU"
+    if (ok:=FindText(TangX := "wait", TangY := 3, 944-150000, 596-150000, 944+150000, 596+150000, 0, 0, Tang))
+    {
+        MouseClick, left, TangX, TangY
+        Sleep, 1000
+        Send, {Esc}
+        Sleep, 500
+        Send, {Esc}
+    }
+    return
+}
+
+
+
+
 ; 1 GiaVi, 3 LuaNuoc, Lua
 CanhThachTuy() {
-	global stopLoop
-	stopLoop := False
+    global stopLoop
+    stopLoop := False
 
-	Loop
-	{
-		if stopLoop
-		   break
-		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
-		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
-		{
-			MouseClick, left, GiaViX, GiaViY
-			LuaNuoc:="|<>*131$39.zzwTzzzzz1zzzzzs3zzzzz03zzzzs0Tzzxy03zzyDU00zzWM001zwqU003y3k000DVU0000Mk00001wE00001y0001/Yo000/Tzc001DwG000yzhqU0E7z2i000zzU000Tzz000Dzzs00Tzzzzzy3zzzts1zzzV00zzzzsETzzzw1kDzzzU01zzzsNVzzzzX7zzzzynwDzzzUTzzzzyFzzzzzXDDzzzwvrzzzzyzzzU"
-			if (ok:=FindText(LuaNuocX, LuaNuocY, 162-150000, 147-150000, 162+150000, 147+150000, 0, 0, LuaNuoc))
-			{
-				MouseClick, left, LuaNuocX, LuaNuocY
-				MouseClick, left, LuaNuocX, LuaNuocY
-				MouseClick, left, LuaNuocX, LuaNuocY
+    Loop
+    {
+        if stopLoop
+           break
+        GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
+        if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
+        {
+            MouseClick, left, GiaViX, GiaViY
+            LuaNuoc:="|<>*131$39.zzwTzzzzz1zzzzzs3zzzzz03zzzzs0Tzzxy03zzyDU00zzWM001zwqU003y3k000DVU0000Mk00001wE00001y0001/Yo000/Tzc001DwG000yzhqU0E7z2i000zzU000Tzz000Dzzs00Tzzzzzy3zzzts1zzzV00zzzzsETzzzw1kDzzzU01zzzsNVzzzzX7zzzzynwDzzzUTzzzzyFzzzzzXDDzzzwvrzzzzyzzzU"
+            if (ok:=FindText(LuaNuocX, LuaNuocY, 162-150000, 147-150000, 162+150000, 147+150000, 0, 0, LuaNuoc))
+            {
+                MouseClick, left, LuaNuocX, LuaNuocY
+                MouseClick, left, LuaNuocX, LuaNuocY
+                MouseClick, left, LuaNuocX, LuaNuocY
 
-				MouseClick, left, 1000, 650
-				Sleep, 3000
-				MouseClick, left, 600, 300
-			}
-		}
-		Sleep, 500
-	}
-	return
+                MouseClick, left, 1000, 650
+                Sleep, 2300
+                MouseClick, left, 600, 300
+            }
+        }
+        Sleep, 500
+    }
+    return
 }
 
 ; 3 GiaVi, 1 ThuySanCap1, Bang
 SashimiCaBac() {
-	global stopLoop
-	stopLoop := False
+    global stopLoop
+    stopLoop := False
 
-	Loop
-	{
-		if stopLoop
-		   break
-		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
-		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
-		{
-			MouseClick, left, GiaViX, GiaViY
-			MouseClick, left, GiaViX, GiaViY
-			MouseClick, left, GiaViX, GiaViY
-			ThuySanCap1:="|<>*127$34.Tzzzzwzzzzznzzzzz1zzzzw7zzzzkTzzzzUPzzzy3XzzzwM3zzzs0Dzzzc0Dzzzk0zzzzU0zzzy01zzzw07zzzs0DzzyU0Tzzx00zzzs01zzzk03zzzU0Dzzz00Dzzy00zzzw01zzzs07zzzk0DzzzU0Tzzz01zzzy07zzzw0Dzzzs0zzzzk7zzzzkDzzzzkTzzzzUzzzzzVzzzzzm"
-			if (ok:=FindText(ThuySanCap1X, ThuySanCap1Y, 154-150000, 142-150000, 154+150000, 142+150000, 0, 0, ThuySanCap1))
-			{
-				MouseClick, left, ThuySanCap1X, ThuySanCap1Y
+    Loop
+    {
+        if stopLoop
+           break
+        GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
+        if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
+        {
+            MouseClick, left, GiaViX, GiaViY
+            MouseClick, left, GiaViX, GiaViY
+            MouseClick, left, GiaViX, GiaViY
+            ThuySanCap1:="|<>*127$34.Tzzzzwzzzzznzzzzz1zzzzw7zzzzkTzzzzUPzzzy3XzzzwM3zzzs0Dzzzc0Dzzzk0zzzzU0zzzy01zzzw07zzzs0DzzyU0Tzzx00zzzs01zzzk03zzzU0Dzzz00Dzzy00zzzw01zzzs07zzzk0DzzzU0Tzzz01zzzy07zzzw0Dzzzs0zzzzk7zzzzkDzzzzkTzzzzUzzzzzVzzzzzm"
+            if (ok:=FindText(ThuySanCap1X, ThuySanCap1Y, 154-150000, 142-150000, 154+150000, 142+150000, 0, 0, ThuySanCap1))
+            {
+                MouseClick, left, ThuySanCap1X, ThuySanCap1Y
 
-				MouseClick, left, 1000, 650
-				Sleep, 3000
-				MouseClick, left, 600, 300
-			}
-		}
-		Sleep, 500
-	}
-	return
+                MouseClick, left, 1000, 650
+                Sleep, 2300
+                MouseClick, left, 600, 300
+            }
+        }
+        Sleep, 500
+    }
+    return
 }
 
 ; 3 GiaVi, 1 Ga, Lua, Tho
 GaAnMay() {
-	global stopLoop
-	stopLoop := False
+    global stopLoop
+    stopLoop := False
 
-	Loop
-	{
-		if stopLoop
-		   break
-		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
-		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
-		{
-			MouseClick, left, GiaViX, GiaViY
-			MouseClick, left, GiaViX, GiaViY
-			MouseClick, left, GiaViX, GiaViY
-			Ga:="|<>*142$45.zzzzsTzzzzy003zzzy0007zzz0000Dzz00000zzk00003zy00000TzUQ0011zw60106Dy000709zW00000DkE00Rk1Us003zo00000zy000007y0A0000z03k000Dk0y0M01w0TsTk0D07zrzE3k3zyT00zzzzk007zzzy001zzzzls0TzzzwDsDzzzzXzzzzzzwzzzzzzw"
-			if (ok:=FindText(GaX, GaY, 161-150000, 148-150000, 161+150000, 148+150000, 0, 0, Ga))
-			{
-				MouseClick, left, GaX, GaY
+    Loop
+    {
+        if stopLoop
+           break
+        GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
+        if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
+        {
+            MouseClick, left, GiaViX, GiaViY
+            MouseClick, left, GiaViX, GiaViY
+            MouseClick, left, GiaViX, GiaViY
+            Ga:="|<>*142$45.zzzzsTzzzzy003zzzy0007zzz0000Dzz00000zzk00003zy00000TzUQ0011zw60106Dy000709zW00000DkE00Rk1Us003zo00000zy000007y0A0000z03k000Dk0y0M01w0TsTk0D07zrzE3k3zyT00zzzzk007zzzy001zzzzls0TzzzwDsDzzzzXzzzzzzwzzzzzzw"
+            if (ok:=FindText(GaX, GaY, 161-150000, 148-150000, 161+150000, 148+150000, 0, 0, Ga))
+            {
+                MouseClick, left, GaX, GaY
 
-				MouseClick, left, 1000, 650
-				Sleep, 3000
-				MouseClick, left, 600, 300
-			}
-		}
-		Sleep, 500
-	}
-	return
+                MouseClick, left, 1000, 650
+                Sleep, 2300
+                MouseClick, left, 600, 300
+            }
+        }
+        Sleep, 500
+    }
+    return
 }
 
 ; 3 GiaVi, 1 Thit, Lua
 LauThitTho() {
-	global stopLoop
-	stopLoop := False
+    global stopLoop
+    stopLoop := False
 
-	Loop
-	{
-		if stopLoop
-		   break
-		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
-		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
-		{
-			MouseClick, left, GiaViX, GiaViY
-			MouseClick, left, GiaViX, GiaViY
-			MouseClick, left, GiaViX, GiaViY
+    Loop
+    {
+        if stopLoop
+           break
+        GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
+        if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
+        {
+            MouseClick, left, GiaViX, GiaViY
+            MouseClick, left, GiaViX, GiaViY
+            MouseClick, left, GiaViX, GiaViY
 
-			Thit:="|<>*135$43.zzzzs3zzzzzk0zzzzzUCDzzzz0E3zzzy000zzzy000Dzzw000jzzs00Trzzs000Dzzs00Njrzs044znzs0137kzs806O/zs012TXzk000jrzs000Hrzs8ESS7zk80+S7zk8480Lzk006E/zs000C7zw00077zy000ZXzz0017dzz00200Tzk00A0Tzs1UM4TzyAkDWTzzqM71Dzzzg31Dzzzy1djzzzz0Vjzzzzk4zzzzzw2zzzzzz3Tzzzzzvjzzzzzzrzzzk"
-			if (ok:=FindText(ThitX, ThitY, 242-150000, 148-150000, 242+150000, 148+150000, 0, 0, Thit))
-			{
-				MouseClick, left, ThitX, ThitY
+            Thit:="|<>*135$43.zzzzs3zzzzzk0zzzzzUCDzzzz0E3zzzy000zzzy000Dzzw000jzzs00Trzzs000Dzzs00Njrzs044znzs0137kzs806O/zs012TXzk000jrzs000Hrzs8ESS7zk80+S7zk8480Lzk006E/zs000C7zw00077zy000ZXzz0017dzz00200Tzk00A0Tzs1UM4TzyAkDWTzzqM71Dzzzg31Dzzzy1djzzzz0Vjzzzzk4zzzzzw2zzzzzz3Tzzzzzvjzzzzzzrzzzk"
+            if (ok:=FindText(ThitX, ThitY, 242-150000, 148-150000, 242+150000, 148+150000, 0, 0, Thit))
+            {
+                MouseClick, left, ThitX, ThitY
 
-				MouseClick, left, 1000, 650
-				Sleep, 3000
-				MouseClick, left, 600, 300
-			}
-		}
-		Sleep, 500
-	}
-	return
+                MouseClick, left, 1000, 650
+                Sleep, 2300
+                MouseClick, left, 600, 300
+            }
+        }
+        Sleep, 500
+    }
+    return
 }
 
-F2::
+
+
+; Show GUI to select Price Target
+Home::
+ShowPriceTargetSelector()
+return
+
+PgUp::
     ; Create GUI
     Gui, PriceSelect:New
     Gui, Font, s10
 
-  Gui, Add, Button, gNauAn1 Default w200, CanhThachTuy (Hoa)
-  Gui, Add, Button, gNauAn2 w200, SashimiCaBac (Bang)
-	Gui, Add, Button, gNauAn3 w200, GaAnMay (Hoa + Tho)
-	Gui, Add, Button, gNauAn4 w200, LauThitTho (Hoa)
+    Gui, Add, Button, gNauAn1 Default w200, CanhThachTuy (Hoa)
+    Gui, Add, Button, gNauAn2 w200, SashimiCaBac (Bang)
+    Gui, Add, Button, gNauAn3 w200, GaAnMay (Hoa + Tho)
+    Gui, Add, Button, gNauAn4 w200, LauThitTho (Hoa)
     Gui, Show,, Nau An
     return
 
     NauAn1:
-	  Gui, Submit, NoHide
-	  Gui, Destroy
-	  CanhThachTuy()
+      Gui, Submit, NoHide
+      Gui, Destroy
+      CanhThachTuy()
     return
 
     NauAn2:
-	  Gui, Submit, NoHide
-	  Gui, Destroy
-	  SashimiCaBac()
-	return
+      Gui, Submit, NoHide
+      Gui, Destroy
+      SashimiCaBac()
+    return
 
     NauAn3:
-	  Gui, Submit, NoHide
-	  Gui, Destroy
-	  GaAnMay()
-	return
+      Gui, Submit, NoHide
+      Gui, Destroy
+      GaAnMay()
+    return
 
     NauAn4:
-	  Gui, Submit, NoHide
-	  Gui, Destroy
-	  LauThitTho()
+      Gui, Submit, NoHide
+      Gui, Destroy
+      LauThitTho()
     return
 
 return
 
 
 PgDn::
-    global stopLoop
-    stopLoop := False
-    Loop
-    {
-        if stopLoop
-           break
-        Send, {r down}
-        Sleep, 2700
-        Send, {Shift}
-        Sleep, 50
-        Send, {r up}
-        Sleep, 400
-    }
+Chuphinh()
+Monghoaluc()
+Haocam()
+Send, {F1}
 return
 
 
