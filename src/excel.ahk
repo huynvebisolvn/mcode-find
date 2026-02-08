@@ -48,9 +48,13 @@ InitResolutionScale() {
 Current Resolution: %CurrentWidth% x %CurrentHeight%
 Base Resolution: %BaseWidth% x %BaseHeight%
 
-Script will automatically adjust all coordinates based on these scale factors.
-Auto ok after 10s, click OK to continue...
-    ), 10
+- Hotkey "Home" hoac "[" mua gia min
+- Hotkey "End" menu nau an
+- Hotkey "PgUp" hoac "]" full nau an 6 nhan vat
+- Hotkey "PgDn" hoac "\" full nhiem vu ngay 60 nhan vat
+
+Auto ok after 20s, click OK to continue...
+    ), 20
     return
 }
 
@@ -521,7 +525,7 @@ CanhThachTuy() {
 	global stopLoop
 	stopLoop := False
 
-	Loop
+	Loop, 70
 	{
 		if stopLoop
 		   break
@@ -538,8 +542,16 @@ CanhThachTuy() {
 
 				SMClick("left", 1000, 650)
 				Sleep, 2500
-				SMClick("left", 600, 300)
+				SMClick("left", 850, 540)
 			}
+			else
+			{
+				SMClick("left", 850, 540)
+			}
+		}
+		else
+		{
+			SMClick("left", 850, 540)
 		}
 		Sleep, 500
 	}
@@ -550,8 +562,8 @@ CanhThachTuy() {
 SashimiCaBac() {
 	global stopLoop
 	stopLoop := False
-
-	Loop
+	; TODO
+	Loop, 70
 	{
 		if stopLoop
 		   break
@@ -568,8 +580,16 @@ SashimiCaBac() {
 
 				SMClick("left", 1000, 650)
 				Sleep, 2500
-				SMClick("left", 600, 300)
+				SMClick("left", 850, 540)
 			}
+			else
+			{
+				SMClick("left", 850, 540)
+			}
+		}
+		else
+		{
+			SMClick("left", 850, 540)
 		}
 		Sleep, 500
 	}
@@ -581,7 +601,7 @@ GaAnMay() {
 	global stopLoop
 	stopLoop := False
 
-	Loop
+	Loop, 70
 	{
 		if stopLoop
 		   break
@@ -598,8 +618,16 @@ GaAnMay() {
 
 				SMClick("left", 1000, 650)
 				Sleep, 2500
-				SMClick("left", 600, 300)
+				SMClick("left", 850, 540)
 			}
+			else
+			{
+				SMClick("left", 850, 540)
+			}
+		}
+		else
+		{
+			SMClick("left", 850, 540)
 		}
 		Sleep, 500
 	}
@@ -611,7 +639,7 @@ LauThitTho() {
 	global stopLoop
 	stopLoop := False
 
-	Loop
+	Loop, 70
 	{
 		if stopLoop
 		   break
@@ -629,8 +657,16 @@ LauThitTho() {
 
 				SMClick("left", 1000, 650)
 				Sleep, 2500
-				SMClick("left", 600, 300)
+				SMClick("left", 850, 540)
 			}
+			else
+			{
+				SMClick("left", 850, 540)
+			}
+		}
+		else
+		{
+			SMClick("left", 850, 540)
 		}
 		Sleep, 500
 	}
@@ -681,16 +717,95 @@ Home::
 ShowPriceTargetSelector()
 return
 
+End::
+MenuNauAn()
+return
+
 [::
 ShowPriceTargetSelector()
 return
 
+FullNauAn() {
+	Sleep, 500
+	SMClick("left", 600, 150)
+	Sleep, 500
+	SMClick("left", 600, 150)
+	Send, {Esc}
+	Sleep, 500
+
+	Nghe:="|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
+	if (ok:=FindText(NgheX := "wait", NgheY := 5, 895-150000, 202-150000, 895+150000, 202+150000, 0, 0, Nghe))
+	{
+		MouseClick, left, NgheX, NgheY
+		NauAn:="|<>*128$47.zk0000Dzz00000Dzz00000zzzk040Dzzzk0C0zzzzU0K1zzzzU0a7zzzzV3ATzzzzjQ9zzzzzvkTzzzzzb0zzzzzy01zzyzzw00Tzwzzs00zztzzkE1zzg"
+		if (ok:=FindText(NauAnX := "wait", NauAnY := 5, 485-150000, 662-150000, 485+150000, 662+150000, 0, 0, NauAn))
+		{
+			MouseClick, left, NauAnX, NauAnY
+			BatDau:="|<>*123$70.000000000U0000600000300000k00000600006000000M00000000000U0Dw4800Dy0C00tsRU00zy1s03Vkw003VwCk0C700Q0C3kE00sM01k0s7U003VVyDk3UCDllyADwS0C0tzb7zk1lk1z3UCQTjU7703UC0tlyD3wQ0C0sTb7sQPlk0s33yQTVn7703UAMtly7AQQ0C1Vnb7sszls0zw7yTzz3r7U3z0Ttzk06080000k1UU"
+			if (ok:=FindText(BatDauX := "wait", BatDauY := 5, 963-150000, 563-150000, 963+150000, 563+150000, 0, 0, BatDau))
+			{
+				MouseClick, left, BatDauX, BatDauY
+				SMClick("left", 280, 90)
+				Bang:="|<>*107$27.zzjzzzwzzzzbzzzuzzzzHzzznTzzyvzszrDwU6tU60nM1s3G0TU8k7w1Y1zk50Tzzzzzzzzzy0s3zUAUDs160y0ME3U6H087rD0zytzzzrTzzyPzzzuTzzzLzzzszzzzbzzzxzzU"
+				if (ok:=FindText(BangX := "wait", BangY := 3, 602-150000, 562-150000, 602+150000, 562+150000, 0, 0, Bang))
+				{
+					MouseClick, left, BangX, BangY
+				}
+				Bang2:="|<>*109$27.zzjzzztzzzzDzzzkzzzyrzzzqzzzwvzsDjTUUAv0A0qE3k240z0NUDw183zkD0zzzzzzkD0zw1c3z0NUDk340w0mk30An09zbTlzxvzzzaTzzyrzzzqzzzz7zzztzzzzDzw"
+				if (ok:=FindText(Bang2X := "wait", Bang2Y := 3, 712-150000, 575-150000, 712+150000, 575+150000, 0, 0, Bang2))
+				{
+					MouseClick, left, Bang2X, Bang2Y
+				}
+				SashimiCaBac()
+			}
+
+		}
+
+	}
+	return
+}
+
+
 PgUp::
-MenuNauAn()
+	global stopLoop
+	stopLoop := False
+	Loop, 6
+	{
+		if stopLoop
+		   break
+		FullNauAn()
+		Sleep, 1000
+		Send, {Esc}
+		if stopLoop
+		   break
+		LogoutNhanVat()
+		if stopLoop
+		   break
+		if (!stopLoop && A_Index < 6)
+			DoiNhanVat()
+		Sleep, 15000
+	}
 return
 
 ]::
-MenuNauAn()
+	global stopLoop
+	stopLoop := False
+	Loop, 6
+	{
+		if stopLoop
+		   break
+		FullNauAn()
+		Sleep, 1000
+		Send, {Esc}
+		if stopLoop
+		   break
+		LogoutNhanVat()
+		if stopLoop
+		   break
+		if (!stopLoop && A_Index < 6)
+			DoiNhanVat()
+		Sleep, 15000
+	}
 return
 
 FullAccTo(username) {
@@ -701,7 +816,7 @@ FullAccTo(username) {
 		if stopLoop
 		   break
 		QuaDuNgoan()
-		Sleep, 3000
+		Sleep, 2500
 		if stopLoop
 		   break
 		Chuphinh()
