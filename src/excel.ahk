@@ -508,6 +508,7 @@ SashimiCaBac() {
 	global stopLoop
 	stopLoop := False
 	; TODO
+	hetTheLucCount := 0
 	Loop
 	{
 		if stopLoop
@@ -527,8 +528,12 @@ SashimiCaBac() {
 				Sleep, 2500
         if (ok:=FindText(GiaVi2X, GiaVi2Y, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
         {
-          ; Neu van tim thay = het the luc
-          break
+          ; Neu van tim thay 5 lan = het the luc
+          hetTheLucCount++
+          if (hetTheLucCount >= 5)
+          {
+            break
+          }
         }
 				MouseClick, left, 850, 540
 			}
