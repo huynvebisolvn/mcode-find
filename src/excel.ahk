@@ -288,6 +288,12 @@ NhanThuong(username, index) {
 	{
 		if stopLoop
 		   break
+    ; break neu da nhan
+    DaNhan:="|<>*141$25.zzzsTzzsDzzs7zzs27zw03zw01zw00Tw003w000w00080200010001U001s003z00Fzs0Dzz0DzzkDzk"
+    if (ok:=FindText(DaNhanX := "wait", DaNhanY := 0.5, 604-150000, 644-150000, 604+150000, 644+150000, 0, 0, DaNhan))
+    {
+      break
+    }
 		result := CountOk()
 		; MsgBox, % "Tổng: " . result.count
 		if (result.count >= 3) {
