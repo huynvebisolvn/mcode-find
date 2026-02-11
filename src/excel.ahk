@@ -745,6 +745,7 @@ FullNauAn() {
 			if (ok:=FindText(BatDauX := "wait", BatDauY := 5, 963-150000, 563-150000, 963+150000, 563+150000, 0, 0, BatDau))
 			{
 				MouseClick, left, BatDauX, BatDauY
+				Sleep, 1000
 				SMClick("left", 280, 90)
 				Bang:="|<>*107$27.zzjzzzwzzzzbzzzuzzzzHzzznTzzyvzszrDwU6tU60nM1s3G0TU8k7w1Y1zk50Tzzzzzzzzzy0s3zUAUDs160y0ME3U6H087rD0zytzzzrTzzyPzzzuTzzzLzzzszzzzbzzzxzzU"
 				if (ok:=FindText(BangX := "wait", BangY := 3, 602-150000, 562-150000, 602+150000, 562+150000, 0, 0, Bang))
