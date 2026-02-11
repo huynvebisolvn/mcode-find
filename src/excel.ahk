@@ -437,7 +437,7 @@ Login(username) {
 	MouseClick, left, 200, 420
 	Sleep, 500
 	MouseClick, left, 1050, 630
-	Sleep, 15000
+	Sleep, 20000
 return
 }
 
@@ -709,7 +709,7 @@ PgUp::
 		   break
 		if (!stopLoop && A_Index < 6)
 			DoiNhanVat()
-		Sleep, 15000
+		Sleep, 20000
 	}
 return
 
@@ -730,7 +730,7 @@ return
 		   break
 		if (!stopLoop && A_Index < 6)
 			DoiNhanVat()
-		Sleep, 15000
+		Sleep, 20000
 	}
 return
 
@@ -777,7 +777,7 @@ FullAccTo(username) {
 		   break
 		if (!stopLoop && A_Index < 6)
 			DoiNhanVat()
-		Sleep, 15000
+		Sleep, 20000
 	}
 	return
 }
