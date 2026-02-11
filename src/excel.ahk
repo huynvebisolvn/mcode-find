@@ -486,7 +486,7 @@ SashimiCaBac() {
 	global stopLoop
 	stopLoop := False
 	; TODO
-	Loop, 70
+	Loop
 	{
 		if stopLoop
 		   break
@@ -503,10 +503,11 @@ SashimiCaBac() {
 
 				MouseClick, left, 1000, 650
 				Sleep, 2500
-				MouseClick, left, 850, 540
-			}
-			else
-			{
+        if (ok:=FindText(GiaVi2X, GiaVi2Y, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
+        {
+          ; Neu van tim thay = het the luc
+          break
+        }
 				MouseClick, left, 850, 540
 			}
 		}
