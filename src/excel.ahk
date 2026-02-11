@@ -1,89 +1,12 @@
-; screen: 1280x720 (reference resolution)
+; screen: 1280x720
 ; graphic: min
 ; Full screen mode
-; Support adaptive scaling for different resolutions
 
 ; Global variables
 global SelectedPriceTarget := ""
 global SelectedTarget := ""
 global PriceTargets := {}
 global stopLoop := False
-
-; Resolution scaling variables
-global BaseWidth := 1280
-global BaseHeight := 720
-global ScaleX := 1.0
-global ScaleY := 1.0
-global CurrentWidth := 0
-global CurrentHeight := 0
-
-; Initialize resolution scaling based on current screen size
-InitResolutionScale() {
-    global BaseWidth, BaseHeight, ScaleX, ScaleY, CurrentWidth, CurrentHeight
-    
-    ; Get current screen resolution - Method 1 (Virtual screen)
-    SysGet, CurrentWidth, 78   ; SM_CXVIRTUALSCREEN
-    SysGet, CurrentHeight, 79  ; SM_CYVIRTUALSCREEN
-    
-    ; If virtual screen is 0, use primary monitor - Method 2
-    if (CurrentWidth = 0 || CurrentHeight = 0) {
-        SysGet, CurrentWidth, 16   ; SM_CXSCREEN
-        SysGet, CurrentHeight, 17  ; SM_CYSCREEN
-    }
-    
-    ; Calculate scale factors
-    ScaleX := CurrentWidth / BaseWidth
-    ScaleY := CurrentHeight / BaseHeight
-    
-    ; Format scale values for display
-    scaleXDisplay := Round(ScaleX, 3)
-    scaleYDisplay := Round(ScaleY, 3)
-    
-    ; Show detailed alert
-    MsgBox, 64, Resolution Detection, 
-    (
-=================================
-   DETECTED SCREEN RESOLUTION
-=================================
-Current Resolution: %CurrentWidth% x %CurrentHeight%
-Base Resolution: %BaseWidth% x %BaseHeight%
-
-- Hotkey "Home" hoac "[" mua gia min
-- Hotkey "End" menu nau an
-- Hotkey "PgUp" hoac "]" full nau an 6 nhan vat
-- Hotkey "PgDn" hoac "\" full nhiem vu ngay 60 nhan vat
-
-Auto ok after 20s, click OK to continue...
-    ), 20
-    return
-}
-
-; Scale X coordinate
-SX(x) {
-    global ScaleX
-    return Round(x * ScaleX)
-}
-
-; Scale Y coordinate
-SY(y) {
-    global ScaleY
-    return Round(y * ScaleY)
-}
-
-; Scaled MouseClick wrapper
-SMClick(button, x, y, count := 1) {
-    MouseClick, %button%, % SX(x), % SY(y), %count%
-    return
-}
-
-; Scaled MouseMove wrapper
-SMMove(x, y) {
-    MouseMove, % SX(x), % SY(y)
-    return
-}
-
-; Initialize scaling on script start
-InitResolutionScale()
 
 ; Load Price Targets from config file
 LoadPriceTargets() {
@@ -182,12 +105,12 @@ RunPriceTargetScript() {
     stopLoop := False
 
     Refresh:="|<>*142$63.zzzzzzzzzzzzzzzzzzzzzryTzzzzxzjCDtzzzyDXltlzzzzzlwTzyDzzzzy73zTly3UlzksQ3CDWA07y234tnxtaAzmGNnCTkAtbyMmCNnw1bAzn6FnCTbAtbyMmCNnslbAznCNnC0UAlbyRn0tk41bQznwQDDzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
-    if (ok:=FindText(RefreshX := "wait", RefreshY := 0.5, SX(359)-150000, SY(93)-150000, SX(359)+150000, SY(93)+150000, 0, 0, Refresh))
+    if (ok:=FindText(RefreshX := "wait", RefreshY := 0.5, 359-150000, 93-150000, 359+150000, 93+150000, 0, 0, Refresh))
     {
         MouseMove, RefreshX, RefreshY
 
         PlusMax:="|<>*204$35.zzzzzzzzxzzzzzlzzzzz1zzzzw1zzzzkVzzzz3VzzzwDVzzzkzVzzz3zVzzwDzVzzkzzVzz3zzVzwDxzUzUzlzUz3z1zXz7w1z7zTkVzTzz3VzzzwDUzzzUzUzzz3zVzzz7z7zzzTyTzzzzzzz"
-        if (ok:=FindText(PlusMaxX := "wait", PlusMaxY := 0.5, SX(1219)-150000, SY(488)-150000, SX(1219)+150000, SY(488)+150000, 0, 0, PlusMax))
+        if (ok:=FindText(PlusMaxX := "wait", PlusMaxY := 0.5, 1219-150000, 488-150000, 1219+150000, 488+150000, 0, 0, PlusMax))
         {
             MouseMove, PlusMaxX, PlusMaxY
             ; main logic
@@ -196,14 +119,14 @@ RunPriceTargetScript() {
                 if stopLoop
                     break
                 ; Use the selected price target from GUI
-                if (ok:=FindText(FirstTargetX := "wait", FirstTargetY := 0.5, SX(1075)-150000, SY(585)-150000, SX(1075)+150000, SY(585)+150000, 0, 0, SelectedPriceTarget))
+                if (ok:=FindText(FirstTargetX := "wait", FirstTargetY := 0.5, 1075-150000, 585-150000, 1075+150000, 585+150000, 0, 0, SelectedPriceTarget))
                 {
                     MouseClick, left, PlusMaxX, PlusMaxY
                     Send, {v down}
                     Sleep, 50
                     Send, {v up}
                     Sleep, 200
-                    SMClick("left", 600, 100)
+                    MouseClick, left, 600, 100
                 }
                 else
                 {
@@ -223,7 +146,7 @@ Chuphinh() {
 	Sleep, 2000
 	Send, {Enter}
 	Thoat:="|<>*111$46.zsTzzszzz3zzzlzzsSTzDXzz3lzwT7zsS3zVyDz3w7w7wTszwDVzwzTzsQDzzvzzkVzzzTzzUDzzzzzz9zzzzzzwbzzzzzzUTzzzzzw0zzzTzzVVzzvvzwD3zwTnzVy7z3zXsDw3sTz7lzsT3zyDbznsTzwSTzT3zzszzzsTzzlzzz3zzzXzzsTzzz7zz3zy"
-	if (ok:=FindText(ThoatX := "wait", ThoatY := 3, SX(1153)-150000, SY(99)-150000, SX(1153)+150000, SY(99)+150000, 0, 0, Thoat))
+	if (ok:=FindText(ThoatX := "wait", ThoatY := 3, 1153-150000, 99-150000, 1153+150000, 99+150000, 0, 0, Thoat))
 	{
 	  MouseClick, left, ThoatX, ThoatY
 	}
@@ -235,14 +158,14 @@ Chuphinh() {
 Monghoaluc() {
 	Send, {Enter}
 	Sleep, 1000
-	SMClick("left", 35, 140)
+	MouseClick, left, 35, 140
 	Sleep, 1000
-	SMClick("left", 123, 625)
+	MouseClick, left, 123, 625
 	Sleep, 500
-	SMClick("left", 900, 300)
+	MouseClick, left, 900, 300
 	Sleep, 500
 	Send, {Text}ChoiGameVuiVe
-	SMClick("left", 1000, 555)
+	MouseClick, left, 1000, 555
 	Sleep, 500
 	Send, {Esc}
 	return
@@ -251,13 +174,13 @@ Monghoaluc() {
 Haocam() {
 	Send, {F11}
 	Sleep, 1000
-	SMClick("left", 500, 500)
+	MouseClick, left, 500, 500
 	Sleep, 2000
-	SMClick("left", 1200, 170)
+	MouseClick, left, 1200, 170
 	Sleep, 1000
-	SMClick("left", 825, 270)
+	MouseClick, left, 825, 270
 	Tang:="|<>*109$42.0000000zwEU0007sTU0003UD00003U000003U000003UTXS0y3Uzbz3y3U3rj7C3U1r7663UDr7663Uzr7763Ulr77w3Vlr73k3Vzr7203Uzr77w00M007y000007D006006600C007i004007wU"
-	if (ok:=FindText(TangX := "wait", TangY := 3, SX(944)-150000, SY(596)-150000, SX(944)+150000, SY(596)+150000, 0, 0, Tang))
+	if (ok:=FindText(TangX := "wait", TangY := 3, 944-150000, 596-150000, 944+150000, 596+150000, 0, 0, Tang))
 	{
 		MouseClick, left, TangX, TangY
 		Sleep, 1000
@@ -309,7 +232,7 @@ CountOk() {
     }
 
     TextOk3:="|<>*236$82.0000T0003k0003k0A0y000T0000Dk0z3s001y0000z03sDU00AQ0003w0DUy001Uw0007s0y3s00A3k000TU3sDU00U00001z0DUy000000007w0y3s00000000Ts3sDVU03U0061zkDUyzU1zs7vz7j0y3zzUTzkTzySS3sDzy3wTUzztswDUz1wD0S3w7rXky3s7ls1wDUTS7XsDUT703ky0xsDDUy0w00D3s3rUQy3s3k7zwDUDS1vsDUD1zzkw0xs3zUw0wDzz3k3rUDy3k3ly1wD0DS0TsD0D7k7kw0xs0zUw0wT0T3k3zU3y3k3lw1wD0Dy07sD0D7kDkw0zs0TUw0wT1z3k3zU0y3k7lyDwD0Dy03sT0T3zvsw0zs0TVw1w7z7Xk3z00w3U3kDsMD0D00000000000000000000000000000000000000000000000007U000000000000TU000000000000w0000000000001k000000000000600008"
-    if (ok:=FindText(X, Y, SX(825)-150000, SY(534)-150000, SX(825)+150000, SY(534)+150000, 0, 0, TextOk3))
+    if (ok:=FindText(X, Y, 825-150000, 534-150000, 825+150000, 534+150000, 0, 0, TextOk3))
     {
         For i, obj in ok
         {
@@ -324,7 +247,7 @@ CountOk() {
     }
 
     TextOk4:="|<>*236$83.0000DU003k0001s060T0007k0003w0Dky000Rk0003s0TVw001nk0007s0y3s0073k000Dk0w7k00M3U000Tk1sDU00U20000zU3kT000000001zU7Uy000000003z0D1wA00A040k7z0S3vz07zUDjwDj0w7zz0TzUTzwTC1sDzz1wDUzzwyS3kTUy7kDVy3twS7Uy0wD0D3s3nsQD1w1sM0S7k7bkwS3s3s00wDUDjUww7k7kDzsT0TT0tsDUDVzzky0yy1vkT0T7zzVw1xw1zUy0yDUD3s3vs3z1w1wy0S7k7rk3z3s3tw1wDUDjU3w7k7ns3sT0TS07sDUDbkDsy0yw07kT0TDUTlw1zs0DUy0yDnrXk3zk0T1s1wTzD7U7zU0y3k3sTySD0Dj01w3U7UDksS0S00000000000000000000000000000000000000000000000000y0000000000000y0000000000001w0000000000001k0000000000001U0002"
-    if (ok:=FindText(X, Y, SX(985)-150000, SY(534)-150000, SX(985)+150000, SY(534)+150000, 0, 0, TextOk4))
+    if (ok:=FindText(X, Y, 985-150000, 534-150000, 985+150000, 534+150000, 0, 0, TextOk4))
     {
         For i, obj in ok
         {
@@ -339,7 +262,7 @@ CountOk() {
     }
 
     TextOk5:="|<>*236$83.0000DU003k0000w070T0007k0001y0Dky000Rk0003s0TUw001lk0007s0T1s0033k000Dk0y3k00A3U000Tk1s7U00U20000zU3kD000000001zU7US000000003zUD0wA00C000E7z0S1vz07zUDjwDj0w3zz0TzkTzwTD1s7zz1yDUzzwyS3kDUy7kDVy3twS7kT0yD0D3w3vsSDUw1wQ0S7k7rkwT1s3s00wDUDjUwy3k7k7zsT0TT0tw7UDVzzky0yy1vsD0T7zzVw1xw1zkS0yDkD3s3vs1zVw1wS0T7k7rk3z3s3tw1yDUDjU3y7k7ns3wT0TT07wDUDbk7sy0yy07sT0T7kTlw1xw0Dky0yDnzXs3zk0T1w1wTzj7k7zU0y3s3sTySDUDj00w3U3UDssC0C00000000000000000000000000000000000000000000000000y0000000000000y0000000000001w0000000000001s0000000000001U0002"
-    if (ok:=FindText(X, Y, SX(1145)-150000, SY(534)-150000, SX(1145)+150000, SY(534)+150000, 0, 0, TextOk5))
+    if (ok:=FindText(X, Y, 1145-150000, 534-150000, 1145+150000, 534+150000, 0, 0, TextOk5))
     {
         For i, obj in ok
         {
@@ -376,7 +299,7 @@ NhanThuong(username, index) {
 		}
 		clickedPositions := {}
 		RefreshText1:="|<>*197$33.zzzzzzzzzzzzy03zzz007zzU00Dzs000zy0003zU3y0Tw6Dw1z0Q3k7s7UD0y1k0Q3kA03US3U0C3kM01kS30063kM00kS300C3kM01kS3U0C3kA03US1k0w3s7UD0z0T0s7w1zU1zU3y0Ty0003zs000zzU00Tzz007zzy03zzzzzzzzzzzzw"
-		if (ok:=FindText(RefreshText1X := "wait", RefreshText1Y := 0.5, SX(1167)-150000, SY(398)-150000, SX(1167)+150000, SY(398)+150000, 0, 0, RefreshText1))
+		if (ok:=FindText(RefreshText1X := "wait", RefreshText1Y := 0.5, 1167-150000, 398-150000, 1167+150000, 398+150000, 0, 0, RefreshText1))
 		{
 			key := Round(RefreshText1X) "_" Round(RefreshText1Y)
 			if (!clickedPositions.HasKey(key)) {
@@ -385,7 +308,7 @@ NhanThuong(username, index) {
 			}
 		}
 		RefreshText2:="|<>*211$34.zzzzzzzzzzzzzU0Tzzs00Tzz000zzs000zz0003zs0zU7z0lzUDw3kT0TUS0S1y1k0s7sC01kD0s030w300A3kA00kD0k030w300A3kA00kD0s070y3U0Q3s703UTUC0S1z0zssDw0zkUzs0z07zk000zzU007zz000zzz007zzy01zzzzzzzzzzzzzU"
-		if (ok:=FindText(RefreshText2X := "wait", RefreshText2Y := 0.5, SX(1007)-150000, SY(398)-150000, SX(1007)+150000, SY(398)+150000, 0, 0, RefreshText2))
+		if (ok:=FindText(RefreshText2X := "wait", RefreshText2Y := 0.5, 1007-150000, 398-150000, 1007+150000, 398+150000, 0, 0, RefreshText2))
 		{
 			key := Round(RefreshText2X) "_" Round(RefreshText2Y)
 			if (!clickedPositions.HasKey(key)) {
@@ -394,7 +317,7 @@ NhanThuong(username, index) {
 			}
 		}
 		RefreshText3:="|<>*223$33.zzzzzzzzzzzzy01zzz007zzU00Dzs000zy0003zk1y0Dw37w0z0S7s7s7U70S1s0Q3kC01kS3U0C3kQ00kS3U063kQ00kS3U063kQ01kS1U0C3kC03kS1s0Q3s7UD0z0Tsw7w1zkVzk3y0Dy0003zs000zzk00Dzz007zzy03zzzzzzzzzzzzw"
-		if (ok:=FindText(RefreshText3X := "wait", RefreshText3Y := 0.5, SX(846)-150000, SY(398)-150000, SX(846)+150000, SY(398)+150000, 0, 0, RefreshText3))
+		if (ok:=FindText(RefreshText3X := "wait", RefreshText3Y := 0.5, 846-150000, 398-150000, 846+150000, 398+150000, 0, 0, RefreshText3))
 		{
 			key := Round(RefreshText3X) "_" Round(RefreshText3Y)
 			if (!clickedPositions.HasKey(key)) {
@@ -403,7 +326,7 @@ NhanThuong(username, index) {
 			}
 		}
 		RefreshText4:="|<>*174$19.0TU67w1kD1k1lk0Qk06s03M01w00S00D007U07s03A03b01Vk3kT0s7y00T0E"
-		if (ok:=FindText(RefreshText4X := "wait", RefreshText4Y := 0.5, SX(686)-150000, SY(398)-150000, SX(686)+150000, SY(398)+150000, 0, 0, RefreshText4))
+		if (ok:=FindText(RefreshText4X := "wait", RefreshText4Y := 0.5, 686-150000, 398-150000, 686+150000, 398+150000, 0, 0, RefreshText4))
 		{
 			key := Round(RefreshText4X) "_" Round(RefreshText4Y)
 			if (!clickedPositions.HasKey(key)) {
@@ -418,15 +341,15 @@ NhanThuong(username, index) {
 			FileAppend, Fail: %username% %index%`n, %logFile%
 		}
 	}
-	SMClick("left", 410, 640)
+	MouseClick, left, 410, 640
 	Sleep, 500
-	SMClick("left", 410, 640)
-	SMClick("left", 600, 640)
+	MouseClick, left, 410, 640
+	MouseClick, left, 600, 640
 	Sleep, 500
-	SMClick("left", 600, 640)
-	SMClick("left", 790, 640)
+	MouseClick, left, 600, 640
+	MouseClick, left, 790, 640
 	Sleep, 500
-	SMClick("left", 790, 640)
+	MouseClick, left, 790, 640
 	return
 }
 
@@ -447,51 +370,51 @@ LogoutNhanVat() {
 	Sleep, 2000
 	Send, {Esc}
 	Sleep, 500
-	SMClick("left", 1230, 430)
+	MouseClick, left, 1230, 430
 	Sleep, 500
-	SMClick("left", 570, 190)
+	MouseClick, left, 570, 190
 	Sleep, 500
 	Send, {Space}
 }
 
 DoiNhanVat() {
 	Sleep, 10000
-	SMMove(150, 300)
+	MouseMove, 150, 300
 	Click, WheelDown, 5
 	Sleep, 500
-	SMClick("left", 200, 420)
+	MouseClick, left, 200, 420
 	Sleep, 500
-	SMClick("left", 1050, 630)
+	MouseClick, left, 1050, 630
 	return
 }
 
 QuaDuNgoan() {
 	Sleep, 500
-	SMClick("left", 600, 150)
+	MouseClick, left, 600, 150
 	Sleep, 500
-	SMClick("left", 600, 150)
+	MouseClick, left, 600, 150
 	Send, {Esc}
 	Sleep, 500
-	SMClick("left", 900, 370)
+	MouseClick, left, 900, 370
 	Sleep, 500
-	SMClick("left", 970, 600)
+	MouseClick, left, 970, 600
 	Sleep, 1500
-	SMClick("left", 970, 600)
+	MouseClick, left, 970, 600
 	Sleep, 1000
 	Send, {Esc}
 }
 
 Login(username) {
-	SMClick("left", 60, 40)
+	MouseClick, left, 60, 40
 	Sleep, 1000
-	SMClick("left", 1160, 350)
+	MouseClick, left, 1160, 350
 	Sleep, 1000
-	SMClick("left", 1240, 45)
+	MouseClick, left, 1240, 45
 	Sleep, 1000
-	SMClick("left", 1240, 45)
+	MouseClick, left, 1240, 45
 	Sleep, 1000
 	; bug of zing
-	SMClick("left", 150, 150)
+	MouseClick, left, 150, 150
 	Sleep, 1000
 	Send, {Tab}
 	Sleep, 500
@@ -502,18 +425,18 @@ Login(username) {
 	Sleep, 500
 	Send, {Enter}
 	; Dong y dieu khoan
-	SMClick("left", 36, 178)
+	MouseClick, left, 36, 178
 	Sleep, 500
-	SMClick("left", 237, 225)
+	MouseClick, left, 237, 225
 	Sleep, 1000
-	SMClick("left", 600, 560)
+	MouseClick, left, 600, 560
 	Sleep, 10000
-	SMMove(150, 300)
+	MouseMove, 150, 300
 	Click, WheelDown, 5
 	Sleep, 500
-	SMClick("left", 200, 420)
+	MouseClick, left, 200, 420
 	Sleep, 500
-	SMClick("left", 1050, 630)
+	MouseClick, left, 1050, 630
 	Sleep, 15000
 return
 }
@@ -534,24 +457,24 @@ CanhThachTuy() {
 		{
 			MouseClick, left, GiaViX, GiaViY
 			LuaNuoc:="|<>*131$39.zzwTzzzzz1zzzzzs3zzzzz03zzzzs0Tzzxy03zzyDU00zzWM001zwqU003y3k000DVU0000Mk00001wE00001y0001/Yo000/Tzc001DwG000yzhqU0E7z2i000zzU000Tzz000Dzzs00Tzzzzzy3zzzts1zzzV00zzzzsETzzzw1kDzzzU01zzzsNVzzzzX7zzzzynwDzzzUTzzzzyFzzzzzXDDzzzwvrzzzzyzzzU"
-			if (ok:=FindText(LuaNuocX, LuaNuocY, SX(162)-150000, SY(147)-150000, SX(162)+150000, SY(147)+150000, 0, 0, LuaNuoc))
+			if (ok:=FindText(LuaNuocX, LuaNuocY, 162-150000, 147-150000, 162+150000, 147+150000, 0, 0, LuaNuoc))
 			{
 				MouseClick, left, LuaNuocX, LuaNuocY
 				MouseClick, left, LuaNuocX, LuaNuocY
 				MouseClick, left, LuaNuocX, LuaNuocY
 
-				SMClick("left", 1000, 650)
+				MouseClick, left, 1000, 650
 				Sleep, 2500
-				SMClick("left", 850, 540)
+				MouseClick, left, 850, 540
 			}
 			else
 			{
-				SMClick("left", 850, 540)
+				MouseClick, left, 850, 540
 			}
 		}
 		else
 		{
-			SMClick("left", 850, 540)
+			MouseClick, left, 850, 540
 		}
 		Sleep, 500
 	}
@@ -574,22 +497,22 @@ SashimiCaBac() {
 			MouseClick, left, GiaViX, GiaViY
 			MouseClick, left, GiaViX, GiaViY
 			ThuySanCap1:="|<>*127$34.Tzzzzwzzzzznzzzzz1zzzzw7zzzzkTzzzzUPzzzy3XzzzwM3zzzs0Dzzzc0Dzzzk0zzzzU0zzzy01zzzw07zzzs0DzzyU0Tzzx00zzzs01zzzk03zzzU0Dzzz00Dzzy00zzzw01zzzs07zzzk0DzzzU0Tzzz01zzzy07zzzw0Dzzzs0zzzzk7zzzzkDzzzzkTzzzzUzzzzzVzzzzzm"
-			if (ok:=FindText(ThuySanCap1X, ThuySanCap1Y, SX(154)-150000, SY(142)-150000, SX(154)+150000, SY(142)+150000, 0, 0, ThuySanCap1))
+			if (ok:=FindText(ThuySanCap1X, ThuySanCap1Y, 154-150000, 142-150000, 154+150000, 142+150000, 0, 0, ThuySanCap1))
 			{
 				MouseClick, left, ThuySanCap1X, ThuySanCap1Y
 
-				SMClick("left", 1000, 650)
+				MouseClick, left, 1000, 650
 				Sleep, 2500
-				SMClick("left", 850, 540)
+				MouseClick, left, 850, 540
 			}
 			else
 			{
-				SMClick("left", 850, 540)
+				MouseClick, left, 850, 540
 			}
 		}
 		else
 		{
-			SMClick("left", 850, 540)
+			MouseClick, left, 850, 540
 		}
 		Sleep, 500
 	}
@@ -612,22 +535,22 @@ GaAnMay() {
 			MouseClick, left, GiaViX, GiaViY
 			MouseClick, left, GiaViX, GiaViY
 			Ga:="|<>*142$45.zzzzsTzzzzy003zzzy0007zzz0000Dzz00000zzk00003zy00000TzUQ0011zw60106Dy000709zW00000DkE00Rk1Us003zo00000zy000007y0A0000z03k000Dk0y0M01w0TsTk0D07zrzE3k3zyT00zzzzk007zzzy001zzzzls0TzzzwDsDzzzzXzzzzzzwzzzzzzw"
-			if (ok:=FindText(GaX, GaY, SX(161)-150000, SY(148)-150000, SX(161)+150000, SY(148)+150000, 0, 0, Ga))
+			if (ok:=FindText(GaX, GaY, 161-150000, 148-150000, 161+150000, 148+150000, 0, 0, Ga))
 			{
 				MouseClick, left, GaX, GaY
 
-				SMClick("left", 1000, 650)
+				MouseClick, left, 1000, 650
 				Sleep, 2500
-				SMClick("left", 850, 540)
+				MouseClick, left, 850, 540
 			}
 			else
 			{
-				SMClick("left", 850, 540)
+				MouseClick, left, 850, 540
 			}
 		}
 		else
 		{
-			SMClick("left", 850, 540)
+			MouseClick, left, 850, 540
 		}
 		Sleep, 500
 	}
@@ -651,22 +574,22 @@ LauThitTho() {
 			MouseClick, left, GiaViX, GiaViY
 
 			Thit:="|<>*135$43.zzzzs3zzzzzk0zzzzzUCDzzzz0E3zzzy000zzzy000Dzzw000jzzs00Trzzs000Dzzs00Njrzs044znzs0137kzs806O/zs012TXzk000jrzs000Hrzs8ESS7zk80+S7zk8480Lzk006E/zs000C7zw00077zy000ZXzz0017dzz00200Tzk00A0Tzs1UM4TzyAkDWTzzqM71Dzzzg31Dzzzy1djzzzz0Vjzzzzk4zzzzzw2zzzzzz3Tzzzzzvjzzzzzzrzzzk"
-			if (ok:=FindText(ThitX, ThitY, SX(242)-150000, SY(148)-150000, SX(242)+150000, SY(148)+150000, 0, 0, Thit))
+			if (ok:=FindText(ThitX, ThitY, 242-150000, 148-150000, 242+150000, 148+150000, 0, 0, Thit))
 			{
 				MouseClick, left, ThitX, ThitY
 
-				SMClick("left", 1000, 650)
+				MouseClick, left, 1000, 650
 				Sleep, 2500
-				SMClick("left", 850, 540)
+				MouseClick, left, 850, 540
 			}
 			else
 			{
-				SMClick("left", 850, 540)
+				MouseClick, left, 850, 540
 			}
 		}
 		else
 		{
-			SMClick("left", 850, 540)
+			MouseClick, left, 850, 540
 		}
 		Sleep, 500
 	}
@@ -727,9 +650,9 @@ return
 
 FullNauAn() {
 	Sleep, 500
-	SMClick("left", 600, 150)
+	MouseClick, left, 600, 150
 	Sleep, 500
-	SMClick("left", 600, 150)
+	MouseClick, left, 600, 150
 	Send, {Esc}
 	Sleep, 500
 
@@ -746,7 +669,7 @@ FullNauAn() {
 			{
 				MouseClick, left, BatDauX, BatDauY
 				Sleep, 1000
-				SMClick("left", 280, 90)
+				MouseClick, left, 280, 90
 				Bang:="|<>*107$27.zzjzzzwzzzzbzzzuzzzzHzzznTzzyvzszrDwU6tU60nM1s3G0TU8k7w1Y1zk50Tzzzzzzzzzy0s3zUAUDs160y0ME3U6H087rD0zytzzzrTzzyPzzzuTzzzLzzzszzzzbzzzxzzU"
 				if (ok:=FindText(BangX := "wait", BangY := 3, 602-150000, 562-150000, 602+150000, 562+150000, 0, 0, Bang))
 				{
