@@ -676,6 +676,53 @@ return
 ShowPriceTargetSelector()
 return
 
+FullDan() {
+  Sleep, 500
+  MouseClick, left, 600, 150
+  Sleep, 500
+  MouseClick, left, 600, 150
+  Send, {Esc}
+  Sleep, 500
+
+  Nghe:="|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
+  if (ok:=FindText(NgheX := "wait", NgheY := 5, 895-150000, 202-150000, 895+150000, 202+150000, 0, 0, Nghe))
+  {
+    MouseClick, left, NgheX, NgheY
+
+    Dan:="|<>*125$27.zyDzzzkzzzz3zzzw0zzzWDzzvsTkSrUyDrQ3nxxkDTjb1vxsw7Ti3UxwUBbja0QxwkC77n00UyA087ss71zVzDzz07zzy3w"
+    if (ok:=FindText(DanX := "wait", DanY := 5, 698-150000, 662-150000, 698+150000, 662+150000, 0, 0, Dan))
+    {
+      MouseClick, left, DanX, DanY
+      Sleep, 1000
+      MouseClick, left, 323, 110
+      DienTau:="|<>*144$68.000B00000k00007k0000Q0000000000600zk0A001zkk0Dz77U00TwS03ntXw000sDk0sC00000C180C3k00003UA03URlwzU0sDnbs7Qrjw0C7wty1rMvb03U3iTURrytk0s3vbs6TyCQ0C3yty1bw3b03VniTUFz0tk0sQvbzsRzCQ0C7yzzw7Dnb03Vzjy"
+      if (ok:=FindText(DienTauX := "wait", DienTauY := 5, 949-150000, 564-150000, 949+150000, 564+150000, 0, 0, DienTau))
+      {
+        MouseClick, left, DienTauX, DienTauY
+        Sleep, 1000
+        Plus:="|<>*204$17.z1zz7zyDzwTzszzlzzXyT7k000003EzTlzzXzz7zyDzwTzszzUzU"
+        if (ok:=FindText(PlusX := "wait", PlusY := 3, 1024-150000, 187-150000, 1024+150000, 187+150000, 0, 0, Plus))
+        {
+          MouseClick, left, PlusX, PlusY
+          Sleep, 500
+          MouseClick, left, PlusX, PlusY
+          Sleep, 500
+          MouseClick, left, PlusX, PlusY
+          Sleep, 500
+          MouseClick, left, PlusX, PlusY
+          Sleep, 500
+          MouseClick, left, PlusX, PlusY
+
+          MouseClickDrag, left, 1165, 180, 1165, 400
+          sleep, 360000 ; 6 phut
+          Send, {Esc}
+        }
+      }
+    }
+  }
+  return
+}
+
 FullNauAn() {
   loop
   {
