@@ -649,43 +649,45 @@ ShowPriceTargetSelector()
 return
 
 FullNauAn() {
-	Sleep, 500
-	MouseClick, left, 600, 150
-	Sleep, 500
-	MouseClick, left, 600, 150
-	Send, {Esc}
-	Sleep, 500
+  loop
+  {
+    Sleep, 500
+    MouseClick, left, 600, 150
+    Sleep, 500
+    MouseClick, left, 600, 150
+    Send, {Esc}
+    Sleep, 500
 
-	Nghe:="|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
-	if (ok:=FindText(NgheX := "wait", NgheY := 5, 895-150000, 202-150000, 895+150000, 202+150000, 0, 0, Nghe))
-	{
-		MouseClick, left, NgheX, NgheY
-		NauAn:="|<>*128$47.zk0000Dzz00000Dzz00000zzzk040Dzzzk0C0zzzzU0K1zzzzU0a7zzzzV3ATzzzzjQ9zzzzzvkTzzzzzb0zzzzzy01zzyzzw00Tzwzzs00zztzzkE1zzg"
-		if (ok:=FindText(NauAnX := "wait", NauAnY := 5, 485-150000, 662-150000, 485+150000, 662+150000, 0, 0, NauAn))
-		{
-			MouseClick, left, NauAnX, NauAnY
-			BatDau:="|<>*123$70.000000000U0000600000300000k00000600006000000M00000000000U0Dw4800Dy0C00tsRU00zy1s03Vkw003VwCk0C700Q0C3kE00sM01k0s7U003VVyDk3UCDllyADwS0C0tzb7zk1lk1z3UCQTjU7703UC0tlyD3wQ0C0sTb7sQPlk0s33yQTVn7703UAMtly7AQQ0C1Vnb7sszls0zw7yTzz3r7U3z0Ttzk06080000k1UU"
-			if (ok:=FindText(BatDauX := "wait", BatDauY := 5, 963-150000, 563-150000, 963+150000, 563+150000, 0, 0, BatDau))
-			{
-				MouseClick, left, BatDauX, BatDauY
-				Sleep, 1000
-				MouseClick, left, 280, 90
-				Bang:="|<>*107$27.zzjzzzwzzzzbzzzuzzzzHzzznTzzyvzszrDwU6tU60nM1s3G0TU8k7w1Y1zk50Tzzzzzzzzzy0s3zUAUDs160y0ME3U6H087rD0zytzzzrTzzyPzzzuTzzzLzzzszzzzbzzzxzzU"
-				if (ok:=FindText(BangX := "wait", BangY := 3, 602-150000, 562-150000, 602+150000, 562+150000, 0, 0, Bang))
-				{
-					MouseClick, left, BangX, BangY
-				}
-				Bang2:="|<>*109$27.zzjzzztzzzzDzzzkzzzyrzzzqzzzwvzsDjTUUAv0A0qE3k240z0NUDw183zkD0zzzzzzkD0zw1c3z0NUDk340w0mk30An09zbTlzxvzzzaTzzyrzzzqzzzz7zzztzzzzDzw"
-				if (ok:=FindText(Bang2X := "wait", Bang2Y := 3, 712-150000, 575-150000, 712+150000, 575+150000, 0, 0, Bang2))
-				{
-					MouseClick, left, Bang2X, Bang2Y
-				}
-				SashimiCaBac()
-			}
-
-		}
-
-	}
+    Nghe:="|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
+    if (ok:=FindText(NgheX := "wait", NgheY := 5, 895-150000, 202-150000, 895+150000, 202+150000, 0, 0, Nghe))
+    {
+      MouseClick, left, NgheX, NgheY
+      NauAn:="|<>*128$47.zk0000Dzz00000Dzz00000zzzk040Dzzzk0C0zzzzU0K1zzzzU0a7zzzzV3ATzzzzjQ9zzzzzvkTzzzzzb0zzzzzy01zzyzzw00Tzwzzs00zztzzkE1zzg"
+      if (ok:=FindText(NauAnX := "wait", NauAnY := 5, 485-150000, 662-150000, 485+150000, 662+150000, 0, 0, NauAn))
+      {
+        MouseClick, left, NauAnX, NauAnY
+        BatDau:="|<>*123$70.000000000U0000600000300000k00000600006000000M00000000000U0Dw4800Dy0C00tsRU00zy1s03Vkw003VwCk0C700Q0C3kE00sM01k0s7U003VVyDk3UCDllyADwS0C0tzb7zk1lk1z3UCQTjU7703UC0tlyD3wQ0C0sTb7sQPlk0s33yQTVn7703UAMtly7AQQ0C1Vnb7sszls0zw7yTzz3r7U3z0Ttzk06080000k1UU"
+        if (ok:=FindText(BatDauX := "wait", BatDauY := 5, 963-150000, 563-150000, 963+150000, 563+150000, 0, 0, BatDau))
+        {
+          MouseClick, left, BatDauX, BatDauY
+          Sleep, 1000
+          MouseClick, left, 280, 90
+          Bang:="|<>*107$27.zzjzzzwzzzzbzzzuzzzzHzzznTzzyvzszrDwU6tU60nM1s3G0TU8k7w1Y1zk50Tzzzzzzzzzy0s3zUAUDs160y0ME3U6H087rD0zytzzzrTzzyPzzzuTzzzLzzzszzzzbzzzxzzU"
+          if (ok:=FindText(BangX := "wait", BangY := 3, 602-150000, 562-150000, 602+150000, 562+150000, 0, 0, Bang))
+          {
+            MouseClick, left, BangX, BangY
+          }
+          Bang2:="|<>*109$27.zzjzzztzzzzDzzzkzzzyrzzzqzzzwvzsDjTUUAv0A0qE3k240z0NUDw183zkD0zzzzzzkD0zw1c3z0NUDk340w0mk30An09zbTlzxvzzzaTzzyrzzzqzzzz7zzztzzzzDzw"
+          if (ok:=FindText(Bang2X := "wait", Bang2Y := 3, 712-150000, 575-150000, 712+150000, 575+150000, 0, 0, Bang2))
+          {
+            MouseClick, left, Bang2X, Bang2Y
+          }
+          SashimiCaBac()
+        }
+      }
+      break
+    }
+  }
 	return
 }
 
@@ -765,6 +767,11 @@ FullAccTo(username) {
 		Send, {Esc}
 		if stopLoop
 		   break
+    FullNauAn()
+		Sleep, 1000
+		Send, {Esc}
+		if stopLoop
+		   break
 		LogoutNhanVat()
 		if stopLoop
 		   break
@@ -777,35 +784,11 @@ FullAccTo(username) {
 
 
 PgDn::
-	global stopLoop
-	stopLoop := False
-	Loop, 10
-	{
-		if stopLoop
-		   break
-		; TODO
-		username := "rrntt" . (A_Index - 1)
-		Login(username)
-		if stopLoop
-		   break
-		FullAccTo(username)
-	}
+  FullAccTo("rrntt")
 return
 
 \::
-	global stopLoop
-	stopLoop := False
-	Loop, 10
-	{
-		if stopLoop
-		   break
-		; TODO
-		username := "rrntt" . (A_Index - 1)
-		Login(username)
-		if stopLoop
-		   break
-		FullAccTo(username)
-	}
+  FullAccTo("rrntt")
 return
 
 ~rbutton::
