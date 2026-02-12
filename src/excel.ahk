@@ -1,4 +1,4 @@
-; screen: 1280x720
+; screen: 1280x720, 1280x768
 ; graphic: min
 ; Full screen mode
 
@@ -160,12 +160,12 @@ Monghoaluc() {
 	Sleep, 1000
 	MouseClick, left, 35, 140
 	Sleep, 1000
-	MouseClick, left, 123, 625
+	MouseClick, left, 123, 650
 	Sleep, 500
 	MouseClick, left, 900, 300
 	Sleep, 500
 	Send, {Text}ChoiGameVuiVe
-	MouseClick, left, 1000, 555
+	MouseClick, left, 1000, 560
 	Sleep, 500
 	Send, {Esc}
 	return
@@ -347,15 +347,15 @@ NhanThuong(username, index) {
 			FileAppend, Fail: %username% %index%`n, %logFile%
 		}
 	}
-	MouseClick, left, 410, 640
+	MouseClick, left, 410, 650
 	Sleep, 500
-	MouseClick, left, 410, 640
-	MouseClick, left, 600, 640
+	MouseClick, left, 410, 650
+	MouseClick, left, 600, 650
 	Sleep, 500
-	MouseClick, left, 600, 640
-	MouseClick, left, 790, 640
+	MouseClick, left, 600, 650
+	MouseClick, left, 790, 650
 	Sleep, 500
-	MouseClick, left, 790, 640
+	MouseClick, left, 790, 650
 	return
 }
 
@@ -485,7 +485,7 @@ CanhThachTuy() {
 				MouseClick, left, LuaNuocX, LuaNuocY
 				MouseClick, left, LuaNuocX, LuaNuocY
 
-				MouseClick, left, 1000, 650
+				MouseClick, left, 1000, 680
 				Sleep, 2500
 				MouseClick, left, 850, 540
 			}
@@ -524,7 +524,7 @@ SashimiCaBac() {
 			{
 				MouseClick, left, ThuySanCap1X, ThuySanCap1Y
 
-				MouseClick, left, 1000, 650
+				MouseClick, left, 1000, 680
 				Sleep, 2500
         if (ok:=FindText(GiaVi2X, GiaVi2Y, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
         {
@@ -567,7 +567,7 @@ GaAnMay() {
 			{
 				MouseClick, left, GaX, GaY
 
-				MouseClick, left, 1000, 650
+				MouseClick, left, 1000, 680
 				Sleep, 2500
 				MouseClick, left, 850, 540
 			}
@@ -606,7 +606,7 @@ LauThitTho() {
 			{
 				MouseClick, left, ThitX, ThitY
 
-				MouseClick, left, 1000, 650
+				MouseClick, left, 1000, 680
 				Sleep, 2500
 				MouseClick, left, 850, 540
 			}
