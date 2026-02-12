@@ -17,7 +17,7 @@ MenuNauAn()
 return
 
 PgDn::
-  FullAccTo("rrntt")
+  MenuNhiemVuNgay()
 return
 
 ; ==============================
@@ -30,7 +30,7 @@ MenuNauAn()
 return
 
 \::
-  FullAccTo("rrntt")
+  MenuNhiemVuNgay()
 return
 
 ; ==============================
@@ -632,6 +632,38 @@ LauThitTho() {
     return
 }
 
+MenuNhiemVuNgay() {
+    ; Create GUI
+    Gui, PriceSelect:New
+    Gui, Font, s10
+    
+    Gui, Add, Button, gHoatLuc1 Default w200, Nau an full Hoat Luc
+    Gui, Add, Button, gHoatLuc2 w200, Khong dung Hoat Luc
+    Gui, Add, Button, gHoatLuc3 w200, Mua full Hoat Luc
+    Gui, Show,, Nhiem Vu Ngay
+    return
+
+    HoatLuc1:
+        Gui, Submit, NoHide
+        Gui, Destroy
+        FullAccTo("rrntt", 1)
+    return
+
+    HoatLuc2:
+        Gui, Submit, NoHide
+        Gui, Destroy
+        FullAccTo("rrntt", 0)
+    return
+
+    HoatLuc3:
+        Gui, Submit, NoHide
+        Gui, Destroy
+        FullAccTo("rrntt", 2)
+    return
+
+    return
+}
+
 MenuNauAn() {
     ; Create GUI
     Gui, PriceSelect:New
@@ -785,7 +817,7 @@ FullNauAn() {
 }
 
 
-FullAccTo(username) {
+FullAccTo(username, modehl) {
     Loop, 6
     {
         QuaDuNgoan()
@@ -802,12 +834,26 @@ FullAccTo(username) {
         NhanThuong(username, A_Index)
         Sleep, 1000
         Send, {Esc}
-        MuaGiaVi()
-        Sleep, 1000
-        Send, {Esc}
-        FullNauAn()
-        Sleep, 1000
-        Send, {Esc}
+
+        ; mode nau an
+        if (modehl == 1)
+        {
+          MuaGiaVi()
+          Sleep, 1000
+          Send, {Esc}
+          FullNauAn()
+          Sleep, 1000
+          Send, {Esc}
+        }
+
+        ; mode dan
+        if (modehl == 2)
+        {
+          FullDan()
+          Sleep, 1000
+          Send, {Esc}
+        }
+
         LogoutNhanVat()
         if (A_Index < 6)
             DoiNhanVat()
