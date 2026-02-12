@@ -698,6 +698,26 @@ FullDan() {
   return
 }
 
+MuaGiaVi() {
+  Send, {f5}
+  Sleep, 1000
+  MouseClick, left, 710, 730
+  Sleep, 1000
+  MouseClick, left, 62, 196
+  Sleep, 1000
+  MouseClick, left, 350, 85
+  Sleep, 1000
+  ; giavi
+  MouseClick, left, 682, 192
+  Sleep, 1000
+  ; plus
+  MouseClick, left, 1230, 490
+  Sleep, 1000
+  Send, {v}
+  Sleep, 1000
+  Send, {v}
+}
+
 FullNauAn() {
   loop
   {
@@ -783,6 +803,9 @@ FullAccTo(username) {
 		Send, {F1}
 		Sleep, 1000
 		NhanThuong(username, A_Index)
+		Sleep, 1000
+		Send, {Esc}
+    MuaGiaVi()
 		Sleep, 1000
 		Send, {Esc}
     FullNauAn()
