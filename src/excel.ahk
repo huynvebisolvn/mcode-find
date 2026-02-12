@@ -7,6 +7,40 @@ global SelectedPriceTarget := ""
 global SelectedTarget := ""
 global PriceTargets := {}
 
+; ==============================
+Home::
+ShowPriceTargetSelector()
+return
+
+End::
+MenuNauAn()
+return
+
+PgDn::
+  FullAccTo("rrntt")
+return
+
+; ==============================
+[::
+ShowPriceTargetSelector()
+return
+
+]::
+MenuNauAn()
+return
+
+\::
+  FullAccTo("rrntt")
+return
+
+; ==============================
+~rbutton::
+ToolTip, ...Reset script...
+Sleep, 300
+Reload
+return
+
+; ==============================
 ; Load Price Targets from config file
 LoadPriceTargets() {
     global PriceTargets
@@ -28,8 +62,8 @@ LoadPriceTargets() {
         ; Parse line: Name=Value
         pos := InStr(line, "=")
         if (pos > 0) {
-            name := SubStr(line, 1, pos-1)
-            value := SubStr(line, pos+1)
+            name := SubStr(line, 1, pos - 1)
+            value := SubStr(line, pos + 1)
             PriceTargets[name] := value
         }
     }
@@ -39,11 +73,11 @@ LoadPriceTargets() {
 ChangeResolutionOnly(TargetWidth, TargetHeight) {
     cD := 32
     rR := 60
-    VarSetCapacity(dM,156,0), NumPut(156,2,&dM,36)
-    DllCall("EnumDisplaySettingsA", UInt,0, UInt,-1, UInt,&dM)
-    NumPut(0x5c0000,dM,40)
-    NumPut(cD,dM,104), NumPut(TargetWidth,dM,108), NumPut(TargetHeight,dM,112), NumPut(rR,dM,120)
-    Return DllCall("ChangeDisplaySettingsA", UInt,&dM, UInt,0)
+    VarSetCapacity(dM, 156, 0), NumPut(156, 2, &dM, 36)
+    DllCall("EnumDisplaySettingsA", UInt, 0, UInt, -1, UInt, &dM)
+    NumPut(0x5c0000, dM, 40)
+    NumPut(cD, dM, 104), NumPut(TargetWidth, dM, 108), NumPut(TargetHeight, dM, 112), NumPut(rR, dM, 120)
+    Return DllCall("ChangeDisplaySettingsA", UInt, &dM, UInt, 0)
 }
 
 ; Show GUI to select Price Target
@@ -87,13 +121,13 @@ ShowPriceTargetSelector() {
         SelectedPriceTarget := PriceTargets[SelectedTarget]
         RunPriceTargetScript()
     return
-
+    
     Resolution1:
-      ChangeResolutionOnly(1280,720)
+        ChangeResolutionOnly(1280, 720)
     return
-
+    
     Resolution2:
-      ChangeResolutionOnly(1920,1080)
+        ChangeResolutionOnly(1920, 1080)
     return
 }
 
@@ -137,55 +171,55 @@ RunPriceTargetScript() {
 
 
 Chuphinh() {
-	Send, {F9}
-	Sleep, 2000
-	Send, {Enter}
-	Thoat:="|<>*111$46.zsTzzszzz3zzzlzzsSTzDXzz3lzwT7zsS3zVyDz3w7w7wTszwDVzwzTzsQDzzvzzkVzzzTzzUDzzzzzz9zzzzzzwbzzzzzzUTzzzzzw0zzzTzzVVzzvvzwD3zwTnzVy7z3zXsDw3sTz7lzsT3zyDbznsTzwSTzT3zzszzzsTzzlzzz3zzzXzzsTzzz7zz3zy"
-	if (ok:=FindText(ThoatX := "wait", ThoatY := 3, 1153-150000, 99-150000, 1153+150000, 99+150000, 0, 0, Thoat))
-	{
-	  MouseClick, left, ThoatX, ThoatY
-	}
-	Sleep, 1000
-	Send, {Esc}
-	return
+    Send, {F9}
+    Sleep, 2000
+    Send, {Enter}
+    Thoat := "|<>*111$46.zsTzzszzz3zzzlzzsSTzDXzz3lzwT7zsS3zVyDz3w7w7wTszwDVzwzTzsQDzzvzzkVzzzTzzUDzzzzzz9zzzzzzwbzzzzzzUTzzzzzw0zzzTzzVVzzvvzwD3zwTnzVy7z3zXsDw3sTz7lzsT3zyDbznsTzwSTzT3zzszzzsTzzlzzz3zzzXzzsTzzz7zz3zy"
+    if (ok := FindText(ThoatX := "wait", ThoatY := 3, 1153 - 150000, 99 - 150000, 1153 + 150000, 99 + 150000, 0, 0, Thoat))
+    {
+        MouseClick, left, ThoatX, ThoatY
+    }
+    Sleep, 1000
+    Send, {Esc}
+    return
 }
 
 Monghoaluc() {
-	Send, {Enter}
-	Sleep, 1000
-	MouseClick, left, 35, 140
-	Sleep, 1000
-  ; TODO
-	MouseClick, left, 123, 650
-	Sleep, 500
-	MouseClick, left, 900, 300
-	Sleep, 500
-	Send, {Text}ChoiGameVuiVe
-  ; TODO
-	MouseClick, left, 1000, 560
-	Sleep, 500
-	Send, {Esc}
-	return
+    Send, {Enter}
+    Sleep, 1000
+    MouseClick, left, 35, 140
+    Sleep, 1000
+    ; TODO
+    MouseClick, left, 123, 650
+    Sleep, 500
+    MouseClick, left, 900, 300
+    Sleep, 500
+    Send, {Text}ChoiGameVuiVe
+    ; TODO
+    MouseClick, left, 1000, 560
+    Sleep, 500
+    Send, {Esc}
+    return
 }
 
 Haocam() {
-	Send, {F11}
-	Sleep, 1000
-	MouseClick, left, 500, 500
-	Sleep, 2000
-	MouseClick, left, 1200, 170
-	Sleep, 1000
-	MouseClick, left, 825, 270
-	Tang:="|<>*109$42.0000000zwEU0007sTU0003UD00003U000003U000003UTXS0y3Uzbz3y3U3rj7C3U1r7663UDr7663Uzr7763Ulr77w3Vlr73k3Vzr7203Uzr77w00M007y000007D006006600C007i004007wU"
-	if (ok:=FindText(TangX := "wait", TangY := 3, 944-150000, 596-150000, 944+150000, 596+150000, 0, 0, Tang))
-	{
-		MouseClick, left, TangX, TangY
-		Sleep, 1000
-		Send, {Esc}
-		Sleep, 500
-		Send, {Esc}
-	}
-	return
+    Send, {F11}
+    Sleep, 1000
+    MouseClick, left, 500, 500
+    Sleep, 2000
+    MouseClick, left, 1200, 170
+    Sleep, 1000
+    MouseClick, left, 825, 270
+    Tang := "|<>*109$42.0000000zwEU0007sTU0003UD00003U000003U000003UTXS0y3Uzbz3y3U3rj7C3U1r7663UDr7663Uzr7763Ulr77w3Vlr73k3Vzr7203Uzr77w00M007y000007D006006600C007i004007wU"
+    if (ok := FindText(TangX := "wait", TangY := 3, 944 - 150000, 596 - 150000, 944 + 150000, 596 + 150000, 0, 0, Tang))
+    {
+        MouseClick, left, TangX, TangY
+        Sleep, 1000
+        Send, {Esc}
+        Sleep, 500
+        Send, {Esc}
+    }
+    return
 }
 
 
@@ -195,8 +229,8 @@ CountOk() {
     count := 0
     seen := {}  ; Để theo dõi các vị trí đã gặp
     
-    TextOk1:="|<>*236$83.0000DU003k0001s060T0007k0003w0Dky000RU0003s0TVw001nk0007s0y3s0073k000Dk0w7k00M3U000Tk1sDU00U20000zU3kT000000001zU7Uy000000003z0D1wA00A040k7z0S3vz07zUDjwDj0w7zz0TzUTzwTC1sDzz1wDUzzwyS3kTUy7kDVy3twS7Uy0wD0D3s3nsQD1w1sM0S7k7bkwS3s3s00wDUDjUww7k7kDzsT0TT0tsDUDVzzky0yy1vkT0T7zzVw1xw1zUy0yDUD3s3vs3z1w1wy0S7k7rk3z3s3tw1wDUDjU3w7k7ns3sT0TS07sDUDbkDsy0yw07kT0TDUTlw1zs0DUy0yDnrXk3zk0T1s1sTzD7U7zU0y3k3kTySD0Dj01w3U7UDksS0S00000000000000000000000000000000000000000000000000y0000000000000y0000000000001w0000000000001k0000000000001U0002"
-    if (ok:=FindText(X, Y, 504-150000, 534-150000, 504+150000, 534+150000, 0, 0, TextOk1))
+    TextOk1 := "|<>*236$83.0000DU003k0001s060T0007k0003w0Dky000RU0003s0TVw001nk0007s0y3s0073k000Dk0w7k00M3U000Tk1sDU00U20000zU3kT000000001zU7Uy000000003z0D1wA00A040k7z0S3vz07zUDjwDj0w7zz0TzUTzwTC1sDzz1wDUzzwyS3kTUy7kDVy3twS7Uy0wD0D3s3nsQD1w1sM0S7k7bkwS3s3s00wDUDjUww7k7kDzsT0TT0tsDUDVzzky0yy1vkT0T7zzVw1xw1zUy0yDUD3s3vs3z1w1wy0S7k7rk3z3s3tw1wDUDjU3w7k7ns3sT0TS07sDUDbkDsy0yw07kT0TDUTlw1zs0DUy0yDnrXk3zk0T1s1sTzD7U7zU0y3k3kTySD0Dj01w3U7UDksS0S00000000000000000000000000000000000000000000000000y0000000000000y0000000000001w0000000000001k0000000000001U0002"
+    if (ok := FindText(X, Y, 504 - 150000, 534 - 150000, 504 + 150000, 534 + 150000, 0, 0, TextOk1))
     {
         For i, obj in ok
         {
@@ -213,8 +247,8 @@ CountOk() {
         }
     }
 
-    TextOk2:="|<>*236$83.0000DU003k0000s060T0007k0001y0Dky000Rk0003s0TUw001lk0007s0T1s0033k000Dk0y3k00A3U000Tk1s7U00U20000zU3kD000000001zU7US000000003zUD0wA00C000E7z0S1vz07zUDjwDj0w3zz0TzkTzwTD1s7zz1yDUzzwyS3kDUy7kDVy3twS7UT0yD0D3w3vsSD0w1wQ0S7k7rkwT1s3s00wDUDjUwy3k7k7zsT0TT0tw7UDVzzky0yy1vsD0T7zzVw1xw1zkS0yDkD3s3vs1zVw1wS0T7k7rk3z3s3tw1yDUDjU3y7k7ns3wT0TT07wDUDbk7sy0yy07sT0T7kTlw1xw0Dky0yDnzXs3zk0T1w1wTzj7k7zU0y3k3sTySDUDj00w3U3UDssC0C00000000000000000000000000000000000000000000000000y0000000000000y0000000000001w0000000000001s0000000000001U0002"
-    if (ok:=FindText(X, Y, 664-150000, 534-150000, 664+150000, 534+150000, 0, 0, TextOk2))
+    TextOk2 := "|<>*236$83.0000DU003k0000s060T0007k0001y0Dky000Rk0003s0TUw001lk0007s0T1s0033k000Dk0y3k00A3U000Tk1s7U00U20000zU3kD000000001zU7US000000003zUD0wA00C000E7z0S1vz07zUDjwDj0w3zz0TzkTzwTD1s7zz1yDUzzwyS3kDUy7kDVy3twS7UT0yD0D3w3vsSD0w1wQ0S7k7rkwT1s3s00wDUDjUwy3k7k7zsT0TT0tw7UDVzzky0yy1vsD0T7zzVw1xw1zkS0yDkD3s3vs1zVw1wS0T7k7rk3z3s3tw1yDUDjU3y7k7ns3wT0TT07wDUDbk7sy0yy07sT0T7kTlw1xw0Dky0yDnzXs3zk0T1w1wTzj7k7zU0y3k3sTySDUDj00w3U3UDssC0C00000000000000000000000000000000000000000000000000y0000000000000y0000000000001w0000000000001s0000000000001U0002"
+    if (ok := FindText(X, Y, 664 - 150000, 534 - 150000, 664 + 150000, 534 + 150000, 0, 0, TextOk2))
     {
         For i, obj in ok
         {
@@ -228,8 +262,8 @@ CountOk() {
         }
     }
 
-    TextOk3:="|<>*236$82.0000T0003k0003k0A0y000T0000Dk0z3s001y0000z03sDU00AQ0003w0DUy001Uw0007s0y3s00A3k000TU3sDU00U00001z0DUy000000007w0y3s00000000Ts3sDVU03U0061zkDUyzU1zs7vz7j0y3zzUTzkTzySS3sDzy3wTUzztswDUz1wD0S3w7rXky3s7ls1wDUTS7XsDUT703ky0xsDDUy0w00D3s3rUQy3s3k7zwDUDS1vsDUD1zzkw0xs3zUw0wDzz3k3rUDy3k3ly1wD0DS0TsD0D7k7kw0xs0zUw0wT0T3k3zU3y3k3lw1wD0Dy07sD0D7kDkw0zs0TUw0wT1z3k3zU0y3k7lyDwD0Dy03sT0T3zvsw0zs0TVw1w7z7Xk3z00w3U3kDsMD0D00000000000000000000000000000000000000000000000007U000000000000TU000000000000w0000000000001k000000000000600008"
-    if (ok:=FindText(X, Y, 825-150000, 534-150000, 825+150000, 534+150000, 0, 0, TextOk3))
+    TextOk3 := "|<>*236$82.0000T0003k0003k0A0y000T0000Dk0z3s001y0000z03sDU00AQ0003w0DUy001Uw0007s0y3s00A3k000TU3sDU00U00001z0DUy000000007w0y3s00000000Ts3sDVU03U0061zkDUyzU1zs7vz7j0y3zzUTzkTzySS3sDzy3wTUzztswDUz1wD0S3w7rXky3s7ls1wDUTS7XsDUT703ky0xsDDUy0w00D3s3rUQy3s3k7zwDUDS1vsDUD1zzkw0xs3zUw0wDzz3k3rUDy3k3ly1wD0DS0TsD0D7k7kw0xs0zUw0wT0T3k3zU3y3k3lw1wD0Dy07sD0D7kDkw0zs0TUw0wT1z3k3zU0y3k7lyDwD0Dy03sT0T3zvsw0zs0TVw1w7z7Xk3z00w3U3kDsMD0D00000000000000000000000000000000000000000000000007U000000000000TU000000000000w0000000000001k000000000000600008"
+    if (ok := FindText(X, Y, 825 - 150000, 534 - 150000, 825 + 150000, 534 + 150000, 0, 0, TextOk3))
     {
         For i, obj in ok
         {
@@ -243,8 +277,8 @@ CountOk() {
         }
     }
 
-    TextOk4:="|<>*236$83.0000DU003k0001s060T0007k0003w0Dky000Rk0003s0TVw001nk0007s0y3s0073k000Dk0w7k00M3U000Tk1sDU00U20000zU3kT000000001zU7Uy000000003z0D1wA00A040k7z0S3vz07zUDjwDj0w7zz0TzUTzwTC1sDzz1wDUzzwyS3kTUy7kDVy3twS7Uy0wD0D3s3nsQD1w1sM0S7k7bkwS3s3s00wDUDjUww7k7kDzsT0TT0tsDUDVzzky0yy1vkT0T7zzVw1xw1zUy0yDUD3s3vs3z1w1wy0S7k7rk3z3s3tw1wDUDjU3w7k7ns3sT0TS07sDUDbkDsy0yw07kT0TDUTlw1zs0DUy0yDnrXk3zk0T1s1wTzD7U7zU0y3k3sTySD0Dj01w3U7UDksS0S00000000000000000000000000000000000000000000000000y0000000000000y0000000000001w0000000000001k0000000000001U0002"
-    if (ok:=FindText(X, Y, 985-150000, 534-150000, 985+150000, 534+150000, 0, 0, TextOk4))
+    TextOk4 := "|<>*236$83.0000DU003k0001s060T0007k0003w0Dky000Rk0003s0TVw001nk0007s0y3s0073k000Dk0w7k00M3U000Tk1sDU00U20000zU3kT000000001zU7Uy000000003z0D1wA00A040k7z0S3vz07zUDjwDj0w7zz0TzUTzwTC1sDzz1wDUzzwyS3kTUy7kDVy3twS7Uy0wD0D3s3nsQD1w1sM0S7k7bkwS3s3s00wDUDjUww7k7kDzsT0TT0tsDUDVzzky0yy1vkT0T7zzVw1xw1zUy0yDUD3s3vs3z1w1wy0S7k7rk3z3s3tw1wDUDjU3w7k7ns3sT0TS07sDUDbkDsy0yw07kT0TDUTlw1zs0DUy0yDnrXk3zk0T1s1wTzD7U7zU0y3k3sTySD0Dj01w3U7UDksS0S00000000000000000000000000000000000000000000000000y0000000000000y0000000000001w0000000000001k0000000000001U0002"
+    if (ok := FindText(X, Y, 985 - 150000, 534 - 150000, 985 + 150000, 534 + 150000, 0, 0, TextOk4))
     {
         For i, obj in ok
         {
@@ -258,8 +292,8 @@ CountOk() {
         }
     }
 
-    TextOk5:="|<>*236$83.0000DU003k0000w070T0007k0001y0Dky000Rk0003s0TUw001lk0007s0T1s0033k000Dk0y3k00A3U000Tk1s7U00U20000zU3kD000000001zU7US000000003zUD0wA00C000E7z0S1vz07zUDjwDj0w3zz0TzkTzwTD1s7zz1yDUzzwyS3kDUy7kDVy3twS7kT0yD0D3w3vsSDUw1wQ0S7k7rkwT1s3s00wDUDjUwy3k7k7zsT0TT0tw7UDVzzky0yy1vsD0T7zzVw1xw1zkS0yDkD3s3vs1zVw1wS0T7k7rk3z3s3tw1yDUDjU3y7k7ns3wT0TT07wDUDbk7sy0yy07sT0T7kTlw1xw0Dky0yDnzXs3zk0T1w1wTzj7k7zU0y3s3sTySDUDj00w3U3UDssC0C00000000000000000000000000000000000000000000000000y0000000000000y0000000000001w0000000000001s0000000000001U0002"
-    if (ok:=FindText(X, Y, 1145-150000, 534-150000, 1145+150000, 534+150000, 0, 0, TextOk5))
+    TextOk5 := "|<>*236$83.0000DU003k0000w070T0007k0001y0Dky000Rk0003s0TUw001lk0007s0T1s0033k000Dk0y3k00A3U000Tk1s7U00U20000zU3kD000000001zU7US000000003zUD0wA00C000E7z0S1vz07zUDjwDj0w3zz0TzkTzwTD1s7zz1yDUzzwyS3kDUy7kDVy3twS7kT0yD0D3w3vsSDUw1wQ0S7k7rkwT1s3s00wDUDjUwy3k7k7zsT0TT0tw7UDVzzky0yy1vsD0T7zzVw1xw1zkS0yDkD3s3vs1zVw1wS0T7k7rk3z3s3tw1yDUDjU3y7k7ns3wT0TT07wDUDbk7sy0yy07sT0T7kTlw1xw0Dky0yDnzXs3zk0T1w1wTzj7k7zU0y3s3sTySDUDj00w3U3UDssC0C00000000000000000000000000000000000000000000000000y0000000000000y0000000000001w0000000000001s0000000000001U0002"
+    if (ok := FindText(X, Y, 1145 - 150000, 534 - 150000, 1145 + 150000, 534 + 150000, 0, 0, TextOk5))
     {
         For i, obj in ok
         {
@@ -278,561 +312,510 @@ CountOk() {
 
 
 NhanThuong(username, index) {
-	; TODO
-	Loop, 40
-	{
-    ; break neu da nhan
-    DaNhan:="|<>*141$25.zzzsTzzsDzzs7zzs27zw03zw01zw00Tw003w000w00080200010001U001s003z00Fzs0Dzz0DzzkDzk"
-    if (ok:=FindText(DaNhanX := "wait", DaNhanY := 0.5, 604-150000, 644-150000, 604+150000, 644+150000, 0, 0, DaNhan))
+    ; TODO
+    Loop, 40
     {
-      break
+        ; break neu da nhan
+        DaNhan := "|<>*141$25.zzzsTzzsDzzs7zzs27zw03zw01zw00Tw003w000w00080200010001U001s003z00Fzs0Dzz0DzzkDzk"
+        if (ok := FindText(DaNhanX := "wait", DaNhanY := 0.5, 604 - 150000, 644 - 150000, 604 + 150000, 644 + 150000, 0, 0, DaNhan))
+        {
+            break
+        }
+        result := CountOk()
+        ; MsgBox, % "Tổng: " . result.count
+        if (result.count >= 3) {
+            For i, pos in result.positions
+            {
+                MouseClick, left, pos.x, pos.y
+            }
+            break
+        }
+        clickedPositions := {}
+        RefreshText1 := "|<>*197$33.zzzzzzzzzzzzy03zzz007zzU00Dzs000zy0003zU3y0Tw6Dw1z0Q3k7s7UD0y1k0Q3kA03US3U0C3kM01kS30063kM00kS300C3kM01kS3U0C3kA03US1k0w3s7UD0z0T0s7w1zU1zU3y0Ty0003zs000zzU00Tzz007zzy03zzzzzzzzzzzzw"
+        if (ok := FindText(RefreshText1X := "wait", RefreshText1Y := 0.5, 1167 - 150000, 398 - 150000, 1167 + 150000, 398 + 150000, 0, 0, RefreshText1))
+        {
+            key := Round(RefreshText1X) "_" Round(RefreshText1Y)
+            if (!clickedPositions.HasKey(key)) {
+                MouseClick, left, RefreshText1X, RefreshText1Y
+                clickedPositions[key] := true
+            }
+        }
+        RefreshText2 := "|<>*211$34.zzzzzzzzzzzzzU0Tzzs00Tzz000zzs000zz0003zs0zU7z0lzUDw3kT0TUS0S1y1k0s7sC01kD0s030w300A3kA00kD0k030w300A3kA00kD0s070y3U0Q3s703UTUC0S1z0zssDw0zkUzs0z07zk000zzU007zz000zzz007zzy01zzzzzzzzzzzzzU"
+        if (ok := FindText(RefreshText2X := "wait", RefreshText2Y := 0.5, 1007 - 150000, 398 - 150000, 1007 + 150000, 398 + 150000, 0, 0, RefreshText2))
+        {
+            key := Round(RefreshText2X) "_" Round(RefreshText2Y)
+            if (!clickedPositions.HasKey(key)) {
+                MouseClick, left, RefreshText2X, RefreshText2Y
+                clickedPositions[key] := true
+            }
+        }
+        RefreshText3 := "|<>*223$33.zzzzzzzzzzzzy01zzz007zzU00Dzs000zy0003zk1y0Dw37w0z0S7s7s7U70S1s0Q3kC01kS3U0C3kQ00kS3U063kQ00kS3U063kQ01kS1U0C3kC03kS1s0Q3s7UD0z0Tsw7w1zkVzk3y0Dy0003zs000zzk00Dzz007zzy03zzzzzzzzzzzzw"
+        if (ok := FindText(RefreshText3X := "wait", RefreshText3Y := 0.5, 846 - 150000, 398 - 150000, 846 + 150000, 398 + 150000, 0, 0, RefreshText3))
+        {
+            key := Round(RefreshText3X) "_" Round(RefreshText3Y)
+            if (!clickedPositions.HasKey(key)) {
+                MouseClick, left, RefreshText3X, RefreshText3Y
+                clickedPositions[key] := true
+            }
+        }
+        RefreshText4 := "|<>*174$19.0TU67w1kD1k1lk0Qk06s03M01w00S00D007U07s03A03b01Vk3kT0s7y00T0E"
+        if (ok := FindText(RefreshText4X := "wait", RefreshText4Y := 0.5, 686 - 150000, 398 - 150000, 686 + 150000, 398 + 150000, 0, 0, RefreshText4))
+        {
+            key := Round(RefreshText4X) "_" Round(RefreshText4Y)
+            if (!clickedPositions.HasKey(key)) {
+                MouseClick, left, RefreshText4X, RefreshText4Y
+                clickedPositions[key] := true
+            }
+        }
+        Sleep, 1000
+        if (A_Index >= 40)
+        {
+            logFile := A_ScriptDir . "\log.txt"
+            FileAppend, Fail: %username% %index%`n, %logFile%
+        }
     }
-		result := CountOk()
-		; MsgBox, % "Tổng: " . result.count
-		if (result.count >= 3) {
-			For i, pos in result.positions
-			{
-				MouseClick, left, pos.x, pos.y
-			}
-			break
-		}
-		clickedPositions := {}
-		RefreshText1:="|<>*197$33.zzzzzzzzzzzzy03zzz007zzU00Dzs000zy0003zU3y0Tw6Dw1z0Q3k7s7UD0y1k0Q3kA03US3U0C3kM01kS30063kM00kS300C3kM01kS3U0C3kA03US1k0w3s7UD0z0T0s7w1zU1zU3y0Ty0003zs000zzU00Tzz007zzy03zzzzzzzzzzzzw"
-		if (ok:=FindText(RefreshText1X := "wait", RefreshText1Y := 0.5, 1167-150000, 398-150000, 1167+150000, 398+150000, 0, 0, RefreshText1))
-		{
-			key := Round(RefreshText1X) "_" Round(RefreshText1Y)
-			if (!clickedPositions.HasKey(key)) {
-				MouseClick, left, RefreshText1X, RefreshText1Y
-				clickedPositions[key] := true
-			}
-		}
-		RefreshText2:="|<>*211$34.zzzzzzzzzzzzzU0Tzzs00Tzz000zzs000zz0003zs0zU7z0lzUDw3kT0TUS0S1y1k0s7sC01kD0s030w300A3kA00kD0k030w300A3kA00kD0s070y3U0Q3s703UTUC0S1z0zssDw0zkUzs0z07zk000zzU007zz000zzz007zzy01zzzzzzzzzzzzzU"
-		if (ok:=FindText(RefreshText2X := "wait", RefreshText2Y := 0.5, 1007-150000, 398-150000, 1007+150000, 398+150000, 0, 0, RefreshText2))
-		{
-			key := Round(RefreshText2X) "_" Round(RefreshText2Y)
-			if (!clickedPositions.HasKey(key)) {
-				MouseClick, left, RefreshText2X, RefreshText2Y
-				clickedPositions[key] := true
-			}
-		}
-		RefreshText3:="|<>*223$33.zzzzzzzzzzzzy01zzz007zzU00Dzs000zy0003zk1y0Dw37w0z0S7s7s7U70S1s0Q3kC01kS3U0C3kQ00kS3U063kQ00kS3U063kQ01kS1U0C3kC03kS1s0Q3s7UD0z0Tsw7w1zkVzk3y0Dy0003zs000zzk00Dzz007zzy03zzzzzzzzzzzzw"
-		if (ok:=FindText(RefreshText3X := "wait", RefreshText3Y := 0.5, 846-150000, 398-150000, 846+150000, 398+150000, 0, 0, RefreshText3))
-		{
-			key := Round(RefreshText3X) "_" Round(RefreshText3Y)
-			if (!clickedPositions.HasKey(key)) {
-				MouseClick, left, RefreshText3X, RefreshText3Y
-				clickedPositions[key] := true
-			}
-		}
-		RefreshText4:="|<>*174$19.0TU67w1kD1k1lk0Qk06s03M01w00S00D007U07s03A03b01Vk3kT0s7y00T0E"
-		if (ok:=FindText(RefreshText4X := "wait", RefreshText4Y := 0.5, 686-150000, 398-150000, 686+150000, 398+150000, 0, 0, RefreshText4))
-		{
-			key := Round(RefreshText4X) "_" Round(RefreshText4Y)
-			if (!clickedPositions.HasKey(key)) {
-				MouseClick, left, RefreshText4X, RefreshText4Y
-				clickedPositions[key] := true
-			}
-		}
-		Sleep, 1000
-		if (A_Index >= 40)
-		{
-			logFile := A_ScriptDir . "\log.txt"
-			FileAppend, Fail: %username% %index%`n, %logFile%
-		}
-	}
-  ; TODO
-	MouseClick, left, 410, 650
-	Sleep, 500
-	MouseClick, left, 410, 650
-	MouseClick, left, 600, 650
-	Sleep, 500
-	MouseClick, left, 600, 650
-	MouseClick, left, 790, 650
-	Sleep, 500
-	MouseClick, left, 790, 650
-	return
+    ; TODO
+    MouseClick, left, 410, 650
+    Sleep, 500
+    MouseClick, left, 410, 650
+    MouseClick, left, 600, 650
+    Sleep, 500
+    MouseClick, left, 600, 650
+    MouseClick, left, 790, 650
+    Sleep, 500
+    MouseClick, left, 790, 650
+    return
 }
 
 DaoKhoan() {
-	Loop, 300
-	{
-		Send, e
-		Sleep, 1000
-	}
-	return
+    Loop, 300
+    {
+        Send, e
+        Sleep, 1000
+    }
+    return
 }
 
 LogoutNhanVat() {
-	Sleep, 2000
-	Send, {Esc}
-	Sleep, 500
-	MouseClick, left, 1230, 430
-	Sleep, 500
-	MouseClick, left, 570, 190
-	Sleep, 500
-	Send, {Space}
+    Sleep, 2000
+    Send, {Esc}
+    Sleep, 500
+    MouseClick, left, 1230, 430
+    Sleep, 500
+    MouseClick, left, 570, 190
+    Sleep, 500
+    Send, {Space}
 }
 
 DoiNhanVat() {
-	Sleep, 10000
-	MouseMove, 150, 300
-	Click, WheelDown, 5
-	Sleep, 500
-	MouseClick, left, 200, 420
-	Sleep, 500
-	MouseClick, left, 1050, 630
-  Sleep, 10000
-  loop
-  {
-    Send, {Esc}
+    Sleep, 10000
+    MouseMove, 150, 300
+    Click, WheelDown, 5
     Sleep, 500
-    Nghe:="|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
-    if (ok:=FindText(NgheX := "wait", NgheY := 5, 895-150000, 202-150000, 895+150000, 202+150000, 0, 0, Nghe))
+    MouseClick, left, 200, 420
+    Sleep, 500
+    MouseClick, left, 1050, 630
+    Sleep, 10000
+    loop
     {
-      Sleep, 500
-      MouseClick, left, 600, 150
-      Sleep, 500
-      MouseClick, left, 600, 150
-      break
+        Send, {Esc}
+        Sleep, 500
+        Nghe := "|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
+        if (ok := FindText(NgheX := "wait", NgheY := 5, 895 - 150000, 202 - 150000, 895 + 150000, 202 + 150000, 0, 0, Nghe))
+        {
+            Sleep, 500
+            MouseClick, left, 600, 150
+            Sleep, 500
+            MouseClick, left, 600, 150
+            break
+        }
+        Sleep, 1000
     }
-    Sleep, 1000
-  }
-	return
+    return
 }
 
 QuaDuNgoan() {
-	Sleep, 500
-	MouseClick, left, 600, 150
-	Sleep, 500
-	MouseClick, left, 600, 150
-	Send, {Esc}
-	Sleep, 500
-	MouseClick, left, 900, 370
-	Sleep, 500
-	MouseClick, left, 970, 600
-	Sleep, 1500
-	MouseClick, left, 970, 600
-	Sleep, 1000
-	Send, {Esc}
+    Sleep, 500
+    MouseClick, left, 600, 150
+    Sleep, 500
+    MouseClick, left, 600, 150
+    Send, {Esc}
+    Sleep, 500
+    MouseClick, left, 900, 370
+    Sleep, 500
+    MouseClick, left, 970, 600
+    Sleep, 1500
+    MouseClick, left, 970, 600
+    Sleep, 1000
+    Send, {Esc}
 }
 
 Login(username) {
-	MouseClick, left, 60, 40
-	Sleep, 1000
-	MouseClick, left, 1160, 350
-	Sleep, 1000
-	MouseClick, left, 1240, 45
-	Sleep, 1000
-	MouseClick, left, 1240, 45
-	Sleep, 1000
-	; bug of zing
-	MouseClick, left, 150, 150
-	Sleep, 1000
-	Send, {Tab}
-	Sleep, 500
-	Send, {Text}%username%
-	Sleep, 500
-	Send, {Tab}
-	Send, {Text}Huy142857
-	Sleep, 500
-	Send, {Enter}
-	; Dong y dieu khoan
-	MouseClick, left, 36, 178
-	Sleep, 500
-	MouseClick, left, 237, 225
-	Sleep, 1000
-	MouseClick, left, 600, 560
-	Sleep, 10000
-	MouseMove, 150, 300
-	Click, WheelDown, 5
-	Sleep, 500
-	MouseClick, left, 200, 420
-	Sleep, 500
-	MouseClick, left, 1050, 630
-	Sleep, 20000
+    MouseClick, left, 60, 40
+    Sleep, 1000
+    MouseClick, left, 1160, 350
+    Sleep, 1000
+    MouseClick, left, 1240, 45
+    Sleep, 1000
+    MouseClick, left, 1240, 45
+    Sleep, 1000
+    ; bug of zing
+    MouseClick, left, 150, 150
+    Sleep, 1000
+    Send, {Tab}
+    Sleep, 500
+    Send, {Text}%username%
+    Sleep, 500
+    Send, {Tab}
+    Send, {Text}Huy142857
+    Sleep, 500
+    Send, {Enter}
+    ; Dong y dieu khoan
+    MouseClick, left, 36, 178
+    Sleep, 500
+    MouseClick, left, 237, 225
+    Sleep, 1000
+    MouseClick, left, 600, 560
+    Sleep, 10000
+    MouseMove, 150, 300
+    Click, WheelDown, 5
+    Sleep, 500
+    MouseClick, left, 200, 420
+    Sleep, 500
+    MouseClick, left, 1050, 630
+    Sleep, 20000
 return
 }
 
 
-
 ; 1 GiaVi, 3 LuaNuoc, Lua
 CanhThachTuy() {
-	Loop, 70
-	{
-		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
-		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
-		{
-			MouseClick, left, GiaViX, GiaViY
-			LuaNuoc:="|<>*131$39.zzwTzzzzz1zzzzzs3zzzzz03zzzzs0Tzzxy03zzyDU00zzWM001zwqU003y3k000DVU0000Mk00001wE00001y0001/Yo000/Tzc001DwG000yzhqU0E7z2i000zzU000Tzz000Dzzs00Tzzzzzy3zzzts1zzzV00zzzzsETzzzw1kDzzzU01zzzsNVzzzzX7zzzzynwDzzzUTzzzzyFzzzzzXDDzzzwvrzzzzyzzzU"
-			if (ok:=FindText(LuaNuocX, LuaNuocY, 162-150000, 147-150000, 162+150000, 147+150000, 0, 0, LuaNuoc))
-			{
-				MouseClick, left, LuaNuocX, LuaNuocY
-				MouseClick, left, LuaNuocX, LuaNuocY
-				MouseClick, left, LuaNuocX, LuaNuocY
-
-        ; TODO
-				MouseClick, left, 1000, 680
-				Sleep, 2500
-				MouseClick, left, 850, 540
-			}
-			else
-			{
-				MouseClick, left, 850, 540
-			}
-		}
-		else
-		{
-			MouseClick, left, 850, 540
-		}
-		Sleep, 500
-	}
-	return
+    Loop, 70
+    {
+        GiaVi := "|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
+        if (ok := FindText(GiaViX, GiaViY, 76 - 150000, 148 - 150000, 76 + 150000, 148 + 150000, 0, 0, GiaVi))
+        {
+            MouseClick, left, GiaViX, GiaViY
+            LuaNuoc := "|<>*131$39.zzwTzzzzz1zzzzzs3zzzzz03zzzzs0Tzzxy03zzyDU00zzWM001zwqU003y3k000DVU0000Mk00001wE00001y0001/Yo000/Tzc001DwG000yzhqU0E7z2i000zzU000Tzz000Dzzs00Tzzzzzy3zzzts1zzzV00zzzzsETzzzw1kDzzzU01zzzsNVzzzzX7zzzzynwDzzzUTzzzzyFzzzzzXDDzzzwvrzzzzyzzzU"
+            if (ok := FindText(LuaNuocX, LuaNuocY, 162 - 150000, 147 - 150000, 162 + 150000, 147 + 150000, 0, 0, LuaNuoc))
+            {
+                MouseClick, left, LuaNuocX, LuaNuocY
+                MouseClick, left, LuaNuocX, LuaNuocY
+                MouseClick, left, LuaNuocX, LuaNuocY
+                
+                ; TODO
+                MouseClick, left, 1000, 680
+                Sleep, 2500
+                MouseClick, left, 850, 540
+            }
+            else
+            {
+                MouseClick, left, 850, 540
+            }
+        }
+        else
+        {
+            MouseClick, left, 850, 540
+        }
+        Sleep, 500
+    }
+    return
 }
 
 ; 3 GiaVi, 1 ThuySanCap1, Bang
 SashimiCaBac() {
-	; TODO
-	hetTheLucCount := 0
-	Loop
-	{
-		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
-		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
-		{
-			MouseClick, left, GiaViX, GiaViY
-			MouseClick, left, GiaViX, GiaViY
-			MouseClick, left, GiaViX, GiaViY
-			ThuySanCap1:="|<>*127$34.Tzzzzwzzzzznzzzzz1zzzzw7zzzzkTzzzzUPzzzy3XzzzwM3zzzs0Dzzzc0Dzzzk0zzzzU0zzzy01zzzw07zzzs0DzzyU0Tzzx00zzzs01zzzk03zzzU0Dzzz00Dzzy00zzzw01zzzs07zzzk0DzzzU0Tzzz01zzzy07zzzw0Dzzzs0zzzzk7zzzzkDzzzzkTzzzzUzzzzzVzzzzzm"
-			if (ok:=FindText(ThuySanCap1X, ThuySanCap1Y, 154-150000, 142-150000, 154+150000, 142+150000, 0, 0, ThuySanCap1))
-			{
-				MouseClick, left, ThuySanCap1X, ThuySanCap1Y
-
-        ; TODO
-				MouseClick, left, 1000, 680
-				Sleep, 2500
-        if (ok:=FindText(GiaVi2X, GiaVi2Y, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
+    ; TODO
+    hetTheLucCount := 0
+    Loop
+    {
+        GiaVi := "|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
+        if (ok := FindText(GiaViX, GiaViY, 76 - 150000, 148 - 150000, 76 + 150000, 148 + 150000, 0, 0, GiaVi))
         {
-          ; Neu van tim thay 5 lan = het the luc
-          hetTheLucCount++
-          if (hetTheLucCount >= 5)
-          {
-            break
-          }
+            MouseClick, left, GiaViX, GiaViY
+            MouseClick, left, GiaViX, GiaViY
+            MouseClick, left, GiaViX, GiaViY
+            ThuySanCap1 := "|<>*127$34.Tzzzzwzzzzznzzzzz1zzzzw7zzzzkTzzzzUPzzzy3XzzzwM3zzzs0Dzzzc0Dzzzk0zzzzU0zzzy01zzzw07zzzs0DzzyU0Tzzx00zzzs01zzzk03zzzU0Dzzz00Dzzy00zzzw01zzzs07zzzk0DzzzU0Tzzz01zzzy07zzzw0Dzzzs0zzzzk7zzzzkDzzzzkTzzzzUzzzzzVzzzzzm"
+            if (ok := FindText(ThuySanCap1X, ThuySanCap1Y, 154 - 150000, 142 - 150000, 154 + 150000, 142 + 150000, 0, 0, ThuySanCap1))
+            {
+                MouseClick, left, ThuySanCap1X, ThuySanCap1Y
+                
+                ; TODO
+                MouseClick, left, 1000, 680
+                Sleep, 2500
+                if (ok := FindText(GiaVi2X, GiaVi2Y, 76 - 150000, 148 - 150000, 76 + 150000, 148 + 150000, 0, 0, GiaVi))
+                {
+                    ; Neu van tim thay 5 lan = het the luc
+                    hetTheLucCount++
+                    if (hetTheLucCount >= 5)
+                    {
+                        break
+                    }
+                }
+                MouseClick, left, 850, 540
+            }
         }
-				MouseClick, left, 850, 540
-			}
-		}
-		else
-		{
-			MouseClick, left, 850, 540
-		}
-		Sleep, 500
-	}
-	return
+        else
+        {
+            MouseClick, left, 850, 540
+        }
+        Sleep, 500
+    }
+    return
 }
 
 ; 3 GiaVi, 1 Ga, Lua, Tho
 GaAnMay() {
-	Loop, 70
-	{
-		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
-		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
-		{
-			MouseClick, left, GiaViX, GiaViY
-			MouseClick, left, GiaViX, GiaViY
-			MouseClick, left, GiaViX, GiaViY
-			Ga:="|<>*142$45.zzzzsTzzzzy003zzzy0007zzz0000Dzz00000zzk00003zy00000TzUQ0011zw60106Dy000709zW00000DkE00Rk1Us003zo00000zy000007y0A0000z03k000Dk0y0M01w0TsTk0D07zrzE3k3zyT00zzzzk007zzzy001zzzzls0TzzzwDsDzzzzXzzzzzzwzzzzzzw"
-			if (ok:=FindText(GaX, GaY, 161-150000, 148-150000, 161+150000, 148+150000, 0, 0, Ga))
-			{
-				MouseClick, left, GaX, GaY
-
-        ; TODO
-				MouseClick, left, 1000, 680
-				Sleep, 2500
-				MouseClick, left, 850, 540
-			}
-			else
-			{
-				MouseClick, left, 850, 540
-			}
-		}
-		else
-		{
-			MouseClick, left, 850, 540
-		}
-		Sleep, 500
-	}
-	return
+    Loop, 70
+    {
+        GiaVi := "|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
+        if (ok := FindText(GiaViX, GiaViY, 76 - 150000, 148 - 150000, 76 + 150000, 148 + 150000, 0, 0, GiaVi))
+        {
+            MouseClick, left, GiaViX, GiaViY
+            MouseClick, left, GiaViX, GiaViY
+            MouseClick, left, GiaViX, GiaViY
+            Ga := "|<>*142$45.zzzzsTzzzzy003zzzy0007zzz0000Dzz00000zzk00003zy00000TzUQ0011zw60106Dy000709zW00000DkE00Rk1Us003zo00000zy000007y0A0000z03k000Dk0y0M01w0TsTk0D07zrzE3k3zyT00zzzzk007zzzy001zzzzls0TzzzwDsDzzzzXzzzzzzwzzzzzzw"
+            if (ok := FindText(GaX, GaY, 161 - 150000, 148 - 150000, 161 + 150000, 148 + 150000, 0, 0, Ga))
+            {
+                MouseClick, left, GaX, GaY
+                
+                ; TODO
+                MouseClick, left, 1000, 680
+                Sleep, 2500
+                MouseClick, left, 850, 540
+            }
+            else
+            {
+                MouseClick, left, 850, 540
+            }
+        }
+        else
+        {
+            MouseClick, left, 850, 540
+        }
+        Sleep, 500
+    }
+    return
 }
 
 ; 3 GiaVi, 1 Thit, Lua
 LauThitTho() {
-	Loop, 70
-	{
-		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
-		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
-		{
-			MouseClick, left, GiaViX, GiaViY
-			MouseClick, left, GiaViX, GiaViY
-			MouseClick, left, GiaViX, GiaViY
-
-			Thit:="|<>*135$43.zzzzs3zzzzzk0zzzzzUCDzzzz0E3zzzy000zzzy000Dzzw000jzzs00Trzzs000Dzzs00Njrzs044znzs0137kzs806O/zs012TXzk000jrzs000Hrzs8ESS7zk80+S7zk8480Lzk006E/zs000C7zw00077zy000ZXzz0017dzz00200Tzk00A0Tzs1UM4TzyAkDWTzzqM71Dzzzg31Dzzzy1djzzzz0Vjzzzzk4zzzzzw2zzzzzz3Tzzzzzvjzzzzzzrzzzk"
-			if (ok:=FindText(ThitX, ThitY, 242-150000, 148-150000, 242+150000, 148+150000, 0, 0, Thit))
-			{
-				MouseClick, left, ThitX, ThitY
-
-        ; TODO
-				MouseClick, left, 1000, 680
-				Sleep, 2500
-				MouseClick, left, 850, 540
-			}
-			else
-			{
-				MouseClick, left, 850, 540
-			}
-		}
-		else
-		{
-			MouseClick, left, 850, 540
-		}
-		Sleep, 500
-	}
-	return
+    Loop, 70
+    {
+        GiaVi := "|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
+        if (ok := FindText(GiaViX, GiaViY, 76 - 150000, 148 - 150000, 76 + 150000, 148 + 150000, 0, 0, GiaVi))
+        {
+            MouseClick, left, GiaViX, GiaViY
+            MouseClick, left, GiaViX, GiaViY
+            MouseClick, left, GiaViX, GiaViY
+            
+            Thit := "|<>*135$43.zzzzs3zzzzzk0zzzzzUCDzzzz0E3zzzy000zzzy000Dzzw000jzzs00Trzzs000Dzzs00Njrzs044znzs0137kzs806O/zs012TXzk000jrzs000Hrzs8ESS7zk80+S7zk8480Lzk006E/zs000C7zw00077zy000ZXzz0017dzz00200Tzk00A0Tzs1UM4TzyAkDWTzzqM71Dzzzg31Dzzzy1djzzzz0Vjzzzzk4zzzzzw2zzzzzz3Tzzzzzvjzzzzzzrzzzk"
+            if (ok := FindText(ThitX, ThitY, 242 - 150000, 148 - 150000, 242 + 150000, 148 + 150000, 0, 0, Thit))
+            {
+                MouseClick, left, ThitX, ThitY
+                
+                ; TODO
+                MouseClick, left, 1000, 680
+                Sleep, 2500
+                MouseClick, left, 850, 540
+            }
+            else
+            {
+                MouseClick, left, 850, 540
+            }
+        }
+        else
+        {
+            MouseClick, left, 850, 540
+        }
+        Sleep, 500
+    }
+    return
 }
 
 MenuNauAn() {
     ; Create GUI
     Gui, PriceSelect:New
     Gui, Font, s10
-
+    
     Gui, Add, Button, gNauAn2 Default w200, SashimiCaBac (Bang)
     Gui, Add, Button, gNauAn1 w200, CanhThachTuy (Hoa)
-	Gui, Add, Button, gNauAn3 w200, GaAnMay (Hoa + Tho)
-	Gui, Add, Button, gNauAn4 w200, LauThitTho (Hoa)
+    Gui, Add, Button, gNauAn3 w200, GaAnMay (Hoa + Tho)
+    Gui, Add, Button, gNauAn4 w200, LauThitTho (Hoa)
     Gui, Show,, Nau An
     return
-
+    
     NauAn1:
-	  Gui, Submit, NoHide
-	  Gui, Destroy
-	  CanhThachTuy()
+        Gui, Submit, NoHide
+        Gui, Destroy
+        CanhThachTuy()
     return
-
+    
     NauAn2:
-	  Gui, Submit, NoHide
-	  Gui, Destroy
-	  SashimiCaBac()
-	return
-
-    NauAn3:
-	  Gui, Submit, NoHide
-	  Gui, Destroy
-	  GaAnMay()
-	return
-
-    NauAn4:
-	  Gui, Submit, NoHide
-	  Gui, Destroy
-	  LauThitTho()
+        Gui, Submit, NoHide
+        Gui, Destroy
+        SashimiCaBac()
     return
-
-	return
+    
+    NauAn3:
+        Gui, Submit, NoHide
+        Gui, Destroy
+        GaAnMay()
+    return
+    
+    NauAn4:
+        Gui, Submit, NoHide
+        Gui, Destroy
+        LauThitTho()
+    return
+    
+    return
 }
 
-; Show GUI to select Price Target
-Home::
-ShowPriceTargetSelector()
-return
-
-End::
-MenuNauAn()
-return
-
-[::
-ShowPriceTargetSelector()
-return
 
 FullDan() {
-  Sleep, 500
-  MouseClick, left, 600, 150
-  Sleep, 500
-  MouseClick, left, 600, 150
-  Send, {Esc}
-  Sleep, 500
-
-  Nghe:="|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
-  if (ok:=FindText(NgheX := "wait", NgheY := 5, 895-150000, 202-150000, 895+150000, 202+150000, 0, 0, Nghe))
-  {
-    MouseClick, left, NgheX, NgheY
-
-    Dan:="|<>*125$27.zyDzzzkzzzz3zzzw0zzzWDzzvsTkSrUyDrQ3nxxkDTjb1vxsw7Ti3UxwUBbja0QxwkC77n00UyA087ss71zVzDzz07zzy3w"
-    if (ok:=FindText(DanX := "wait", DanY := 5, 698-150000, 662-150000, 698+150000, 662+150000, 0, 0, Dan))
-    {
-      MouseClick, left, DanX, DanY
-      Sleep, 1000
-      MouseClick, left, 323, 110
-      DienTau:="|<>*144$68.000B00000k00007k0000Q0000000000600zk0A001zkk0Dz77U00TwS03ntXw000sDk0sC00000C180C3k00003UA03URlwzU0sDnbs7Qrjw0C7wty1rMvb03U3iTURrytk0s3vbs6TyCQ0C3yty1bw3b03VniTUFz0tk0sQvbzsRzCQ0C7yzzw7Dnb03Vzjy"
-      if (ok:=FindText(DienTauX := "wait", DienTauY := 5, 949-150000, 564-150000, 949+150000, 564+150000, 0, 0, DienTau))
-      {
-        MouseClick, left, DienTauX, DienTauY
-        Sleep, 1000
-        Plus:="|<>*204$17.z1zz7zyDzwTzszzlzzXyT7k000003EzTlzzXzz7zyDzwTzszzUzU"
-        if (ok:=FindText(PlusX := "wait", PlusY := 3, 1024-150000, 187-150000, 1024+150000, 187+150000, 0, 0, Plus))
-        {
-          MouseClick, left, PlusX, PlusY
-          Sleep, 500
-          MouseClick, left, PlusX, PlusY
-          Sleep, 500
-          MouseClick, left, PlusX, PlusY
-          Sleep, 500
-          MouseClick, left, PlusX, PlusY
-          Sleep, 500
-          MouseClick, left, PlusX, PlusY
-
-          MouseClickDrag, left, 1165, 180, 1165, 400
-          sleep, 360000 ; 6 phut
-          Send, {Esc}
-        }
-      }
-    }
-  }
-  return
-}
-
-MuaGiaVi() {
-  Send, {f5}
-  Sleep, 1000
-  MouseClick, left, 710, 730
-  Sleep, 1000
-  MouseClick, left, 62, 196
-  Sleep, 1000
-  MouseClick, left, 350, 85
-  Sleep, 1000
-  ; giavi
-  MouseClick, left, 682, 192
-  Sleep, 1000
-  ; plus
-  MouseClick, left, 1230, 490
-  Sleep, 1000
-  Send, {v}
-  Sleep, 1000
-  Send, {v}
-}
-
-FullNauAn() {
-  loop
-  {
     Sleep, 500
     MouseClick, left, 600, 150
     Sleep, 500
     MouseClick, left, 600, 150
     Send, {Esc}
     Sleep, 500
-
-    Nghe:="|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
-    if (ok:=FindText(NgheX := "wait", NgheY := 5, 895-150000, 202-150000, 895+150000, 202+150000, 0, 0, Nghe))
+    
+    Nghe := "|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
+    if (ok := FindText(NgheX := "wait", NgheY := 5, 895 - 150000, 202 - 150000, 895 + 150000, 202 + 150000, 0, 0, Nghe))
     {
-      MouseClick, left, NgheX, NgheY
-      NauAn:="|<>*128$47.zk0000Dzz00000Dzz00000zzzk040Dzzzk0C0zzzzU0K1zzzzU0a7zzzzV3ATzzzzjQ9zzzzzvkTzzzzzb0zzzzzy01zzyzzw00Tzwzzs00zztzzkE1zzg"
-      if (ok:=FindText(NauAnX := "wait", NauAnY := 5, 485-150000, 662-150000, 485+150000, 662+150000, 0, 0, NauAn))
-      {
-        MouseClick, left, NauAnX, NauAnY
-        BatDau:="|<>*123$70.000000000U0000600000300000k00000600006000000M00000000000U0Dw4800Dy0C00tsRU00zy1s03Vkw003VwCk0C700Q0C3kE00sM01k0s7U003VVyDk3UCDllyADwS0C0tzb7zk1lk1z3UCQTjU7703UC0tlyD3wQ0C0sTb7sQPlk0s33yQTVn7703UAMtly7AQQ0C1Vnb7sszls0zw7yTzz3r7U3z0Ttzk06080000k1UU"
-        if (ok:=FindText(BatDauX := "wait", BatDauY := 5, 963-150000, 563-150000, 963+150000, 563+150000, 0, 0, BatDau))
+        MouseClick, left, NgheX, NgheY
+        
+        Dan := "|<>*125$27.zyDzzzkzzzz3zzzw0zzzWDzzvsTkSrUyDrQ3nxxkDTjb1vxsw7Ti3UxwUBbja0QxwkC77n00UyA087ss71zVzDzz07zzy3w"
+        if (ok := FindText(DanX := "wait", DanY := 5, 698 - 150000, 662 - 150000, 698 + 150000, 662 + 150000, 0, 0, Dan))
         {
-          MouseClick, left, BatDauX, BatDauY
-          Sleep, 1000
-          MouseClick, left, 280, 90
-          Bang:="|<>*107$27.zzjzzzwzzzzbzzzuzzzzHzzznTzzyvzszrDwU6tU60nM1s3G0TU8k7w1Y1zk50Tzzzzzzzzzy0s3zUAUDs160y0ME3U6H087rD0zytzzzrTzzyPzzzuTzzzLzzzszzzzbzzzxzzU"
-          if (ok:=FindText(BangX := "wait", BangY := 3, 602-150000, 562-150000, 602+150000, 562+150000, 0, 0, Bang))
-          {
-            MouseClick, left, BangX, BangY
-          }
-          Bang2:="|<>*109$27.zzjzzztzzzzDzzzkzzzyrzzzqzzzwvzsDjTUUAv0A0qE3k240z0NUDw183zkD0zzzzzzkD0zw1c3z0NUDk340w0mk30An09zbTlzxvzzzaTzzyrzzzqzzzz7zzztzzzzDzw"
-          if (ok:=FindText(Bang2X := "wait", Bang2Y := 3, 712-150000, 575-150000, 712+150000, 575+150000, 0, 0, Bang2))
-          {
-            MouseClick, left, Bang2X, Bang2Y
-          }
-          SashimiCaBac()
+            MouseClick, left, DanX, DanY
+            Sleep, 1000
+            MouseClick, left, 323, 110
+            DienTau := "|<>*144$68.000B00000k00007k0000Q0000000000600zk0A001zkk0Dz77U00TwS03ntXw000sDk0sC00000C180C3k00003UA03URlwzU0sDnbs7Qrjw0C7wty1rMvb03U3iTURrytk0s3vbs6TyCQ0C3yty1bw3b03VniTUFz0tk0sQvbzsRzCQ0C7yzzw7Dnb03Vzjy"
+            if (ok := FindText(DienTauX := "wait", DienTauY := 5, 949 - 150000, 564 - 150000, 949 + 150000, 564 + 150000, 0, 0, DienTau))
+            {
+                MouseClick, left, DienTauX, DienTauY
+                Sleep, 1000
+                Plus := "|<>*204$17.z1zz7zyDzwTzszzlzzXyT7k000003EzTlzzXzz7zyDzwTzszzUzU"
+                if (ok := FindText(PlusX := "wait", PlusY := 3, 1024 - 150000, 187 - 150000, 1024 + 150000, 187 + 150000, 0, 0, Plus))
+                {
+                    MouseClick, left, PlusX, PlusY
+                    Sleep, 500
+                    MouseClick, left, PlusX, PlusY
+                    Sleep, 500
+                    MouseClick, left, PlusX, PlusY
+                    Sleep, 500
+                    MouseClick, left, PlusX, PlusY
+                    Sleep, 500
+                    MouseClick, left, PlusX, PlusY
+                    
+                    MouseClickDrag, left, 1165, 180, 1165, 400
+                    sleep, 360000 ; 6 phut
+                    Send, {Esc}
+                }
+            }
         }
-      }
-      break
     }
-  }
-	return
+    return
 }
 
 
-PgUp::
-	Loop, 6
-	{
-		FullNauAn()
-		Sleep, 1000
-		Send, {Esc}
-		LogoutNhanVat()
-		if (A_Index < 6)
-			DoiNhanVat()
-		Sleep, 1000
-	}
-return
+MuaGiaVi() {
+    Send, {f5}
+    Sleep, 1000
+    MouseClick, left, 710, 730
+    Sleep, 1000
+    MouseClick, left, 62, 196
+    Sleep, 1000
+    MouseClick, left, 350, 85
+    Sleep, 1000
+    ; giavi
+    MouseClick, left, 682, 192
+    Sleep, 1000
+    ; plus
+    MouseClick, left, 1230, 490
+    Sleep, 1000
+    Send, {v}
+    Sleep, 1000
+    Send, {v}
+}
 
-]::
-	Loop, 6
-	{
-		FullNauAn()
-		Sleep, 1000
-		Send, {Esc}
-		LogoutNhanVat()
-		if (A_Index < 6)
-			DoiNhanVat()
-		Sleep, 1000
-	}
-return
+
+FullNauAn() {
+    loop
+    {
+        Sleep, 500
+        MouseClick, left, 600, 150
+        Sleep, 500
+        MouseClick, left, 600, 150
+        Send, {Esc}
+        Sleep, 500
+        
+        Nghe := "|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
+        if (ok := FindText(NgheX := "wait", NgheY := 5, 895 - 150000, 202 - 150000, 895 + 150000, 202 + 150000, 0, 0, Nghe))
+        {
+            MouseClick, left, NgheX, NgheY
+            NauAn := "|<>*128$47.zk0000Dzz00000Dzz00000zzzk040Dzzzk0C0zzzzU0K1zzzzU0a7zzzzV3ATzzzzjQ9zzzzzvkTzzzzzb0zzzzzy01zzyzzw00Tzwzzs00zztzzkE1zzg"
+            if (ok := FindText(NauAnX := "wait", NauAnY := 5, 485 - 150000, 662 - 150000, 485 + 150000, 662 + 150000, 0, 0, NauAn))
+            {
+                MouseClick, left, NauAnX, NauAnY
+                BatDau := "|<>*123$70.000000000U0000600000300000k00000600006000000M00000000000U0Dw4800Dy0C00tsRU00zy1s03Vkw003VwCk0C700Q0C3kE00sM01k0s7U003VVyDk3UCDllyADwS0C0tzb7zk1lk1z3UCQTjU7703UC0tlyD3wQ0C0sTb7sQPlk0s33yQTVn7703UAMtly7AQQ0C1Vnb7sszls0zw7yTzz3r7U3z0Ttzk06080000k1UU"
+                if (ok := FindText(BatDauX := "wait", BatDauY := 5, 963 - 150000, 563 - 150000, 963 + 150000, 563 + 150000, 0, 0, BatDau))
+                {
+                    MouseClick, left, BatDauX, BatDauY
+                    Sleep, 1000
+                    MouseClick, left, 280, 90
+                    Bang := "|<>*107$27.zzjzzzwzzzzbzzzuzzzzHzzznTzzyvzszrDwU6tU60nM1s3G0TU8k7w1Y1zk50Tzzzzzzzzzy0s3zUAUDs160y0ME3U6H087rD0zytzzzrTzzyPzzzuTzzzLzzzszzzzbzzzxzzU"
+                    if (ok := FindText(BangX := "wait", BangY := 3, 602 - 150000, 562 - 150000, 602 + 150000, 562 + 150000, 0, 0, Bang))
+                    {
+                        MouseClick, left, BangX, BangY
+                    }
+                    Bang2 := "|<>*109$27.zzjzzztzzzzDzzzkzzzyrzzzqzzzwvzsDjTUUAv0A0qE3k240z0NUDw183zkD0zzzzzzkD0zw1c3z0NUDk340w0mk30An09zbTlzxvzzzaTzzyrzzzqzzzz7zzztzzzzDzw"
+                    if (ok := FindText(Bang2X := "wait", Bang2Y := 3, 712 - 150000, 575 - 150000, 712 + 150000, 575 + 150000, 0, 0, Bang2))
+                    {
+                        MouseClick, left, Bang2X, Bang2Y
+                    }
+                    SashimiCaBac()
+                }
+            }
+            break
+        }
+    }
+    return
+}
+
 
 FullAccTo(username) {
-	Loop, 6
-	{
-		QuaDuNgoan()
-		Sleep, 2500
-		Chuphinh()
-		Sleep, 1000
-		Monghoaluc()
-		Sleep, 1000
-		; TODO
-		Haocam()
-		Sleep, 1000
-		Send, {F1}
-		Sleep, 1000
-		NhanThuong(username, A_Index)
-		Sleep, 1000
-		Send, {Esc}
-    MuaGiaVi()
-		Sleep, 1000
-		Send, {Esc}
-    FullNauAn()
-		Sleep, 1000
-		Send, {Esc}
-		LogoutNhanVat()
-		if (A_Index < 6)
-			DoiNhanVat()
-		Sleep, 1000
-	}
-	return
+    Loop, 6
+    {
+        QuaDuNgoan()
+        Sleep, 2500
+        Chuphinh()
+        Sleep, 1000
+        Monghoaluc()
+        Sleep, 1000
+        ; TODO
+        Haocam()
+        Sleep, 1000
+        Send, {F1}
+        Sleep, 1000
+        NhanThuong(username, A_Index)
+        Sleep, 1000
+        Send, {Esc}
+        MuaGiaVi()
+        Sleep, 1000
+        Send, {Esc}
+        FullNauAn()
+        Sleep, 1000
+        Send, {Esc}
+        LogoutNhanVat()
+        if (A_Index < 6)
+            DoiNhanVat()
+        Sleep, 1000
+    }
+    return
 }
 
-
-PgDn::
-  FullAccTo("rrntt")
-return
-
-\::
-  FullAccTo("rrntt")
-return
-
-~rbutton::
-ToolTip, Reset script...
-Sleep, 300
-Reload
-return
 
 ;===== Copy The Following Functions To Your Own Code Just once =====
 
