@@ -6,7 +6,6 @@
 global SelectedPriceTarget := ""
 global SelectedTarget := ""
 global PriceTargets := {}
-global stopLoop := False
 
 ; Load Price Targets from config file
 LoadPriceTargets() {
@@ -100,9 +99,7 @@ ShowPriceTargetSelector() {
 
 ; Main script - unified for all price targets
 RunPriceTargetScript() {
-    global SelectedPriceTarget, stopLoop
-    
-    stopLoop := False
+    global SelectedPriceTarget
 
     Refresh:="|<>*142$63.zzzzzzzzzzzzzzzzzzzzzryTzzzzxzjCDtzzzyDXltlzzzzzlwTzyDzzzzy73zTly3UlzksQ3CDWA07y234tnxtaAzmGNnCTkAtbyMmCNnw1bAzn6FnCTbAtbyMmCNnslbAznCNnC0UAlbyRn0tk41bQznwQDDzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
     if (ok:=FindText(RefreshX := "wait", RefreshY := 0.5, 359-150000, 93-150000, 359+150000, 93+150000, 0, 0, Refresh))
@@ -116,8 +113,6 @@ RunPriceTargetScript() {
             ; main logic
             Loop
             {
-                if stopLoop
-                    break
                 ; Use the selected price target from GUI
                 if (ok:=FindText(FirstTargetX := "wait", FirstTargetY := 0.5, 1075-150000, 585-150000, 1075+150000, 585+150000, 0, 0, SelectedPriceTarget))
                 {
@@ -283,13 +278,9 @@ CountOk() {
 
 
 NhanThuong(username, index) {
-	global stopLoop
-	stopLoop := False
 	; TODO
 	Loop, 40
 	{
-		if stopLoop
-		   break
     ; break neu da nhan
     DaNhan:="|<>*141$25.zzzsTzzsDzzs7zzs27zw03zw01zw00Tw003w000w00080200010001U001s003z00Fzs0Dzz0DzzkDzk"
     if (ok:=FindText(DaNhanX := "wait", DaNhanY := 0.5, 604-150000, 644-150000, 604+150000, 644+150000, 0, 0, DaNhan))
@@ -363,14 +354,10 @@ NhanThuong(username, index) {
 }
 
 DaoKhoan() {
-	global stopLoop
-	stopLoop := False
 	Loop, 300
 	{
 		Send, e
 		Sleep, 1000
-		if stopLoop
-		   break
 	}
 	return
 }
@@ -470,13 +457,8 @@ return
 
 ; 1 GiaVi, 3 LuaNuoc, Lua
 CanhThachTuy() {
-	global stopLoop
-	stopLoop := False
-
 	Loop, 70
 	{
-		if stopLoop
-		   break
 		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
 		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
 		{
@@ -509,14 +491,10 @@ CanhThachTuy() {
 
 ; 3 GiaVi, 1 ThuySanCap1, Bang
 SashimiCaBac() {
-	global stopLoop
-	stopLoop := False
 	; TODO
 	hetTheLucCount := 0
 	Loop
 	{
-		if stopLoop
-		   break
 		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
 		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
 		{
@@ -554,13 +532,8 @@ SashimiCaBac() {
 
 ; 3 GiaVi, 1 Ga, Lua, Tho
 GaAnMay() {
-	global stopLoop
-	stopLoop := False
-
 	Loop, 70
 	{
-		if stopLoop
-		   break
 		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
 		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
 		{
@@ -593,13 +566,8 @@ GaAnMay() {
 
 ; 3 GiaVi, 1 Thit, Lua
 LauThitTho() {
-	global stopLoop
-	stopLoop := False
-
 	Loop, 70
 	{
-		if stopLoop
-		   break
 		GiaVi:="|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
 		if (ok:=FindText(GiaViX, GiaViY, 76-150000, 148-150000, 76+150000, 148+150000, 0, 0, GiaVi))
 		{
@@ -775,89 +743,53 @@ FullNauAn() {
 
 
 PgUp::
-	global stopLoop
-	stopLoop := False
 	Loop, 6
 	{
-		if stopLoop
-		   break
 		FullNauAn()
 		Sleep, 1000
 		Send, {Esc}
-		if stopLoop
-		   break
 		LogoutNhanVat()
-		if stopLoop
-		   break
-		if (!stopLoop && A_Index < 6)
+		if (A_Index < 6)
 			DoiNhanVat()
 		Sleep, 1000
 	}
 return
 
 ]::
-	global stopLoop
-	stopLoop := False
 	Loop, 6
 	{
-		if stopLoop
-		   break
 		FullNauAn()
 		Sleep, 1000
 		Send, {Esc}
-		if stopLoop
-		   break
 		LogoutNhanVat()
-		if stopLoop
-		   break
-		if (!stopLoop && A_Index < 6)
+		if (A_Index < 6)
 			DoiNhanVat()
 		Sleep, 1000
 	}
 return
 
 FullAccTo(username) {
-	global stopLoop
-	stopLoop := False
 	Loop, 6
 	{
-		if stopLoop
-		   break
 		QuaDuNgoan()
 		Sleep, 2500
-		if stopLoop
-		   break
 		Chuphinh()
 		Sleep, 1000
-		if stopLoop
-		   break
 		Monghoaluc()
 		Sleep, 1000
-		if stopLoop
-		   break
 		; TODO
 		Haocam()
 		Sleep, 1000
-		if stopLoop
-		   break
 		Send, {F1}
 		Sleep, 1000
-		if stopLoop
-		   break
 		NhanThuong(username, A_Index)
 		Sleep, 1000
 		Send, {Esc}
-		if stopLoop
-		   break
     FullNauAn()
 		Sleep, 1000
 		Send, {Esc}
-		if stopLoop
-		   break
 		LogoutNhanVat()
-		if stopLoop
-		   break
-		if (!stopLoop && A_Index < 6)
+		if (A_Index < 6)
 			DoiNhanVat()
 		Sleep, 1000
 	}
@@ -874,8 +806,9 @@ return
 return
 
 ~rbutton::
-global stopLoop
-stopLoop := True
+ToolTip, Reset script...
+Sleep, 300
+Reload
 return
 
 ;===== Copy The Following Functions To Your Own Code Just once =====
