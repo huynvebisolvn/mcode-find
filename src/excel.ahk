@@ -884,8 +884,14 @@ FullAccTo(username, modehl) {
 
         LogoutNhanVat()
         if (A_Index < 6)
+        {
             DoiNhanVat()
-        Sleep, 1000
+            Sleep, 1000
+        }
+        else
+        {
+          Sleep, 20000
+        }
     }
     return
 }
