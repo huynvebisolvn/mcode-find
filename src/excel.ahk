@@ -643,28 +643,21 @@ MenuNhiemVuNgay() {
     Gui, PriceSelect:New
     Gui, Font, s10
     
-    Gui, Add, Button, gHoatLuc1 Default w200, Nau an full Hoat Luc
-    Gui, Add, Button, gHoatLuc2 w200, Khong dung Hoat Luc
-    Gui, Add, Button, gHoatLuc3 w200, Mua full Hoat Luc
+    Gui, Add, Button, gHoatLuc1 Default w200, 10 acc Nhiem Vu Ngay
+    Gui, Add, Button, gHoatLuc2 w200, Nau an full Hoat Luc
     Gui, Show,, Nhiem Vu Ngay
     return
 
     HoatLuc1:
         Gui, Submit, NoHide
         Gui, Destroy
-        FullAccTo("rrntt", 1)
+        Full10AccTo()
     return
 
     HoatLuc2:
         Gui, Submit, NoHide
         Gui, Destroy
-        FullAccTo("rrntt", 0)
-    return
-
-    HoatLuc3:
-        Gui, Submit, NoHide
-        Gui, Destroy
-        FullAccTo("rrntt", 2)
+        FullAccTo("rrntt", 1)
     return
 
     return
@@ -826,6 +819,15 @@ FullNauAn() {
     return
 }
 
+Full10AccTo() {
+	Loop, 10
+	{
+		username := "rrntt" . (A_Index - 1)
+		Login(username)
+		FullAccTo(username, 0)
+	}
+  return
+}
 
 FullAccTo(username, modehl) {
     Loop, 6
