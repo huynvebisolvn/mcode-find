@@ -174,8 +174,9 @@ Chuphinh() {
     Send, {F9}
     Sleep, 2000
     Send, {Enter}
+    Sleep, 1000
     Thoat := "|<>*111$46.zsTzzszzz3zzzlzzsSTzDXzz3lzwT7zsS3zVyDz3w7w7wTszwDVzwzTzsQDzzvzzkVzzzTzzUDzzzzzz9zzzzzzwbzzzzzzUTzzzzzw0zzzTzzVVzzvvzwD3zwTnzVy7z3zXsDw3sTz7lzsT3zyDbznsTzwSTzT3zzszzzsTzzlzzz3zzzXzzsTzzz7zz3zy"
-    if (ok := FindText(ThoatX := "wait", ThoatY := 3, 1153 - 150000, 99 - 150000, 1153 + 150000, 99 + 150000, 0, 0, Thoat))
+    if (ok := FindText(ThoatX := "wait", ThoatY := 7, 1153 - 150000, 99 - 150000, 1153 + 150000, 99 + 150000, 0, 0, Thoat))
     {
         MouseClick, left, ThoatX, ThoatY
     }
