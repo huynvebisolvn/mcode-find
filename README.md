@@ -23,3 +23,26 @@ Setting:
 - Screen: 1280x720
 - Graphic: min
 - Full screen mode
+
+## trumbox.net
+Trước tiên, bạn cần lấy cookie JWT từ trình duyệt:
+
+1. Truy cập https://trumbox.net/cloud-gaming/play/
+2. Mở DevTools (F12) → Network tab
+3. Lọc WS (WebSocket)
+4. Tìm message có command `check-account`
+5. Copy giá trị `cookie` (JWT token)
+
+### 2. Cập nhật Cookie trong code
+
+Mở file `trumbox-client.js` và thay thế cookie ở hàm `main()`:
+
+```javascript
+const YOUR_COOKIE = 'your-jwt-token-here';
+```
+
+### 3. Chạy script
+
+```bash
+node trumbox-client.js
+```
