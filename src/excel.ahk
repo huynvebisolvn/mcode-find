@@ -104,7 +104,7 @@ ShowPriceTargetSelector() {
     
     Gui, Add, DropDownList, vSelectedTarget w200, %targetList%
     Gui, Add, Button, gStartScript Default w200, Start
-    Gui, Add, Button, gResolution1 w200, 1280x720
+    Gui, Add, Button, gResolution1 w200, 1280x768
     Gui, Add, Button, gResolution2 w200, 1920x1080
     Gui, Show,, Price Target Selector
     return
@@ -123,7 +123,7 @@ ShowPriceTargetSelector() {
     return
     
     Resolution1:
-        ChangeResolutionOnly(1280, 720)
+        ChangeResolutionOnly(1280, 768)
     return
     
     Resolution2:
