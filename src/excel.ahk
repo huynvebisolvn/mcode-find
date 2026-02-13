@@ -416,10 +416,10 @@ LogoutNhanVat() {
 DoiNhanVat() {
     Sleep, 10000
     MouseMove, 150, 300
-    Click, WheelDown, 5
-    Sleep, 500
+    Click, WheelDown, 10
+    Sleep, 1000
     MouseClick, left, 200, 420
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 1050, 630
     Sleep, 10000
     loop
