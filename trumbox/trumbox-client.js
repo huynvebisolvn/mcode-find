@@ -214,7 +214,7 @@ class TrumboxClient {
 
 async function main() {
   // Cookie JWT của bạn
-  const YOUR_COOKIE = 'eyJhbGciO';
+  const YOUR_COOKIE = 'eyJh';
 
   const client = new TrumboxClient(YOUR_COOKIE);
 
@@ -229,14 +229,14 @@ async function main() {
     await client.autoChooseClient(1);
 
     // Giữ kết nối - chỉ disconnect khi thành công hoặc Ctrl+C
-    // Nếu muốn auto-disconnect sau 5 phút không thành công:
+    // Nếu muốn auto-disconnect sau 1 giờ không thành công:
     setTimeout(() => {
       if (client.retryClientId !== null) {
-        console.log('⏱️  Timeout after 5 minutes, disconnecting...');
+        console.log('⏱️  Timeout after 1 hour, disconnecting...');
         client.disconnect();
         process.exit(0);
       }
-    }, 300000); // 5 phút
+    }, 3600000); // 1 giờ
 
   } catch (error) {
     console.error('Error:', error);
