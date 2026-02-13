@@ -397,6 +397,11 @@ DaoKhoan() {
 }
 
 LogoutNhanVat() {
+    ; click 2 cai skip huong dan
+    Sleep, 500
+    MouseClick, left, 600, 150
+    Sleep, 500
+    MouseClick, left, 600, 150
     Sleep, 2000
     Send, {Esc}
     Sleep, 500
