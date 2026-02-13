@@ -659,15 +659,17 @@ MenuNhiemVuNgay() {
     Gui, PriceSelect:New
     Gui, Font, s10
     
-    Gui, Add, Button, gHoatLuc1 Default w200, 10 acc Nhiem Vu Ngay
-    Gui, Add, Button, gHoatLuc2 w200, Nau an full Hoat Luc
+    Gui, Add, Edit, vStartPos w100, 0
+    Gui, Add, Button, gHoatLuc1 Default x+5 w200, Only Daily 10 acc
+    Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an 1 acc
     Gui, Show,, Nhiem Vu Ngay
     return
 
     HoatLuc1:
+        global StartPos
         Gui, Submit, NoHide
         Gui, Destroy
-        Full10AccTo()
+        Full10AccTo(StartPos)
     return
 
     HoatLuc2:
@@ -835,10 +837,10 @@ FullNauAn() {
     return
 }
 
-Full10AccTo() {
-	Loop, 10
+Full10AccTo(startPos := 0) {
+	Loop % (10 - startPos)
 	{
-		username := "rrntt" . (A_Index - 1)
+		username := "rrntt" . (startPos + A_Index - 1)
 		Login(username)
 		FullAccTo(username, 0)
 	}
