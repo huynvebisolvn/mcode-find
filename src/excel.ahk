@@ -219,7 +219,7 @@ Monghoaluc() {
 
 Haocam() {
     Send, {F11}
-    Sleep, 1000
+    Sleep, 3000
     MouseClick, left, 500, 500
     Sleep, 3000
     MouseClick, left, 1200, 170
