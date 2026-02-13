@@ -171,14 +171,19 @@ RunPriceTargetScript() {
 
 
 Chuphinh() {
-    Send, {F9}
-    Sleep, 2000
-    Send, {Enter}
-    Sleep, 1000
-    Thoat := "|<>*111$46.zsTzzszzz3zzzlzzsSTzDXzz3lzwT7zsS3zVyDz3w7w7wTszwDVzwzTzsQDzzvzzkVzzzTzzUDzzzzzz9zzzzzzwbzzzzzzUTzzzzzw0zzzTzzVVzzvvzwD3zwTnzVy7z3zXsDw3sTz7lzsT3zyDbznsTzwSTzT3zzszzzsTzzlzzz3zzzXzzsTzzz7zz3zy"
-    if (ok := FindText(ThoatX := "wait", ThoatY := 7, 1153 - 150000, 99 - 150000, 1153 + 150000, 99 + 150000, 0, 0, Thoat))
+    loop
     {
-        MouseClick, left, ThoatX, ThoatY
+      Send, {F9}
+      Sleep, 2000
+      Send, {Enter}
+      Sleep, 1000
+      Thoat := "|<>*111$46.zsTzzszzz3zzzlzzsSTzDXzz3lzwT7zsS3zVyDz3w7w7wTszwDVzwzTzsQDzzvzzkVzzzTzzUDzzzzzz9zzzzzzwbzzzzzzUTzzzzzw0zzzTzzVVzzvvzwD3zwTnzVy7z3zXsDw3sTz7lzsT3zyDbznsTzwSTzT3zzszzzsTzzlzzz3zzzXzzsTzzz7zz3zy"
+      if (ok := FindText(ThoatX := "wait", ThoatY := 5, 1153 - 150000, 99 - 150000, 1153 + 150000, 99 + 150000, 0, 0, Thoat))
+      {
+          MouseClick, left, ThoatX, ThoatY
+          break
+      }
+      Sleep, 1000
     }
     Sleep, 1000
     Send, {Esc}
@@ -186,19 +191,28 @@ Chuphinh() {
 }
 
 Monghoaluc() {
-    Send, {Enter}
+    loop
+    {
+      Send, {Enter}
+      Sleep, 1000
+
+      MongHoa:="|<>*123$15.zTztzzDzszz7zsMz3bsAz0bs4z0Ls2z07s0z07s0z67zUzk7s0w0700U04"
+      if (ok:=FindText(MongHoaX := "wait", MongHoaY := 5, 23-150000, 130-150000, 23+150000, 130+150000, 0, 0, MongHoa))
+      {
+        MouseClick, left, MongHoaX, MongHoaY
+        Sleep, 1000
+        ; TODO
+        MouseClick, left, 123, 650
+        Sleep, 500
+        MouseClick, left, 900, 300
+        Sleep, 500
+        Send, {Text}ChoiGameVuiVe
+        ; TODO
+        MouseClick, left, 1000, 560
+        break
+      }
+    }
     Sleep, 1000
-    MouseClick, left, 35, 140
-    Sleep, 1000
-    ; TODO
-    MouseClick, left, 123, 650
-    Sleep, 500
-    MouseClick, left, 900, 300
-    Sleep, 500
-    Send, {Text}ChoiGameVuiVe
-    ; TODO
-    MouseClick, left, 1000, 560
-    Sleep, 500
     Send, {Esc}
     return
 }
@@ -207,7 +221,7 @@ Haocam() {
     Send, {F11}
     Sleep, 1000
     MouseClick, left, 500, 500
-    Sleep, 2000
+    Sleep, 3000
     MouseClick, left, 1200, 170
     Sleep, 1000
     MouseClick, left, 825, 270
