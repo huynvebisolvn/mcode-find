@@ -759,22 +759,26 @@ FullDan() {
 
 MuaGiaVi() {
     Send, {f5}
-    Sleep, 1000
+    Sleep, 2500
     MouseClick, left, 710, 730
-    Sleep, 1000
+    Sleep, 1500
     MouseClick, left, 62, 196
-    Sleep, 1000
+    Sleep, 1500
     MouseClick, left, 350, 85
-    Sleep, 1000
+    Sleep, 1500
     ; giavi
-    MouseClick, left, 682, 192
-    Sleep, 1000
-    ; plus
-    MouseClick, left, 1230, 490
-    Sleep, 1000
-    Send, {v}
-    Sleep, 1000
-    Send, {v}
+    Giavi:="|<>*130$71.zzzzzzwzzzzzzzzzzzUTzzzzzzzzzw2TzzzzzzzzzU4Dzzzzzzzzw08Dzzzzzzzz0007zzzzzzzz0003zzzzzzzM0003zzzzzzy00001zzzzbzU00000zzzy3z000001zzzk0s000000zzy01U000000zzs060000001Pz0080000000Pw00k00000007k0000000000Ds0100000000Ts0300000001zw0300000003vw020000000Dzy030000000zTy070000003zzy0DU00000Tvzy0Uk00007zzzy00y0000zjzzz003s00D0DzzzU00C03w07zzzw0060A00zzvzw0020U07zzvzs002600Tzzvzs000003zzzvzk00000Dzzzdzk00000zzzzszk00007zzzzyzs0000Tzzzzzzs0001zzzzzzjw0007zzzzzzzw000Tzzzzzzzw001zzzzzzzzy007zzzzzzzzy00Dzzzzzzzzz00zzzzzzzzzz03zzzzzzzzzzUDzzzzzzzzzzUzzzzzzzzzzzlzzzzzzzzzzzrzzzzU"
+    if (ok:=FindText(GiaviX, GiaviY, 680-150000, 188-150000, 680+150000, 188+150000, 0, 0, Giavi))
+    {
+      MouseClick, left, GiaviX, GiaviY
+      Sleep, 1000
+      ; plus
+      MouseClick, left, 1230, 490
+      Sleep, 1000
+      Send, {v}
+      Sleep, 1000
+      Send, {v}
+    }
 }
 
 
