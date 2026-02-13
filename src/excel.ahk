@@ -476,12 +476,14 @@ Login(username) {
     Send, {Text}Huy142857
     Sleep, 500
     Send, {Enter}
+    Sleep, 20000
     ; Dong y dieu khoan
     MouseClick, left, 36, 178
     Sleep, 500
     MouseClick, left, 237, 225
     Sleep, 1000
-    MouseClick, left, 600, 560
+    ; TODO
+    MouseClick, left, 600, 570
     Sleep, 10000
     MouseMove, 150, 300
     Click, WheelDown, 5
