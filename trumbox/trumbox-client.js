@@ -7,7 +7,6 @@ class TrumboxClient {
     this.ws = null;
     this.user = null;
     this.groupClients = [];
-    this.retryClientId = null;
     this.isRetrying = false;
     this.hasActiveClient = false;
   }
@@ -50,7 +49,7 @@ class TrumboxClient {
 
       try {
         const response = JSON.parse(message);
-        console.log('📨 Received:', JSON.stringify(response, null, 2));
+        // console.log('📨 Received:', JSON.stringify(response, null, 2));
 
         // Lưu thông tin user sau khi check-account
         if (response.command === 'check-account' && response.data) {
@@ -62,7 +61,6 @@ class TrumboxClient {
             console.log('⚠️  BẠN ĐÃ CÓ MÁY ĐANG CHƠI!');
             console.log(`🎮 Máy hiện tại: ${response.data.latestConnect.nameClient}`);
             this.hasActiveClient = true;
-            this.retryClientId = null; // Dừng mọi retry
           }
         }
 
@@ -78,26 +76,6 @@ class TrumboxClient {
         // Xử lý kết quả choose-client
         if (response.command === 'status-all-busy') {
           console.log('⚠️  All servers busy:', response.data.message);
-          
-          // Tự động retry sau 1 giây nếu đang có clientId cần chọn
-          if (this.retryClientId !== null) {
-            console.log('🔄 Retrying in 1 second...');
-            setTimeout(() => {
-              if (this.retryClientId !== null) {
-                this.chooseClient(this.retryClientId);
-              }
-            }, 1000);
-          }
-        } else if (response.command && 
-                   response.command !== 'check-account' && 
-                   response.command !== 'list-group-client' && 
-                   response.command !== 'status-all-busy') {
-          // Nhận được response khác status-all-busy => Thành công
-          if (this.retryClientId !== null) {
-            console.log('✅ SUCCESS! Received:', response.command);
-            console.log('🛑 Stopping retry loop');
-            this.retryClientId = null; // Dừng retry NGAY LẬP TỨC
-          }
         }
 
       } catch (e) {
@@ -109,7 +87,7 @@ class TrumboxClient {
   send(message) {
     if (this.ws && this.ws.readyState === WebSocket.OPEN) {
       const msg = JSON.stringify(message);
-      console.log('📤 Sending:', msg);
+      console.log('📤 Sending:', message.command);
       this.ws.send(msg);
     } else {
       console.error('❌ WebSocket not connected');
@@ -151,9 +129,6 @@ class TrumboxClient {
       return;
     }
 
-    // Lưu clientId để có thể retry
-    this.retryClientId = clientId;
-
     this.send({
       typeClient: 'user',
       command: 'choose-client',
@@ -166,6 +141,13 @@ class TrumboxClient {
         user: this.user
       }
     });
+
+    // Tự động retry sau 2 giây nếu chưa có máy đang chơi
+    setTimeout(() => {
+      if (!this.hasActiveClient) {
+        this.chooseClient(clientId);
+      }
+    }, 2000);
   }
 
   // Tự động: check account -> list clients -> chọn client đầu tiên
@@ -227,16 +209,6 @@ async function main() {
 
     // Tự động chọn client (ID = 1 là "Tiêu Chuẩn")
     await client.autoChooseClient(1);
-
-    // Giữ kết nối - chỉ disconnect khi thành công hoặc Ctrl+C
-    // Nếu muốn auto-disconnect sau 1 giờ không thành công:
-    setTimeout(() => {
-      if (client.retryClientId !== null) {
-        console.log('⏱️  Timeout after 1 hour, disconnecting...');
-        client.disconnect();
-        process.exit(0);
-      }
-    }, 3600000); // 1 giờ
 
   } catch (error) {
     console.error('Error:', error);
