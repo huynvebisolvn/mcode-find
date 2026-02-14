@@ -478,10 +478,10 @@ Login(username) {
     MouseClick, left, 1240, 45
     Sleep, 1000
     MouseClick, left, 1240, 45
-    Sleep, 1000
+    Sleep, 5000
     ; bug of zing
     MouseClick, left, 150, 150
-    Sleep, 1000
+    Sleep, 5000
     Send, {Tab}
     Sleep, 500
     Send, {Text}%username%
