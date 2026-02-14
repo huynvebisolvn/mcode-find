@@ -203,9 +203,9 @@ Monghoaluc() {
         Sleep, 1000
         ; TODO
         MouseClick, left, 123, 650
-        Sleep, 500
+        Sleep, 1000
         MouseClick, left, 900, 300
-        Sleep, 500
+        Sleep, 1000
         Send, {Text}ChoiGameVuiVe
         ; TODO
         MouseClick, left, 1000, 560
@@ -231,7 +231,7 @@ Haocam() {
         MouseClick, left, TangX, TangY
         Sleep, 1000
         Send, {Esc}
-        Sleep, 500
+        Sleep, 1000
         Send, {Esc}
     }
     return
@@ -413,17 +413,17 @@ DaoKhoan() {
 
 LogoutNhanVat() {
     ; click 2 cai skip huong dan
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 600, 150
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 600, 150
     Sleep, 2000
     Send, {Esc}
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 1230, 430
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 570, 190
-    Sleep, 500
+    Sleep, 1000
     Send, {Space}
 }
 
@@ -439,13 +439,13 @@ DoiNhanVat() {
     loop
     {
         Send, {Esc}
-        Sleep, 500
+        Sleep, 1000
         Nghe := "|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
         if (ok := FindText(NgheX := "wait", NgheY := 5, 895 - 150000, 202 - 150000, 895 + 150000, 202 + 150000, 0, 0, Nghe))
         {
-            Sleep, 500
+            Sleep, 1000
             MouseClick, left, 600, 150
-            Sleep, 500
+            Sleep, 1000
             MouseClick, left, 600, 150
             break
         }
@@ -455,14 +455,14 @@ DoiNhanVat() {
 }
 
 QuaDuNgoan() {
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 600, 150
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 600, 150
     Send, {Esc}
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 900, 370
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 970, 600
     Sleep, 1500
     MouseClick, left, 970, 600
@@ -483,17 +483,17 @@ Login(username) {
     MouseClick, left, 150, 150
     Sleep, 5000
     Send, {Tab}
-    Sleep, 500
+    Sleep, 1000
     Send, {Text}%username%
-    Sleep, 500
+    Sleep, 1000
     Send, {Tab}
     Send, {Text}Huy142857
-    Sleep, 500
+    Sleep, 1000
     Send, {Enter}
     Sleep, 20000
     ; Dong y dieu khoan
     MouseClick, left, 36, 178
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 237, 225
     Sleep, 1000
     ; TODO
@@ -501,9 +501,9 @@ Login(username) {
     Sleep, 10000
     MouseMove, 150, 300
     Click, WheelDown, 5
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 200, 420
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 1050, 630
     Sleep, 20000
 return
@@ -722,12 +722,12 @@ MenuNauAn() {
 
 
 FullDan() {
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 600, 150
-    Sleep, 500
+    Sleep, 1000
     MouseClick, left, 600, 150
     Send, {Esc}
-    Sleep, 500
+    Sleep, 1000
     
     Nghe := "|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
     if (ok := FindText(NgheX := "wait", NgheY := 5, 895 - 150000, 202 - 150000, 895 + 150000, 202 + 150000, 0, 0, Nghe))
@@ -749,13 +749,13 @@ FullDan() {
                 if (ok := FindText(PlusX := "wait", PlusY := 3, 1024 - 150000, 187 - 150000, 1024 + 150000, 187 + 150000, 0, 0, Plus))
                 {
                     MouseClick, left, PlusX, PlusY
-                    Sleep, 500
+                    Sleep, 1000
                     MouseClick, left, PlusX, PlusY
-                    Sleep, 500
+                    Sleep, 1000
                     MouseClick, left, PlusX, PlusY
-                    Sleep, 500
+                    Sleep, 1000
                     MouseClick, left, PlusX, PlusY
-                    Sleep, 500
+                    Sleep, 1000
                     MouseClick, left, PlusX, PlusY
                     
                     MouseClickDrag, left, 1165, 180, 1165, 400
@@ -797,12 +797,12 @@ MuaGiaVi() {
 FullNauAn() {
     loop
     {
-        Sleep, 500
+        Sleep, 1000
         MouseClick, left, 600, 150
-        Sleep, 500
+        Sleep, 1000
         MouseClick, left, 600, 150
         Send, {Esc}
-        Sleep, 500
+        Sleep, 1000
         
         Nghe := "|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
         if (ok := FindText(NgheX := "wait", NgheY := 5, 895 - 150000, 202 - 150000, 895 + 150000, 202 + 150000, 0, 0, Nghe))
