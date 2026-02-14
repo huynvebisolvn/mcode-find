@@ -460,13 +460,13 @@ QuaDuNgoan() {
     Sleep, 1000
     MouseClick, left, 600, 150
     Send, {Esc}
-    Sleep, 1000
+    Sleep, 2000
     MouseClick, left, 900, 370
-    Sleep, 1000
+    Sleep, 2000
     MouseClick, left, 970, 600
-    Sleep, 1500
+    Sleep, 2000
     MouseClick, left, 970, 600
-    Sleep, 1000
+    Sleep, 2000
     Send, {Esc}
 }
 
