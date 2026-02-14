@@ -9,6 +9,7 @@ class TrumboxClient {
     this.groupClients = [];
     this.isRetrying = false;
     this.hasActiveClient = false;
+    this.chooseClientResolver = null;
   }
 
   connect() {
@@ -76,7 +77,13 @@ class TrumboxClient {
         // Xử lý kết quả choose-client
         if (response.command === 'status-all-busy') {
           console.log('⚠️  All servers busy:', response.data.message);
+          if (this.chooseClientResolver) {
+            this.chooseClientResolver({ success: false, message: 'busy' });
+            this.chooseClientResolver = null;
+          }
         }
+
+
 
       } catch (e) {
         // Không phải JSON, bỏ qua
@@ -115,39 +122,73 @@ class TrumboxClient {
     });
   }
 
-  // Chọn máy chủ để chơi game
+  // Chọn máy chủ để chơi game (chỉ gửi request, không retry)
   chooseClient(clientId) {
-    if (!this.user) {
-      console.error('❌ User info not available. Run checkAccount() first.');
-      return;
-    }
-
-    const client = this.groupClients.find(c => c.id === clientId);
-    if (!client) {
-      console.error(`❌ Client with ID ${clientId} not found`);
-      console.log('Available clients:', this.groupClients.map(c => `${c.id}: ${c.name}`));
-      return;
-    }
-
-    this.send({
-      typeClient: 'user',
-      command: 'choose-client',
-      method: 'post',
-      data: {
-        client: {
-          ...client,
-          isDialogOpen: true
-        },
-        user: this.user
+    return new Promise((resolve, reject) => {
+      if (!this.user) {
+        console.error('❌ User info not available. Run checkAccount() first.');
+        reject(new Error('User info not available'));
+        return;
       }
+
+      const client = this.groupClients.find(c => c.id === clientId);
+      if (!client) {
+        console.error(`❌ Client with ID ${clientId} not found`);
+        console.log('Available clients:', this.groupClients.map(c => `${c.id}: ${c.name}`));
+        reject(new Error('Client not found'));
+        return;
+      }
+
+      // Lưu resolver để xử lý response
+      this.chooseClientResolver = resolve;
+
+      this.send({
+        typeClient: 'user',
+        command: 'choose-client',
+        method: 'post',
+        data: {
+          client: {
+            ...client,
+            isDialogOpen: true
+          },
+          user: this.user
+        }
+      });
+
+      // Nếu sau 3 giây không có response "busy" → coi như thành công
+      setTimeout(() => {
+        if (this.chooseClientResolver) {
+          console.log('✅ Không nhận được busy response → Kết nối thành công!');
+          this.hasActiveClient = true;
+          this.chooseClientResolver({ success: true });
+          this.chooseClientResolver = null;
+        }
+      }, 3000);
     });
+  }
 
-    // Tự động retry sau 2 giây nếu chưa có máy đang chơi
-    setTimeout(() => {
-      if (!this.hasActiveClient) {
-        this.chooseClient(clientId);
+  // Thử chọn client với retry vĩnh cửu
+  async tryChooseClientWithRetry(clientId, delayMs = 3000) {
+    console.log(`🔄 Bắt đầu thử kết nối (vòng lặp vĩnh cửu)...`);
+    
+    let attemptCount = 0;
+    
+    while (true) {
+      attemptCount++;
+      console.log(`\n🎯 Lần thử ${attemptCount}`);
+      
+      const result = await this.chooseClient(clientId);
+      
+      if (result.success) {
+        console.log('\n🎉 Kết nối thành công! Đang stream game...');
+        return true;
       }
-    }, 2000);
+      
+      if (result.message === 'busy') {
+        console.log(`⏳ Server busy, đợi ${delayMs/1000}s trước khi thử lại...`);
+        await this.sleep(delayMs);
+      }
+    }
   }
 
   // Tự động: check account -> list clients -> chọn client đầu tiên
@@ -169,11 +210,11 @@ class TrumboxClient {
     this.listGroupClients();
     await this.sleep(1500);
     
-    // Bước 3: Chọn client (mặc định là client đầu tiên hoặc theo ID)
+    // Bước 3: Chọn client với retry vĩnh cửu (mặc định là client đầu tiên hoặc theo ID)
     const targetClientId = clientId || (this.groupClients[0]?.id);
     if (targetClientId) {
       console.log(`🎮 Attempting to choose client ID: ${targetClientId}`);
-      this.chooseClient(targetClientId);
+      await this.tryChooseClientWithRetry(targetClientId, 3000);
     } else {
       console.error('❌ No client available to choose');
     }
