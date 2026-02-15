@@ -9,11 +9,11 @@ global PriceTargets := {}
 
 ; ==============================
 Home::
-ShowPriceTargetSelector()
+  ShowPriceTargetSelector()
 return
 
 End::
-MenuNauAn()
+  MenuNauAn()
 return
 
 PgDn::
@@ -22,11 +22,11 @@ return
 
 ; ==============================
 [::
-ShowPriceTargetSelector()
+  ShowPriceTargetSelector()
 return
 
 ]::
-MenuNauAn()
+  MenuNauAn()
 return
 
 \::
@@ -35,9 +35,9 @@ return
 
 ; ==============================
 ~rbutton::
-ToolTip, ...Reset script...
-Sleep, 300
-Reload
+  ToolTip, ...Reset script...
+  Sleep, 300
+  Reload
 return
 
 ; ==============================
@@ -470,6 +470,26 @@ QuaDuNgoan() {
     Send, {Esc}
 }
 
+CheckNhiemVuNgay() {
+    ; break neu da nhan
+    Sleep, 1000
+    MouseClick, left, 600, 150
+    Sleep, 1000
+    MouseClick, left, 600, 150
+    Send, {F1}
+    Sleep, 1000
+    DaNhan := "|<>*141$25.zzzsTzzsDzzs7zzs27zw03zw01zw00Tw003w000w00080200010001U001s003z00Fzs0Dzz0DzzkDzk"
+    if (ok := FindText(DaNhanX := "wait", DaNhanY := 1, 604 - 150000, 644 - 150000, 604 + 150000, 644 + 150000, 0, 0, DaNhan))
+    {
+      Sleep, 1000
+      Send, {Esc}
+      return true
+    }
+    Sleep, 1000
+    Send, {Esc}
+    return false
+}
+
 Login(username) {
     MouseClick, left, 60, 40
     Sleep, 1000
@@ -661,7 +681,7 @@ MenuNhiemVuNgay() {
     
     Gui, Add, Edit, vStartPos w100, 0
     Gui, Add, Button, gHoatLuc1 Default x+5 w200, Only Daily 10 acc
-    Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an 1 acc
+    Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an 10 acc
     Gui, Show,, Nhiem Vu Ngay
     return
 
@@ -669,13 +689,13 @@ MenuNhiemVuNgay() {
         global StartPos
         Gui, Submit, NoHide
         Gui, Destroy
-        Full10AccTo(StartPos)
+        Full10AccTo(StartPos, 0)
     return
 
     HoatLuc2:
         Gui, Submit, NoHide
         Gui, Destroy
-        FullAccTo("rrntt", 1)
+        Full10AccTo(StartPos, 1)
     return
 
     return
@@ -837,12 +857,12 @@ FullNauAn() {
     return
 }
 
-Full10AccTo(startPos := 0) {
+Full10AccTo(startPos := 0, modehl := 0) {
 	Loop % (10 - startPos)
 	{
 		username := "rrntt" . (startPos + A_Index - 1)
 		Login(username)
-		FullAccTo(username, 0)
+		FullAccTo(username, modehl)
 	}
   return
 }
@@ -850,14 +870,18 @@ Full10AccTo(startPos := 0) {
 FullAccTo(username, modehl) {
     Loop, 6
     {
-        QuaDuNgoan()
-        Sleep, 2500
-        Chuphinh()
-        Sleep, 1000
-        Monghoaluc()
-        Sleep, 1000
-        ; TODO
-        Haocam()
+        daNhan := CheckNhiemVuNgay()
+        if (not daNhan)
+        {
+          QuaDuNgoan()
+          Sleep, 2500
+          Chuphinh()
+          Sleep, 1000
+          Monghoaluc()
+          Sleep, 1000
+          ; TODO
+          Haocam()
+        }
         Sleep, 1000
         Send, {F1}
         Sleep, 1000
