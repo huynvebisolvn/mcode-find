@@ -428,7 +428,8 @@ LogoutNhanVat() {
 }
 
 DoiNhanVat() {
-    Sleep, 10000
+    ; TODO: need fix
+    Sleep, 15000
     MouseMove, 150, 300
     Click, WheelDown, 10
     Sleep, 1000
@@ -515,17 +516,10 @@ Login(username) {
     MouseClick, left, 36, 178
     Sleep, 1000
     MouseClick, left, 237, 225
-    Sleep, 1000
-    ; TODO
+    Sleep, 2000
     MouseClick, left, 600, 570
-    Sleep, 10000
-    MouseMove, 150, 300
-    Click, WheelDown, 5
-    Sleep, 1000
-    MouseClick, left, 200, 420
-    Sleep, 1000
-    MouseClick, left, 1050, 630
-    Sleep, 20000
+
+    DoiNhanVat()
 return
 }
 
