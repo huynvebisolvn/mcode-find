@@ -249,8 +249,8 @@ CountOk() {
     {
         For i, obj in ok
         {
-            ; Tạo key duy nhất từ tọa độ (làm tròn để tránh sai số nhỏ)
-            key := Round(obj.x) "_" Round(obj.y)
+            ; Tạo key duy nhất từ tọa độ (làm tròn theo nhóm 5 pixel để tránh sai số)
+            key := Floor(obj.x/5)*5 "_" Floor(obj.y/5)*5
             
             ; Chỉ thêm nếu chưa có trong seen
             if (!seen.HasKey(key))
@@ -267,7 +267,7 @@ CountOk() {
     {
         For i, obj in ok
         {
-            key := Round(obj.x) "_" Round(obj.y)
+            key := Floor(obj.x/5)*5 "_" Floor(obj.y/5)*5
             if (!seen.HasKey(key))
             {
                 seen[key] := true
@@ -282,7 +282,7 @@ CountOk() {
     {
         For i, obj in ok
         {
-            key := Round(obj.x) "_" Round(obj.y)
+            key := Floor(obj.x/5)*5 "_" Floor(obj.y/5)*5
             if (!seen.HasKey(key))
             {
                 seen[key] := true
@@ -297,7 +297,7 @@ CountOk() {
     {
         For i, obj in ok
         {
-            key := Round(obj.x) "_" Round(obj.y)
+            key := Floor(obj.x/5)*5 "_" Floor(obj.y/5)*5
             if (!seen.HasKey(key))
             {
                 seen[key] := true
@@ -312,7 +312,7 @@ CountOk() {
     {
         For i, obj in ok
         {
-            key := Round(obj.x) "_" Round(obj.y)
+            key := Floor(obj.x/5)*5 "_" Floor(obj.y/5)*5
             if (!seen.HasKey(key))
             {
                 seen[key] := true
@@ -349,7 +349,7 @@ NhanThuong(username, index) {
         RefreshText1 := "|<>*197$33.zzzzzzzzzzzzy03zzz007zzU00Dzs000zy0003zU3y0Tw6Dw1z0Q3k7s7UD0y1k0Q3kA03US3U0C3kM01kS30063kM00kS300C3kM01kS3U0C3kA03US1k0w3s7UD0z0T0s7w1zU1zU3y0Ty0003zs000zzU00Tzz007zzy03zzzzzzzzzzzzw"
         if (ok := FindText(RefreshText1X := "wait", RefreshText1Y := 0.5, 1167 - 150000, 398 - 150000, 1167 + 150000, 398 + 150000, 0, 0, RefreshText1))
         {
-            key := Round(RefreshText1X) "_" Round(RefreshText1Y)
+            key := Floor(RefreshText1X/5)*5 "_" Floor(RefreshText1Y/5)*5
             if (!clickedPositions.HasKey(key)) {
                 MouseClick, left, RefreshText1X, RefreshText1Y
                 clickedPositions[key] := true
@@ -358,7 +358,7 @@ NhanThuong(username, index) {
         RefreshText2 := "|<>*211$34.zzzzzzzzzzzzzU0Tzzs00Tzz000zzs000zz0003zs0zU7z0lzUDw3kT0TUS0S1y1k0s7sC01kD0s030w300A3kA00kD0k030w300A3kA00kD0s070y3U0Q3s703UTUC0S1z0zssDw0zkUzs0z07zk000zzU007zz000zzz007zzy01zzzzzzzzzzzzzU"
         if (ok := FindText(RefreshText2X := "wait", RefreshText2Y := 0.5, 1007 - 150000, 398 - 150000, 1007 + 150000, 398 + 150000, 0, 0, RefreshText2))
         {
-            key := Round(RefreshText2X) "_" Round(RefreshText2Y)
+            key := Floor(RefreshText2X/5)*5 "_" Floor(RefreshText2Y/5)*5
             if (!clickedPositions.HasKey(key)) {
                 MouseClick, left, RefreshText2X, RefreshText2Y
                 clickedPositions[key] := true
@@ -367,7 +367,7 @@ NhanThuong(username, index) {
         RefreshText3 := "|<>*223$33.zzzzzzzzzzzzy01zzz007zzU00Dzs000zy0003zk1y0Dw37w0z0S7s7s7U70S1s0Q3kC01kS3U0C3kQ00kS3U063kQ00kS3U063kQ01kS1U0C3kC03kS1s0Q3s7UD0z0Tsw7w1zkVzk3y0Dy0003zs000zzk00Dzz007zzy03zzzzzzzzzzzzw"
         if (ok := FindText(RefreshText3X := "wait", RefreshText3Y := 0.5, 846 - 150000, 398 - 150000, 846 + 150000, 398 + 150000, 0, 0, RefreshText3))
         {
-            key := Round(RefreshText3X) "_" Round(RefreshText3Y)
+            key := Floor(RefreshText3X/5)*5 "_" Floor(RefreshText3Y/5)*5
             if (!clickedPositions.HasKey(key)) {
                 MouseClick, left, RefreshText3X, RefreshText3Y
                 clickedPositions[key] := true
@@ -376,7 +376,7 @@ NhanThuong(username, index) {
         RefreshText4 := "|<>*174$19.0TU67w1kD1k1lk0Qk06s03M01w00S00D007U07s03A03b01Vk3kT0s7y00T0E"
         if (ok := FindText(RefreshText4X := "wait", RefreshText4Y := 0.5, 686 - 150000, 398 - 150000, 686 + 150000, 398 + 150000, 0, 0, RefreshText4))
         {
-            key := Round(RefreshText4X) "_" Round(RefreshText4Y)
+            key := Floor(RefreshText4X/5)*5 "_" Floor(RefreshText4Y/5)*5
             if (!clickedPositions.HasKey(key)) {
                 MouseClick, left, RefreshText4X, RefreshText4Y
                 clickedPositions[key] := true
