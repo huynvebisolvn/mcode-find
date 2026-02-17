@@ -561,12 +561,14 @@ CanhThachTuy() {
 ; 3 GiaVi, 1 ThuySanCap1, Bang
 SashimiCaBac() {
     ; TODO
+    notFoundCount := 0
     hetTheLucCount := 0
     Loop
     {
         GiaVi := "|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
         if (ok := FindText(GiaViX, GiaViY, 76 - 150000, 148 - 150000, 76 + 150000, 148 + 150000, 0, 0, GiaVi))
         {
+            notFoundCount := 0  ; Reset counter khi tim thay
             MouseClick, left, GiaViX, GiaViY
             MouseClick, left, GiaViX, GiaViY
             MouseClick, left, GiaViX, GiaViY
@@ -589,9 +591,25 @@ SashimiCaBac() {
                 }
                 MouseClick, left, 850, 540
             }
+            else
+            {
+                ; Khong tim thay ThuySanCap1
+                notFoundCount++
+                if (notFoundCount >= 5)
+                {
+                    break  ; Thoat neu khong tim thay 3 lan lien tiep
+                }
+                MouseClick, left, 850, 540
+            }
         }
         else
         {
+            ; Khong tim thay GiaVi
+            notFoundCount++
+            if (notFoundCount >= 5)
+            {
+                break  ; Thoat neu khong tim thay 3 lan lien tiep
+            }
             MouseClick, left, 850, 540
         }
         Sleep, 500
