@@ -413,10 +413,12 @@ DaoKhoan() {
 
 LogoutNhanVat() {
     ; click 2 cai skip huong dan
-    Sleep, 1000
+    Sleep, 500
     MouseClick, left, 600, 150
-    Sleep, 1000
+    Sleep, 500
     MouseClick, left, 600, 150
+    Sleep, 500
+    Send, {Space}
     Sleep, 2000
     Send, {Esc}
     Sleep, 1000
@@ -444,10 +446,12 @@ DoiNhanVat() {
         Nghe := "|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
         if (ok := FindText(NgheX := "wait", NgheY := 5, 895 - 150000, 202 - 150000, 895 + 150000, 202 + 150000, 0, 0, Nghe))
         {
-            Sleep, 1000
+            Sleep, 500
             MouseClick, left, 600, 150
-            Sleep, 1000
+            Sleep, 500
             MouseClick, left, 600, 150
+            Sleep, 500
+            Send, {Space}
             break
         }
         Sleep, 1000
@@ -456,10 +460,12 @@ DoiNhanVat() {
 }
 
 QuaDuNgoan() {
-    Sleep, 1000
+    Sleep, 500
     MouseClick, left, 600, 150
-    Sleep, 1000
+    Sleep, 500
     MouseClick, left, 600, 150
+    Sleep, 500
+    Send, {Space}
     Send, {Esc}
     Sleep, 2000
     MouseClick, left, 900, 370
@@ -754,10 +760,13 @@ MenuNauAn() {
 
 
 FullDan() {
-    Sleep, 1000
+    Sleep, 500
     MouseClick, left, 600, 150
-    Sleep, 1000
+    Sleep, 500
     MouseClick, left, 600, 150
+    Sleep, 500
+    Send, {Space}
+    Sleep, 500
     Send, {Esc}
     Sleep, 1000
     
@@ -829,10 +838,13 @@ MuaGiaVi() {
 FullNauAn() {
     loop
     {
-        Sleep, 1000
+        Sleep, 500
         MouseClick, left, 600, 150
-        Sleep, 1000
+        Sleep, 500
         MouseClick, left, 600, 150
+        Sleep, 500
+        Send, {Space}
+        Sleep, 500
         Send, {Esc}
         Sleep, 1000
         
