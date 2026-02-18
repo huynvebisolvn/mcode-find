@@ -430,31 +430,39 @@ LogoutNhanVat() {
 }
 
 DoiNhanVat() {
-    ; TODO: need fix
-    Sleep, 15000
-    MouseMove, 150, 300
-    Click, WheelDown, 10
-    Sleep, 1000
-    MouseClick, left, 200, 420
-    Sleep, 1000
-    MouseClick, left, 1050, 630
-    Sleep, 10000
     loop
     {
-        Send, {Esc}
+      LoginSuccess:="|<>*116$19.z0Tzjbk000003zzzzznk00s00Q00C287143UW1kF0s8UQ4EC287143UW1k00s00Q00C007003"
+      if (ok:=FindText(LoginSuccessX := "wait", LoginSuccessY := 5, 1203-150000, 591-150000, 1203+150000, 591+150000, 0, 0, LoginSuccess))
+      {
         Sleep, 1000
-        Nghe := "|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
-        if (ok := FindText(NgheX := "wait", NgheY := 5, 895 - 150000, 202 - 150000, 895 + 150000, 202 + 150000, 0, 0, Nghe))
+        MouseMove, 150, 300
+        Sleep, 1000
+        Click, WheelDown, 10
+        Sleep, 1000
+        MouseClick, left, 200, 420
+        Sleep, 1000
+        MouseClick, left, 1050, 630
+        Sleep, 10000
+        loop
         {
-            Sleep, 500
-            MouseClick, left, 600, 150
-            Sleep, 500
-            MouseClick, left, 600, 150
-            Sleep, 500
-            Send, {Space}
-            break
+            Send, {Esc}
+            Sleep, 1000
+            Nghe := "|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
+            if (ok := FindText(NgheX := "wait", NgheY := 5, 895 - 150000, 202 - 150000, 895 + 150000, 202 + 150000, 0, 0, Nghe))
+            {
+                Sleep, 500
+                MouseClick, left, 600, 150
+                Sleep, 500
+                MouseClick, left, 600, 150
+                Sleep, 500
+                Send, {Space}
+                break
+            }
+            Sleep, 1000
         }
-        Sleep, 1000
+        break
+      }
     }
     return
 }
