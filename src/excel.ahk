@@ -48,7 +48,6 @@ LoadPriceTargets() {
     
     configFile := A_ScriptDir . "\config.txt"
     if !FileExist(configFile) {
-        MsgBox, 48, Error, File config.txt not found!
         return false
     }
     
@@ -85,25 +84,28 @@ ShowPriceTargetSelector() {
     global SelectedPriceTarget, PriceTargets, SelectedTarget
     
     ; Load price targets from config file
-    if !LoadPriceTargets() {
-        return
-    }
+    hasConfig := LoadPriceTargets()
     
     ; Create GUI
     Gui, PriceSelect:New
     Gui, Font, s10
-    Gui, Add, Text,, Select Price Target:
     
-    ; Create dropdown list with all available price targets
-    targetList := ""
-    for targetName, targetValue in PriceTargets {
-        if (targetList != "")
-            targetList .= "|"
-        targetList .= targetName
+    ; Only show price target selector if config file exists
+    if (hasConfig) {
+        Gui, Add, Text,, Select Price Target:
+        
+        ; Create dropdown list with all available price targets
+        targetList := ""
+        for targetName, targetValue in PriceTargets {
+            if (targetList != "")
+                targetList .= "|"
+            targetList .= targetName
+        }
+        
+        Gui, Add, DropDownList, vSelectedTarget w200, %targetList%
+        Gui, Add, Button, gStartScript Default w200, Start
     }
     
-    Gui, Add, DropDownList, vSelectedTarget w200, %targetList%
-    Gui, Add, Button, gStartScript Default w200, Start
     Gui, Add, Button, gResolution1 w200, 1280x768
     Gui, Add, Button, gResolution2 w200, 1920x1080
     Gui, Show,, Price Target Selector
