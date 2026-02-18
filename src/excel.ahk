@@ -416,11 +416,9 @@ DaoKhoan() {
 LogoutNhanVat() {
     ; click 2 cai skip huong dan
     Sleep, 1000
-    MouseClick, left, 600, 150
+    MouseClick, left, 800, 480
     Sleep, 1000
-    MouseClick, left, 600, 150
-    Sleep, 1000
-    Send, {Space}
+    MouseClick, left, 800, 480
     Sleep, 2000
     Send, {Esc}
     Sleep, 1000
@@ -454,11 +452,9 @@ DoiNhanVat() {
             if (ok := FindText(NgheX := "wait", NgheY := 5, 895 - 150000, 202 - 150000, 895 + 150000, 202 + 150000, 0, 0, Nghe))
             {
                 Sleep, 1000
-                MouseClick, left, 600, 150
+                MouseClick, left, 800, 480
                 Sleep, 1000
-                MouseClick, left, 600, 150
-                Sleep, 1000
-                Send, {Space}
+                MouseClick, left, 800, 480
                 break
             }
             Sleep, 1000
@@ -471,18 +467,16 @@ DoiNhanVat() {
 
 QuaDuNgoan() {
     Sleep, 1000
-    MouseClick, left, 600, 150
+    MouseClick, left, 800, 480
     Sleep, 1000
-    MouseClick, left, 600, 150
-    Sleep, 1000
-    Send, {Space}
+    MouseClick, left, 800, 480
     Send, {Esc}
     Sleep, 2000
     MouseClick, left, 900, 370
     Sleep, 2000
     MouseClick, left, 970, 600
     Sleep, 3000
-    MouseClick, left, 600, 150
+    MouseClick, left, 800, 480
     Sleep, 3000
     Send, {Esc}
 }
@@ -490,9 +484,9 @@ QuaDuNgoan() {
 CheckNhiemVuNgay() {
     ; break neu da nhan
     Sleep, 1000
-    MouseClick, left, 600, 150
+    MouseClick, left, 800, 480
     Sleep, 1000
-    MouseClick, left, 600, 150
+    MouseClick, left, 800, 480
     Send, {F1}
     Sleep, 1000
     DaNhan := "|<>*141$25.zzzsTzzsDzzs7zzs27zw03zw01zw00Tw003w000w00080200010001U001s003z00Fzs0Dzz0DzzkDzk"
@@ -771,11 +765,9 @@ MenuNauAn() {
 
 FullDan() {
     Sleep, 1000
-    MouseClick, left, 600, 150
+    MouseClick, left, 800, 480
     Sleep, 1000
-    MouseClick, left, 600, 150
-    Sleep, 1000
-    Send, {Space}
+    MouseClick, left, 800, 480
     Sleep, 500
     Send, {Esc}
     Sleep, 1000
@@ -849,11 +841,9 @@ FullNauAn() {
     loop
     {
         Sleep, 1000
-        MouseClick, left, 600, 150
+        MouseClick, left, 800, 480
         Sleep, 1000
-        MouseClick, left, 600, 150
-        Sleep, 1000
-        Send, {Space}
+        MouseClick, left, 800, 480
         Sleep, 500
         Send, {Esc}
         Sleep, 1000
