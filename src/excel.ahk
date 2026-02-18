@@ -7,6 +7,12 @@ global SelectedPriceTarget := ""
 global SelectedTarget := ""
 global PriceTargets := {}
 
+; Show function name in tooltip
+ShowFunctionTooltip(functionName) {
+    ToolTip, %functionName%, 10, 10
+    return
+}
+
 ; ==============================
 Home::
   ShowPriceTargetSelector()
@@ -43,6 +49,7 @@ return
 ; ==============================
 ; Load Price Targets from config file
 LoadPriceTargets() {
+    ShowFunctionTooltip("LoadPriceTargets")
     global PriceTargets
     PriceTargets := {}
     
@@ -70,6 +77,7 @@ LoadPriceTargets() {
 }
 
 ChangeResolutionOnly(TargetWidth, TargetHeight) {
+    ShowFunctionTooltip("ChangeResolutionOnly")
     cD := 32
     rR := 60
     VarSetCapacity(dM, 156, 0), NumPut(156, 2, &dM, 36)
@@ -81,6 +89,7 @@ ChangeResolutionOnly(TargetWidth, TargetHeight) {
 
 ; Show GUI to select Price Target
 ShowPriceTargetSelector() {
+    ShowFunctionTooltip("ShowPriceTargetSelector")
     global SelectedPriceTarget, PriceTargets, SelectedTarget
     
     ; Load price targets from config file
@@ -135,6 +144,7 @@ ShowPriceTargetSelector() {
 
 ; Main script - unified for all price targets
 RunPriceTargetScript() {
+    ShowFunctionTooltip("RunPriceTargetScript")
     global SelectedPriceTarget
 
     Refresh:="|<>*142$63.zzzzzzzzzzzzzzzzzzzzzryTzzzzxzjCDtzzzyDXltlzzzzzlwTzyDzzzzy73zTly3UlzksQ3CDWA07y234tnxtaAzmGNnCTkAtbyMmCNnw1bAzn6FnCTbAtbyMmCNnslbAznCNnC0UAlbyRn0tk41bQznwQDDzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
@@ -173,6 +183,7 @@ RunPriceTargetScript() {
 
 
 Chuphinh() {
+    ShowFunctionTooltip("Chuphinh")
     loop
     {
       Send, {F9}
@@ -193,6 +204,7 @@ Chuphinh() {
 }
 
 Monghoaluc() {
+    ShowFunctionTooltip("Monghoaluc")
     loop
     {
       Send, {Enter}
@@ -220,6 +232,7 @@ Monghoaluc() {
 }
 
 Haocam() {
+    ShowFunctionTooltip("Haocam")
     Send, {F11}
     Sleep, 3000
     MouseClick, left, 500, 500
@@ -242,6 +255,7 @@ Haocam() {
 
 
 CountOk() {
+    ShowFunctionTooltip("CountOk")
     positions := []
     count := 0
     seen := {}  ; Để theo dõi các vị trí đã gặp
@@ -329,6 +343,7 @@ CountOk() {
 
 
 NhanThuong(username, index) {
+    ShowFunctionTooltip("NhanThuong")
     ; TODO
     Loop, 40
     {
@@ -405,6 +420,7 @@ NhanThuong(username, index) {
 }
 
 DaoKhoan() {
+    ShowFunctionTooltip("DaoKhoan")
     Loop, 300
     {
         Send, e
@@ -414,6 +430,7 @@ DaoKhoan() {
 }
 
 LogoutNhanVat() {
+    ShowFunctionTooltip("LogoutNhanVat")
     ; click 2 cai skip huong dan
     Sleep, 1000
     MouseClick, left, 800, 480
@@ -430,6 +447,7 @@ LogoutNhanVat() {
 }
 
 DoiNhanVat() {
+    ShowFunctionTooltip("DoiNhanVat")
     loop
     {
       LoginSuccess:="|<>*116$19.z0Tzjbk000003zzzzznk00s00Q00C287143UW1kF0s8UQ4EC287143UW1k00s00Q00C007003"
@@ -466,6 +484,7 @@ DoiNhanVat() {
 }
 
 QuaDuNgoan() {
+    ShowFunctionTooltip("QuaDuNgoan")
     Sleep, 1000
     MouseClick, left, 800, 480
     Sleep, 1000
@@ -482,6 +501,7 @@ QuaDuNgoan() {
 }
 
 CheckNhiemVuNgay() {
+    ShowFunctionTooltip("CheckNhiemVuNgay")
     ; break neu da nhan
     Sleep, 1000
     MouseClick, left, 800, 480
@@ -502,6 +522,7 @@ CheckNhiemVuNgay() {
 }
 
 Login(username) {
+    ShowFunctionTooltip("Login")
     MouseClick, left, 60, 40
     Sleep, 1000
     MouseClick, left, 1160, 350
@@ -536,6 +557,7 @@ return
 
 ; 1 GiaVi, 3 LuaNuoc, Lua
 CanhThachTuy() {
+    ShowFunctionTooltip("CanhThachTuy")
     Loop, 70
     {
         GiaVi := "|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
@@ -570,6 +592,7 @@ CanhThachTuy() {
 
 ; 3 GiaVi, 1 ThuySanCap1, Bang
 SashimiCaBac() {
+    ShowFunctionTooltip("SashimiCaBac")
     ; TODO
     notFoundCount := 0
     hetTheLucCount := 0
@@ -629,6 +652,7 @@ SashimiCaBac() {
 
 ; 3 GiaVi, 1 Ga, Lua, Tho
 GaAnMay() {
+    ShowFunctionTooltip("GaAnMay")
     Loop, 70
     {
         GiaVi := "|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
@@ -663,6 +687,7 @@ GaAnMay() {
 
 ; 3 GiaVi, 1 Thit, Lua
 LauThitTho() {
+    ShowFunctionTooltip("LauThitTho")
     Loop, 70
     {
         GiaVi := "|<>*127$47.zzzzlzzzzzzw4zzzzzzU8zzzzzw00TzzzzU00Dzzry000bzz1k000/zs100006zU40000Cw0E00001k0U00003k1000007s000000Ts100000zs1U0003rw2U000zzw0M007izw03U1kDxzU0kA0TxzU0EU3zxz0040Dzxz0000zzsz0007zzyT000TzU"
@@ -697,6 +722,7 @@ LauThitTho() {
 }
 
 MenuNhiemVuNgay() {
+    ShowFunctionTooltip("MenuNhiemVuNgay")
     ; Create GUI
     Gui, PriceSelect:New
     Gui, Font, s10
@@ -724,6 +750,7 @@ MenuNhiemVuNgay() {
 }
 
 MenuNauAn() {
+    ShowFunctionTooltip("MenuNauAn")
     ; Create GUI
     Gui, PriceSelect:New
     Gui, Font, s10
@@ -764,6 +791,7 @@ MenuNauAn() {
 
 
 FullDan() {
+    ShowFunctionTooltip("FullDan")
     Sleep, 1000
     MouseClick, left, 800, 480
     Sleep, 1000
@@ -813,6 +841,7 @@ FullDan() {
 
 
 MuaGiaVi() {
+    ShowFunctionTooltip("MuaGiaVi")
     Send, {f5}
     Sleep, 2500
     MouseClick, left, 710, 730
@@ -838,6 +867,7 @@ MuaGiaVi() {
 
 
 FullNauAn() {
+    ShowFunctionTooltip("FullNauAn")
     loop
     {
         Sleep, 1000
@@ -882,6 +912,7 @@ FullNauAn() {
 }
 
 Full10AccTo(startPos := 0, modehl := 0) {
+    ShowFunctionTooltip("Full10AccTo")
 	Loop % (10 - startPos)
 	{
 		username := "rrntt" . (startPos + A_Index - 1)
@@ -892,6 +923,7 @@ Full10AccTo(startPos := 0, modehl := 0) {
 }
 
 FullAccTo(username, modehl) {
+    ShowFunctionTooltip("FullAccTo")
     Loop, 6
     {
         daNhan := CheckNhiemVuNgay()
