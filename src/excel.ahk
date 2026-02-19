@@ -429,6 +429,58 @@ DaoKhoan() {
     return
 }
 
+FullDaoKhoan(startPos := 0) {
+  ShowFunctionTooltip("FullDaoKhoan")
+  Loop % (10 - startPos)
+  {
+    username := "rrntt" . (startPos + A_Index - 1)
+    Loop, 6
+    {
+        Login(username)
+        daNhan := CheckNhiemVuNgay()
+        if (not daNhan)
+        {
+          QuaDuNgoan()
+          Sleep, 2500
+          Chuphinh()
+          Sleep, 1000
+          Monghoaluc()
+          Sleep, 1000
+          ; TODO
+          Haocam()
+        }
+        Sleep, 1000
+        Send, {F1}
+        Sleep, 1000
+        NhanThuong(username, A_Index)
+        Sleep, 1000
+        Send, {Esc}
+        DaoKhoan()
+        Sleep, 1000
+        LogoutAccount()
+        Sleep, 1000
+    }
+  }
+  return
+}
+
+LogoutAccount() {
+    ShowFunctionTooltip("LogoutAccount")
+    ; click 2 cai skip huong dan
+    Sleep, 1000
+    MouseClick, left, 800, 480
+    Sleep, 1000
+    MouseClick, left, 800, 480
+    Sleep, 2000
+    Send, {Esc}
+    Sleep, 1000
+    MouseClick, left, 1230, 430
+    Sleep, 1000
+    MouseClick, left, 1120, 190
+    Sleep, 1000
+    Send, {Space}
+}
+
 LogoutNhanVat() {
     ShowFunctionTooltip("LogoutNhanVat")
     ; click 2 cai skip huong dan
@@ -730,6 +782,7 @@ MenuNhiemVuNgay() {
     Gui, Add, Edit, vStartPos w100, 0
     Gui, Add, Button, gHoatLuc1 Default x+5 w200, Only Daily 10 acc
     Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an 10 acc
+    Gui, Add, Button, gHoatLuc3 w200, Daily + Dau khoan 10 acc
     Gui, Show,, Nhiem Vu Ngay
     return
 
@@ -744,6 +797,12 @@ MenuNhiemVuNgay() {
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 1)
+    return
+
+    HoatLuc3:
+        Gui, Submit, NoHide
+        Gui, Destroy
+        FullDaoKhoan(StartPos)
     return
 
     return
@@ -913,12 +972,12 @@ FullNauAn() {
 
 Full10AccTo(startPos := 0, modehl := 0) {
     ShowFunctionTooltip("Full10AccTo")
-	Loop % (10 - startPos)
-	{
-		username := "rrntt" . (startPos + A_Index - 1)
-		Login(username)
-		FullAccTo(username, modehl)
-	}
+    Loop % (10 - startPos)
+    {
+        username := "rrntt" . (startPos + A_Index - 1)
+        Login(username)
+        FullAccTo(username, modehl)
+    }
   return
 }
 
@@ -952,14 +1011,6 @@ FullAccTo(username, modehl) {
           Sleep, 1000
           Send, {Esc}
           FullNauAn()
-          Sleep, 1000
-          Send, {Esc}
-        }
-
-        ; mode dan
-        if (modehl == 2)
-        {
-          FullDan()
           Sleep, 1000
           Send, {Esc}
         }
