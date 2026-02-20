@@ -9,7 +9,7 @@ global PriceTargets := {}
 
 ; Show function name in tooltip
 ShowFunctionTooltip(functionName) {
-    ToolTip, %functionName%, 10, 10
+    ToolTip, %functionName%, 0, 0
     return
 }
 
@@ -421,7 +421,7 @@ NhanThuong(username, index) {
 
 DaoKhoan() {
     ShowFunctionTooltip("DaoKhoan")
-    Loop, 300
+    Loop, 200
     {
         Send, e
         Sleep, 1000
@@ -595,6 +595,7 @@ Login(username) {
     Sleep, 1000
     Send, {Enter}
     Sleep, 20000
+
     ; Dong y dieu khoan
     MouseClick, left, 36, 178
     Sleep, 1000
@@ -1023,7 +1024,16 @@ FullAccTo(username, modehl) {
         }
         else
         {
-          Sleep, 20000
+          ; wait to success
+          loop
+          {
+            LoginSuccess:="|<>*116$19.z0Tzjbk000003zzzzznk00s00Q00C287143UW1kF0s8UQ4EC287143UW1k00s00Q00C007003"
+            if (ok:=FindText(LoginSuccessX := "wait", LoginSuccessY := 5, 1203-150000, 591-150000, 1203+150000, 591+150000, 0, 0, LoginSuccess))
+            {
+              break
+            }
+            Sleep, 2000
+          }
         }
     }
     return
