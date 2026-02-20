@@ -429,58 +429,6 @@ DaoKhoan() {
     return
 }
 
-FullDaoKhoan(startPos := 0) {
-  ShowFunctionTooltip("FullDaoKhoan")
-  Loop % (10 - startPos)
-  {
-    username := "rrntt" . (startPos + A_Index - 1)
-    Loop, 6
-    {
-        Login(username)
-        daNhan := CheckNhiemVuNgay()
-        if (not daNhan)
-        {
-          QuaDuNgoan()
-          Sleep, 2500
-          Chuphinh()
-          Sleep, 1000
-          Monghoaluc()
-          Sleep, 1000
-          ; TODO
-          Haocam()
-        }
-        Sleep, 1000
-        Send, {F1}
-        Sleep, 1000
-        NhanThuong(username, A_Index)
-        Sleep, 1000
-        Send, {Esc}
-        DaoKhoan()
-        Sleep, 1000
-        LogoutAccount()
-        Sleep, 1000
-    }
-  }
-  return
-}
-
-LogoutAccount() {
-    ShowFunctionTooltip("LogoutAccount")
-    ; click 2 cai skip huong dan
-    Sleep, 1000
-    MouseClick, left, 800, 480
-    Sleep, 1000
-    MouseClick, left, 800, 480
-    Sleep, 2000
-    Send, {Esc}
-    Sleep, 1000
-    MouseClick, left, 1230, 430
-    Sleep, 1000
-    MouseClick, left, 1120, 190
-    Sleep, 1000
-    Send, {Space}
-}
-
 LogoutNhanVat() {
     ShowFunctionTooltip("LogoutNhanVat")
     ; click 2 cai skip huong dan
@@ -493,9 +441,20 @@ LogoutNhanVat() {
     Sleep, 1000
     MouseClick, left, 1230, 430
     Sleep, 1000
-    MouseClick, left, 570, 190
-    Sleep, 1000
-    Send, {Space}
+    ; wait logout done
+    loop
+    {
+      MouseClick, left, 570, 190
+      Sleep, 1000
+      Send, {Space}
+      Sleep, 1000
+      LoginSuccess:="|<>*116$19.z0Tzjbk000003zzzzznk00s00Q00C287143UW1kF0s8UQ4EC287143UW1k00s00Q00C007003"
+      if (ok:=FindText(LoginSuccessX := "wait", LoginSuccessY := 3, 1203-150000, 591-150000, 1203+150000, 591+150000, 0, 0, LoginSuccess))
+      {
+        break
+      }
+      Sleep, 1000
+    }
 }
 
 DoiNhanVat() {
@@ -803,7 +762,7 @@ MenuNhiemVuNgay() {
     HoatLuc3:
         Gui, Submit, NoHide
         Gui, Destroy
-        FullDaoKhoan(StartPos)
+        Full10AccTo(StartPos, 2)
     return
 
     return
@@ -1014,6 +973,13 @@ FullAccTo(username, modehl) {
           FullNauAn()
           Sleep, 1000
           Send, {Esc}
+        }
+
+        ; mode dao khoan
+        if (modehl == 2)
+        {
+          DaoKhoan()
+          Sleep, 1000
         }
 
         LogoutNhanVat()
