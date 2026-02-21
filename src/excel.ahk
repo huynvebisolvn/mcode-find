@@ -501,14 +501,25 @@ QuaDuNgoan() {
     Sleep, 1000
     MouseClick, left, 800, 480
     Send, {Esc}
-    Sleep, 2000
+    Sleep, 1000
     MouseClick, left, 900, 370
-    Sleep, 2000
+    Sleep, 1000
     MouseClick, left, 970, 600
-    Sleep, 3000
+    Sleep, 1000
     MouseClick, left, 800, 480
-    Sleep, 3000
-    Send, {Esc}
+    Sleep, 1000
+    ; check out success
+    loop
+    {
+      Text:="|<>*140$26.zzk7zz003y007w00Dk00Tz00TzzUTzzy1zzzsDzzz1zzzyzy"
+      if (ok:=FindText(X, Y, 65-150000, 39-150000, 65+150000, 39+150000, 0, 0, Text))
+      {
+        MouseClick, left, X, Y
+        break
+      }
+      MouseClick, left, 800, 480
+      Sleep, 1000
+    }
 }
 
 CheckNhiemVuNgay() {
@@ -949,7 +960,7 @@ FullAccTo(username, modehl) {
         if (not daNhan)
         {
           QuaDuNgoan()
-          Sleep, 2500
+          Sleep, 1000
           Chuphinh()
           Sleep, 1000
           Monghoaluc()
