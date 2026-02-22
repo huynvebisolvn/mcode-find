@@ -421,8 +421,13 @@ NhanThuong(username, index) {
 
 DaoKhoan() {
     ShowFunctionTooltip("DaoKhoan")
-    Loop, 200
+    Loop, 1000
     {
+        XiMo:="|<>*144$40.zyTzzzASNzblwFtjyT7vbDzswTyAzzXVzwbDw671kQzkEMnXnz49bA7DwEaQYQzlaNmMnzCNb9nDwvaMD4znyQ5ynzDtss"
+        if (ok:=FindText(X, Y, 825-150000, 437-150000, 825+150000, 437+150000, 0, 0, XiMo))
+        {
+          break
+        }
         Send, e
         Sleep, 1000
     }
