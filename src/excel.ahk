@@ -434,8 +434,8 @@ DaoKhoan() {
     ShowFunctionTooltip("DaoKhoan")
     Loop, 600
     {
-        XiMo:="|<>*144$40.zyTzzzASNzblwFtjyT7vbDzswTyAzzXVzwbDw671kQzkEMnXnz49bA7DwEaQYQzlaNmMnzCNb9nDwvaMD4znyQ5ynzDtss"
-        if (ok:=FindText(X, Y, 825-150000, 437-150000, 825+150000, 437+150000, 0, 0, XiMo))
+        Xi:="|<>*121$12.XDXQkQswkwkQaAaAD4D4U"
+        if (ok:=FindText(X, Y, 811-150000, 464-150000, 811+150000, 464+150000, 0, 0, Xi))
         {
           break
         }
