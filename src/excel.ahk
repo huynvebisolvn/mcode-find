@@ -476,6 +476,69 @@ MuaDatCat() {
     Send, {Esc}
 }
 
+BanKhoan() {
+    ShowFunctionTooltip("BanKhoan")
+    Send, {f5}
+    Sleep, 2500
+    MouseClick, left, 1023, 735
+    Sleep, 1500
+    ; Vat pham ban
+    Ban:="|<>*93$28.0zzzw0z7zl3wzz77rzwQzzzlnkQX6S0U41zW003y8s670XUQM2C1l68s74MXU0k2C0DXAtU"
+    if (ok:=FindText(BanX := "wait", BanY := 3, 104-150000, 551-150000, 104+150000, 551+150000, 0, 0, Ban))
+    {
+      MouseClick, left, BanX, BanY
+      Sleep, 1000
+      ; Rut tien
+      Rut:="|<>*132$29.zk1U1zk603XUQ077Uk7C600CQQQQTskstzz1llny3XXbw777CwCCCQwQQQsssstltzlvlnzXv13W3c"
+      if (ok:=FindText(RutX := "wait", RutY := 3, 1093-150000, 640-150000, 1093+150000, 640+150000, 0, 0, Rut))
+      {
+        MouseClick, left, RutX, RutY
+      }
+      Sleep, 500
+      ; Go vat pham
+      loop, 8
+      {
+        Go:="|<>*183$23.y7zzk7kD03UQC7zsyTyFzw0Xrk2A3X4Q2D8T4S8y8wFwFsVknn03X7070S0TVs"
+        if (ok:=FindText(GoX, GoY, 903-150000, 215-150000, 903+150000, 215+150000, 0, 0, Go))
+        {
+          MouseClick, left, GoX, GoY
+        }
+        else
+        {
+          break
+        }
+        Sleep, 500
+      }
+      ; nhan dien khoan
+      Khoan:="|<>*116$30.zzXkTzz3U7zy3U3zs7U1zk900zU000z0000z0000w0001s000Ds001zk00DzU00DzU00TzU60Tz000Tz000Tz000zzU00zzk05zzU"
+      if (ok:=FindText(KhoanX := "wait", KhoanY := 3, 237-150000, 157-150000, 237+150000, 157+150000, 0, 0, Khoan))
+      {
+        MouseClick, left, KhoanX, KhoanY
+        Sleep, 1000
+        ; Ha gia 8 lan
+        MouseClick, left, 915, 479
+        MouseClick, left, 915, 479
+        MouseClick, left, 915, 479
+        MouseClick, left, 915, 479
+        MouseClick, left, 915, 479
+        MouseClick, left, 915, 479
+        MouseClick, left, 915, 479
+        MouseClick, left, 915, 479
+        Sleep, 500
+        MouseClick, left, 1214, 391
+        Sleep, 500
+        ; len ke
+        LenKe:="|<>*119$18.s0Ms0ws0qs0as00skStlztXbv37y3zz7wz70vXUvnstvzslw00800M00Q00MU"
+        if (ok:=FindText(LenKeX := "wait", LenKeY := 3, 1198-150000, 651-150000, 1198+150000, 651+150000, 0, 0, LenKe))
+        {
+          MouseClick, left, LenKeX, LenKeY
+        }
+      }
+    }
+    Sleep, 1000
+    Send, {Esc}
+} 
+
 FullGhepKhoan() {
     ShowFunctionTooltip("FullGhepKhoan")
     Sleep, 1000
@@ -1085,6 +1148,8 @@ FullAccTo(username, modehl) {
           MuaDatCat()
           Sleep, 1000
           FullGhepKhoan()
+          Sleep, 1000
+          BanKhoan()
           Sleep, 1000
           DaoKhoan()
           Sleep, 1000
