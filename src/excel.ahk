@@ -421,7 +421,7 @@ NhanThuong(username, index) {
 
 DaoKhoan() {
     ShowFunctionTooltip("DaoKhoan")
-    Loop, 1000
+    Loop, 600
     {
         XiMo:="|<>*144$40.zyTzzzASNzblwFtjyT7vbDzswTyAzzXVzwbDw671kQzkEMnXnz49bA7DwEaQYQzlaNmMnzCNb9nDwvaMD4znyQ5ynzDtss"
         if (ok:=FindText(X, Y, 825-150000, 437-150000, 825+150000, 437+150000, 0, 0, XiMo))
@@ -432,6 +432,83 @@ DaoKhoan() {
         Sleep, 1000
     }
     return
+}
+
+MuaDatCat() {
+    ShowFunctionTooltip("MuaDatCat")
+    Send, {f5}
+    Sleep, 2500
+    MouseClick, left, 710, 730
+    Sleep, 1500
+    MouseClick, left, 62, 196
+    Sleep, 1500
+    MouseClick, left, 350, 85
+    Sleep, 1500
+    MouseMove, 845, 300
+    Sleep, 1000
+    Click, WheelDown, 10
+    Sleep, 1000
+    ; DatCat
+    DatCat:="|<>*94$25.000s001sDsDV7z5VlXUEkkk0MMNwTzxr6DyVX33DlVVjsklqAMTv6ADtz7c"
+    if (ok:=FindText(DatCatX := "wait", DatCatY := 5, 670-150000, 196-150000, 670+150000, 196+150000, 0, 0, DatCat))
+    {
+      MouseClick, left, DatCatX, DatCatY
+      Sleep, 1000
+      ; plus
+      MouseClick, left, 1230, 490
+      Sleep, 1000
+      Send, {v}
+      Sleep, 1000
+      MouseClick, left, 800, 480
+    }
+    Sleep, 1000
+    Send, {Esc}
+}
+
+FullGhepKhoan() {
+    ShowFunctionTooltip("FullGhepKhoan")
+    Sleep, 1000
+    MouseClick, left, 800, 480
+    Sleep, 1000
+    MouseClick, left, 800, 480
+    Sleep, 500
+    Send, {Esc}
+    Sleep, 1000
+    Nghe := "|<>*121$41.zzzzzzTzzzzzyTzzzzzyTzzzzzylyTznznXwzzbz3XtzzDyH3nzyTxgbbzwzzt7Dkt3sH6S1k7064tnb4sC9XbC9kS37CQEAw66wsXtwC3tl7nwRznW7bss7b61zvk7SyDzzbDzzzzyDTzzzzy0zzzzzw7zzzk"
+    if (ok := FindText(NgheX := "wait", NgheY := 5, 895 - 150000, 202 - 150000, 895 + 150000, 202 + 150000, 0, 0, Nghe))
+    {
+        MouseClick, left, NgheX, NgheY
+        Sleep, 1000
+        Ren:="|<>*127$32.080080200230U00Uw8008Dm002DzU00jzs00Dzzzzzzzw07zzz01zzzk0Tzzw07zzz03zzy003zz000zzU007s"
+        if (ok:=FindText(RenX := "wait", RenY := 5, 392-150000, 712-150000, 392+150000, 712+150000, 0, 0, Ren))
+        {
+            MouseClick, left, RenX, RenY
+            Sleep, 1000
+            ; select nguyen lieu ren
+            MouseClick, left, 250, 85
+            Sleep, 1000
+              MouseClick, left, 240, 180
+              Sleep, 1000
+              ; Tinh luyen dong
+              MouseClick, left, 300, 245
+              Sleep, 1000
+              PlusMax:="|<>*158$29.zzXzzzy3zzzw3zzzk3zzz33zzwD3zzkz3zz3z3zwDz3zkzz3z3zz3wDvz3UzXz03y3z2Ds3yCTU3yzy33zzsD3zzUz1zy3z3zyDyDzyTyzs"
+              if (ok:=FindText(PlusMaxX := "wait", PlusMaxY := 5, 823-150000, 611-150000, 823+150000, 611+150000, 0, 0, PlusMax))
+              {
+                MouseClick, left, PlusMaxX, PlusMaxY
+                Sleep, 1000
+                ; Che tao
+                CheTao:="|<>*110$30.Ts000zs00070000700007000070A0M70z1y71bXz703a7703a770Ta371Xi371Xi371nb771zbw71vXsU"
+                if (ok:=FindText(CheTaoX := "wait", CheTaoY := 5, 1004-150000, 614-150000, 1004+150000, 614+150000, 0, 0, CheTao))
+                {
+                  MouseClick, left, CheTaoX, CheTaoY
+                }
+              }
+          }
+    }
+  Sleep, 2000
+  Send, {Esc}
+  return
 }
 
 LogoutNhanVat() {
@@ -994,6 +1071,10 @@ FullAccTo(username, modehl) {
         ; mode dao khoan
         if (modehl == 2)
         {
+          MuaDatCat()
+          Sleep, 1000
+          FullGhepKhoan()
+          Sleep, 1000
           DaoKhoan()
           Sleep, 1000
         }
