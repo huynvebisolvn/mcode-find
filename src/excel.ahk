@@ -220,10 +220,21 @@ Monghoaluc() {
         Sleep, 1000
         MouseClick, left, 900, 300
         Sleep, 1000
-        Send, {Text}ChoiGameVuiVe
+        FormatTime, CurrentDate, , dd/MM/yyyy
+        Send, {Text}%CurrentDate%ChoiGameVuiVe
         ; TODO
         MouseClick, left, 1000, 560
         break
+      }
+    }
+    Thu:="|<>*169$19.U00M00C003U00s00C003U00s00C087UA3sC3yD3ny3Uy1UC1U000000000000000004"
+    if (ok:=FindText(ThuX := "wait", ThuY := 5, 27-150000, 235-150000, 27+150000, 235+150000, 0, 0, Thu))
+    {
+      MouseClick, left, ThuX, ThuY
+      NhanNhanh:="|<>*108$42.060001U060001U060001U060001UzbwTDlyzbwbDtztbA3gNbtaADgNXtaAngNXtaAngNXtaAzgNXtaAzgNXU"
+      if (ok:=FindText(NhanNhanhX, NhanNhanhY, 356-150000, 731-150000, 356+150000, 731+150000, 0, 0, NhanNhanh))
+      {
+        MouseClick, left, NhanNhanhX, NhanNhanhY
       }
     }
     Sleep, 1000
