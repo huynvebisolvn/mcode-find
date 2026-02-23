@@ -235,6 +235,8 @@ Monghoaluc() {
       if (ok:=FindText(NhanNhanhX := "wait", NhanNhanhY := 1, 356-150000, 731-150000, 356+150000, 731+150000, 0, 0, NhanNhanh))
       {
         MouseClick, left, NhanNhanhX, NhanNhanhY
+        Sleep, 1000
+        MouseClick, left, 800, 480
       }
     }
     Sleep, 1000
@@ -1155,6 +1157,7 @@ FullAccTo(username, modehl) {
         ; mode dao khoan
         if (modehl == 2)
         {
+          Sleep, 1000
           MuaDatCat()
           Sleep, 1000
           FullGhepKhoan()
