@@ -439,7 +439,14 @@ DaoKhoan() {
         {
           break
         }
-        Send, e
+        if (A_Index = 1 || Mod(A_Index, 5) = 0)
+        {
+          Send, e
+          Sleep, 500
+          Send, {e down}
+          Sleep, 3000
+          Send, {e up}
+        }
         Sleep, 1000
     }
     return
