@@ -228,11 +228,11 @@ Monghoaluc() {
       }
     }
     Thu:="|<>*169$19.U00M00C003U00s00C003U00s00C087UA3sC3yD3ny3Uy1UC1U000000000000000004"
-    if (ok:=FindText(ThuX := "wait", ThuY := 5, 27-150000, 235-150000, 27+150000, 235+150000, 0, 0, Thu))
+    if (ok:=FindText(ThuX := "wait", ThuY := 1, 27-150000, 235-150000, 27+150000, 235+150000, 0, 0, Thu))
     {
       MouseClick, left, ThuX, ThuY
       NhanNhanh:="|<>*108$42.060001U060001U060001U060001UzbwTDlyzbwbDtztbA3gNbtaADgNXtaAngNXtaAngNXtaAzgNXtaAzgNXU"
-      if (ok:=FindText(NhanNhanhX, NhanNhanhY, 356-150000, 731-150000, 356+150000, 731+150000, 0, 0, NhanNhanh))
+      if (ok:=FindText(NhanNhanhX := "wait", NhanNhanhY := 1, 356-150000, 731-150000, 356+150000, 731+150000, 0, 0, NhanNhanh))
       {
         MouseClick, left, NhanNhanhX, NhanNhanhY
       }
@@ -509,6 +509,7 @@ BanKhoan() {
         }
         Sleep, 500
       }
+      Sleep, 500
       ; nhan dien khoan
       Khoan:="|<>*116$30.zzXkTzz3U7zy3U3zs7U1zk900zU000z0000z0000w0001s000Ds001zk00DzU00DzU00TzU60Tz000Tz000Tz000zzU00zzk05zzU"
       if (ok:=FindText(KhoanX := "wait", KhoanY := 3, 237-150000, 157-150000, 237+150000, 157+150000, 0, 0, Khoan))
