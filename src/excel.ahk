@@ -493,7 +493,7 @@ BanKhoan() {
     Sleep, 1500
     ; Vat pham ban
     Ban:="|<>*93$28.0zzzw0z7zl3wzz77rzwQzzzlnkQX6S0U41zW003y8s670XUQM2C1l68s74MXU0k2C0DXAtU"
-    if (ok:=FindText(BanX := "wait", BanY := 3, 104-150000, 551-150000, 104+150000, 551+150000, 0, 0, Ban))
+    if (ok:=FindText(BanX := "wait", BanY := 10, 104-150000, 551-150000, 104+150000, 551+150000, 0, 0, Ban))
     {
       MouseClick, left, BanX, BanY
       Sleep, 1000
