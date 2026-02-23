@@ -436,7 +436,9 @@ DaoKhoan() {
     {
         Xi:="|<>*121$12.XDXQkQswkwkQaAaAD4D4U"
         if (ok:=FindText(X, Y, 811-150000, 464-150000, 811+150000, 464+150000, 0, 0, Xi))
-        {
+        { 
+          Send, {Space}
+          Sleep, 1000
           break
         }
         if (A_Index = 1 || Mod(A_Index, 5) = 0)
