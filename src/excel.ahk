@@ -6,6 +6,7 @@
 global SelectedPriceTarget := ""
 global SelectedTarget := ""
 global PriceTargets := {}
+global EnableMuaNguyenLieu := 0
 
 ; Show function name in tooltip
 ShowFunctionTooltip(functionName) {
@@ -924,23 +925,27 @@ MenuNhiemVuNgay() {
     Gui, Add, Button, gHoatLuc1 Default x+5 w200, Only Daily 10 acc
     Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an 10 acc
     Gui, Add, Button, gHoatLuc3 w200, Daily + Dau khoan 10 acc
+    Gui, Add, Checkbox, vEnableMuaNguyenLieu w200, Enable Mua Nguyen Lieu
+    
     Gui, Show,, Nhiem Vu Ngay
     return
 
     HoatLuc1:
-        global StartPos
+        global StartPos, EnableMuaNguyenLieu
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 0)
     return
 
     HoatLuc2:
+        global StartPos, EnableMuaNguyenLieu
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 1)
     return
 
     HoatLuc3:
+        global StartPos, EnableMuaNguyenLieu
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 2)
@@ -1148,9 +1153,11 @@ FullAccTo(username, modehl) {
         ; mode nau an
         if (modehl == 1)
         {
-          MuaGiaVi()
-          Sleep, 1000
-          Send, {Esc}
+          if (EnableMuaNguyenLieu == 1) {
+            MuaGiaVi()
+            Sleep, 1000
+            Send, {Esc}
+          }
           FullNauAn()
           Sleep, 1000
           Send, {Esc}
@@ -1160,8 +1167,10 @@ FullAccTo(username, modehl) {
         if (modehl == 2)
         {
           Sleep, 1000
-          MuaDatCat()
-          Sleep, 1000
+          if (EnableMuaNguyenLieu == 1) {
+            MuaDatCat()
+            Sleep, 1000
+          }
           FullGhepKhoan()
           Sleep, 1000
           BanKhoan()
