@@ -236,7 +236,9 @@ Monghoaluc() {
       {
         MouseClick, left, NhanNhanhX, NhanNhanhY
         Sleep, 1000
-        MouseClick, left, 800, 480
+        MouseClick, left, MongHoaX, MongHoaY
+        Sleep, 500
+        MouseClick, left, MongHoaX, MongHoaY
       }
     }
     Sleep, 1000
