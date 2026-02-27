@@ -250,20 +250,24 @@ Monghoaluc() {
 Haocam() {
     ShowFunctionTooltip("Haocam")
     Send, {F11}
-    Sleep, 3000
-    MouseClick, left, 500, 500
-    Sleep, 3000
-    MouseClick, left, 1200, 170
-    Sleep, 1000
-    MouseClick, left, 825, 270
-    Tang := "|<>*109$42.0000000zwEU0007sTU0003UD00003U000003U000003UTXS0y3Uzbz3y3U3rj7C3U1r7663UDr7663Uzr7763Ulr77w3Vlr73k3Vzr7203Uzr77w00M007y000007D006006600C007i004007wU"
-    if (ok := FindText(TangX := "wait", TangY := 3, 944 - 150000, 596 - 150000, 944 + 150000, 596 + 150000, 0, 0, Tang))
+    Sleep, 2000
+    loop
     {
-        MouseClick, left, TangX, TangY
-        Sleep, 1000
-        Send, {Esc}
-        Sleep, 1000
-        Send, {Esc}
+      MouseClick, left, 500, 500
+      Sleep, 2000
+      MouseClick, left, 1200, 170
+      Sleep, 1000
+      MouseClick, left, 825, 270
+      Tang := "|<>*109$42.0000000zwEU0007sTU0003UD00003U000003U000003UTXS0y3Uzbz3y3U3rj7C3U1r7663UDr7663Uzr7763Ulr77w3Vlr73k3Vzr7203Uzr77w00M007y000007D006006600C007i004007wU"
+      if (ok := FindText(TangX := "wait", TangY := 3, 944 - 150000, 596 - 150000, 944 + 150000, 596 + 150000, 0, 0, Tang))
+      {
+          MouseClick, left, TangX, TangY
+          Sleep, 1000
+          Send, {Esc}
+          Sleep, 1000
+          Send, {Esc}
+          break
+      }
     }
     return
 }
