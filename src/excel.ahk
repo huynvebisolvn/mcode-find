@@ -1146,14 +1146,13 @@ FullAccTo(username, modehl) {
           Sleep, 1000
           ; TODO
           Haocam()
+          Sleep, 1000
+          Send, {F1}
+          Sleep, 1000
+          NhanThuong(username, A_Index)
+          Sleep, 1000
+          Send, {Esc}
         }
-        Sleep, 1000
-        Send, {F1}
-        Sleep, 1000
-        NhanThuong(username, A_Index)
-        Sleep, 1000
-        Send, {Esc}
-
         ; mode nau an
         if (modehl == 1)
         {
