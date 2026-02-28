@@ -628,6 +628,15 @@ LogoutNhanVat() {
       {
         break
       }
+      Dead:="|<>*153$30.zznzzzz3zzzz7zzzzDzzzzPzzzzbzzzzDzzzzPzzzznzzzz3zzzz3zzzU07zzyzjzzyDzzzy/zzzy9zzzy9yDzy9Uvzy9aBzy9zpzy9ztzy9zszu9zsza9zkzi9zVzy9z1zy9y1zy9w3zy9sLzy9Ubzy91Dzy86zzy0Bzzy0yzzy3xzzkDvz00zbzzzzDzU"
+      if (ok:=FindText(DeadX, DeadY, 1201-150000, 609-150000, 1201+150000, 609+150000, 0, 0, Dead))
+      {
+        MouseClick, left, DeadX, DeadY
+        Sleep, 2000
+        Send, {Esc}
+        Sleep, 1000
+        MouseClick, left, 1230, 430
+      }
       Sleep, 1000
     }
 }
@@ -813,9 +822,9 @@ SashimiCaBac() {
                 Sleep, 2500
                 if (ok := FindText(GiaVi2X, GiaVi2Y, 76 - 150000, 148 - 150000, 76 + 150000, 148 + 150000, 0, 0, GiaVi))
                 {
-                    ; Neu van tim thay 5 lan = het the luc
+                    ; Neu van tim thay = het the luc
                     hetTheLucCount++
-                    if (hetTheLucCount >= 5)
+                    if (hetTheLucCount >= 3)
                     {
                         break
                     }
@@ -826,9 +835,9 @@ SashimiCaBac() {
             {
                 ; Khong tim thay ThuySanCap1
                 notFoundCount++
-                if (notFoundCount >= 5)
+                if (notFoundCount >= 3)
                 {
-                    break  ; Thoat neu khong tim thay 3 lan lien tiep
+                    break  ; Thoat neu khong tim thay
                 }
                 MouseClick, left, 850, 540
             }
@@ -837,9 +846,9 @@ SashimiCaBac() {
         {
             ; Khong tim thay GiaVi
             notFoundCount++
-            if (notFoundCount >= 5)
+            if (notFoundCount >= 3)
             {
-                break  ; Thoat neu khong tim thay 3 lan lien tiep
+                break  ; Thoat neu khong tim thay
             }
             MouseClick, left, 850, 540
         }
