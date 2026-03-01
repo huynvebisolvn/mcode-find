@@ -450,6 +450,15 @@ DaoKhoan() {
           Sleep, 1000
           break
         }
+        SaveLives:="|<>*153$30.zznzzzz3zzzz7zzzzDzzzzPzzzzbzzzzDzzzzPzzzznzzzz3zzzz3zzzU07zzyzjzzyDzzzy/zzzy9zzzy9yDzy9Uvzy9aBzy9zpzy9ztzy9zszu9zsza9zkzi9zVzy9z1zy9y1zy9w3zy9sLzy9Ubzy91Dzy86zzy0Bzzy0yzzy3xzzkDvz00zbzzzzDzU"
+        if (ok:=FindText(SaveLivesX, SaveLivesY, 1201-150000, 609-150000, 1201+150000, 609+150000, 0, 0, SaveLives))
+        {
+          MouseClick, left, SaveLivesX, SaveLivesY
+          Sleep, 5000
+          Send, {Space}
+          Sleep, 1000
+          break
+        }
         if (A_Index = 1 || Mod(A_Index, 5) = 0)
         {
           Send, e
@@ -628,11 +637,11 @@ LogoutNhanVat() {
       {
         break
       }
-      Dead:="|<>*153$30.zznzzzz3zzzz7zzzzDzzzzPzzzzbzzzzDzzzzPzzzznzzzz3zzzz3zzzU07zzyzjzzyDzzzy/zzzy9zzzy9yDzy9Uvzy9aBzy9zpzy9ztzy9zszu9zsza9zkzi9zVzy9z1zy9y1zy9w3zy9sLzy9Ubzy91Dzy86zzy0Bzzy0yzzy3xzzkDvz00zbzzzzDzU"
-      if (ok:=FindText(DeadX, DeadY, 1201-150000, 609-150000, 1201+150000, 609+150000, 0, 0, Dead))
+      SaveLives:="|<>*153$30.zznzzzz3zzzz7zzzzDzzzzPzzzzbzzzzDzzzzPzzzznzzzz3zzzz3zzzU07zzyzjzzyDzzzy/zzzy9zzzy9yDzy9Uvzy9aBzy9zpzy9ztzy9zszu9zsza9zkzi9zVzy9z1zy9y1zy9w3zy9sLzy9Ubzy91Dzy86zzy0Bzzy0yzzy3xzzkDvz00zbzzzzDzU"
+      if (ok:=FindText(SaveLivesX, SaveLivesY, 1201-150000, 609-150000, 1201+150000, 609+150000, 0, 0, SaveLives))
       {
-        MouseClick, left, DeadX, DeadY
-        Sleep, 2000
+        MouseClick, left, SaveLivesX, SaveLivesY
+        Sleep, 5000
         Send, {Esc}
         Sleep, 1000
         MouseClick, left, 1230, 430
