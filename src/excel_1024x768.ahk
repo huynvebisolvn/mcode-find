@@ -9,6 +9,9 @@ global PriceTargets := {}
 global EnableMuaNguyenLieu := 0
 global ShowMouseCoords := false
 
+; Change Resolution on start
+ChangeResolutionOnly(1024, 768)
+
 ; Show function name in tooltip
 ShowFunctionTooltip(functionName) {
     ToolTip, %functionName%, 0, 0
@@ -443,10 +446,6 @@ NhanThuong() {
     Sleep, 500
     Sleep, 1000
     Send, {Esc}
-    Sleep, 1000
-    Send, {Esc}
-    Sleep, 1000
-    Send, {Esc}
     return
 }
 
@@ -744,35 +743,49 @@ CheckNhiemVuNgay() {
 
 Login(username) {
     ShowFunctionTooltip("Login")
-    MouseClick, left, 48, 40
-    Sleep, 1000
-    MouseClick, left, 928, 350
-    Sleep, 1000
-    MouseClick, left, 992, 45
-    Sleep, 1000
-    MouseClick, left, 992, 45
-    Sleep, 5000
-    ; bug of zing
-    MouseClick, left, 150, 150
-    Sleep, 5000
-    Send, {Tab}
-    Sleep, 1000
-    Send, {Text}%username%
-    Sleep, 1000
-    Send, {Tab}
-    Send, {Text}Huy142857
-    Sleep, 1000
-    Send, {Enter}
-    Sleep, 20000
+	loop, 5
+	{
+		MouseClick, left, 48, 40
+		Sleep, 1000
+		
+		XacNhan:="|<>*102$47.w1XU0M01s3701k01s6C07k03sAQ0Bk07kMs0000Dklk0000PlXj3yCwnX7zDwTxbaCS0wtv7gQQ0tlq7sssDnXgDlllzb7MDXXb7CCkD77ACQRUSC6QQsv0QQQztlq0MstxnXU0000U000000000000000U0000003U0000002008"
+		if (ok:=FindText(X := "wait", Y := 1, 946-150000, 384-150000, 946+150000, 384+150000, 0, 0, XacNhan))
+		{
+			MouseClick, left, X, Y
+			break
+		}
+	}
+	
+	CleanCache:="|<>*194$17.z1zs0zU0y00s01k011U240480QU0t01q03c03E0Sk0xU3zU7z0Tz1zxizllw10E40000U"
+	if (ok:=FindText(CleanCacheX := "wait", CleanCacheY := 1, 993-150000, 33-150000, 993+150000, 33+150000, 0, 0, CleanCache))
+	{
+		Sleep, 1000
+		MouseClick, left, CleanCacheX, CleanCacheY
+		Sleep, 1000
+		MouseClick, left, CleanCacheX, CleanCacheY
+		Sleep, 5000
+		; bug of zing
+		MouseClick, left, 150, 150
+		Sleep, 5000
+		Send, {Tab}
+		Sleep, 1000
+		Send, {Text}%username%
+		Sleep, 1000
+		Send, {Tab}
+		Send, {Text}Huy142857
+		Sleep, 1000
+		Send, {Enter}
+		Sleep, 20000
 
-    ; Dong y dieu khoan
-    MouseClick, left, 36, 178
-    Sleep, 1000
-    MouseClick, left, 237, 225
-    Sleep, 2000
-    MouseClick, left, 510, 634
+		; Dong y dieu khoan
+		MouseClick, left, 36, 178
+		Sleep, 1000
+		MouseClick, left, 237, 225
+		Sleep, 2000
+		MouseClick, left, 510, 634
 
-    DoiNhanVat()
+		DoiNhanVat()
+	}
 return
 }
 
