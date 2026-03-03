@@ -210,6 +210,8 @@ Chuphinh() {
     {
       Send, {F9}
       Sleep, 2000
+      MouseClick, left, 640, 480
+      Sleep, 500
       Send, {Enter}
       Sleep, 1000
       Text:="|<>*128$14.7y0z37Xslz0zsTybz1zXDltszATk7yM"
@@ -505,7 +507,7 @@ MuaDatCat() {
       MouseClick, left, DatCatX, DatCatY
       Sleep, 1000
       ; plus
-      ;MouseClick, left, 988, 550
+      MouseClick, left, 988, 550
       Sleep, 1000
       Send, {v}
       Sleep, 1000
