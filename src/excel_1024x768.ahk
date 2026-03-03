@@ -208,6 +208,10 @@ Chuphinh() {
     ShowFunctionTooltip("Chuphinh")
     loop
     {
+      MouseClick, left, 640, 480
+      Sleep, 500
+      MouseClick, left, 640, 480
+      Sleep, 500
       Send, {F9}
       Sleep, 2000
       MouseClick, left, 640, 480
