@@ -458,11 +458,14 @@ NhanThuong() {
 
 DaoKhoan() {
     ShowFunctionTooltip("DaoKhoan")
+    Hettheluc:="|<>*106$12./POvOnOHP+zvz7U"
+    
     Loop, 600
     {
-        Xi:="|<>*134$9.CFq4wiVqSVp6AnmU"
-        if (ok:=FindText(X, Y, 649-150000, 416-150000, 649+150000, 416+150000, 0, 0, Xi))
+        ; Check Hettheluc để dừng
+        if (ok:=FindText(X, Y, 654-150000, 80-150000, 654+150000, 80+150000, 0, 0, Hettheluc))
         { 
+          ShowFunctionTooltip("DaoKhoanXong")
           Send, {Space}
           Sleep, 1000
           break
@@ -477,15 +480,39 @@ DaoKhoan() {
           Sleep, 1000
           break
         }
+        
+        ; Thao tác khoan
         if (A_Index = 1 || Mod(A_Index, 5) = 0)
         {
           Send, e
           Sleep, 500
           Send, {e down}
-          Sleep, 3000
+          
+          ; Chia Sleep 3000 thành 6 lần 500ms và check Hettheluc
+          Loop, 6
+          {
+            Sleep, 500
+            if (ok:=FindText(X, Y, 654-150000, 80-150000, 654+150000, 80+150000, 0, 0, Hettheluc))
+            {
+              Send, {e up}
+              Send, {Space}
+              Sleep, 1000
+              return
+            }
+          }
+          
           Send, {e up}
         }
-        Sleep, 1000
+        
+        ; Chia Sleep 1000 thành 2 lần 500ms và check Hettheluc
+        Sleep, 500
+        if (ok:=FindText(X, Y, 654-150000, 80-150000, 654+150000, 80+150000, 0, 0, Hettheluc))
+        { 
+          Send, {Space}
+          Sleep, 1000
+          break
+        }
+        Sleep, 500
     }
     return
 }
