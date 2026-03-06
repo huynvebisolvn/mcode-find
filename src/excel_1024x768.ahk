@@ -96,7 +96,6 @@ LoadPriceTargets() {
 }
 
 ChangeResolutionOnly(TargetWidth, TargetHeight) {
-    ShowFunctionTooltip("ChangeResolutionOnly")
     cD := 32
     rR := 60
     VarSetCapacity(dM, 156, 0), NumPut(156, 2, &dM, 36)
@@ -776,49 +775,49 @@ CheckNhiemVuNgay() {
 
 Login(username) {
     ShowFunctionTooltip("Login")
-	loop, 5
-	{
-		MouseClick, left, 48, 40
-		Sleep, 1000
-		
-		XacNhan:="|<>*102$47.w1XU0M01s3701k01s6C07k03sAQ0Bk07kMs0000Dklk0000PlXj3yCwnX7zDwTxbaCS0wtv7gQQ0tlq7sssDnXgDlllzb7MDXXb7CCkD77ACQRUSC6QQsv0QQQztlq0MstxnXU0000U000000000000000U0000003U0000002008"
-		if (ok:=FindText(X := "wait", Y := 1, 946-150000, 384-150000, 946+150000, 384+150000, 0, 0, XacNhan))
-		{
-			MouseClick, left, X, Y
-			break
-		}
-	}
-	
-	CleanCache:="|<>*194$17.z1zs0zU0y00s01k011U240480QU0t01q03c03E0Sk0xU3zU7z0Tz1zxizllw10E40000U"
-	if (ok:=FindText(CleanCacheX := "wait", CleanCacheY := 1, 993-150000, 33-150000, 993+150000, 33+150000, 0, 0, CleanCache))
-	{
-		Sleep, 1000
-		MouseClick, left, CleanCacheX, CleanCacheY
-		Sleep, 1000
-		MouseClick, left, CleanCacheX, CleanCacheY
-		Sleep, 5000
-		; bug of zing
-		MouseClick, left, 150, 150
-		Sleep, 5000
-		Send, {Tab}
-		Sleep, 1000
-		Send, {Text}%username%
-		Sleep, 1000
-		Send, {Tab}
-		Send, {Text}Huy142857
-		Sleep, 1000
-		Send, {Enter}
-		Sleep, 20000
+    loop, 5
+    {
+        MouseClick, left, 48, 40
+        Sleep, 1000
+        
+        XacNhan:="|<>*102$47.w1XU0M01s3701k01s6C07k03sAQ0Bk07kMs0000Dklk0000PlXj3yCwnX7zDwTxbaCS0wtv7gQQ0tlq7sssDnXgDlllzb7MDXXb7CCkD77ACQRUSC6QQsv0QQQztlq0MstxnXU0000U000000000000000U0000003U0000002008"
+        if (ok:=FindText(X := "wait", Y := 1, 946-150000, 384-150000, 946+150000, 384+150000, 0, 0, XacNhan))
+        {
+            MouseClick, left, X, Y
+            break
+        }
+    }
+    
+    CleanCache:="|<>*194$17.z1zs0zU0y00s01k011U240480QU0t01q03c03E0Sk0xU3zU7z0Tz1zxizllw10E40000U"
+    if (ok:=FindText(CleanCacheX := "wait", CleanCacheY := 1, 993-150000, 33-150000, 993+150000, 33+150000, 0, 0, CleanCache))
+    {
+        Sleep, 1000
+        MouseClick, left, CleanCacheX, CleanCacheY
+        Sleep, 1000
+        MouseClick, left, CleanCacheX, CleanCacheY
+        Sleep, 5000
+        ; bug of zing
+        MouseClick, left, 150, 150
+        Sleep, 5000
+        Send, {Tab}
+        Sleep, 1000
+        Send, {Text}%username%
+        Sleep, 1000
+        Send, {Tab}
+        Send, {Text}Huy142857
+        Sleep, 1000
+        Send, {Enter}
+        Sleep, 20000
 
-		; Dong y dieu khoan
-		MouseClick, left, 36, 178
-		Sleep, 1000
-		MouseClick, left, 237, 225
-		Sleep, 2000
-		MouseClick, left, 510, 634
+        ; Dong y dieu khoan
+        MouseClick, left, 36, 178
+        Sleep, 1000
+        MouseClick, left, 237, 225
+        Sleep, 2000
+        MouseClick, left, 510, 634
 
-		DoiNhanVat()
-	}
+        DoiNhanVat()
+    }
 return
 }
 
@@ -896,6 +895,81 @@ SashimiCaBac() {
 }
 
 
+; 1 GiaVi, 3 LuaNuoc, Hoa
+CanhThachTuy() {
+    ShowFunctionTooltip("CanhThachTuy")
+
+    Hoa:="|<>*107$16.kzz3vsDXUQ600Ez0Dz3zqDz8zwXzmDz9zsby4z0jU"
+    if (ok:=FindText(HoaX := "wait", HoaY := 2, 512-150000, 640-150000, 512+150000, 640+150000, 0, 0, Hoa))
+    {
+        MouseClick, left, HoaX, HoaY
+    }
+    Hoa2:="|<>*106$16.00400FzVTz3zqDz8zwXzmTy9zlDU9zXTU"
+    if (ok:=FindText(Hoa2X := "wait", Hoa2Y := 2, 431-150000, 677-150000, 431+150000, 677+150000, 0, 0, Hoa2))
+    {
+        MouseClick, left, Hoa2X, Hoa2Y
+    }
+    ; TODO
+    notFoundCount := 0
+    hetTheLucCount := 0
+    Loop
+    {
+
+        GiaVi:="|<>*128$35.zzzVzzzzw0zzzzU0zzzy00TzjU00Dw2000Dk8000S00000000000410000S10000y10003y0U00zy0A077zk11kDzk141zzU007zjU00TzLU01zzzk0Dzzzk0zzzzk1zs"
+        if (ok:=FindText(GiaViX, GiaViY, 60-150000, 120-150000, 60+150000, 120+150000, 0, 0, GiaVi))
+        {
+            notFoundCount := 0  ; Reset counter khi tim thay
+            MouseClick, left, GiaViX, GiaViY
+
+
+            LuaNuoc:="|<>*127$32.zzbzzzzkTzzzw0zzzz07zzrk1zzlk01zwA007y6000y0000300000TE0022E0003zo00/z8006Trf003zUe03zy003zzk0Dzzzvw7zz20Dzzz27zzzUE7zzs07zzy9zjzzosDzzsjzy"
+            if (ok:=FindText(LuaNuocX, LuaNuocY, 130-150000, 116-150000, 130+150000, 116+150000, 0, 0, LuaNuoc))
+            {
+                MouseClick, left, LuaNuocX, LuaNuocY
+                MouseClick, left, LuaNuocX, LuaNuocY
+                MouseClick, left, LuaNuocX, LuaNuocY
+                
+                ; TODO
+                MouseClick, left, 800, 712
+                Sleep, 2500
+                if (ok:=FindText(GiaVi2X, GiaVi2Y, 60-150000, 120-150000, 60+150000, 120+150000, 0, 0, GiaVi))
+                {
+                    ; Neu van tim thay = het the luc
+                    hetTheLucCount++
+                    if (hetTheLucCount >= 3)
+                    {
+                        break
+                    }
+                }
+                MouseClick, left, 680, 580
+            }
+            else
+            {
+                ; Khong tim thay
+                notFoundCount++
+                if (notFoundCount >= 3)
+                {
+                    break  ; Thoat neu khong tim thay
+                }
+                MouseClick, left, 680, 580
+            }
+        }
+        else
+        {
+            ; Khong tim thay GiaVi
+            notFoundCount++
+            if (notFoundCount >= 3)
+            {
+                break  ; Thoat neu khong tim thay
+            }
+            MouseClick, left, 680, 580
+        }
+        Sleep, 500
+    }
+    return
+}
+
+
 MenuNhiemVuNgay() {
     ShowFunctionTooltip("MenuNhiemVuNgay")
     ; Create GUI
@@ -946,18 +1020,41 @@ MuaGiaVi() {
     Sleep, 1500
     MouseClick, left, 280, 65
     Sleep, 1500
-    ; giavi
+    LuaNuoc:="|<>*93$28.xgvtvKHNgxtBaknYqP36PNgwNwwTU"
+    if (ok:=FindText(LuaNuocX := "wait", LuaNuocY := 1, 394-150000, 336-150000, 394+150000, 336+150000, 0, 0, LuaNuoc))
+    {
+        MouseClick, left, LuaNuocX, LuaNuocY
+        Sleep, 1000
+        ; plus
+        MouseClick, left, 980, 547
+        Sleep, 1000
+        Send, {v}
+        Sleep, 1000
+        Send, {v}
+        Sleep, 1000
+        MouseClick, left, 640, 480
+    }
+    Sleep, 1000
     Giavi:="|<>*127$58.zzzzzXzzzzzzzzsHzzzzzzzy03zzzzzzz007zzzzzzs007zzzzzz000Dzzzvzk000Dzzz3w0000Tzzk3U0000Tzw0800000zzU1000000jw04000000T00U000001y020000007i04000000zw08000003rs0k00000Tzs1k00003vzk7U0000zzzU0U000Txzz00w007Vzzz00703U1zzzk020k0TzrzU04403zzjy00700zzzDw00007zzwTk0000zzzyTk000DzzzuzU001zzzzzzU00Dzzzzzz001zzzzzzy00Dzzzzzzy01zzzzzzzw0Dzzzzzzzw1zzzzzzzzs7zzzzzzzzszzzzzzzzzrzzzs"
-    if (ok:=FindText(GiaviX, GiaviY, 545-150000, 152-150000, 545+150000, 152+150000, 0, 0, Giavi))
+    if (ok:=FindText(GiaviX := "wait", GiaviY := 1, 545-150000, 152-150000, 545+150000, 152+150000, 0, 0, Giavi))
     {
       MouseClick, left, GiaviX, GiaviY
       Sleep, 1000
       ; plus
-      MouseClick, left, 980, 547
+      MouseClick, left, 845, 541
+      Sleep, 500
+      MouseClick, left, 834, 307 ;1
+      Sleep, 500
+      MouseClick, left, 897, 485 ;0
+      Sleep, 500
+      MouseClick, left, 897, 485 ;0
+      Sleep, 500
       Sleep, 1000
       Send, {v}
       Sleep, 1000
       Send, {v}
+      Sleep, 1000
+      MouseClick, left, 640, 480
     }
     Sleep, 1000
     MouseClick, left, 640, 480
@@ -992,7 +1089,7 @@ FullNauAn() {
                     Sleep, 1000
                     MouseClick, left, 230, 65
 
-                    SashimiCaBac()
+                    CanhThachTuy()
                 }
             }
             break
