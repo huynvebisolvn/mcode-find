@@ -6,7 +6,8 @@
 global SelectedPriceTarget := ""
 global SelectedTarget := ""
 global PriceTargets := {}
-global EnableMuaNguyenLieu := 0
+global EnableMuaNguyenLieu := 1
+global MenuMonAn := 1
 global ShowMouseCoords := false
 
 ; Change Resolution on start
@@ -977,30 +978,35 @@ MenuNhiemVuNgay() {
     Gui, Font, s10
     
     Gui, Add, Edit, vStartPos w100, 0
-    Gui, Add, Button, gHoatLuc1 Default x+5 w200, Only Daily 10 acc
-    Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an 10 acc
-    Gui, Add, Button, gHoatLuc3 w200, Daily + Dau khoan 10 acc
-    Gui, Add, Checkbox, vEnableMuaNguyenLieu w200, Enable Mua Nguyen Lieu
-    
+
+    Gui, Add, Button, gHoatLuc1 Default x+5 w200, Only Daily
+    Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an
+    Gui, Add, Button, gHoatLuc3 w200, Daily + Dao khoan
+
+    Gui, Add, Radio, vMenuMonAn Checked w200, Canh Thach Tuy
+    Gui, Add, Radio, w200, Sashimi
+
+    Gui, Add, Checkbox, vEnableMuaNguyenLieu Checked w200, Mua Nguyen Lieu
+
     Gui, Show,, Nhiem Vu Ngay
     return
 
     HoatLuc1:
-        global StartPos, EnableMuaNguyenLieu
+        global StartPos, EnableMuaNguyenLieu, MenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 0)
     return
 
     HoatLuc2:
-        global StartPos, EnableMuaNguyenLieu
+        global StartPos, EnableMuaNguyenLieu, MenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 1)
     return
 
     HoatLuc3:
-        global StartPos, EnableMuaNguyenLieu
+        global StartPos, EnableMuaNguyenLieu, MenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 2)
@@ -1063,7 +1069,7 @@ MuaGiaVi() {
 }
 
 
-FullNauAn() {
+FullNauAn(monAn := 1) {
     ShowFunctionTooltip("FullNauAn")
     loop
     {
@@ -1089,7 +1095,11 @@ FullNauAn() {
                     Sleep, 1000
                     MouseClick, left, 230, 65
 
-                    CanhThachTuy()
+                    if (monAn == 1) {
+                        CanhThachTuy()
+                    } else {
+                        SashimiCaBac()
+                    }
                 }
             }
             break
@@ -1134,7 +1144,7 @@ FullAccTo(username, modehl) {
           if (EnableMuaNguyenLieu == 1) {
             MuaGiaVi()
           }
-          FullNauAn()
+          FullNauAn(MenuMonAn)
           Sleep, 1000
           Send, {Esc}
         }
