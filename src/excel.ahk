@@ -585,7 +585,11 @@ BanKhoan() {
       {
         MouseClick, left, KhoanX, KhoanY
         Sleep, 1000
-        ; Ha gia 8 lan
+        ; Ha gia min
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
         MouseClick, left, 726, 535
         MouseClick, left, 726, 535
         MouseClick, left, 726, 535
