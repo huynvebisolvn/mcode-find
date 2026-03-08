@@ -7,6 +7,7 @@ global SelectedPriceTarget := ""
 global SelectedTarget := ""
 global PriceTargets := {}
 global EnableMuaNguyenLieu := 1
+global EnableMuaDatCat := 1
 global MenuMonAn := 1
 global ShowMouseCoords := false
 
@@ -993,33 +994,34 @@ MenuNhiemVuNgay() {
     Gui, Add, Edit, vStartPos w100, 0
 
     Gui, Add, Button, gHoatLuc1 Default x+5 w200, Only Daily
-    Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an
-    Gui, Add, Button, gHoatLuc3 w200, Daily + Dao khoan
 
+    Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an
     Gui, Add, Radio, vMenuMonAn Checked w200, Canh Thach Tuy
     Gui, Add, Radio, w200, Sashimi
-
     Gui, Add, Checkbox, vEnableMuaNguyenLieu Checked w200, Mua Nguyen Lieu
+
+    Gui, Add, Button, gHoatLuc3 w200, Daily + Dao khoan
+    Gui, Add, Checkbox, vEnableMuaDatCat Checked w200, Mua Dat Cat
 
     Gui, Show,, Nhiem Vu Ngay
     return
 
     HoatLuc1:
-        global StartPos, EnableMuaNguyenLieu, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, MenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 0)
     return
 
     HoatLuc2:
-        global StartPos, EnableMuaNguyenLieu, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, MenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 1)
     return
 
     HoatLuc3:
-        global StartPos, EnableMuaNguyenLieu, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, MenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 2)
@@ -1163,7 +1165,7 @@ FullAccTo(username, modehl) {
         if (modehl == 2)
         {
           Sleep, 1000
-          if (EnableMuaNguyenLieu == 1) {
+          if (EnableMuaDatCat == 1) {
             MuaDatCat()
             Sleep, 1000
           }
