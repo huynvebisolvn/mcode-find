@@ -465,16 +465,22 @@ NhanThuong() {
 DaoKhoan() {
     ShowFunctionTooltip("DaoKhoan")
     Hettheluc:="|<>*106$12./POvOnOHP+zvz7U"
+    HetthelucCount := 0
     
     Loop, 600
     {
-        ; Check Hettheluc để dừng
+        ; Check Hettheluc để dừng (chỉ dừng khi tìm thấy >= 3 lần)
         if (ok:=FindText(X, Y, 654-150000, 80-150000, 654+150000, 80+150000, 0, 0, Hettheluc))
         { 
-          ShowFunctionTooltip("DaoKhoanXong")
-          Send, {Space}
-          Sleep, 1000
-          break
+          HetthelucCount++
+          ShowFunctionTooltip("Hettheluc: " . HetthelucCount)
+          if (HetthelucCount >= 3)
+          {
+            ShowFunctionTooltip("DaoKhoanXong")
+            Send, {Space}
+            Sleep, 1000
+            break
+          }
         }
 
         SaveLives:="|<>*159$17.wzztzw0DzDzyLzwjztQPmr/Zzb/zeLyAjwtTlmz3ZwD/USK5wUrt3zkSz3vw"
@@ -500,10 +506,15 @@ DaoKhoan() {
             Sleep, 500
             if (ok:=FindText(X, Y, 654-150000, 80-150000, 654+150000, 80+150000, 0, 0, Hettheluc))
             {
-              Send, {e up}
-              Send, {Space}
-              Sleep, 1000
-              return
+              HetthelucCount++
+              ShowFunctionTooltip("Hettheluc: " . HetthelucCount)
+              if (HetthelucCount >= 3)
+              {
+                Send, {e up}
+                Send, {Space}
+                Sleep, 1000
+                return
+              }
             }
           }
           
@@ -514,9 +525,14 @@ DaoKhoan() {
         Sleep, 500
         if (ok:=FindText(X, Y, 654-150000, 80-150000, 654+150000, 80+150000, 0, 0, Hettheluc))
         { 
-          Send, {Space}
-          Sleep, 1000
-          break
+          HetthelucCount++
+          ShowFunctionTooltip("Hettheluc: " . HetthelucCount)
+          if (HetthelucCount >= 3)
+          {
+            Send, {Space}
+            Sleep, 1000
+            break
+          }
         }
         Sleep, 500
     }
