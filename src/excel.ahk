@@ -29,6 +29,14 @@ ShowMousePosition() {
     return
 }
 
+SkipHuongDan(sleepTime := 1000) {
+    Sleep, %sleepTime%
+    MouseClick, left, 640, 480
+    Sleep, %sleepTime%
+    MouseClick, left, 640, 480
+    return
+}
+
 ; Timer to update mouse position
 SetTimer, ShowMousePosition, 100
 
@@ -208,9 +216,7 @@ Chuphinh() {
     ShowFunctionTooltip("Chuphinh")
     loop
     {
-      MouseClick, left, 640, 480
-      Sleep, 500
-      MouseClick, left, 640, 480
+      SkipHuongDan()
       Sleep, 500
       Send, {F9}
       Sleep, 2000
@@ -606,10 +612,7 @@ BanKhoan() {
 
 FullGhepKhoan() {
     ShowFunctionTooltip("FullGhepKhoan")
-    Sleep, 1000
-    MouseClick, left, 640, 480
-    Sleep, 1000
-    MouseClick, left, 640, 480
+    SkipHuongDan()
     Sleep, 500
     Send, {Esc}
     Sleep, 1000
@@ -646,11 +649,7 @@ FullGhepKhoan() {
 
 LogoutNhanVat() {
     ShowFunctionTooltip("LogoutNhanVat")
-    ; click 2 cai skip huong dan
-    Sleep, 1000
-    MouseClick, left, 640, 480
-    Sleep, 1000
-    MouseClick, left, 640, 480
+    SkipHuongDan()
     Sleep, 2000
     Send, {Esc}
     Sleep, 1000
@@ -709,10 +708,7 @@ DoiNhanVat() {
             Nghe:="|<>*118$31.zzzztzzzzyTzzzzfzzvzYwztzWCTwzY7DyTzdblAy4HUUA31iF4lkr9m0sNgt7SACQbjazCE7n1bADzUTzzzrDzzzsDzzzyTzzk"
             if (ok:=FindText(NgheX := "wait", NgheY := 5, 716-150000, 258-150000, 716+150000, 258+150000, 0, 0, Nghe))
             {
-                Sleep, 1000
-                MouseClick, left, 640, 480
-                Sleep, 1000
-                MouseClick, left, 640, 480
+                SkipHuongDan()
                 break
             }
             Sleep, 1000
@@ -725,10 +721,7 @@ DoiNhanVat() {
 
 QuaDuNgoan() {
     ShowFunctionTooltip("QuaDuNgoan")
-    Sleep, 1000
-    MouseClick, left, 640, 480
-    Sleep, 1000
-    MouseClick, left, 640, 480
+    SkipHuongDan()
     Send, {Esc}
     Sleep, 1000
     MouseClick, left, 720, 370
@@ -754,11 +747,7 @@ QuaDuNgoan() {
 
 CheckNhiemVuNgay() {
     ShowFunctionTooltip("CheckNhiemVuNgay")
-    ; break neu da nhan
-    Sleep, 1000
-    MouseClick, left, 640, 480
-    Sleep, 1000
-    MouseClick, left, 640, 480
+    SkipHuongDan()
     Send, {F1}
     Sleep, 1000
     DaNhan:="|<>*106$24.z00Tw80ns81Uk030k1y0U7w0U7w00Dw00Dk0000000000001000100030007000DU00Tk00zs03zz0DzU"
@@ -1077,10 +1066,7 @@ FullNauAn(monAn := 1) {
     ShowFunctionTooltip("FullNauAn")
     loop
     {
-        Sleep, 1000
-        MouseClick, left, 640, 480
-        Sleep, 1000
-        MouseClick, left, 640, 480
+        SkipHuongDan()
         Sleep, 500
         Send, {Esc}
         Sleep, 1000
