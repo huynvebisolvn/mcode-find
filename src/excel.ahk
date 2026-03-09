@@ -637,8 +637,8 @@ FullGhepKhoan() {
     Sleep, 500
     Send, {Esc}
     Sleep, 1000
-    Nghe:="|<>*118$31.zzzztzzzzyTzzzzfzzvzYwztzWCTwzY7DyTzdblAy4HUUA31iF4lkr9m0sNgt7SACQbjazCE7n1bADzUTzzzrDzzzsDzzzyTzzk"
-    if (ok:=FindText(NgheX := "wait", NgheY := 5, 716-150000, 258-150000, 716+150000, 258+150000, 0, 0, Nghe))
+    Nghe:="|<>*122$31.7DyTzVbzByIHUUQ39gF4lkb9W0sFgl/SACMbj6zAE7n1aADzUTzzzrDzzzkDzzU"
+    if (ok:=FindText(NgheX := "wait", NgheY := 5, 702-150000, 261-150000, 702+150000, 261+150000, 0, 0, Nghe))
     {
         MouseClick, left, NgheX, NgheY
         Sleep, 1000
@@ -727,8 +727,8 @@ DoiNhanVat() {
             SkipHuongDan()
             Send, {Esc}
             Sleep, 1000
-            Nghe:="|<>*118$31.zzzztzzzzyTzzzzfzzvzYwztzWCTwzY7DyTzdblAy4HUUA31iF4lkr9m0sNgt7SACQbjazCE7n1bADzUTzzzrDzzzsDzzzyTzzk"
-            if (ok:=FindText(NgheX := "wait", NgheY := 5, 716-150000, 258-150000, 716+150000, 258+150000, 0, 0, Nghe))
+            Nghe:="|<>*122$31.7DyTzVbzByIHUUQ39gF4lkb9W0sFgl/SACMbj6zAE7n1aADzUTzzzrDzzzkDzzU"
+            if (ok:=FindText(NgheX := "wait", NgheY := 5, 702-150000, 261-150000, 702+150000, 261+150000, 0, 0, Nghe))
             {
                 SkipHuongDan()
                 break
@@ -828,7 +828,7 @@ Login(username) {
         Send, {Text}Huy142857
         Sleep, 1000
         Send, {Enter}
-        Sleep, 20000
+        Sleep, 10000
 
         ; Dong y dieu khoan
         MouseClick, left, 36, 178
@@ -1102,8 +1102,8 @@ FullNauAn(monAn := 1) {
         Sleep, 500
         Send, {Esc}
         Sleep, 1000
-        Nghe:="|<>*118$31.zzzztzzzzyTzzzzfzzvzYwztzWCTwzY7DyTzdblAy4HUUA31iF4lkr9m0sNgt7SACQbjazCE7n1bADzUTzzzrDzzzsDzzzyTzzk"
-        if (ok:=FindText(NgheX := "wait", NgheY := 5, 716-150000, 258-150000, 716+150000, 258+150000, 0, 0, Nghe))
+        Nghe:="|<>*122$31.7DyTzVbzByIHUUQ39gF4lkb9W0sFgl/SACMbj6zAE7n1aADzUTzzzrDzzzkDzzU"
+        if (ok:=FindText(NgheX := "wait", NgheY := 5, 702-150000, 261-150000, 702+150000, 261+150000, 0, 0, Nghe))
         {
             MouseClick, left, NgheX, NgheY
             NauAn:="|<>*128$25.s001k00000007000Dk0kDs0IDy0P7zaMbzzsTzyMDzy05zz00zzUUTzsUDzyNDw"
