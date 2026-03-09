@@ -465,17 +465,17 @@ NhanThuong() {
 
 DaoKhoan() {
     ShowFunctionTooltip("DaoKhoan")
-    Hettheluc:="|<>*106$12./POvOnOHP+zvz7U"
+    Quang:="|<>**50$35.TzhzrtVhlxsGPPNBgZqrmPN/hg4omKPP9hbUooHM/xrmauJvtzrwsI0c130s1k3wE"
     HetthelucCount := 0
     
     Loop, 600
     {
-        ; Check Hettheluc để dừng (chỉ dừng khi tìm thấy >= 3 lần)
-        if (ok:=FindText(X, Y, 654-150000, 80-150000, 654+150000, 80+150000, 0, 0, Hettheluc))
+        ; Check Hettheluc để dừng
+        if (ok:=FindText(X, Y, 667-150000, 81-150000, 667+150000, 81+150000, 0, 0, Quang))
         { 
           HetthelucCount++
           ShowFunctionTooltip("Hettheluc: " . HetthelucCount)
-          if (HetthelucCount >= 3)
+          if (HetthelucCount >= 2)
           {
             ShowFunctionTooltip("DaoKhoanXong")
             Send, {Space}
@@ -494,47 +494,36 @@ DaoKhoan() {
           break
         }
         
-        ; Thao tác khoan
-        if (A_Index = 1 || Mod(A_Index, 5) = 0)
+        ; Thao tac khoan
+        Send, {Tab}
+        ThanhMau:="|<>**50$53.0Tzzzzzzy7U0000000tzzzzzzzzC00000009k0000000Ss0000000CDzzzzzzy3U00000001zzzzzzzw"
+        if (ok:=FindText(ThanhMauX := "wait", ThanhMauY := 1, 459-150000, 37-150000, 459+150000, 37+150000, 0, 0, ThanhMau))
         {
-          Send, e
-          Sleep, 500
-          Send, {e down}
-          
-          ; Chia Sleep 3000 thành 6 lần 500ms và check Hettheluc
-          Loop, 6
+          loop, 5
           {
-            Sleep, 500
-            if (ok:=FindText(X, Y, 654-150000, 80-150000, 654+150000, 80+150000, 0, 0, Hettheluc))
+            ; Check Hettheluc trong khi nhấn e
+            if (ok:=FindText(X, Y, 667-150000, 81-150000, 667+150000, 81+150000, 0, 0, Quang))
             {
               HetthelucCount++
               ShowFunctionTooltip("Hettheluc: " . HetthelucCount)
-              if (HetthelucCount >= 3)
+              if (HetthelucCount >= 2)
               {
-                Send, {e up}
+                ShowFunctionTooltip("DaoKhoanXong")
                 Send, {Space}
                 Sleep, 1000
-                return
+                break
               }
             }
+            Send, {e}
+            Sleep, 500
           }
-          
-          Send, {e up}
+        }
+        ; Kiểm tra lại sau khi thoát vòng lặp nhấn e
+        if (HetthelucCount >= 2)
+        {
+          break
         }
         
-        ; Chia Sleep 1000 thành 2 lần 500ms và check Hettheluc
-        Sleep, 500
-        if (ok:=FindText(X, Y, 654-150000, 80-150000, 654+150000, 80+150000, 0, 0, Hettheluc))
-        { 
-          HetthelucCount++
-          ShowFunctionTooltip("Hettheluc: " . HetthelucCount)
-          if (HetthelucCount >= 3)
-          {
-            Send, {Space}
-            Sleep, 1000
-            break
-          }
-        }
         Sleep, 500
     }
     return
