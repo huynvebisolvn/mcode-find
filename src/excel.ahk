@@ -32,9 +32,9 @@ ShowMousePosition() {
 
 SkipHuongDan(sleepTime := 1000) {
     Sleep, %sleepTime%
-    MouseClick, left, 640, 480
+    MouseClick, left, 400, 0
     Sleep, %sleepTime%
-    MouseClick, left, 640, 480
+    MouseClick, left, 400, 0
     return
 }
 
@@ -787,17 +787,26 @@ CheckNhiemVuNgay() {
 
 Login(username) {
     ShowFunctionTooltip("Login")
-    loop, 5
+    CleanCache:="|<>*194$17.z1zs0zU0y00s01k011U240480QU0t01q03c03E0Sk0xU3zU7z0Tz1zxizllw10E40000U"
+    if (ok:=FindText(CleanCacheX := "wait", CleanCacheY := 1, 993-150000, 33-150000, 993+150000, 33+150000, 0, 0, CleanCache))
     {
-        MouseClick, left, 48, 40
-        Sleep, 1000
-        
-        XacNhan:="|<>*102$47.w1XU0M01s3701k01s6C07k03sAQ0Bk07kMs0000Dklk0000PlXj3yCwnX7zDwTxbaCS0wtv7gQQ0tlq7sssDnXgDlllzb7MDXXb7CCkD77ACQRUSC6QQsv0QQQztlq0MstxnXU0000U000000000000000U0000003U0000002008"
-        if (ok:=FindText(X := "wait", Y := 1, 946-150000, 384-150000, 946+150000, 384+150000, 0, 0, XacNhan))
-        {
-            MouseClick, left, X, Y
-            break
-        }
+      ShowFunctionTooltip("Login: ben ngoai")
+    }
+    else
+    {
+      ShowFunctionTooltip("Login: ben trong")
+      loop, 5
+      {
+          MouseClick, left, 48, 40
+          Sleep, 1000
+          
+          XacNhan:="|<>*102$47.w1XU0M01s3701k01s6C07k03sAQ0Bk07kMs0000Dklk0000PlXj3yCwnX7zDwTxbaCS0wtv7gQQ0tlq7sssDnXgDlllzb7MDXXb7CCkD77ACQRUSC6QQsv0QQQztlq0MstxnXU0000U000000000000000U0000003U0000002008"
+          if (ok:=FindText(X := "wait", Y := 1, 946-150000, 384-150000, 946+150000, 384+150000, 0, 0, XacNhan))
+          {
+              MouseClick, left, X, Y
+              break
+          }
+      }
     }
     
     CleanCache:="|<>*194$17.z1zs0zU0y00s01k011U240480QU0t01q03c03E0Sk0xU3zU7z0Tz1zxizllw10E40000U"
