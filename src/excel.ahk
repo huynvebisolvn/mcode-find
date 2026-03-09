@@ -724,6 +724,7 @@ DoiNhanVat() {
         Sleep, 10000
         loop
         {
+            SkipHuongDan()
             Send, {Esc}
             Sleep, 1000
             Nghe:="|<>*118$31.zzzztzzzzyTzzzzfzzvzYwztzWCTwzY7DyTzdblAy4HUUA31iF4lkr9m0sNgt7SACQbjazCE7n1bADzUTzzzrDzzzsDzzzyTzzk"
