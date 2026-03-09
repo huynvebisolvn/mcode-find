@@ -465,17 +465,17 @@ NhanThuong() {
 
 DaoKhoan() {
     ShowFunctionTooltip("DaoKhoan")
-    Quang:="|<>**50$35.TzhzrtVhlxsGPPNBgZqrmPN/hg4omKPP9hbUooHM/xrmauJvtzrwsI0c130s1k3wE"
+    Xi:="|<>*116$9.ZoCloCclaQI"
     HetthelucCount := 0
     
     Loop, 600
     {
         ; Check Hettheluc để dừng
-        if (ok:=FindText(X, Y, 667-150000, 81-150000, 667+150000, 81+150000, 0, 0, Quang))
+        if (ok:=FindText(X, Y, 649-150000, 330-150000, 649+150000, 330+150000, 0, 0, Xi))
         { 
           HetthelucCount++
           ShowFunctionTooltip("Hettheluc: " . HetthelucCount)
-          if (HetthelucCount >= 2)
+          if (HetthelucCount >= 1)
           {
             ShowFunctionTooltip("DaoKhoanXong")
             Send, {Space}
@@ -499,14 +499,14 @@ DaoKhoan() {
         ThanhMau:="|<>**50$53.0Tzzzzzzy7U0000000tzzzzzzzzC00000009k0000000Ss0000000CDzzzzzzy3U00000001zzzzzzzw"
         if (ok:=FindText(ThanhMauX := "wait", ThanhMauY := 1, 459-150000, 37-150000, 459+150000, 37+150000, 0, 0, ThanhMau))
         {
-          loop, 5
+          loop, 10
           {
             ; Check Hettheluc trong khi nhấn e
-            if (ok:=FindText(X, Y, 667-150000, 81-150000, 667+150000, 81+150000, 0, 0, Quang))
+            if (ok:=FindText(X, Y, 649-150000, 330-150000, 649+150000, 330+150000, 0, 0, Xi))
             {
               HetthelucCount++
               ShowFunctionTooltip("Hettheluc: " . HetthelucCount)
-              if (HetthelucCount >= 2)
+              if (HetthelucCount >= 1)
               {
                 ShowFunctionTooltip("DaoKhoanXong")
                 Send, {Space}
@@ -519,7 +519,7 @@ DaoKhoan() {
           }
         }
         ; Kiểm tra lại sau khi thoát vòng lặp nhấn e
-        if (HetthelucCount >= 2)
+        if (HetthelucCount >= 1)
         {
           break
         }
