@@ -1,0 +1,138 @@
+name: Build AutoHotkey to EXE
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install AutoHotkey
+        shell: powershell
+        run: |
+          # Download AutoHotkey v1.1.37.02 từ GitHub releases
+          Invoke-WebRequest -Uri "https://github.com/AutoHotkey/AutoHotkey/releases/download/v1.1.37.02/AutoHotkey_1.1.37.02.zip" -OutFile "ahk.zip"
+          Expand-Archive -Path "ahk.zip" -DestinationPath "AutoHotkey"
+          
+          # Debug: Xem cấu trúc thư mục
+          Write-Host "=== AutoHotkey directory structure ==="
+          Get-ChildItem -Path "AutoHotkey" -Recurse | Select-Object FullName | Format-Table -AutoSize
+          
+      - name: Create build directory
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path "build"
+          
+      - name: Compile AHK script to EXE
+        shell: powershell
+        run: |
+          # Đường dẫn Ahk2Exe sau khi extract
+          $ahk2exe = ".\AutoHotkey\Compiler\Ahk2Exe.exe"
+          $base = ".\AutoHotkey\Compiler\Unicode 32-bit.bin"
+          
+          Write-Host "=== Checking Ahk2Exe.exe ==="
+          if (Test-Path $ahk2exe) {
+            Write-Host "Found: $ahk2exe"
+          } else {
+            Write-Error "NOT FOUND: $ahk2exe"
+            exit 1
+          }
+          
+          Write-Host "`n=== Compiling excel.ahk ==="
+          $process = Start-Process -FilePath $ahk2exe -ArgumentList "/in `"src\excel.ahk`"","/out `"build\excel.exe`"","/base `"$base`"" -NoNewWindow -Wait -PassThru
+          Write-Host "Exit code: $($process.ExitCode)"
+          
+          if (Test-Path "build\excel.exe") {
+            Write-Host "SUCCESS: excel.exe created ($(Get-Item 'build\excel.exe' | Select-Object -ExpandProperty Length) bytes)"
+          } else {
+            Write-Error "FAILED: excel.exe was not created"
+            exit 1
+          }
+          
+          # Copy config.txt vào build directory
+          Write-Host "`n=== Copying config.txt ==="
+          Copy-Item "src\config.txt" "build\config.txt"
+          Write-Host "config.txt copied to build directory"
+          
+          Write-Host "`n=== Build directory contents ==="
+          if (Test-Path "build") {
+            Get-ChildItem -Path "build" | Format-Table -AutoSize
+          } else {
+            Write-Host "Build directory does not exist!"
+          }
+          
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ahk-executables
+          path: build/*
+          
+      - name: Update tag
+        if: github.ref == 'refs/heads/main'
+        shell: powershell
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Xóa tag cũ (bỏ qua lỗi nếu không tồn tại)
+          $ErrorActionPreference = 'Continue'
+          git tag -d v1.0.0 2>&1 | Out-Null
+          git push origin :refs/tags/v1.0.0 2>&1 | Out-Null
+          $ErrorActionPreference = 'Stop'
+          
+          # Tạo tag mới
+          git tag v1.0.0
+          git push origin v1.0.0
+          
+          Write-Host "Tag v1.0.0 updated successfully"
+          
+      - name: Delete old release
+        if: github.ref == 'refs/heads/main'
+        continue-on-error: true
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              const release = await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag: 'v1.0.0'
+              });
+              await github.rest.repos.deleteRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                release_id: release.data.id
+              });
+              console.log('Old release deleted');
+            } catch (error) {
+              console.log('No existing release to delete');
+            }
+          
+      - name: Create Release
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.0.0
+          files: |
+            build/excel.exe
+            build/config.txt
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
