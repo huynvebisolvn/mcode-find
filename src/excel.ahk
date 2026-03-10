@@ -482,18 +482,7 @@ DaoKhoan() {
             Sleep, 1000
             break
           }
-        }
-
-        SaveLives:="|<>*159$17.wzztzw0DzDzyLzwjztQPmr/Zzb/zeLyAjwtTlmz3ZwD/USK5wUrt3zkSz3vw"
-        if (ok:=FindText(SaveLivesX, SaveLivesY, 963-150000, 643-150000, 963+150000, 643+150000, 0, 0, SaveLives))
-        {
-          MouseClick, left, SaveLivesX, SaveLivesY
-          Sleep, 5000
-          Send, {Space}
-          Sleep, 1000
-          break
-        }
-        
+        }        
         ; Thao tac khoan
         Send, {Tab}
         ThanhMau:="|<>**50$53.0Tzzzzzzy7U0000000tzzzzzzzzC00000009k0000000Ss0000000CDzzzzzzy3U00000001zzzzzzzw"
@@ -679,15 +668,6 @@ LogoutNhanVat() {
         if (ok:=FindText(LoginSuccessX := "wait", LoginSuccessY := 3, 962-150000, 626-150000, 962+150000, 626+150000, 0, 0, LoginSuccess))
         {
           break
-        }
-        SaveLives:="|<>*159$17.wzztzw0DzDzyLzwjztQPmr/Zzb/zeLyAjwtTlmz3ZwD/USK5wUrt3zkSz3vw"
-        if (ok:=FindText(SaveLivesX, SaveLivesY, 963-150000, 643-150000, 963+150000, 643+150000, 0, 0, SaveLives))
-        {
-          MouseClick, left, SaveLivesX, SaveLivesY
-          Sleep, 5000
-          Send, {Esc}
-          Sleep, 1000
-          MouseClick, left, SettingX, SettingY
         }
         Sleep, 1000
       }
