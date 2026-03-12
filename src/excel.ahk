@@ -797,7 +797,7 @@ Login(username) {
         Send, {Text}Huy142857
         Sleep, 1000
         Send, {Enter}
-        Sleep, 10000
+        Sleep, 15000
 
         ; Dong y dieu khoan
         MouseClick, left, 36, 178
