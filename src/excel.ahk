@@ -239,8 +239,6 @@ Chuphinh() {
     ShowFunctionTooltip("Chuphinh")
     loop
     {
-      SkipHuongDan(500)
-      Sleep, 500
       Send, {F9}
       Sleep, 2000
       MouseClick, left, 640, 480
@@ -633,8 +631,6 @@ BanKhoan() {
 
 FullGhepKhoan() {
     ShowFunctionTooltip("FullGhepKhoan")
-    SkipHuongDan(500)
-    Sleep, 500
     Send, {Esc}
     Sleep, 1000
     Nghe:="|<>*122$31.7DyTzVbzByIHUUQ39gF4lkb9W0sFgl/SACMbj6zAE7n1aADzUTzzzrDzzzkDzzU"
@@ -670,8 +666,6 @@ FullGhepKhoan() {
 
 LogoutNhanVat() {
     ShowFunctionTooltip("LogoutNhanVat")
-    SkipHuongDan(500)
-    Sleep, 2000
     Send, {Esc}
     Sleep, 1000
     Setting:="|<>*131$26.zklzznznzvzzTvzzvzzzzTTzzvjy7zTzVzpyE9zT00Tjk03vw7UyzXszzsyDzy7Vyz0kDbk03ty01yzy7zPzVzrzsTvrzzzyzzzTrzzTzTzjs"
@@ -715,13 +709,11 @@ DoiNhanVat() {
         Sleep, 10000
         loop
         {
-            SkipHuongDan(500)
             Send, {Esc}
             Sleep, 1000
             Nghe:="|<>*122$31.7DyTzVbzByIHUUQ39gF4lkb9W0sFgl/SACMbj6zAE7n1aADzUTzzzrDzzzkDzzU"
             if (ok:=FindText(NgheX := "wait", NgheY := 5, 702-150000, 261-150000, 702+150000, 261+150000, 0, 0, Nghe))
             {
-                SkipHuongDan(500)
                 break
             }
             Sleep, 1000
@@ -734,7 +726,6 @@ DoiNhanVat() {
 
 QuaDuNgoan() {
     ShowFunctionTooltip("QuaDuNgoan")
-    SkipHuongDan(500)
     Send, {Esc}
     Sleep, 1000
     MouseClick, left, 720, 370
@@ -755,12 +746,13 @@ QuaDuNgoan() {
       MouseClick, left, 640, 480
       Sleep, 1000
     }
+    Sleep, 1000
+    Send, {Esc}
 }
 
 
 CheckNhiemVuNgay() {
     ShowFunctionTooltip("CheckNhiemVuNgay")
-    SkipHuongDan(500)
     Send, {F1}
     Sleep, 1000
     DaNhan:="|<>*106$24.z00Tw80ns81Uk030k1y0U7w0U7w00Dw00Dk0000000000001000100030007000DU00Tk00zs03zz0DzU"
@@ -1091,8 +1083,6 @@ FullNauAn(monAn := 1) {
     ShowFunctionTooltip("FullNauAn")
     loop
     {
-        SkipHuongDan(500)
-        Sleep, 500
         Send, {Esc}
         Sleep, 1000
         Nghe:="|<>*122$31.7DyTzVbzByIHUUQ39gF4lkb9W0sFgl/SACMbj6zAE7n1aADzUTzzzrDzzzkDzzU"
