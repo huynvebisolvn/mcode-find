@@ -10,13 +10,19 @@ global EnableMuaNguyenLieu := 1
 global EnableMuaDatCat := 1
 global MenuMonAn := 1
 global ShowMouseCoords := false
+global CurrentUsername := ""
 
 ; Change Resolution on start
 ChangeResolutionOnly(1024, 768)
 
 ; Show function name in tooltip
 ShowFunctionTooltip(functionName) {
-    ToolTip, %functionName%, 0, 0
+    global CurrentUsername
+    if (CurrentUsername != "") {
+        ToolTip, %CurrentUsername%: %functionName%, 0, 0
+    } else {
+        ToolTip, %functionName%, 0, 0
+    }
     return
 }
 
@@ -771,6 +777,8 @@ CheckNhiemVuNgay() {
 
 
 Login(username) {
+    global CurrentUsername
+    CurrentUsername := username
     ShowFunctionTooltip("Login")
     CleanCache:="|<>*194$17.z1zs0zU0y00s01k011U240480QU0t01q03c03E0Sk0xU3zU7z0Tz1zxizllw10E40000U"
     if (ok:=FindText(CleanCacheX := "wait", CleanCacheY := 1, 993-150000, 33-150000, 993+150000, 33+150000, 0, 0, CleanCache))
