@@ -38,8 +38,24 @@ SkipHuongDan(sleepTime := 1000) {
     return
 }
 
+SuKienBatNgo() {
+    SaveLives:="|<>*159$17.wzztzw0DzDzyLzwjztQPmr/Zzb/zeLyAjwtTlmz3ZwD/USK5wUrt3zkSz3vw"
+    if (ok:=FindText(SaveLivesX, SaveLivesY, 963-150000, 643-150000, 963+150000, 643+150000, 0, 0, SaveLives))
+    {
+        MouseClick, left, SaveLivesX, SaveLivesY
+    }
+    ThoiTiet:="|<>**50$13.UTc823sn0n0n0m0G0B02008040+0502U1E0c0I0+0502U1E0c0I0+0502U3E100U0k0E0A0300l0AE3bUs07w"
+    if (ok:=FindText(ThoiTietX, ThoiTietY, 670-150000, 51-150000, 670+150000, 51+150000, 0, 0, ThoiTiet))
+    {
+      SkipHuongDan()
+    }
+    return
+}
+
 ; Timer to update mouse position
 SetTimer, ShowMousePosition, 100
+
+SetTimer, SuKienBatNgo, 1000
 
 ; ==============================
 ; Toggle mouse coordinates display (for debugging)
@@ -217,7 +233,7 @@ Chuphinh() {
     ShowFunctionTooltip("Chuphinh")
     loop
     {
-      SkipHuongDan()
+      SkipHuongDan(500)
       Sleep, 500
       Send, {F9}
       Sleep, 2000
@@ -611,7 +627,7 @@ BanKhoan() {
 
 FullGhepKhoan() {
     ShowFunctionTooltip("FullGhepKhoan")
-    SkipHuongDan()
+    SkipHuongDan(500)
     Sleep, 500
     Send, {Esc}
     Sleep, 1000
@@ -648,7 +664,7 @@ FullGhepKhoan() {
 
 LogoutNhanVat() {
     ShowFunctionTooltip("LogoutNhanVat")
-    SkipHuongDan()
+    SkipHuongDan(500)
     Sleep, 2000
     Send, {Esc}
     Sleep, 1000
@@ -693,13 +709,13 @@ DoiNhanVat() {
         Sleep, 10000
         loop
         {
-            SkipHuongDan()
+            SkipHuongDan(500)
             Send, {Esc}
             Sleep, 1000
             Nghe:="|<>*122$31.7DyTzVbzByIHUUQ39gF4lkb9W0sFgl/SACMbj6zAE7n1aADzUTzzzrDzzzkDzzU"
             if (ok:=FindText(NgheX := "wait", NgheY := 5, 702-150000, 261-150000, 702+150000, 261+150000, 0, 0, Nghe))
             {
-                SkipHuongDan()
+                SkipHuongDan(500)
                 break
             }
             Sleep, 1000
@@ -712,7 +728,7 @@ DoiNhanVat() {
 
 QuaDuNgoan() {
     ShowFunctionTooltip("QuaDuNgoan")
-    SkipHuongDan()
+    SkipHuongDan(500)
     Send, {Esc}
     Sleep, 1000
     MouseClick, left, 720, 370
@@ -738,7 +754,7 @@ QuaDuNgoan() {
 
 CheckNhiemVuNgay() {
     ShowFunctionTooltip("CheckNhiemVuNgay")
-    SkipHuongDan()
+    SkipHuongDan(500)
     Send, {F1}
     Sleep, 1000
     DaNhan:="|<>*106$24.z00Tw80ns81Uk030k1y0U7w0U7w00Dw00Dk0000000000001000100030007000DU00Tk00zs03zz0DzU"
@@ -1067,7 +1083,7 @@ FullNauAn(monAn := 1) {
     ShowFunctionTooltip("FullNauAn")
     loop
     {
-        SkipHuongDan()
+        SkipHuongDan(500)
         Sleep, 500
         Send, {Esc}
         Sleep, 1000
