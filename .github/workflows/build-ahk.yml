@@ -101,12 +101,34 @@ jobs:
           
           Write-Host "Tag v1.0.0 updated successfully"
           
-      - name: Delete old release
+      - name: Delete old releases
         if: github.ref == 'refs/heads/main'
         continue-on-error: true
         uses: actions/github-script@v7
         with:
           script: |
+            // Xóa tất cả draft releases
+            try {
+              const releases = await github.rest.repos.listReleases({
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+              
+              for (const release of releases.data) {
+                if (release.draft) {
+                  await github.rest.repos.deleteRelease({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    release_id: release.id
+                  });
+                  console.log(`Deleted draft release: ${release.name || release.tag_name}`);
+                }
+              }
+            } catch (error) {
+              console.log('Error deleting draft releases:', error.message);
+            }
+            
+            // Xóa release v1.0.0 cũ nếu tồn tại
             try {
               const release = await github.rest.repos.getReleaseByTag({
                 owner: context.repo.owner,
@@ -118,9 +140,9 @@ jobs:
                 repo: context.repo.repo,
                 release_id: release.data.id
               });
-              console.log('Old release deleted');
+              console.log('Deleted old v1.0.0 release');
             } catch (error) {
-              console.log('No existing release to delete');
+              console.log('No v1.0.0 release to delete');
             }
           
       - name: Create Release
