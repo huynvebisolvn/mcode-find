@@ -409,10 +409,13 @@ NhanThuong() {
         }
         result := CountOk()
         ; MsgBox, % "All: " . result.count
-        if (result.count >= 3) {
+        if (result.count >= 4) {
             For i, pos in result.positions
             {
                 MouseClick, left, pos.x, pos.y
+                if (i == 3) {
+                    Sleep, 5000
+                }
             }
             break
         }
@@ -465,6 +468,7 @@ NhanThuong() {
         Sleep, 1500
     }
     ; TODO
+    Sleep, 1000
     MouseClick, left, 330, 700
     Sleep, 500
     MouseClick, left, 330, 700
@@ -476,12 +480,34 @@ NhanThuong() {
     MouseClick, left, 620, 700
     Sleep, 500
     MouseClick, left, 620, 700
+
+    MouseClick, left, 780, 700
+    Sleep, 500
+    MouseClick, left, 780, 700
     Sleep, 500
     Sleep, 1000
     Send, {Esc}
     return
 }
 
+DaoKhoanMini() {
+    loop
+    {
+        Send, {Tab}
+        ThanhMau:="|<>**50$53.0Tzzzzzzy7U0000000tzzzzzzzzC00000009k0000000Ss0000000CDzzzzzzy3U00000001zzzzzzzw"
+        if (ok:=FindText(ThanhMauX := "wait", ThanhMauY := 1, 459-150000, 37-150000, 459+150000, 37+150000, 0, 0, ThanhMau))
+        {
+            loop, 40
+            {
+                Send, {e}
+                Sleep, 500
+            }
+            break
+        }
+        Sleep, 1000
+    }
+    return
+}
 
 DaoKhoan() {
     ShowFunctionTooltip("DaoKhoan")
@@ -666,6 +692,8 @@ FullGhepKhoan() {
 
 LogoutNhanVat() {
     ShowFunctionTooltip("LogoutNhanVat")
+    SkipHuongDan()
+    Sleep, 2000
     Send, {Esc}
     Sleep, 1000
     Setting:="|<>*131$26.zklzznznzvzzTvzzvzzzzTTzzvjy7zTzVzpyE9zT00Tjk03vw7UyzXszzsyDzy7Vyz0kDbk03ty01yzy7zPzVzrzsTvrzzzyzzzTrzzTzTzjs"
@@ -709,11 +737,13 @@ DoiNhanVat() {
         Sleep, 10000
         loop
         {
+            SkipHuongDan(1000)
             Send, {Esc}
             Sleep, 1000
             Nghe:="|<>*122$31.7DyTzVbzByIHUUQ39gF4lkb9W0sFgl/SACMbj6zAE7n1aADzUTzzzrDzzzkDzzU"
             if (ok:=FindText(NgheX := "wait", NgheY := 5, 702-150000, 261-150000, 702+150000, 261+150000, 0, 0, Nghe))
             {
+                SkipHuongDan(1000)
                 break
             }
             Sleep, 1000
@@ -1132,9 +1162,11 @@ FullAccTo(username, modehl) {
         daNhan := CheckNhiemVuNgay()
         if (not daNhan)
         {
-          QuaDuNgoan()
-          Sleep, 1000
           Chuphinh()
+          Sleep, 1000
+          DaoKhoanMini()
+          Sleep, 1000
+          QuaDuNgoan()
           Sleep, 1000
           Monghoaluc()
           Sleep, 1000
