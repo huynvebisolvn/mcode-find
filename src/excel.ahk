@@ -1169,13 +1169,14 @@ FullAccTo(username, modehl) {
           if (modehl == 2)
           {
             DaoKhoan()
+            Sleep, 1000
           }
           else
           {
             DaoKhoanMini()
+            Sleep, 1000
           }
 
-          Sleep, 1000
           QuaDuNgoan()
           Sleep, 1000
           Monghoaluc()
@@ -1207,6 +1208,10 @@ FullAccTo(username, modehl) {
           FullGhepKhoan()
           Sleep, 1000
           BanKhoan()
+          Sleep, 1000
+          if (daNhan){
+            DaoKhoan()
+          }
         }
 
         Sleep, 1000
