@@ -1164,7 +1164,17 @@ FullAccTo(username, modehl) {
         {
           Chuphinh()
           Sleep, 1000
-          DaoKhoanMini()
+
+          ; mode dao khoan
+          if (modehl == 2)
+          {
+            DaoKhoan()
+          }
+          else
+          {
+            DaoKhoanMini()
+          }
+
           Sleep, 1000
           QuaDuNgoan()
           Sleep, 1000
@@ -1197,11 +1207,9 @@ FullAccTo(username, modehl) {
           FullGhepKhoan()
           Sleep, 1000
           BanKhoan()
-          Sleep, 1000
-          DaoKhoan()
-          Sleep, 1000
         }
 
+        Sleep, 1000
         LogoutNhanVat()
         if (A_Index < 6)
         {
