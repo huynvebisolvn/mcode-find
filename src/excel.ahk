@@ -38,20 +38,36 @@ ShowMousePosition() {
 
 SkipHuongDan(sleepTime := 1000) {
     Sleep, %sleepTime%
-    MouseClick, left, 400, 0
+    MouseClick, left, 500, 0
     Sleep, %sleepTime%
-    MouseClick, left, 400, 0
+    MouseClick, left, 500, 0
     return
 }
 
 SuKienBatNgo() {
-    SaveLives:="|<>*159$17.wzztzw0DzDzyLzwjztQPmr/Zzb/zeLyAjwtTlmz3ZwD/USK5wUrt3zkSz3vw"
-    if (ok:=FindText(SaveLivesX, SaveLivesY, 963-150000, 643-150000, 963+150000, 643+150000, 0, 0, SaveLives))
+    ; Hoi sinh thieu thuoc
+    SaveLive1:="|<>**20$31.7zk0030D00709U07kMM020UA010U300U01U0M00E0600A710022lk01lCc00gVU"
+    if (ok:=FindText(X, Y, 859-150000, 634-150000, 859+150000, 634+150000, 0, 0, SaveLive1))
     {
-        MouseClick, left, SaveLivesX, SaveLivesY
+      MouseClick, left, X, Y
+      Sleep, 500
+      Send, {Space}
+      Sleep, 500
+      Send, {v}
+      Sleep, 500
+      MouseClick, left, 500, 0
+      Sleep, 500
+      Send, {Esc}
     }
-    ThoiTiet:="|<>**50$13.UTc823sn0n0n0m0G0B02008040+0502U1E0c0I0+0502U1E0c0I0+0502U3E100U0k0E0A0300l0AE3bUs07w"
-    if (ok:=FindText(ThoiTietX, ThoiTietY, 670-150000, 51-150000, 670+150000, 51+150000, 0, 0, ThoiTiet))
+    ; Hoi sinh binh thuong
+    SaveLive2:="|<>*161$29.w0zzzk2TzyUMTzs20zzk80zzU01zzU01zzU03zz003yz007wu00/sE00XlU0337"
+    if (ok:=FindText(X, Y, 859-150000, 635-150000, 859+150000, 635+150000, 0, 0, SaveLive2))
+    {
+      MouseClick, left, X, Y
+    }
+
+    ThoiTiet:="|<>**50$48.zzzzzzzz7y0005zU01U0000sk0E0070CM00001s36000007U1000000S0U000000U"
+    if (ok:=FindText(X, Y, 707-150000, 38-150000, 707+150000, 38+150000, 0, 0, ThoiTiet))
     {
       SkipHuongDan()
     }
@@ -763,7 +779,7 @@ QuaDuNgoan() {
     Sleep, 1000
     MouseClick, left, 775, 662
     Sleep, 1000
-    MouseClick, left, 400, 0
+    MouseClick, left, 500, 0
     Sleep, 1000
     ; check out success
     loop
@@ -774,7 +790,7 @@ QuaDuNgoan() {
         MouseClick, left, X, Y
         break
       }
-      MouseClick, left, 400, 0
+      MouseClick, left, 500, 0
       Sleep, 1000
     }
     Sleep, 1000
@@ -802,8 +818,12 @@ CheckNhiemVuNgay() {
 Login(username) {
     global CurrentUsername
     CurrentUsername := username
-    LoginSuccess:="|<>*100$15.z3zrjU0000zzw01U0A01UYA4VUYA4VUYA4VUYA01U0A01U0A"
-    if (ok:=FindText(LoginSuccessX := "wait", LoginSuccessY := 2, 962-150000, 626-150000, 962+150000, 626+150000, 0, 0, LoginSuccess))
+    CleanCache:="|<>*194$17.z1zs0zU0y00s01k011U240480QU0t01q03c03E0Sk0xU3zU7z0Tz1zxizllw10E40000U"
+    if (ok:=FindText(CleanCacheX := "wait", CleanCacheY := 1, 993-150000, 33-150000, 993+150000, 33+150000, 0, 0, CleanCache))
+    {
+      ShowFunctionTooltip("Login: ben ngoai")
+    }
+    else
     {
       ShowFunctionTooltip("Login: ben trong")
       loop, 5
@@ -818,10 +838,6 @@ Login(username) {
               break
           }
       }
-    }
-    else
-    {
-      ShowFunctionTooltip("Login: ben ngoai")
     }
     
     CleanCache:="|<>*194$17.z1zs0zU0y00s01k011U240480QU0t01q03c03E0Sk0xU3zU7z0Tz1zxizllw10E40000U"
