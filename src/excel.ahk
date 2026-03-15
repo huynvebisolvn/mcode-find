@@ -801,13 +801,8 @@ CheckNhiemVuNgay() {
 Login(username) {
     global CurrentUsername
     CurrentUsername := username
-    ShowFunctionTooltip("Login")
-    CleanCache:="|<>*194$17.z1zs0zU0y00s01k011U240480QU0t01q03c03E0Sk0xU3zU7z0Tz1zxizllw10E40000U"
-    if (ok:=FindText(CleanCacheX := "wait", CleanCacheY := 1, 993-150000, 33-150000, 993+150000, 33+150000, 0, 0, CleanCache))
-    {
-      ShowFunctionTooltip("Login: ben ngoai")
-    }
-    else
+    LoginSuccess:="|<>*100$15.z3zrjU0000zzw01U0A01UYA4VUYA4VUYA4VUYA01U0A01U0A"
+    if (ok:=FindText(LoginSuccessX := "wait", LoginSuccessY := 2, 962-150000, 626-150000, 962+150000, 626+150000, 0, 0, LoginSuccess))
     {
       ShowFunctionTooltip("Login: ben trong")
       loop, 5
@@ -822,6 +817,10 @@ Login(username) {
               break
           }
       }
+    }
+    else
+    {
+      ShowFunctionTooltip("Login: ben ngoai")
     }
     
     CleanCache:="|<>*194$17.z1zs0zU0y00s01k011U240480QU0t01q03c03E0Sk0xU3zU7z0Tz1zxizllw10E40000U"
