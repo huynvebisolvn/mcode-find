@@ -551,7 +551,7 @@ DaoKhoan() {
         ThanhMau:="|<>**50$53.0Tzzzzzzy7U0000000tzzzzzzzzC00000009k0000000Ss0000000CDzzzzzzy3U00000001zzzzzzzw"
         if (ok:=FindText(ThanhMauX := "wait", ThanhMauY := 1, 459-150000, 37-150000, 459+150000, 37+150000, 0, 0, ThanhMau))
         {
-          loop, 10
+          loop, 5
           {
             ; Check Hettheluc trong khi nhấn e
             if (ok:=FindText(X, Y, 649-150000, 330-150000, 649+150000, 330+150000, 0, 0, Xi))
