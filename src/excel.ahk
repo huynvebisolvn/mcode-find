@@ -763,7 +763,7 @@ QuaDuNgoan() {
     Sleep, 1000
     MouseClick, left, 775, 662
     Sleep, 1000
-    MouseClick, left, 640, 480
+    MouseClick, left, 400, 0
     Sleep, 1000
     ; check out success
     loop
@@ -774,7 +774,7 @@ QuaDuNgoan() {
         MouseClick, left, X, Y
         break
       }
-      MouseClick, left, 640, 480
+      MouseClick, left, 400, 0
       Sleep, 1000
     }
     Sleep, 1000
