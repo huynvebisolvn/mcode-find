@@ -528,13 +528,13 @@ DaoKhoanMini() {
 
 DaoKhoan() {
     ShowFunctionTooltip("DaoKhoan")
-    Xi:="|<>*116$9.ZoCloCclaQI"
+    Xi:="|<>**50$11.ZrbjDRCvRiPSr"
     HetthelucCount := 0
     
     Loop, 600
     {
         ; Check Hettheluc để dừng
-        if (ok:=FindText(X, Y, 649-150000, 330-150000, 649+150000, 330+150000, 0, 0, Xi))
+        if (ok:=FindText(X, Y, 650-150000, 330-150000, 650+150000, 330+150000, 0, 0, Xi))
         { 
           HetthelucCount++
           ShowFunctionTooltip("Hettheluc: " . HetthelucCount)
@@ -554,7 +554,7 @@ DaoKhoan() {
           loop, 5
           {
             ; Check Hettheluc trong khi nhấn e
-            if (ok:=FindText(X, Y, 649-150000, 330-150000, 649+150000, 330+150000, 0, 0, Xi))
+            if (ok:=FindText(X, Y, 650-150000, 330-150000, 650+150000, 330+150000, 0, 0, Xi))
             {
               HetthelucCount++
               ShowFunctionTooltip("Hettheluc: " . HetthelucCount)
