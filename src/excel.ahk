@@ -526,10 +526,75 @@ DaoKhoanMini() {
   return
 }
 
+DaoKhoan_ThuThoatKet(ByRef ThanhMauNotFoundCount) {
+    ThanhMau:="|<>**50$53.0Tzzzzzzy7U0000000tzzzzzzzzC00000009k0000000Ss0000000CDzzzzzzy3U00000001zzzzzzzw"
+
+    ; left
+    Sleep, 100
+    Send, {s down}
+    Sleep, 1000
+    Send, {s up}
+    Send, {Tab}
+    if (ok:=FindText(ThanhMauX := "wait", ThanhMauY := 1, 459-150000, 37-150000, 459+150000, 37+150000, 0, 0, ThanhMau))
+    {    
+        ThanhMauNotFoundCount := 0
+        return true
+    }
+    Send, {w down}
+    Sleep, 1000
+    Send, {w up}
+
+    ; down
+    Sleep, 100
+    Send, {a down}
+    Sleep, 1000
+    Send, {a up}
+    Send, {Tab}
+    if (ok:=FindText(ThanhMauX := "wait", ThanhMauY := 1, 459-150000, 37-150000, 459+150000, 37+150000, 0, 0, ThanhMau))
+    {    
+        ThanhMauNotFoundCount := 0
+        return true
+    }
+    Send, {d down}
+    Sleep, 1000
+    Send, {d up}
+
+    ; up
+    Send, {w down}
+    Sleep, 1000
+    Send, {w up}
+    Send, {Tab}
+    if (ok:=FindText(ThanhMauX := "wait", ThanhMauY := 1, 459-150000, 37-150000, 459+150000, 37+150000, 0, 0, ThanhMau))
+    {    
+        ThanhMauNotFoundCount := 0
+        return true
+    }
+    Send, {s down}
+    Sleep, 1000
+    Send, {s up}
+
+    ; right
+    Sleep, 100
+    Send, {d down}
+    Sleep, 1000
+    Send, {d up}
+    Send, {Tab}
+    if (ok:=FindText(ThanhMauX := "wait", ThanhMauY := 1, 459-150000, 37-150000, 459+150000, 37+150000, 0, 0, ThanhMau))
+    {    
+        ThanhMauNotFoundCount := 0
+        return true
+    }
+    Send, {a down}
+    Sleep, 1000
+    Send, {a up}
+    return false
+}
+
 DaoKhoan() {
     ShowFunctionTooltip("DaoKhoan")
     Xi:="|<>**50$11.ZrbjDRCvRiPSr"
     HetthelucCount := 0
+    ThanhMauNotFoundCount := 0
     
     Loop, 600
     {
@@ -551,6 +616,8 @@ DaoKhoan() {
         ThanhMau:="|<>**50$53.0Tzzzzzzy7U0000000tzzzzzzzzC00000009k0000000Ss0000000CDzzzzzzy3U00000001zzzzzzzw"
         if (ok:=FindText(ThanhMauX := "wait", ThanhMauY := 1, 459-150000, 37-150000, 459+150000, 37+150000, 0, 0, ThanhMau))
         {
+          ; Reset counter khi tìm thấy ThanhMau
+          ThanhMauNotFoundCount := 0
           loop, 5
           {
             ; Check Hettheluc trong khi nhấn e
@@ -568,6 +635,16 @@ DaoKhoan() {
             }
             Send, {e}
             Sleep, 500
+          }
+        }
+        else
+        {
+          ; Không tìm thấy ThanhMau
+          ThanhMauNotFoundCount++
+          ShowFunctionTooltip("ThanhMau khong tim thay: " . ThanhMauNotFoundCount)          
+          if (ThanhMauNotFoundCount >= 10)
+          {
+            DaoKhoan_ThuThoatKet(ThanhMauNotFoundCount)
           }
         }
         ; Kiểm tra lại sau khi thoát vòng lặp nhấn e
