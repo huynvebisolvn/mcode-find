@@ -8,6 +8,7 @@ global SelectedTarget := ""
 global PriceTargets := {}
 global EnableMuaNguyenLieu := 1
 global EnableMuaDatCat := 1
+global EnableBanKhoan := 0
 global MenuMonAn := 1
 global ShowMouseCoords := false
 global CurrentUsername := ""
@@ -1114,26 +1115,27 @@ MenuNhiemVuNgay() {
 
     Gui, Add, Button, gHoatLuc3 w200, Daily + Dao khoan
     Gui, Add, Checkbox, vEnableMuaDatCat Checked w200, Mua Dat Cat
+    Gui, Add, Checkbox, vEnableBanKhoan w200, Ban Khoan
 
     Gui, Show,, Nhiem Vu Ngay
     return
 
     HoatLuc1:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, MenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 0)
     return
 
     HoatLuc2:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, MenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 1)
     return
 
     HoatLuc3:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, MenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 2)
@@ -1294,8 +1296,10 @@ FullAccTo(username, modehl) {
           }
           FullGhepKhoan()
           Sleep, 1000
-          BanKhoan()
-          Sleep, 1000
+          if (EnableBanKhoan == 1) {
+            BanKhoan()
+            Sleep, 1000
+          }
           if (daNhan){
             DaoKhoan()
           }
