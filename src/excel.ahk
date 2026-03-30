@@ -919,25 +919,25 @@ Login(username) {
         MouseClick, left, CleanCacheX, CleanCacheY
         Sleep, 1000
         MouseClick, left, CleanCacheX, CleanCacheY
-        Sleep, 5000
+        Sleep, 3000
         ; bug of zing
-        MouseClick, left, 150, 150
-        Sleep, 5000
-        Send, {Tab}
-        Sleep, 1000
+        MouseClick, left, 300, 342
+        Sleep, 3000
+        MouseClick, left, 88, 265
+        Sleep, 3000
         Send, {Text}%username%
         Sleep, 1000
         Send, {Tab}
         Send, {Text}Huy142857
         Sleep, 1000
         Send, {Enter}
-        Sleep, 15000
+        Sleep, 20000
 
         ; Dong y dieu khoan
-        MouseClick, left, 36, 178
+        MouseClick, left, 120, 222
         Sleep, 1000
-        MouseClick, left, 237, 225
-        Sleep, 2000
+        MouseClick, left, 190, 273
+        Sleep, 5000
         MouseClick, left, 510, 634
 
         DoiNhanVat()
