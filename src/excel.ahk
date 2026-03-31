@@ -1263,7 +1263,7 @@ CheckCauca() {
         MouseMove, 500, 410, 20
         Send, {LButton up}
         
-        loop, 8
+        loop, 24
         {
             if (ok:=FindText(X, Y, 637-150000, 80-150000, 637+150000, 80+150000, 0, 0, CheckCauOk))
             {
@@ -1330,8 +1330,8 @@ CauCa() {
                 }
             }
         }
-        ThuHoach:="|<>*131$7.zznVksQC73VksQCE"
-        if (ok:=FindText(ThuHoachX := "wait", ThuHoachY := 0.5, 844-150000, 717-150000, 844+150000, 717+150000, 0, 0, ThuHoach))
+        ThuHoach:="|<>*131$25.za00Tn003XU01lk00st00QTlbCDxnb7CtnXbQtlniQstrCQQtzCCQzk"
+        if (ok:=FindText(ThuHoachX := "wait", ThuHoachY := 0.5, 853-150000, 717-150000, 853+150000, 717+150000, 0, 0, ThuHoach))
         {
             MouseClick, left, ThuHoachX, ThuHoachY
             HetthelucCount := 0
