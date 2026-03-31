@@ -1314,12 +1314,12 @@ CauCa() {
     loop
     {
         CauNgay:="|<>*168$18.0zz07z01U000U01U07k03w01y00z00z80zA0U"
-        if (ok:=FindText(CauNgayX, CauNgayY, 896-150000, 631-150000, 896+150000, 631+150000, 0, 0, CauNgay))
+        if (ok:=FindText(CauNgayX := "wait", CauNgayY := 0.5, 896-150000, 631-150000, 896+150000, 631+150000, 0, 0, CauNgay))
         {
             MouseClick, left, CauNgayX, CauNgayY
             Sleep, 1000
             ; het the luc
-            if (ok:=FindText(X, Y, 896-150000, 631-150000, 896+150000, 631+150000, 0, 0, CauNgay))
+            if (ok:=FindText(X := "wait", Y := 0.5, 896-150000, 631-150000, 896+150000, 631+150000, 0, 0, CauNgay))
             {
                 HetthelucCount++
                 ShowFunctionTooltip("Hettheluc: " . HetthelucCount)
@@ -1331,7 +1331,7 @@ CauCa() {
             }
         }
         ThuHoach:="|<>*131$7.zznVksQC73VksQCE"
-        if (ok:=FindText(ThuHoachX, ThuHoachY, 844-150000, 717-150000, 844+150000, 717+150000, 0, 0, ThuHoach))
+        if (ok:=FindText(ThuHoachX := "wait", ThuHoachY := 0.5, 844-150000, 717-150000, 844+150000, 717+150000, 0, 0, ThuHoach))
         {
             MouseClick, left, ThuHoachX, ThuHoachY
             HetthelucCount := 0
