@@ -1296,6 +1296,8 @@ CauCa() {
         Send, {w up}
         Sleep, 500
 
+        Click, WheelDown, 1
+        Sleep, 1000
         Send, {f down}
         Sleep, 50
         Send, {f up}
@@ -1353,10 +1355,17 @@ PhanGiaiCa() {
     Sleep, 1000
     MouseClick, left, 800, 125
     Sleep, 1000
-    CaMe:="|<>*130$29.zzz01zzy03zzw07zzs0Dzzk0TzzU0zzz01zzy03zzy9Dzzznzzzy1zzzs1zzzzzzzzzzzzzjzzzzjzzzrzzzzTzzzxjzzzrTzzz7zzzx1zzz03zzk0Dzz00zzs03zz00Tzs07xzk4zrzk"
-    if (ok:=FindText(CaMeX, CaMeY, 691-150000, 214-150000, 691+150000, 214+150000, 0, 0, CaMe))
+
+    nx_position := 680
+    loop, 12
     {
-        MouseClick, left, CaMeX, CaMeY
+        if (A_Index > 6) {
+            nx_position := 680
+            MouseClick, left, nx_position, 210
+        }
+        else {
+            MouseClick, left, nx_position, 170
+        }
         Sleep, 1000
         PhanGiai:="|<>*133$60.TzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzbtzzzyByT0bszzzjAyTAbzzzzzTyTAVkkzVCAyTAUYkT0A4yT0YyGT8BYyT1YUGT8A4yTDYaGT88YyTDYUGT080yTDgkKTUAEyTzzzzztzzyTzzzzz1zzyTzzzzzbzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyjzzzzzzzzxU"
         if (ok:=FindText(PhanGiaiX, PhanGiaiY, 630-150000, 418-150000, 630+150000, 418+150000, 0, 0, PhanGiai))
@@ -1364,8 +1373,9 @@ PhanGiaiCa() {
             MouseClick, left, PhanGiaiX, PhanGiaiY
             Sleep, 1000
             Send, {Space}
+            break
         }
-
+        nx_position += 50
     }
     Sleep, 1000
     MouseClick, left, 500, 0
