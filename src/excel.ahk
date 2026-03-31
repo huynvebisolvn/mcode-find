@@ -411,8 +411,12 @@ CountOk() {
 }
 
 
-NhanThuong() {
+NhanThuong(modehl) {
     ShowFunctionTooltip("NhanThuong")
+    countNhanThuong := 4
+    if (modehl == 0) {
+        countNhanThuong := 3
+    }
     Send, {F1}
     Sleep, 1000
     ; TODO
@@ -426,7 +430,7 @@ NhanThuong() {
         }
         result := CountOk()
         ; MsgBox, % "All: " . result.count
-        if (result.count >= 4) {
+        if (result.count >= countNhanThuong) {
             For i, pos in result.positions
             {
                 MouseClick, left, pos.x, pos.y
@@ -507,25 +511,6 @@ NhanThuong() {
     return
 }
 
-DaoKhoanMini() {
-  ShowFunctionTooltip("DaoKhoanMini")
-  loop
-  {
-      Send, {Tab}
-      ThanhMau:="|<>**50$53.0Tzzzzzzy7U0000000tzzzzzzzzC00000009k0000000Ss0000000CDzzzzzzy3U00000001zzzzzzzw"
-      if (ok:=FindText(ThanhMauX := "wait", ThanhMauY := 1, 459-150000, 37-150000, 459+150000, 37+150000, 0, 0, ThanhMau))
-      {
-          loop, 60
-          {
-              Send, {e}
-              Sleep, 500
-          }
-          break
-      }
-      Sleep, 1000
-  }
-  return
-}
 
 DaoKhoan_ThuThoatKet(ByRef ThanhMauNotFoundCount) {
     ThanhMau:="|<>**50$53.0Tzzzzzzy7U0000000tzzzzzzzzC00000009k0000000Ss0000000CDzzzzzzy3U00000001zzzzzzzw"
@@ -788,10 +773,16 @@ FullGhepKhoan() {
 LogoutNhanVat() {
     ShowFunctionTooltip("LogoutNhanVat")
     SkipHuongDan()
-    Sleep, 2000
-    Send, {Esc}
-    Sleep, 1000
     Setting:="|<>*131$26.zklzznznzvzzTvzzvzzzzTTzzvjy7zTzVzpyE9zT00Tjk03vw7UyzXszzsyDzy7Vyz0kDbk03ty01yzy7zPzVzrzsTvrzzzyzzzTrzzTzTzjs"
+    loop
+    {
+        Send, {Esc}
+        if (ok:=FindText(SettingX := "wait", SettingY := 3, 990-150000, 347-150000, 990+150000, 347+150000, 0, 0, Setting))
+        {
+            break
+        }
+        Sleep, 1000
+    }
     if (ok:=FindText(SettingX := "wait", SettingY := 3, 990-150000, 347-150000, 990+150000, 347+150000, 0, 0, Setting))
     {
       MouseClick, left, SettingX, SettingY
@@ -898,17 +889,21 @@ Login(username) {
     global CurrentUsername
     CurrentUsername := username
 
-    loop, 3
+    LoginSuccess:="|<>*100$15.z3zrjU0000zzw01U0A01UYA4VUYA4VUYA4VUYA01U0A01U0A"
+    if (ok:=FindText(LoginSuccessX := "wait", LoginSuccessY := 1, 962-150000, 626-150000, 962+150000, 626+150000, 0, 0, LoginSuccess))
     {
-        Sleep, 1000
-        MouseClick, left, 48, 40
-        Sleep, 1000
-        
-        XacNhan:="|<>*102$47.w1XU0M01s3701k01s6C07k03sAQ0Bk07kMs0000Dklk0000PlXj3yCwnX7zDwTxbaCS0wtv7gQQ0tlq7sssDnXgDlllzb7MDXXb7CCkD77ACQRUSC6QQsv0QQQztlq0MstxnXU0000U000000000000000U0000003U0000002008"
-        if (ok:=FindText(X := "wait", Y := 1, 946-150000, 384-150000, 946+150000, 384+150000, 0, 0, XacNhan))
+        ShowFunctionTooltip("Login ben trong")
+        loop, 3
         {
-            MouseClick, left, X, Y
-            break
+            Sleep, 1000
+            MouseClick, left, 48, 40
+            Sleep, 1000
+            XacNhan:="|<>*102$47.w1XU0M01s3701k01s6C07k03sAQ0Bk07kMs0000Dklk0000PlXj3yCwnX7zDwTxbaCS0wtv7gQQ0tlq7sssDnXgDlllzb7MDXXb7CCkD77ACQRUSC6QQsv0QQQztlq0MstxnXU0000U000000000000000U0000003U0000002008"
+            if (ok:=FindText(X := "wait", Y := 1, 946-150000, 384-150000, 946+150000, 384+150000, 0, 0, XacNhan))
+            {
+                MouseClick, left, X, Y
+                break
+            }
         }
     }
     
@@ -920,9 +915,20 @@ Login(username) {
         Sleep, 1000
         MouseClick, left, CleanCacheX, CleanCacheY
         Sleep, 3000
-        ; bug of zing
+
+        ; account
+        MouseClick, left, 98, 343
+        Sleep, 1000
+        ; remove
+        MouseClick, left, 330, 213
+        Sleep, 1000
+        MouseClick, left, 278, 344
+        
+        Sleep, 1000
+        ; add new
         MouseClick, left, 300, 342
         Sleep, 3000
+        ; zing logo
         MouseClick, left, 88, 265
         Sleep, 3000
         Send, {Text}%username%
@@ -1107,6 +1113,8 @@ MenuNhiemVuNgay() {
     Gui, Add, Edit, vStartPos w100, 0
 
     Gui, Add, Button, gHoatLuc1 Default x+5 w200, Only Daily
+    
+    Gui, Add, Button, gHoatLuc4 w200, Daily + Cau ca
 
     Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an
     Gui, Add, Radio, vMenuMonAn Checked w200, Canh Thach Tuy
@@ -1139,6 +1147,13 @@ MenuNhiemVuNgay() {
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 2)
+    return
+    
+    HoatLuc4:
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, MenuMonAn
+        Gui, Submit, NoHide
+        Gui, Destroy
+        Full10AccTo(StartPos, 3)
     return
 
     return
@@ -1232,6 +1247,106 @@ FullNauAn(monAn := 1) {
     return
 }
 
+CheckCauca() {
+    ShowFunctionTooltip("CheckCauca")
+    MouseMove, 500, 0
+    Send, {LButton down}
+    MouseMove, 500, 760, 20
+    Send, {LButton up}
+
+    CheckCauOk:="|<>*148$11.yzszUy0s0U0U3UDUzXzjk"
+    timThay := 0
+    loop
+    {
+        MouseMove, 500, 760
+        Send, {LButton down}
+        MouseMove, 500, 410, 20
+        Send, {LButton up}
+        
+        loop, 8
+        {
+            if (ok:=FindText(X, Y, 637-150000, 80-150000, 637+150000, 80+150000, 0, 0, CheckCauOk))
+            {
+                timThay := 1
+                break
+            }
+            MouseMove, 500, 200
+            Send, {LButton down}
+            MouseMove, 800, 200
+            Send, {LButton up}
+            Sleep, 1000
+        }
+        if (timThay == 1) {
+            break
+        }
+    }
+    ShowFunctionTooltip("Check cau ca ok")
+}
+
+CauCa() {
+    ShowFunctionTooltip("CauCa")
+    ; chuan bi cho cau
+    loop
+    {
+        Send, {s down}
+        Sleep, 150
+        Send, {s up}
+        Send, {w down}
+        Sleep, 150
+        Send, {w up}
+        Sleep, 500
+
+        Send, {f down}
+        Sleep, 50
+        Send, {f up}
+        SettingCauca:="|<>*137$22.zkDzz0zzw3zzkDz408s001U00400001s0UDk7VzVw7y3sTsT0z0k3w00302000M001l02Dz0zzw3zzkDzz0zs"
+        if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
+        {
+            break
+        }
+    }
+
+    CheckCauca()
+
+    ; bat dau cau ca
+    ShowFunctionTooltip("bat dau CauCa")
+    HetthelucCount := 0
+    loop
+    {
+        CauNgay:="|<>*168$18.0zz07z01U000U01U07k03w01y00z00z80zA0U"
+        if (ok:=FindText(CauNgayX, CauNgayY, 896-150000, 631-150000, 896+150000, 631+150000, 0, 0, CauNgay))
+        {
+            MouseClick, left, CauNgayX, CauNgayY
+            Sleep, 1000
+            ; het the luc
+            if (ok:=FindText(X, Y, 896-150000, 631-150000, 896+150000, 631+150000, 0, 0, CauNgay))
+            {
+                HetthelucCount++
+                ShowFunctionTooltip("Hettheluc: " . HetthelucCount)
+                if (HetthelucCount >= 5)
+                {
+                    ShowFunctionTooltip("Het the luc CauCa")
+                    break
+                }
+            }
+        }
+        ThuHoach:="|<>*131$7.zznVksQC73VksQCE"
+        if (ok:=FindText(ThuHoachX, ThuHoachY, 844-150000, 717-150000, 844+150000, 717+150000, 0, 0, ThuHoach))
+        {
+            MouseClick, left, ThuHoachX, ThuHoachY
+            HetthelucCount := 0
+        }
+        MouseClick, left, 900, 610
+        Sleep, 1000
+    }
+
+    Sleep, 2000
+    Send, {Esc}
+    ShowFunctionTooltip("CauCa xong")
+    return
+}
+
+
 
 Full10AccTo(startPos := 0, modehl := 0) {
     ShowFunctionTooltip("Full10AccTo")
@@ -1253,27 +1368,11 @@ FullAccTo(username, modehl) {
         {
           Chuphinh()
           Sleep, 1000
-
-          ; mode dao khoan
-          if (modehl == 2)
-          {
-            DaoKhoan()
-            Sleep, 1000
-          }
-          else
-          {
-            DaoKhoanMini()
-            Sleep, 1000
-          }
-
           QuaDuNgoan()
           Sleep, 1000
           Monghoaluc()
           Sleep, 1000
-          ; TODO
           Haocam()
-          Sleep, 1000
-          NhanThuong()
         }
         ; mode nau an
         if (modehl == 1)
@@ -1297,12 +1396,23 @@ FullAccTo(username, modehl) {
           FullGhepKhoan()
           Sleep, 1000
           if (EnableBanKhoan == 1) {
-            BanKhoan()
+              BanKhoan()
+              Sleep, 1000
+            }
+          DaoKhoan()
+        }
+        
+        ; mode cau ca
+        if (modehl == 3)
+        {
+            CauCa()
             Sleep, 1000
-          }
-          if (daNhan){
-            DaoKhoan()
-          }
+        }
+        
+        if (not daNhan)
+        {
+          Sleep, 1000
+          NhanThuong(modehl)
         }
 
         Sleep, 1000
