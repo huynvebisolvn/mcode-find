@@ -1274,7 +1274,7 @@ CheckCauca() {
             Send, {LButton down}
             MouseMove, 800, 200
             Send, {LButton up}
-            Sleep, 1000
+            Sleep, 2000
         }
         if (timThay == 1) {
             break
@@ -1346,6 +1346,31 @@ CauCa() {
     return
 }
 
+PhanGiaiCa() {
+    Send, {b}
+    Sleep, 1000
+    MouseClick, left, 965, 510
+    Sleep, 1000
+    MouseClick, left, 800, 125
+    Sleep, 1000
+    CaMe:="|<>*130$29.zzz01zzy03zzw07zzs0Dzzk0TzzU0zzz01zzy03zzy9Dzzznzzzy1zzzs1zzzzzzzzzzzzzjzzzzjzzzrzzzzTzzzxjzzzrTzzz7zzzx1zzz03zzk0Dzz00zzs03zz00Tzs07xzk4zrzk"
+    if (ok:=FindText(CaMeX, CaMeY, 691-150000, 214-150000, 691+150000, 214+150000, 0, 0, CaMe))
+    {
+        MouseClick, left, CaMeX, CaMeY
+        Sleep, 1000
+        PhanGiai:="|<>*133$60.TzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzbtzzzyByT0bszzzjAyTAbzzzzzTyTAVkkzVCAyTAUYkT0A4yT0YyGT8BYyT1YUGT8A4yTDYaGT88YyTDYUGT080yTDgkKTUAEyTzzzzztzzyTzzzzz1zzyTzzzzzbzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyjzzzzzzzzxU"
+        if (ok:=FindText(PhanGiaiX, PhanGiaiY, 630-150000, 418-150000, 630+150000, 418+150000, 0, 0, PhanGiai))
+        {
+            MouseClick, left, PhanGiaiX, PhanGiaiY
+            Sleep, 1000
+            Send, {Space}
+        }
+
+    }
+    Sleep, 1000
+    MouseClick, left, 500, 0
+    return
+}
 
 
 Full10AccTo(startPos := 0, modehl := 0) {
@@ -1406,6 +1431,8 @@ FullAccTo(username, modehl) {
         if (modehl == 3)
         {
             CauCa()
+            Sleep, 1000
+            PhanGiaiCa()
             Sleep, 1000
         }
         
