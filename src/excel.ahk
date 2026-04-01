@@ -9,6 +9,7 @@ global PriceTargets := {}
 global EnableMuaNguyenLieu := 1
 global EnableMuaDatCat := 1
 global EnableBanKhoan := 0
+global EnableBanCa := 0
 global MenuMonAn := 1
 global ShowMouseCoords := false
 global CurrentUsername := ""
@@ -1115,6 +1116,7 @@ MenuNhiemVuNgay() {
     Gui, Add, Button, gHoatLuc1 Default x+5 w200, Only Daily
     
     Gui, Add, Button, gHoatLuc4 w200, Daily + Cau ca
+    Gui, Add, Checkbox, vEnableBanCa w200, Ban Ca
 
     Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an
     Gui, Add, Radio, vMenuMonAn Checked w200, Canh Thach Tuy
@@ -1129,28 +1131,28 @@ MenuNhiemVuNgay() {
     return
 
     HoatLuc1:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 0)
     return
 
     HoatLuc2:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 1)
     return
 
     HoatLuc3:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 2)
     return
     
     HoatLuc4:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 3)
@@ -1249,23 +1251,30 @@ FullNauAn(monAn := 1) {
 
 CheckCauca() {
     ShowFunctionTooltip("CheckCauca")
-    MouseMove, 500, 0
-    Send, {LButton down}
-    MouseMove, 500, 760, 20
-    Send, {LButton up}
 
-    CheckCauOk:="|<>*148$11.yzszUy0s0U0U3UDUzXzjk"
+    CheckCauOk1:="|<>**50$13.1s1a1VVUNU7U1U0s0q0lUkMk6k1kE"
+    CheckCauOk2:="|<>**50$13.1k1g1X1UlUBU3U0s0q0lUkMk6k1kE"
     timThay := 0
     loop
     {
+        MouseMove, 500, 0
+        Send, {LButton down}
+        MouseMove, 500, 760, 20
+        Send, {LButton up}
+
         MouseMove, 500, 760
         Send, {LButton down}
         MouseMove, 500, 410, 20
         Send, {LButton up}
         
-        loop, 24
+        loop, 16
         {
-            if (ok:=FindText(X, Y, 637-150000, 80-150000, 637+150000, 80+150000, 0, 0, CheckCauOk))
+            if (ok:=FindText(CheckCauOk1X, CheckCauOk1Y, 392-150000, 80-150000, 392+150000, 80+150000, 0, 0, CheckCauOk1))
+            {
+                timThay := 1
+                break
+            }
+            if (ok:=FindText(CheckCauOk2X, CheckCauOk2Y, 637-150000, 80-150000, 637+150000, 80+150000, 0, 0, CheckCauOk2))
             {
                 timThay := 1
                 break
@@ -1359,8 +1368,10 @@ PhanGiaiCa() {
     nx_position := 680
     loop, 12
     {
-        if (A_Index > 6) {
+        if (A_Index = 7) {
             nx_position := 680
+        }
+        if (A_Index > 6) {
             MouseClick, left, nx_position, 210
         }
         else {
@@ -1380,6 +1391,65 @@ PhanGiaiCa() {
     Sleep, 1000
     MouseClick, left, 500, 0
     return
+}
+
+BanCa() {
+    ShowFunctionTooltip("BanCa")
+    Send, {f5}
+    Sleep, 2500
+    MouseClick, left, 818, 735
+    Sleep, 1500
+    Ban:="|<>*91$23.0zTy0yzwlvztnrznD3U0Q300T6MMsAktYNVn8n0C1a0wLQU"
+    if (ok:=FindText(BanX := "wait", BanY := 10, 82-150000, 441-150000, 82+150000, 441+150000, 0, 0, Ban))
+    {
+      MouseClick, left, BanX, BanY
+      Sleep, 1000
+      Rut:="|<>*132$23.y081z0k3C306A01gM07NVbDy7CRw6QvwAtqsNngsnbMtzClnyD"
+      if (ok:=FindText(RutX := "wait", RutY := 3, 873-150000, 665-150000, 873+150000, 665+150000, 0, 0, Rut))
+      {
+        MouseClick, left, RutX, RutY
+      }
+      Sleep, 500
+      ; Go vat pham
+      loop, 4
+      {
+        MouseClick, left, 720, 235
+        Sleep, 500
+      }
+      Sleep, 500
+      ; nhan dien ca
+
+        CaCap1:="|<>*126$25.TzzzXzzzkzzzsTzzy4zzz47zzk1zzu0TzzU7zzk1zzw0Tzz07zz01zzk0Tzw07zz03zzk0zzw0Tzz07zzk1zzw0zzz0Dzzk7zzw3zzzUzzzwDzzzY"
+        if (ok:=FindText(CaCap1X, CaCap1Y, 186-150000, 182-150000, 186+150000, 182+150000, 0, 0, CaCap1))
+      {
+        MouseClick, left, CaCap1X, CaCap1Y
+        Sleep, 1000
+        ; Ha gia min
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
+        MouseClick, left, 726, 535
+        Sleep, 500
+        MouseClick, left, 970, 466
+        Sleep, 500
+        ; len ke
+        LenKe:="|<>*132$23.s3U1kD03UG07040C0wrQ6xzsAvDkzaDVyAT3UMy3UlzrtXT7X7"
+        if (ok:=FindText(LenKeX := "wait", LenKeY := 3, 933-150000, 673-150000, 933+150000, 673+150000, 0, 0, LenKe))
+        {
+          MouseClick, left, LenKeX, LenKeY
+        }
+      }
+    }
+    Sleep, 1000
+    Send, {Esc}
 }
 
 
@@ -1444,6 +1514,10 @@ FullAccTo(username, modehl) {
             Sleep, 1000
             PhanGiaiCa()
             Sleep, 1000
+            if (EnableBanCa == 1) {
+                BanCa()
+                Sleep, 1000
+            }
         }
         
         if (not daNhan)
