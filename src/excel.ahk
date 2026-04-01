@@ -1292,29 +1292,97 @@ CheckCauca() {
     ShowFunctionTooltip("Check cau ca ok")
 }
 
+
+
 CauCa() {
     ShowFunctionTooltip("CauCa")
+
     ; chuan bi cho cau
+    SettingCauca:="|<>*137$22.zkDzz0zzw3zzkDz408s001U00400001s0UDk7VzVw7y3sTsT0z0k3w00302000M001l02Dz0zzw3zzkDzz0zs"
     loop
     {
+        ; left
+        Sleep, 100
         Send, {s down}
-        Sleep, 150
+        Sleep, 1000
         Send, {s up}
-        Send, {w down}
-        Sleep, 150
-        Send, {w up}
-        Sleep, 500
-
+        
+        Sleep, 1000
         Click, WheelDown, 1
         Sleep, 1000
         Send, {f down}
         Sleep, 50
         Send, {f up}
-        SettingCauca:="|<>*137$22.zkDzz0zzw3zzkDz408s001U00400001s0UDk7VzVw7y3sTsT0z0k3w00302000M001l02Dz0zzw3zzkDzz0zs"
         if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
         {
             break
         }
+
+        Send, {w down}
+        Sleep, 1000
+        Send, {w up}
+
+        ; down
+        Sleep, 100
+        Send, {a down}
+        Sleep, 1000
+        Send, {a up}
+
+        Sleep, 1000
+        Click, WheelDown, 1
+        Sleep, 1000
+        Send, {f down}
+        Sleep, 50
+        Send, {f up}
+        if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
+        {
+            break
+        }
+
+        Send, {d down}
+        Sleep, 1000
+        Send, {d up}
+
+        ; up
+        Send, {w down}
+        Sleep, 1000
+        Send, {w up}
+
+        Sleep, 1000
+        Click, WheelDown, 1
+        Sleep, 1000
+        Send, {f down}
+        Sleep, 50
+        Send, {f up}
+        if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
+        {
+            break
+        }
+
+        Send, {s down}
+        Sleep, 1000
+        Send, {s up}
+
+        ; right
+        Sleep, 100
+        Send, {d down}
+        Sleep, 1000
+        Send, {d up}
+
+        Sleep, 1000
+        Click, WheelDown, 1
+        Sleep, 1000
+        Send, {f down}
+        Sleep, 50
+        Send, {f up}
+        if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
+        {
+            break
+        }
+
+        Send, {a down}
+        Sleep, 1000
+        Send, {a up}
     }
 
     CheckCauca()
@@ -1356,6 +1424,7 @@ CauCa() {
     ShowFunctionTooltip("CauCa xong")
     return
 }
+
 
 PhanGiaiCa() {
     Send, {b}
