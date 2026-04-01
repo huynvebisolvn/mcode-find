@@ -977,14 +977,16 @@ SashimiCaBac() {
         if (ok:=FindText(GiaViX, GiaViY, 60-150000, 120-150000, 60+150000, 120+150000, 0, 0, GiaVi))
         {
             notFoundGiaViCount := 0  ; Reset counter khi tim thay GiaVi
-            MouseClick, left, GiaViX, GiaViY
-            MouseClick, left, GiaViX, GiaViY
-            MouseClick, left, GiaViX, GiaViY
 
             ThuySanCap1:="|<>*126$28.TzzzyzzzzszzzzVzzzyDzzzs9zzzl3zzzc7zzyU7zzy0Dzzw0Tzzs0zzzU1zzx03zzs0Dzzk0DzzU0zzz01zzy03zzw0Dzzs0Tzzk0zzzk3zzzU7zzy0Tzzy3zzzw7zzzwDzzzwTzzzwU"
             if (ok:=FindText(ThuySanCap1X, ThuySanCap1Y, 123-150000, 114-150000, 123+150000, 114+150000, 0, 0, ThuySanCap1))
             {
                 notFoundThuySanCount := 0  ; Reset counter khi tim thay ThuySan
+
+                MouseClick, left, GiaViX, GiaViY
+                MouseClick, left, GiaViX, GiaViY
+                MouseClick, left, GiaViX, GiaViY
+
                 MouseClick, left, ThuySanCap1X, ThuySanCap1Y
                 
                 ; TODO
@@ -1053,13 +1055,14 @@ CanhThachTuy() {
         if (ok:=FindText(GiaViX, GiaViY, 60-150000, 120-150000, 60+150000, 120+150000, 0, 0, GiaVi))
         {
             notFoundGiaViCount := 0  ; Reset counter khi tim thay GiaVi
-            MouseClick, left, GiaViX, GiaViY
-
 
             LuaNuoc:="|<>*127$32.zzbzzzzkTzzzw0zzzz07zzrk1zzlk01zwA007y6000y0000300000TE0022E0003zo00/z8006Trf003zUe03zy003zzk0Dzzzvw7zz20Dzzz27zzzUE7zzs07zzy9zjzzosDzzsjzy"
             if (ok:=FindText(LuaNuocX, LuaNuocY, 130-150000, 116-150000, 130+150000, 116+150000, 0, 0, LuaNuoc))
             {
                 notFoundLuaNuocCount := 0  ; Reset counter khi tim thay LuaNuoc
+
+                MouseClick, left, GiaViX, GiaViY
+
                 MouseClick, left, LuaNuocX, LuaNuocY
                 MouseClick, left, LuaNuocX, LuaNuocY
                 MouseClick, left, LuaNuocX, LuaNuocY
