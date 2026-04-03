@@ -11,6 +11,7 @@ global EnableMuaDatCat := 1
 global EnableBanKhoan := 0
 global EnableBanCa := 0
 global MenuMonAn := 1
+global EnableAutoMenuMonAn := 1
 global ShowMouseCoords := false
 global CurrentUsername := ""
 
@@ -1200,10 +1201,11 @@ MenuNhiemVuNgay() {
     Gui, Add, Checkbox, vEnableBanCa w200, Ban Ca
 
     Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an
+    Gui, Add, Checkbox, vEnableMuaNguyenLieu Checked w200, Mua Nguyen Lieu
+    Gui, Add, Checkbox, vEnableAutoMenuMonAn Checked w200, Auto Mon An
     Gui, Add, Radio, vMenuMonAn Checked w200, Canh Thach Tuy
     Gui, Add, Radio, w200, Sashimi
     Gui, Add, Radio, w200, Ca Chua Tay Ho
-    Gui, Add, Checkbox, vEnableMuaNguyenLieu Checked w200, Mua Nguyen Lieu
 
     Gui, Add, Button, gHoatLuc3 w200, Daily + Dao khoan
     Gui, Add, Checkbox, vEnableMuaDatCat Checked w200, Mua Dat Cat
@@ -1213,28 +1215,28 @@ MenuNhiemVuNgay() {
     return
 
     HoatLuc1:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 0)
     return
 
     HoatLuc2:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 1)
     return
 
     HoatLuc3:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 2)
     return
     
     HoatLuc4:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn
+        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 3)
@@ -1629,10 +1631,22 @@ BanCa() {
 
 
 Full10AccTo(startPos := 0, modehl := 0) {
+    global MenuMonAn, EnableAutoMenuMonAn
     ShowFunctionTooltip("Full10AccTo")
     Loop % (10 - startPos)
     {
-        username := "rrntt" . (startPos + A_Index - 1)
+        accountNum := startPos + A_Index - 1
+        username := "rrntt" . accountNum
+
+        if (EnableAutoMenuMonAn == 1) {
+            if (accountNum >= 1 && accountNum <= 3)
+                MenuMonAn := 1
+            else if (accountNum >= 4 && accountNum <= 6)
+                MenuMonAn := 2
+            else if (accountNum >= 7 && accountNum <= 9)
+                MenuMonAn := 3
+        }
+
         Login(username)
         FullAccTo(username, modehl)
     }
