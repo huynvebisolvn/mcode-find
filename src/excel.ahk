@@ -1210,7 +1210,7 @@ MenuNhiemVuNgay() {
     Gui, PriceSelect:New
     Gui, Font, s10
     
-    Gui, Add, Edit, vStartPos w100, 0
+    Gui, Add, Edit, vStartPos w100, 1
 
     Gui, Add, Button, gHoatLuc1 Default w200, Only Daily
     
@@ -1647,12 +1647,11 @@ BanCa() {
 }
 
 
-Full10AccTo(startPos := 0, modehl := 0) {
+Full10AccTo(startPos := 1, modehl := 0) {
     global MenuMonAn, EnableAutoMenuMonAn
     ShowFunctionTooltip("Full10AccTo")
 
     userList := []
-    userList.Push({name: "rrntt0", type: "zing"})
     userList.Push({name: "rrntt1", type: "zing"})
     userList.Push({name: "rrntt2", type: "zing"})
     userList.Push({name: "rrntt3", type: "zing"})
@@ -1663,21 +1662,20 @@ Full10AccTo(startPos := 0, modehl := 0) {
     userList.Push({name: "rrntt8", type: "zing"})
     userList.Push({name: "rrntt9", type: "zing"})
     userList.Push({name: "hixof99797@agoalz.com", type: "email"})
-    userList.Push({name: "kayibo2179@agoalz.com", type: "email"})    
+    userList.Push({name: "kayibo2179@agoalz.com", type: "email"})
 
-    Loop % (userList.Length() - startPos)
+    Loop % (userList.Length() - startPos + 1)
     {
-        index := startPos + A_Index
+        index := startPos + A_Index - 1
         userInfo := userList[index]
         username := userInfo.name
-        accountNum := index - 1
 
         if (EnableAutoMenuMonAn == 1) {
-            if (accountNum >= 1 && accountNum <= 3)
+            if (index >= 1 && index <= 3)
                 MenuMonAn := 1
-            else if (accountNum >= 4 && accountNum <= 6)
+            else if (index >= 4 && index <= 6)
                 MenuMonAn := 2
-            else if (accountNum >= 7 && accountNum <= 9)
+            else if (index >= 7 && index <= 9)
                 MenuMonAn := 3
         }
 
