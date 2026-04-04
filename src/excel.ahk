@@ -886,26 +886,22 @@ CheckNhiemVuNgay() {
 }
 
 
-Login(username) {
+Login(userInfo) {
     ShowFunctionTooltip("Login")
     global CurrentUsername
-    CurrentUsername := username
+    CurrentUsername := userInfo.name
 
-    LoginSuccess:="|<>*100$15.z3zrjU0000zzw01U0A01UYA4VUYA4VUYA4VUYA01U0A01U0A"
-    if (ok:=FindText(LoginSuccessX := "wait", LoginSuccessY := 1, 962-150000, 626-150000, 962+150000, 626+150000, 0, 0, LoginSuccess))
+    ShowFunctionTooltip("Login ben trong")
+    loop, 3
     {
-        ShowFunctionTooltip("Login ben trong")
-        loop, 3
+        Sleep, 1000
+        MouseClick, left, 48, 40
+        Sleep, 1000
+        XacNhan:="|<>*102$47.w1XU0M01s3701k01s6C07k03sAQ0Bk07kMs0000Dklk0000PlXj3yCwnX7zDwTxbaCS0wtv7gQQ0tlq7sssDnXgDlllzb7MDXXb7CCkD77ACQRUSC6QQsv0QQQztlq0MstxnXU0000U000000000000000U0000003U0000002008"
+        if (ok:=FindText(X := "wait", Y := 1, 946-150000, 384-150000, 946+150000, 384+150000, 0, 0, XacNhan))
         {
-            Sleep, 1000
-            MouseClick, left, 48, 40
-            Sleep, 1000
-            XacNhan:="|<>*102$47.w1XU0M01s3701k01s6C07k03sAQ0Bk07kMs0000Dklk0000PlXj3yCwnX7zDwTxbaCS0wtv7gQQ0tlq7sssDnXgDlllzb7MDXXb7CCkD77ACQRUSC6QQsv0QQQztlq0MstxnXU0000U000000000000000U0000003U0000002008"
-            if (ok:=FindText(X := "wait", Y := 1, 946-150000, 384-150000, 946+150000, 384+150000, 0, 0, XacNhan))
-            {
-                MouseClick, left, X, Y
-                break
-            }
+            MouseClick, left, X, Y
+            break
         }
     }
     
@@ -930,16 +926,37 @@ Login(username) {
         ; add new
         MouseClick, left, 300, 342
         Sleep, 3000
+
         ; zing logo
-        MouseClick, left, 88, 265
-        Sleep, 3000
-        Send, {Text}%username%
-        Sleep, 1000
-        Send, {Tab}
-        Send, {Text}Huy142857
-        Sleep, 1000
-        Send, {Enter}
-        Sleep, 20000
+        if (userInfo.type = "zing") {
+          MouseClick, left, 88, 265
+          Sleep, 3000
+          Send, {Text}%CurrentUsername%
+          Sleep, 1000
+          Send, {Tab}
+          Send, {Text}Huy142857
+          Sleep, 1000
+          Send, {Enter}
+          Sleep, 20000
+        }
+
+        ; email logo
+        if (userInfo.type = "email") {
+          MouseClick, left, 95, 310
+          Sleep, 3000
+          MouseClick, left, 400, 500
+          Sleep, 1000
+          Send, {Text}%CurrentUsername%
+          Sleep, 1000
+          Send, {Enter}
+          Sleep, 1000
+          Send, {Text}Huy142857
+          Sleep, 1000
+          Send, {Enter}
+          Sleep, 2000
+          MouseClick, left, 626, 253
+          Sleep, 2000
+        }
 
         ; Dong y dieu khoan
         MouseClick, left, 120, 222
@@ -1633,10 +1650,27 @@ BanCa() {
 Full10AccTo(startPos := 0, modehl := 0) {
     global MenuMonAn, EnableAutoMenuMonAn
     ShowFunctionTooltip("Full10AccTo")
-    Loop % (10 - startPos)
+
+    userList := []
+    userList.Push({name: "rrntt0", type: "zing"})
+    userList.Push({name: "rrntt1", type: "zing"})
+    userList.Push({name: "rrntt2", type: "zing"})
+    userList.Push({name: "rrntt3", type: "zing"})
+    userList.Push({name: "rrntt4", type: "zing"})
+    userList.Push({name: "rrntt5", type: "zing"})
+    userList.Push({name: "rrntt6", type: "zing"})
+    userList.Push({name: "rrntt7", type: "zing"})
+    userList.Push({name: "rrntt8", type: "zing"})
+    userList.Push({name: "rrntt9", type: "zing"})
+    userList.Push({name: "hixof99797@agoalz.com", type: "email"})
+    userList.Push({name: "kayibo2179@agoalz.com", type: "email"})    
+
+    Loop % (userList.Length() - startPos)
     {
-        accountNum := startPos + A_Index - 1
-        username := "rrntt" . accountNum
+        index := startPos + A_Index
+        userInfo := userList[index]
+        username := userInfo.name
+        accountNum := index - 1
 
         if (EnableAutoMenuMonAn == 1) {
             if (accountNum >= 1 && accountNum <= 3)
@@ -1647,7 +1681,7 @@ Full10AccTo(startPos := 0, modehl := 0) {
                 MenuMonAn := 3
         }
 
-        Login(username)
+        Login(userInfo)
         FullAccTo(username, modehl)
     }
   return
