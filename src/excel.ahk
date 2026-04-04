@@ -74,6 +74,12 @@ SuKienBatNgo() {
     {
       SkipHuongDan()
     }
+
+    ThoiTiet2:="|<>*97$48.00000000sDzzzy7z07zzzk1zU1zzzy0Tk0Tzzzk7w07zzzz1z01zzzzwz00TzzzzzU07zzzzzk03zzzzzk7Uzzzzzs7wDzzzzw3szzzzU"
+    if (ok:=FindText(X, Y, 708-150000, 40-150000, 708+150000, 40+150000, 0, 0, ThoiTiet2))
+    {
+      SkipHuongDan()
+    }
     return
 }
 
@@ -942,20 +948,29 @@ Login(userInfo) {
 
         ; email logo
         if (userInfo.type = "email") {
-          MouseClick, left, 95, 310
-          Sleep, 3000
-          MouseClick, left, 400, 500
-          Sleep, 1000
-          Send, {Text}%CurrentUsername%
-          Sleep, 1000
-          Send, {Enter}
-          Sleep, 1000
-          Send, {Text}Huy142857
-          Sleep, 1000
-          Send, {Enter}
-          Sleep, 2000
-          MouseClick, left, 626, 253
-          Sleep, 2000
+            MouseClick, left, 95, 310
+            Sleep, 3000
+            ; fix url
+            Send, {f6}
+            Sleep, 500
+            Send, {Left}
+            Sleep, 500
+            Send, {Right 24}
+            Sleep, 1000
+            Send, {Text}login
+            Send, {Enter}
+            ; input user
+            Sleep, 1000
+            Send, {Text}%CurrentUsername%
+            Sleep, 1000
+            Send, {Enter}
+            Sleep, 1000
+            Send, {Text}Huy142857
+            Sleep, 1000
+            Send, {Enter}
+            Sleep, 2000
+            MouseClick, left, 626, 253
+            Sleep, 2000
         }
 
         ; Dong y dieu khoan
@@ -1657,16 +1672,12 @@ BanCa() {
       Sleep, 500
       ; nhan dien ca
 
-        CaCap1:="|<>*126$25.TzzzXzzzkzzzsTzzy4zzz47zzk1zzu0TzzU7zzk1zzw0Tzz07zz01zzk0Tzw07zz03zzk0zzw0Tzz07zzk1zzw0zzz0Dzzk7zzw3zzzUzzzwDzzzY"
-        if (ok:=FindText(CaCap1X, CaCap1Y, 186-150000, 182-150000, 186+150000, 182+150000, 0, 0, CaCap1))
+      CaCap1:="|<>*124$25.TzzzjzzzkzzzsTzzw5zzz0Dzzm1zzs0Tzz0DzzE1zzw0Tzy0DzzU1zzk0zzs0Dzy03zzU0zzs0Tzy07zzU3zzs0zzz0Dzzk7zzw3zzz1zzzsDzzz4"
+      if (ok:=FindText(CaCap1X, CaCap1Y, 186-150000, 125-150000, 186+150000, 125+150000, 0, 0, CaCap1))
       {
         MouseClick, left, CaCap1X, CaCap1Y
         Sleep, 1000
         ; Ha gia min
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
         MouseClick, left, 726, 535
         MouseClick, left, 726, 535
         MouseClick, left, 726, 535
