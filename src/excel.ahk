@@ -1447,6 +1447,17 @@ CauCa() {
         Sleep, 1000
         Send, {w up}
 
+        Sleep, 1000
+        Click, WheelDown, 1
+        Sleep, 1000
+        Send, {f down}
+        Sleep, 50
+        Send, {f up}
+        if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
+        {
+            break
+        }
+
         ; down
         Sleep, 100
         Send, {a down}
@@ -1468,6 +1479,17 @@ CauCa() {
         Sleep, 1000
         Send, {d up}
 
+        Sleep, 1000
+        Click, WheelDown, 1
+        Sleep, 1000
+        Send, {f down}
+        Sleep, 50
+        Send, {f up}
+        if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
+        {
+            break
+        }
+
         ; up
         Send, {w down}
         Sleep, 1000
@@ -1487,6 +1509,17 @@ CauCa() {
         Send, {s down}
         Sleep, 1000
         Send, {s up}
+
+        Sleep, 1000
+        Click, WheelDown, 1
+        Sleep, 1000
+        Send, {f down}
+        Sleep, 50
+        Send, {f up}
+        if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
+        {
+            break
+        }
 
         ; right
         Sleep, 100
@@ -1508,6 +1541,17 @@ CauCa() {
         Send, {a down}
         Sleep, 1000
         Send, {a up}
+
+        Sleep, 1000
+        Click, WheelDown, 1
+        Sleep, 1000
+        Send, {f down}
+        Sleep, 50
+        Send, {f up}
+        if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
+        {
+            break
+        }
     }
 
     CheckCauca()
