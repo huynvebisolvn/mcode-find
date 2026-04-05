@@ -510,10 +510,12 @@ NhanThuong(modehl) {
     Sleep, 500
     MouseClick, left, 620, 700
 
-    MouseClick, left, 780, 700
-    Sleep, 500
-    MouseClick, left, 780, 700
-    Sleep, 500
+    if (countNhanThuong = 4) {
+      MouseClick, left, 780, 700
+      Sleep, 500
+      MouseClick, left, 780, 700
+    }
+
     Sleep, 1000
     Send, {Esc}
     return
