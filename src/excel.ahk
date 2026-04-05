@@ -1737,6 +1737,8 @@ Full10AccTo(startPos := 1, modehl := 0) {
         Login(userInfo)
         FullAccTo(username, modehl)
     }
+
+  Shutdown, 1
   return
 }
 
