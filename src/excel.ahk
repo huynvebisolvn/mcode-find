@@ -1718,8 +1718,6 @@ Full10AccTo(startPos := 1, modehl := 0) {
     userList.Push({name: "rrntt7", type: "zing"})
     userList.Push({name: "rrntt8", type: "zing"})
     userList.Push({name: "rrntt9", type: "zing"})
-    userList.Push({name: "hixof99797@agoalz.com", type: "email"})
-    userList.Push({name: "kayibo2179@agoalz.com", type: "email"})
 
     Loop % (userList.Length() - startPos + 1)
     {
