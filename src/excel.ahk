@@ -1709,15 +1709,15 @@ Full10AccTo(startPos := 1, modehl := 0) {
     ShowFunctionTooltip("Full10AccTo")
 
     userList := []
-    userList.Push({name: "rrntt1", type: "zing"})
-    userList.Push({name: "rrntt2", type: "zing"})
-    userList.Push({name: "rrntt3", type: "zing"})
-    userList.Push({name: "rrntt4", type: "zing"})
-    userList.Push({name: "rrntt5", type: "zing"})
-    userList.Push({name: "rrntt6", type: "zing"})
-    userList.Push({name: "rrntt7", type: "zing"})
-    userList.Push({name: "rrntt8", type: "zing"})
-    userList.Push({name: "rrntt9", type: "zing"})
+    userList.Push({name: "rrntt1", type: "zing", monan: 1})
+    userList.Push({name: "rrntt2", type: "zing", monan: 1})
+    userList.Push({name: "rrntt3", type: "zing", monan: 1})
+    userList.Push({name: "rrntt4", type: "zing", monan: 2})
+    userList.Push({name: "rrntt5", type: "zing", monan: 2})
+    userList.Push({name: "rrntt6", type: "zing", monan: 2})
+    userList.Push({name: "rrntt7", type: "zing", monan: 3})
+    userList.Push({name: "rrntt8", type: "zing", monan: 3})
+    userList.Push({name: "rrntt9", type: "zing", monan: 3})
 
     Loop % (userList.Length() - startPos + 1)
     {
@@ -1726,12 +1726,7 @@ Full10AccTo(startPos := 1, modehl := 0) {
         username := userInfo.name
 
         if (EnableAutoMenuMonAn == 1) {
-            if (index >= 1 && index <= 3)
-                MenuMonAn := 1
-            else if (index >= 4 && index <= 6)
-                MenuMonAn := 2
-            else if (index >= 7 && index <= 9)
-                MenuMonAn := 3
+            MenuMonAn := userInfo.monan
         }
 
         Login(userInfo)
