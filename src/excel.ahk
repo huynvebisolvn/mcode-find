@@ -1704,6 +1704,35 @@ BanCa() {
 }
 
 
+MuaNgheu() {
+    ShowFunctionTooltip("MuaNgheu")
+    Send, {f5}
+    Sleep, 2500
+    MouseClick, left, 818, 735
+    Hoat:="|<>*91$10.7US1s7US000001s7US1s7W"
+    if (ok:=FindText(HoatX := "wait", HoatY := 2, 52-150000, 393-150000, 52+150000, 393+150000, 0, 0, Hoat))
+    {
+        MouseClick, left, HoatX, HoatY
+        Cauca:="|<>*90$24.wzDzkC7zaDrzbDzz7w6A7xmA7xWA7w2A78WAX1X8U830sQ/aU"
+        if (ok:=FindText(CaucaX := "wait", CaucaY := 2, 273-150000, 75-150000, 273+150000, 75+150000, 0, 0, Cauca))
+        {
+            MouseClick, left, CaucaX, CaucaY
+            Ngheu:="|<>*146$40.zzy07zzzk003zzk0007zw00007zU0000Dw00000zk00003z000007w00000Tk00001z000007w00000Pk00001g000006m00000H000001wE00004k000001000000A000000E0000000000002080000M000001k0k000DU1k001y1Vs00Tw01y07zs17zzzzs1Dzzzzk1zzzzzk0zzzzzU0Tzzzzk007zzzs01zs"
+            if (ok:=FindText(NgheuX := "wait", NgheuY := 2, 915-150000, 197-150000, 915+150000, 197+150000, 0, 0, Ngheu))
+            {
+                MouseClick, left, NgheuX, NgheuY
+                Sleep, 1000
+                Send, {v}
+                Sleep, 1000
+                MouseClick, left, 500, 0
+            }
+        }
+    }
+    Sleep, 1000
+    Send, {Esc}
+}
+
+
 Full10AccTo(startPos := 1, modehl := 0) {
     global MenuMonAn, EnableAutoMenuMonAn
     ShowFunctionTooltip("Full10AccTo")
@@ -1798,6 +1827,10 @@ FullAccTo(username, modehl) {
           Sleep, 1000
           NhanThuong(modehl)
         }
+
+        ; moi ngay ta mua 1 con ngheu
+        Sleep, 1000
+        MuaNgheu()
 
         Sleep, 1000
         LogoutNhanVat()
