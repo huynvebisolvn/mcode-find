@@ -1207,10 +1207,14 @@ MenuNhiemVuNgay() {
 
     Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an
     Gui, Add, Checkbox, vEnableMuaNguyenLieu Checked w200, Mua Nguyen Lieu
+
+    Gui, Add, Text, w200, ==========
     Gui, Add, Checkbox, vEnableAutoMenuMonAn Checked w200, Auto Mon An
+    Gui, Add, Text, w200, ==========
     Gui, Add, Radio, vMenuMonAn Checked w200, Canh Thach Tuy
     Gui, Add, Radio, w200, Sashimi
     Gui, Add, Radio, w200, Ca Chua Tay Ho
+    Gui, Add, Text, w200, ==========
 
     Gui, Add, Button, gHoatLuc3 w200, Daily + Dao khoan
     Gui, Add, Checkbox, vEnableMuaDatCat Checked w200, Mua Dat Cat
