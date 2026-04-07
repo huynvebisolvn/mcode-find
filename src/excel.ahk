@@ -111,6 +111,10 @@ return
   ShowPriceTargetSelector()
 return
 
+]::
+  MenuForNewClone()
+return
+
 \::
   MenuNhiemVuNgay()
 return
@@ -1254,6 +1258,29 @@ MenuNhiemVuNgay() {
     return
 }
 
+MenuForNewClone() {
+    ShowFunctionTooltip("MenuForNewClone")
+    ; Create GUI
+    Gui, PriceSelect:New
+    Gui, Font, s10
+    
+    Gui, Add, Edit, vStartPos w100, 1
+
+    Gui, Add, Button, gNewCloneHoatLuc1 Default w200, Daily + Cau ca
+
+    Gui, Show,, Menu
+    return
+
+    NewCloneHoatLuc1:
+        global StartPos
+        Gui, Submit, NoHide
+        Gui, Destroy
+        FullAccCloneMoi(StartPos)
+    return
+
+    return
+}
+
 
 MuaGiaVi() {
     global MenuMonAn
@@ -1722,7 +1749,6 @@ Full10AccTo(startPos := 1, modehl := 0) {
     userList.Push({name: "rrntt7", monan: 3})
     userList.Push({name: "rrntt8", monan: 3})
     userList.Push({name: "rrntt9", monan: 3})
-    userList.Push({name: "thaonnl1", monan: 1})
 
     Loop % (userList.Length() - startPos + 1)
     {
@@ -1832,6 +1858,76 @@ FullAccTo(username, modehl) {
     return
 }
 
+FullAccToCloneMoi(username) {
+    ShowFunctionTooltip("FullAccToCloneMoi")
+    Loop, 4
+    {
+        daNhan := CheckNhiemVuNgay()
+        if (not daNhan)
+        {
+          Chuphinh()
+          Sleep, 1000
+          QuaDuNgoan()
+          Sleep, 1000
+          Monghoaluc()
+          Sleep, 1000
+          Haocam()
+        }
+        ; moi ngay ta mua 1 con ngheu
+        Sleep, 1000
+        MuaNgheu()
+        Sleep, 1000
+        CauCa()
+        Sleep, 1000
+        Send, {Esc}
+
+        if (not daNhan)
+        {
+          Sleep, 1000
+          NhanThuong(modehl)
+        }
+
+        Sleep, 1000
+        LogoutNhanVat()
+        if (A_Index < 6)
+        {
+            DoiNhanVat()
+            Sleep, 1000
+        }
+        else
+        {
+          ; wait to success
+          loop
+          {
+            LoginSuccess:="|<>*100$15.z3zrjU0000zzw01U0A01UYA4VUYA4VUYA4VUYA01U0A01U0A"
+            if (ok:=FindText(LoginSuccessX := "wait", LoginSuccessY := 3, 962-150000, 626-150000, 962+150000, 626+150000, 0, 0, LoginSuccess))
+            {
+              break
+            }
+            Sleep, 2000
+          }
+        }
+    }
+    return
+}
+
+FullAccCloneMoi(startPos := 1) {
+    ShowFunctionTooltip("FullAccCloneMoi")
+
+    userList := []
+    userList.Push({name: "thaonnl1"})
+
+    Loop % (userList.Length() - startPos + 1)
+    {
+        index := startPos + A_Index - 1
+        userInfo := userList[index]
+        username := userInfo.name
+
+        Login(userInfo)
+        FullAccToCloneMoi(username)
+    }
+  return
+}
 
 ;===== Copy The Following Functions To Your Own Code Just once =====
 
