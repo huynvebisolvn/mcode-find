@@ -936,44 +936,15 @@ Login(userInfo) {
         Sleep, 3000
 
         ; zing logo
-        if (userInfo.type = "zing") {
-          MouseClick, left, 88, 265
-          Sleep, 3000
-          Send, {Text}%CurrentUsername%
-          Sleep, 1000
-          Send, {Tab}
-          Send, {Text}Huy142857
-          Sleep, 1000
-          Send, {Enter}
-          Sleep, 20000
-        }
-
-        ; email logo
-        if (userInfo.type = "email") {
-            MouseClick, left, 95, 310
-            Sleep, 3000
-            ; fix url
-            Send, {f6}
-            Sleep, 500
-            Send, {Left}
-            Sleep, 500
-            Send, {Right 24}
-            Sleep, 1000
-            Send, {Text}login
-            Send, {Enter}
-            ; input user
-            Sleep, 1000
-            Send, {Text}%CurrentUsername%
-            Sleep, 1000
-            Send, {Enter}
-            Sleep, 1000
-            Send, {Text}Huy142857
-            Sleep, 1000
-            Send, {Enter}
-            Sleep, 2000
-            MouseClick, left, 626, 253
-            Sleep, 2000
-        }
+        MouseClick, left, 88, 265
+        Sleep, 3000
+        Send, {Text}%CurrentUsername%
+        Sleep, 1000
+        Send, {Tab}
+        Send, {Text}Huy142857
+        Sleep, 1000
+        Send, {Enter}
+        Sleep, 20000
 
         ; Dong y dieu khoan
         MouseClick, left, 120, 222
@@ -1738,15 +1709,16 @@ Full10AccTo(startPos := 1, modehl := 0) {
     ShowFunctionTooltip("Full10AccTo")
 
     userList := []
-    userList.Push({name: "rrntt1", type: "zing", monan: 1})
-    userList.Push({name: "rrntt2", type: "zing", monan: 1})
-    userList.Push({name: "rrntt3", type: "zing", monan: 1})
-    userList.Push({name: "rrntt4", type: "zing", monan: 2})
-    userList.Push({name: "rrntt5", type: "zing", monan: 2})
-    userList.Push({name: "rrntt6", type: "zing", monan: 2})
-    userList.Push({name: "rrntt7", type: "zing", monan: 3})
-    userList.Push({name: "rrntt8", type: "zing", monan: 3})
-    userList.Push({name: "rrntt9", type: "zing", monan: 3})
+    userList.Push({name: "rrntt1", monan: 1})
+    userList.Push({name: "rrntt2", monan: 1})
+    userList.Push({name: "rrntt3", monan: 1})
+    userList.Push({name: "rrntt4", monan: 2})
+    userList.Push({name: "rrntt5", monan: 2})
+    userList.Push({name: "rrntt6", monan: 2})
+    userList.Push({name: "rrntt7", monan: 3})
+    userList.Push({name: "rrntt8", monan: 3})
+    userList.Push({name: "rrntt9", monan: 3})
+    userList.Push({name: "thaonnl1", monan: 1})
 
     Loop % (userList.Length() - startPos + 1)
     {
