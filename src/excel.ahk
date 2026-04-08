@@ -426,7 +426,7 @@ CountOk() {
 NhanThuong(modehl) {
     ShowFunctionTooltip("NhanThuong")
     countNhanThuong := 4
-    if (modehl == 0) {
+    if (modehl == 0 || modehl == 1) {
         countNhanThuong := 3
     }
     Send, {F1}
