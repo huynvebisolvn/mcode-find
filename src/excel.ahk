@@ -1860,7 +1860,7 @@ FullAccTo(username, modehl) {
 
 FullAccToCloneMoi(username) {
     ShowFunctionTooltip("FullAccToCloneMoi")
-    Loop, 4
+    Loop, 6
     {
         daNhan := CheckNhiemVuNgay()
         if (not daNhan)
