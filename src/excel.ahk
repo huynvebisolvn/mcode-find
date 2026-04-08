@@ -1098,6 +1098,9 @@ CanhThachTuy() {
             {
                 ; Khong tim thay LuaNuoc
                 notFoundLuaNuocCount++
+                if (notFoundLuaNuocCount = 1) {
+                  MuaGiaViAuto(0, 3)
+                }
                 if (notFoundLuaNuocCount >= 3)
                 {
                     break  ; Thoat neu khong tim thay LuaNuoc 3 lan
@@ -1111,7 +1114,7 @@ CanhThachTuy() {
             notFoundGiaViCount++
             ; khong tim thay gia vi lan dau tien
             if (notFoundGiaViCount = 1) {
-                MuaGiaViAuto(1, 3)
+                MuaGiaViAuto(1, 0)
             }
             if (notFoundGiaViCount >= 3)
             {
@@ -1303,37 +1306,41 @@ MuaGiaViAuto(slgiavi := 0, slluanuoc := 0) {
             {
                 MouseClick, left, Step3X, Step3Y
                 Sleep, 1000
-                Giavi:="|<>*127$58.zzzzzXzzzzzzzzsHzzzzzzzy03zzzzzzz007zzzzzzs007zzzzzz000Dzzzvzk000Dzzz3w0000Tzzk3U0000Tzw0800000zzU1000000jw04000000T00U000001y020000007i04000000zw08000003rs0k00000Tzs1k00003vzk7U0000zzzU0U000Txzz00w007Vzzz00703U1zzzk020k0TzrzU04403zzjy00700zzzDw00007zzwTk0000zzzyTk000DzzzuzU001zzzzzzU00Dzzzzzz001zzzzzzy00Dzzzzzzy01zzzzzzzw0Dzzzzzzzw1zzzzzzzzs7zzzzzzzzszzzzzzzzzrzzzs"
-                if (ok:=FindText(GiaviX := "wait", GiaviY := 1, 545-150000, 152-150000, 545+150000, 152+150000, 0, 0, Giavi))
-                {
-                  MouseClick, left, GiaviX, GiaviY
+
+                ; mua gia vi
+                if (slgiavi != 0) {
+                    Giavi:="|<>*127$58.zzzzzXzzzzzzzzsHzzzzzzzy03zzzzzzz007zzzzzzs007zzzzzz000Dzzzvzk000Dzzz3w0000Tzzk3U0000Tzw0800000zzU1000000jw04000000T00U000001y020000007i04000000zw08000003rs0k00000Tzs1k00003vzk7U0000zzzU0U000Txzz00w007Vzzz00703U1zzzk020k0TzrzU04403zzjy00700zzzDw00007zzwTk0000zzzyTk000DzzzuzU001zzzzzzU00Dzzzzzz001zzzzzzy00Dzzzzzzy01zzzzzzzw0Dzzzzzzzw1zzzzzzzzs7zzzzzzzzszzzzzzzzzrzzzs"
+                    if (ok:=FindText(GiaviX := "wait", GiaviY := 1, 545-150000, 152-150000, 545+150000, 152+150000, 0, 0, Giavi))
+                    {
+                      MouseClick, left, GiaviX, GiaviY
+                    }
+                    ; plus
+                    MouseClick, left, 845, 541
+                    Sleep, 500
+                    if (slgiavi = 1) {
+                        MouseClick, left, 834, 307 ;1
+                    }
+                    if (slgiavi = 2) {
+                        MouseClick, left, 890, 307 ;2
+                    }
+                    if (slgiavi = 3) {
+                        MouseClick, left, 950, 307 ;3
+                    }
+                    Sleep, 500
+                    MouseClick, left, 897, 485 ;0
+                    Sleep, 500
+                    MouseClick, left, 897, 485 ;0
+                    Sleep, 500
+                    Sleep, 1000
+                    Send, {v}
+                    Sleep, 1000
+                    Send, {v}
+                    Sleep, 1000
+                    MouseClick, left, 640, 480
                 }
-                ; plus
-                MouseClick, left, 845, 541
-                Sleep, 500
-                if (slgiavi = 1) {
-                    MouseClick, left, 834, 307 ;1
-                }
-                if (slgiavi = 2) {
-                    MouseClick, left, 890, 307 ;2
-                }
-                if (slgiavi = 3) {
-                    MouseClick, left, 950, 307 ;3
-                }
-                Sleep, 500
-                MouseClick, left, 897, 485 ;0
-                Sleep, 500
-                MouseClick, left, 897, 485 ;0
-                Sleep, 500
-                Sleep, 1000
-                Send, {v}
-                Sleep, 1000
-                Send, {v}
-                Sleep, 1000
-                MouseClick, left, 640, 480
                 
-                ; mua lua nuoc
-                if (slluanuoc = 3) {
+                ; mua lua nuoc max
+                if (slluanuoc != 0) {
                     LuaNuoc:="|<>*93$28.xgvtvKHNgxtBaknYqP36PNgwNwwTU"
                     if (ok:=FindText(LuaNuocX := "wait", LuaNuocY := 2, 394-150000, 336-150000, 394+150000, 336+150000, 0, 0, LuaNuoc))
                     {
