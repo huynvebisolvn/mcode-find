@@ -1303,6 +1303,11 @@ MuaGiaViAuto(slgiavi := 0, slluanuoc := 0) {
             {
                 MouseClick, left, Step3X, Step3Y
                 Sleep, 1000
+                Giavi:="|<>*127$58.zzzzzXzzzzzzzzsHzzzzzzzy03zzzzzzz007zzzzzzs007zzzzzz000Dzzzvzk000Dzzz3w0000Tzzk3U0000Tzw0800000zzU1000000jw04000000T00U000001y020000007i04000000zw08000003rs0k00000Tzs1k00003vzk7U0000zzzU0U000Txzz00w007Vzzz00703U1zzzk020k0TzrzU04403zzjy00700zzzDw00007zzwTk0000zzzyTk000DzzzuzU001zzzzzzU00Dzzzzzz001zzzzzzy00Dzzzzzzy01zzzzzzzw0Dzzzzzzzw1zzzzzzzzs7zzzzzzzzszzzzzzzzzrzzzs"
+                if (ok:=FindText(GiaviX := "wait", GiaviY := 1, 545-150000, 152-150000, 545+150000, 152+150000, 0, 0, Giavi))
+                {
+                  MouseClick, left, GiaviX, GiaviY
+                }
                 ; plus
                 MouseClick, left, 845, 541
                 Sleep, 500
