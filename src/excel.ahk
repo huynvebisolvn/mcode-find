@@ -6,7 +6,6 @@
 global SelectedPriceTarget := ""
 global SelectedTarget := ""
 global PriceTargets := {}
-global EnableMuaNguyenLieu := 1
 global EnableMuaDatCat := 1
 global EnableBanKhoan := 0
 global EnableBanCa := 0
@@ -967,12 +966,12 @@ return
 SashimiCaBac() {
     ShowFunctionTooltip("SashimiCaBac")
     Bang:="|<>*123$21.zxzzzbzzuzzzLzzvTtyvyULM43K1k8UT0g7y71zzzzw71z0g7kAUQ3K11nQ7yvzzzTzzTzzuzzzbzzxzw"
-    if (ok:=FindText(BangX := "wait", BangY := 1, 569-150000, 652-150000, 569+150000, 652+150000, 0, 0, Bang))
+    if (ok:=FindText(BangX := "wait", BangY := 2, 569-150000, 652-150000, 569+150000, 652+150000, 0, 0, Bang))
     {
       MouseClick, left, BangX, BangY
     }
     Bang2:="|<>*113$20.zxzzyTzzbzzyzzxjzzPz0qE85c70W1s90z1kTzzzw61y3ED1a1UOUEBg3zNzzqzzxjzzfzztzzzTy"
-    if (ok:=FindText(Bang2X := "wait", Bang2Y := 1, 482-150000, 641-150000, 482+150000, 641+150000, 0, 0, Bang2))
+    if (ok:=FindText(Bang2X := "wait", Bang2Y := 2, 482-150000, 641-150000, 482+150000, 641+150000, 0, 0, Bang2))
     {
         MouseClick, left, Bang2X, Bang2Y
     }
@@ -1028,6 +1027,10 @@ SashimiCaBac() {
         {
             ; Khong tim thay GiaVi
             notFoundGiaViCount++
+            ; khong tim thay gia vi lan dau tien
+            if (notFoundGiaViCount = 1) {
+                MuaGiaViAuto(3, 0)
+            }
             if (notFoundGiaViCount >= 3)
             {
                 break  ; Thoat neu khong tim thay GiaVi 3 lan
@@ -1106,6 +1109,10 @@ CanhThachTuy() {
         {
             ; Khong tim thay GiaVi
             notFoundGiaViCount++
+            ; khong tim thay gia vi lan dau tien
+            if (notFoundGiaViCount = 1) {
+                MuaGiaViAuto(1, 3)
+            }
             if (notFoundGiaViCount >= 3)
             {
                 break  ; Thoat neu khong tim thay GiaVi 3 lan
@@ -1184,6 +1191,10 @@ CaChuaTayHo() {
         {
             ; Khong tim thay GiaVi
             notFoundGiaViCount++
+            ; khong tim thay gia vi lan dau tien
+            if (notFoundGiaViCount = 1) {
+                MuaGiaViAuto(2, 0)
+            }
             if (notFoundGiaViCount >= 3)
             {
                 break  ; Thoat neu khong tim thay GiaVi 3 lan
@@ -1210,15 +1221,10 @@ MenuNhiemVuNgay() {
     Gui, Add, Checkbox, vEnableBanCa w200, Ban Ca
 
     Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an
-    Gui, Add, Checkbox, vEnableMuaNguyenLieu Checked w200, Mua Nguyen Lieu
-
-    Gui, Add, Text, w200, ==========
     Gui, Add, Checkbox, vEnableAutoMenuMonAn Checked w200, Auto Mon An
-    Gui, Add, Text, w200, ==========
     Gui, Add, Radio, vMenuMonAn Checked w200, Canh Thach Tuy
     Gui, Add, Radio, w200, Sashimi
     Gui, Add, Radio, w200, Ca Chua Tay Ho
-    Gui, Add, Text, w200, ==========
 
     Gui, Add, Button, gHoatLuc3 w200, Daily + Dao khoan
     Gui, Add, Checkbox, vEnableMuaDatCat Checked w200, Mua Dat Cat
@@ -1228,28 +1234,28 @@ MenuNhiemVuNgay() {
     return
 
     HoatLuc1:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
+        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 0)
     return
 
     HoatLuc2:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
+        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 1)
     return
 
     HoatLuc3:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
+        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 2)
     return
     
     HoatLuc4:
-        global StartPos, EnableMuaNguyenLieu, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
+        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 3)
@@ -1282,75 +1288,69 @@ MenuForNewClone() {
 }
 
 
-MuaGiaVi() {
-    global MenuMonAn
-    ShowFunctionTooltip("MuaGiaVi")
-    Send, {f5}
-    Sleep, 2500
-    MouseClick, left, 568, 730
-    Sleep, 1500
-    MouseClick, left, 50, 160
-    Sleep, 1500
-    MouseClick, left, 280, 65
-    Sleep, 1500
-
-    ; canh thach tuy
-    if (MenuMonAn == 1) {
-      LuaNuoc:="|<>*93$28.xgvtvKHNgxtBaknYqP36PNgwNwwTU"
-      if (ok:=FindText(LuaNuocX := "wait", LuaNuocY := 1, 394-150000, 336-150000, 394+150000, 336+150000, 0, 0, LuaNuoc))
-      {
-          MouseClick, left, LuaNuocX, LuaNuocY
-          Sleep, 1000
-          ; plus
-          MouseClick, left, 980, 547
-          Sleep, 1000
-          Send, {v}
-          Sleep, 1000
-          Send, {v}
-          Sleep, 1000
-          MouseClick, left, 640, 480
-      }
-      Sleep, 1000
-    }
-
-    Giavi:="|<>*127$58.zzzzzXzzzzzzzzsHzzzzzzzy03zzzzzzz007zzzzzzs007zzzzzz000Dzzzvzk000Dzzz3w0000Tzzk3U0000Tzw0800000zzU1000000jw04000000T00U000001y020000007i04000000zw08000003rs0k00000Tzs1k00003vzk7U0000zzzU0U000Txzz00w007Vzzz00703U1zzzk020k0TzrzU04403zzjy00700zzzDw00007zzwTk0000zzzyTk000DzzzuzU001zzzzzzU00Dzzzzzz001zzzzzzy00Dzzzzzzy01zzzzzzzw0Dzzzzzzzw1zzzzzzzzs7zzzzzzzzszzzzzzzzzrzzzs"
-    if (ok:=FindText(GiaviX := "wait", GiaviY := 1, 545-150000, 152-150000, 545+150000, 152+150000, 0, 0, Giavi))
+MuaGiaViAuto(slgiavi := 0, slluanuoc := 0) {
+    MouseClick, left, 95, 70
+    Step1Giavi:="|<>*131$36.zzzvzzzzzWzzzzw2Dzzzw03zzzU01zxz000zs4000DU80005080001U80001k40003w20003y3000Dz0M00zzk0k61zy08E3zy032Dzz000TzjU01zzzk03zzzw07zzzy0DzzzzUDzzzzkTzzzzwzzU"
+    if (ok:=FindText(Step1GiaviX := "wait", Step1GiaviY := 2, 772-150000, 405-150000, 772+150000, 405+150000, 0, 0, Step1Giavi))
     {
-      MouseClick, left, GiaviX, GiaviY
-      Sleep, 1000
-      ; plus
-      MouseClick, left, 845, 541
-      Sleep, 500
-
-      ; canh thach tuy
-      if (MenuMonAn == 1) {
-        MouseClick, left, 834, 307 ;1
-      }
-      ; Sashimi ca bac
-      if (MenuMonAn == 2) {
-        MouseClick, left, 950, 307 ;3
-      }
-      ; Ca chua tay ho
-      if (MenuMonAn == 3) {
-        MouseClick, left, 890, 307 ;2
-      }
-
-      Sleep, 500
-      MouseClick, left, 897, 485 ;0
-      Sleep, 500
-      MouseClick, left, 897, 485 ;0
-      Sleep, 500
-      Sleep, 1000
-      Send, {v}
-      Sleep, 1000
-      Send, {v}
-      Sleep, 1000
-      MouseClick, left, 640, 480
+        MouseClick, left, Step1GiaviX, Step1GiaviY
+        Step2:="|<>*85$13.yzzDzXzszyDjXXsUy0T4T7T7z7z7z7zbzry"
+        if (ok:=FindText(Step2X := "wait", Step2Y := 2, 707-150000, 508-150000, 707+150000, 508+150000, 0, 0, Step2))
+        {
+            MouseClick, left, Step2X, Step2Y
+            Step3:="|<>*149$8.TvyTrwz7sy7kwC7XlwzDbvxzU"
+            if (ok:=FindText(Step3X := "wait", Step3Y := 2, 711-150000, 474-150000, 711+150000, 474+150000, 0, 0, Step3))
+            {
+                MouseClick, left, Step3X, Step3Y
+                Sleep, 1000
+                ; plus
+                MouseClick, left, 845, 541
+                Sleep, 500
+                if (slgiavi = 1) {
+                    MouseClick, left, 834, 307 ;1
+                }
+                if (slgiavi = 2) {
+                    MouseClick, left, 890, 307 ;2
+                }
+                if (slgiavi = 3) {
+                    MouseClick, left, 950, 307 ;3
+                }
+                Sleep, 500
+                MouseClick, left, 897, 485 ;0
+                Sleep, 500
+                MouseClick, left, 897, 485 ;0
+                Sleep, 500
+                Sleep, 1000
+                Send, {v}
+                Sleep, 1000
+                Send, {v}
+                Sleep, 1000
+                MouseClick, left, 640, 480
+                
+                ; mua lua nuoc
+                if (slluanuoc = 3) {
+                    LuaNuoc:="|<>*93$28.xgvtvKHNgxtBaknYqP36PNgwNwwTU"
+                    if (ok:=FindText(LuaNuocX := "wait", LuaNuocY := 2, 394-150000, 336-150000, 394+150000, 336+150000, 0, 0, LuaNuoc))
+                    {
+                        MouseClick, left, LuaNuocX, LuaNuocY
+                        Sleep, 1000
+                        ; plus
+                        MouseClick, left, 980, 547
+                        Sleep, 1000
+                        Send, {v}
+                        Sleep, 1000
+                        Send, {v}
+                        Sleep, 1000
+                        MouseClick, left, 640, 480
+                    }
+                }
+                Sleep, 1000
+                Send, {Esc}
+                Sleep, 1000
+                MouseClick, left, 230, 65
+            }
+        }
     }
-    Sleep, 1000
-    MouseClick, left, 640, 480
-    Sleep, 1000
-    Send, {Esc}
 }
 
 
@@ -1786,9 +1786,6 @@ FullAccTo(username, modehl) {
         ; mode nau an
         if (modehl == 1)
         {
-          if (EnableMuaNguyenLieu == 1) {
-            MuaGiaVi()
-          }
           FullNauAn()
           Sleep, 1000
           Send, {Esc}
