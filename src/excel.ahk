@@ -982,6 +982,8 @@ SashimiCaBac() {
       }
     }
 
+    Sleep, 1000
+
     notFoundGiaViCount := 0
     notFoundThuySanCount := 0
     hetTheLucCount := 0
@@ -1068,6 +1070,8 @@ CanhThachTuy() {
           break
       }
     }
+
+    Sleep, 1000
 
     notFoundGiaViCount := 0
     notFoundLuaNuocCount := 0
@@ -1158,6 +1162,8 @@ CaChuaTayHo() {
           break
       }
     }
+
+    Sleep, 1000
 
     notFoundGiaViCount := 0
     notFoundThuySanCount := 0
