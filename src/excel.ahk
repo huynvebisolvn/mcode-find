@@ -965,17 +965,23 @@ return
 ; 3 GiaVi, 1 ThuySanCap1, Bang
 SashimiCaBac() {
     ShowFunctionTooltip("SashimiCaBac")
-    Bang:="|<>*123$21.zxzzzbzzuzzzLzzvTtyvyULM43K1k8UT0g7y71zzzzw71z0g7kAUQ3K11nQ7yvzzzTzzTzzuzzzbzzxzw"
-    if (ok:=FindText(BangX := "wait", BangY := 2, 569-150000, 652-150000, 569+150000, 652+150000, 0, 0, Bang))
+
+    loop, 5
     {
-      MouseClick, left, BangX, BangY
+      Bang:="|<>*123$21.zxzzzbzzuzzzLzzvTtyvyULM43K1k8UT0g7y71zzzzw71z0g7kAUQ3K11nQ7yvzzzTzzTzzuzzzbzzxzw"
+      if (ok:=FindText(BangX := "wait", BangY := 2, 569-150000, 652-150000, 569+150000, 652+150000, 0, 0, Bang))
+      {
+        MouseClick, left, BangX, BangY
+        break
+      }
+      Bang2:="|<>*113$20.zxzzyTzzbzzyzzxjzzPz0qE85c70W1s90z1kTzzzw61y3ED1a1UOUEBg3zNzzqzzxjzzfzztzzzTy"
+      if (ok:=FindText(Bang2X := "wait", Bang2Y := 2, 482-150000, 641-150000, 482+150000, 641+150000, 0, 0, Bang2))
+      {
+          MouseClick, left, Bang2X, Bang2Y
+          break
+      }
     }
-    Bang2:="|<>*113$20.zxzzyTzzbzzyzzxjzzPz0qE85c70W1s90z1kTzzzw61y3ED1a1UOUEBg3zNzzqzzxjzzfzztzzzTy"
-    if (ok:=FindText(Bang2X := "wait", Bang2Y := 2, 482-150000, 641-150000, 482+150000, 641+150000, 0, 0, Bang2))
-    {
-        MouseClick, left, Bang2X, Bang2Y
-    }
-    ; TODO
+
     notFoundGiaViCount := 0
     notFoundThuySanCount := 0
     hetTheLucCount := 0
@@ -1047,17 +1053,22 @@ SashimiCaBac() {
 CanhThachTuy() {
     ShowFunctionTooltip("CanhThachTuy")
 
-    Hoa:="|<>*107$16.kzz3vsDXUQ600Ez0Dz3zqDz8zwXzmDz9zsby4z0jU"
-    if (ok:=FindText(HoaX := "wait", HoaY := 2, 512-150000, 640-150000, 512+150000, 640+150000, 0, 0, Hoa))
+    loop, 5
     {
-        MouseClick, left, HoaX, HoaY
+      Hoa:="|<>*107$16.kzz3vsDXUQ600Ez0Dz3zqDz8zwXzmDz9zsby4z0jU"
+      if (ok:=FindText(HoaX := "wait", HoaY := 2, 512-150000, 640-150000, 512+150000, 640+150000, 0, 0, Hoa))
+      {
+          MouseClick, left, HoaX, HoaY
+          break
+      }
+      Hoa2:="|<>*106$16.00400FzVTz3zqDz8zwXzmTy9zlDU9zXTU"
+      if (ok:=FindText(Hoa2X := "wait", Hoa2Y := 2, 431-150000, 677-150000, 431+150000, 677+150000, 0, 0, Hoa2))
+      {
+          MouseClick, left, Hoa2X, Hoa2Y
+          break
+      }
     }
-    Hoa2:="|<>*106$16.00400FzVTz3zqDz8zwXzmTy9zlDU9zXTU"
-    if (ok:=FindText(Hoa2X := "wait", Hoa2Y := 2, 431-150000, 677-150000, 431+150000, 677+150000, 0, 0, Hoa2))
-    {
-        MouseClick, left, Hoa2X, Hoa2Y
-    }
-    ; TODO
+
     notFoundGiaViCount := 0
     notFoundLuaNuocCount := 0
     hetTheLucCount := 0
@@ -1132,17 +1143,22 @@ CanhThachTuy() {
 CaChuaTayHo() {
     ShowFunctionTooltip("CaChuaTayHo")
 
-    Hoa:="|<>*107$16.kzz3vsDXUQ600Ez0Dz3zqDz8zwXzmDz9zsby4z0jU"
-    if (ok:=FindText(HoaX := "wait", HoaY := 2, 512-150000, 640-150000, 512+150000, 640+150000, 0, 0, Hoa))
+    loop, 5
     {
-        MouseClick, left, HoaX, HoaY
+      Hoa:="|<>*107$16.kzz3vsDXUQ600Ez0Dz3zqDz8zwXzmDz9zsby4z0jU"
+      if (ok:=FindText(HoaX := "wait", HoaY := 2, 512-150000, 640-150000, 512+150000, 640+150000, 0, 0, Hoa))
+      {
+          MouseClick, left, HoaX, HoaY
+          break
+      }
+      Hoa2:="|<>*106$16.00400FzVTz3zqDz8zwXzmTy9zlDU9zXTU"
+      if (ok:=FindText(Hoa2X := "wait", Hoa2Y := 2, 431-150000, 677-150000, 431+150000, 677+150000, 0, 0, Hoa2))
+      {
+          MouseClick, left, Hoa2X, Hoa2Y
+          break
+      }
     }
-    Hoa2:="|<>*106$16.00400FzVTz3zqDz8zwXzmTy9zlDU9zXTU"
-    if (ok:=FindText(Hoa2X := "wait", Hoa2Y := 2, 431-150000, 677-150000, 431+150000, 677+150000, 0, 0, Hoa2))
-    {
-        MouseClick, left, Hoa2X, Hoa2Y
-    }
-    ; TODO
+
     notFoundGiaViCount := 0
     notFoundThuySanCount := 0
     hetTheLucCount := 0
@@ -1293,6 +1309,8 @@ MenuForNewClone() {
 
 MuaGiaViAuto(slgiavi := 0, slluanuoc := 0) {
     MouseClick, left, 95, 70
+    Sleep, 1000
+    MouseClick, left, 160, 110
     Step1Giavi:="|<>*131$36.zzzvzzzzzWzzzzw2Dzzzw03zzzU01zxz000zs4000DU80005080001U80001k40003w20003y3000Dz0M00zzk0k61zy08E3zy032Dzz000TzjU01zzzk03zzzw07zzzy0DzzzzUDzzzzkTzzzzwzzU"
     if (ok:=FindText(Step1GiaviX := "wait", Step1GiaviY := 2, 772-150000, 405-150000, 772+150000, 405+150000, 0, 0, Step1Giavi))
     {
