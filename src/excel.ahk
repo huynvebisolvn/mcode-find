@@ -13,6 +13,7 @@ global MenuMonAn := 1
 global EnableAutoMenuMonAn := 1
 global ShowMouseCoords := false
 global CurrentUsername := ""
+global CookingSuccessOnce := false
 
 ; Change Resolution on start
 ChangeResolutionOnly(1024, 768)
@@ -423,11 +424,22 @@ CountOk() {
 
 
 NhanThuong(modehl) {
+    global CookingSuccessOnce
     ShowFunctionTooltip("NhanThuong")
     countNhanThuong := 4
-    if (modehl == 0 || modehl == 1) {
+    if (modehl == 0) {
         countNhanThuong := 3
     }
+
+    ; Check nau an thanh cong / that bai
+    if (modehl == 1) {
+        if (CookingSuccessOnce) {
+          countNhanThuong := 4
+        } else {
+          countNhanThuong := 3
+        }
+    }
+
     Send, {F1}
     Sleep, 1000
     ; TODO
@@ -964,6 +976,7 @@ return
 
 ; 3 GiaVi, 1 ThuySanCap1, Bang
 SashimiCaBac() {
+    global CookingSuccessOnce
     ShowFunctionTooltip("SashimiCaBac")
 
     loop, 5
@@ -1017,6 +1030,8 @@ SashimiCaBac() {
                     {
                         break
                     }
+                } else {
+                  CookingSuccessOnce := true
                 }
                 MouseClick, left, 680, 580
             }
@@ -1053,6 +1068,7 @@ SashimiCaBac() {
 
 ; 1 GiaVi, 3 LuaNuoc, Hoa
 CanhThachTuy() {
+    global CookingSuccessOnce
     ShowFunctionTooltip("CanhThachTuy")
 
     loop, 5
@@ -1106,6 +1122,8 @@ CanhThachTuy() {
                     {
                         break
                     }
+                } else {
+                  CookingSuccessOnce := true
                 }
                 MouseClick, left, 680, 580
             }
@@ -1145,6 +1163,7 @@ CanhThachTuy() {
 
 ; 2 GiaVi, 2 ThuySanCap1, Hoa
 CaChuaTayHo() {
+    global CookingSuccessOnce
     ShowFunctionTooltip("CaChuaTayHo")
 
     loop, 5
@@ -1198,6 +1217,8 @@ CaChuaTayHo() {
                     {
                         break
                     }
+                } else {
+                  CookingSuccessOnce := true
                 }
                 MouseClick, left, 680, 580
             }
@@ -1392,6 +1413,9 @@ MuaGiaViAuto(slgiavi := 0, slluanuoc := 0) {
 
 FullNauAn() {
     global MenuMonAn
+    global CookingSuccessOnce
+    CookingSuccessOnce := false  ; Reset cho moi nhan vat
+
     ShowFunctionTooltip("FullNauAn")
     loop
     {
@@ -1677,7 +1701,6 @@ PhanGiaiCa() {
             MouseClick, left, PhanGiaiX, PhanGiaiY
             Sleep, 1000
             Send, {Space}
-            break
         }
         nx_position += 50
     }
