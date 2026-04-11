@@ -1846,10 +1846,22 @@ Full10AccTo(startPos := 1, modehl := 0) {
   return
 }
 
+SendCurlNotification(username, index) {
+    message := "Username: " . username . " - Index: " . index
+    jsonBody := "{""message"": """ . message . """}"
+
+    http := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+    http.Open("POST", "https://hkdk.events/7er7u1w2bs9s5d", false)
+    http.SetRequestHeader("Content-Type", "application/json")
+    http.Send(jsonBody)
+    return
+}
+
 FullAccTo(username, modehl) {
     ShowFunctionTooltip("FullAccTo")
     Loop, 6
     {
+        SendCurlNotification(username, A_Index)
         daNhan := CheckNhiemVuNgay()
         if (not daNhan)
         {
@@ -1937,6 +1949,7 @@ FullAccToCloneMoi(username) {
     ShowFunctionTooltip("FullAccToCloneMoi")
     Loop, 6
     {
+        SendCurlNotification(username, A_Index)
         daNhan := CheckNhiemVuNgay()
         if (not daNhan)
         {
