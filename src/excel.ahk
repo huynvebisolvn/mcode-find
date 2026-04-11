@@ -885,8 +885,6 @@ QuaDuNgoan() {
       MouseClick, left, 500, 0
       Sleep, 1000
     }
-    Sleep, 1000
-    Send, {Esc}
 }
 
 
