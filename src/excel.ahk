@@ -701,6 +701,66 @@ MuaDatCat() {
 }
 
 
+NhanDienGiaCho() {
+    NumberLib := "|<0>*112$6.V0AAAAAA0VU|<0>**75$8.S8M2AbZ9GLgm0gNwU|<1>**65$5.TbCIdGZ+IjU|<2>**60$7.zMl9bmvNtds43zU|<3>**50$8.TyCNiThXSrbtUwTyU|<4>**50$6.DRNlVhBR0xBDU|<5>*70$6.0007000w001U|<5>**70$7.Ts84mT1UT1XW3zU|<6>*120$6.V4DD0AAA0VU|<6>**60$8.TiD9bty3aNqNkSByU|<7>**70$5.y0bQvZMl2QU|<8>**70$6.zVAAAV0AA0VzU|<9>**70$8.DAO1aNaNUTYNwMDzU"
+    ft := FindText()
+    ok := ft.FindText(,, 557, 160, 612, 189, 0.1, 0.1, NumberLib, 1, 1)
+    if !IsObject(ok)
+        return ""
+    return ft.Ocr(ok, 15, 10, 0).text
+}
+
+NhanDienGiaBan() {
+    NumberLib := "|<0>*192$10.sT0slbaS1s7US1sX60Q3sS|<1>*196$3.0YYYYYY|<2>*190$8.kM0MCDXlwSD7Xk0008|<3>*190$8.kM0MyD71UTXwy001Us|<4>*200$9.yDlwDVtCNnAt000yDlU|<5>*189$8.U04T7lw10DXsy001Us|<6>*192$8.kM0QDlw103kw6021ks|<7>*170$8.003kwC7VkwD7VsS7Xs|<8>*192$8.UE0wC021UFUwC001ks|<9>*191$8.UE4sC3UM0A3sy001Us"
+    ft := FindText()
+    ok := ft.FindText(,, 757, 519, 882, 549, 0.1, 0.1, NumberLib, 1, 1)
+    if !IsObject(ok)
+        return ""
+    return ft.Ocr(ok, 15, 10, 0).text
+}
+
+
+CheckGiaBan() {
+    count := 0
+    gia := NhanDienGiaBan()
+    loop
+    {
+        giaNext := NhanDienGiaBan()
+        if (giaNext = gia) {
+            count++
+        } else {
+            gia := giaNext
+            count := 0
+        }
+        if (count >= 2) {
+            break
+        }
+        Sleep 100
+    }
+    return gia
+}
+
+CheckGiaCho() {
+    count := 0
+    gia := NhanDienGiaCho()
+    loop
+    {
+        giaNext := NhanDienGiaCho()
+        if (giaNext = gia) {
+            count++
+        } else {
+            gia := giaNext
+            count := 0
+        }
+        if (count >= 2) {
+            break
+        }
+        Sleep 100
+    }
+    return gia
+}
+
+
 BanKhoan() {
     ShowFunctionTooltip("BanKhoan")
     Send, {f5}
@@ -731,19 +791,17 @@ BanKhoan() {
       {
         MouseClick, left, KhoanX, KhoanY
         Sleep, 1000
-        ; Ha gia min
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
+
+        giacho := CheckGiaCho()
+        loop, 15
+        {
+            MouseClick, left, 726, 535
+            giaban := CheckGiaBan()
+            if (giaban = giacho) {
+                break
+            }
+            Sleep, 100
+        }
         Sleep, 500
         MouseClick, left, 970, 466
         Sleep, 500
@@ -1800,15 +1858,17 @@ BanCa() {
       {
         MouseClick, left, CaCap1X, CaCap1Y
         Sleep, 1000
-        ; Ha gia min
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
-        MouseClick, left, 726, 535
+
+        giacho := CheckGiaCho()
+        loop, 15
+        {
+            MouseClick, left, 726, 535
+            giaban := CheckGiaBan()
+            if (giaban = giacho) {
+                break
+            }
+            Sleep, 100
+        }
         Sleep, 500
         MouseClick, left, 970, 466
         Sleep, 500
