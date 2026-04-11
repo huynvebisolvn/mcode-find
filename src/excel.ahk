@@ -1715,12 +1715,12 @@ PhanGiaiCa() {
         else {
             MouseClick, left, nx_position, 170
         }
-        Sleep, 1000
+        Sleep, 500
         PhanGiai:="|<>*133$60.TzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzbtzzzyByT0bszzzjAyTAbzzzzzTyTAVkkzVCAyTAUYkT0A4yT0YyGT8BYyT1YUGT8A4yTDYaGT88YyTDYUGT080yTDgkKTUAEyTzzzzztzzyTzzzzz1zzyTzzzzzbzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyTzzzzzzzzyjzzzzzzzzxU"
         if (ok:=FindText(PhanGiaiX, PhanGiaiY, 630-150000, 418-150000, 630+150000, 418+150000, 0, 0, PhanGiai))
         {
             MouseClick, left, PhanGiaiX, PhanGiaiY
-            Sleep, 1000
+            Sleep, 500
             Send, {Space}
         }
         nx_position += 50
