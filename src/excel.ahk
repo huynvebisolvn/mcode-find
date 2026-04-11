@@ -849,19 +849,17 @@ DoiNhanVat() {
         loop
         {
             SkipHuongDan(1000)
-            Send, {Esc}
-            Sleep, 1000
-            Nghe:="|<>*122$31.7DyTzVbzByIHUUQ39gF4lkb9W0sFgl/SACMbj6zAE7n1aADzUTzzzrDzzzkDzzU"
-            if (ok:=FindText(NgheX := "wait", NgheY := 5, 702-150000, 261-150000, 702+150000, 261+150000, 0, 0, Nghe))
+            SettingIcon:="|<>*170$13.kXsMwCM4020l0zzzzU8U4021b3lXsFs"
+            if (ok:=FindText(SettingIconX := "wait", SettingIconY := 1, 991-150000, 23-150000, 991+150000, 23+150000, 0, 0, SettingIcon))
             {
                 SkipHuongDan(1000)
                 break
             }
-            Sleep, 1000
         }
         break
       }
     }
+    ShowFunctionTooltip("DoiNhanVat OK")
     return
 }
 
@@ -909,12 +907,11 @@ CheckNhiemVuNgay() {
 }
 
 
-Login(userInfo) {
+Login(username) {
     ShowFunctionTooltip("Login")
     global CurrentUsername
-    CurrentUsername := userInfo.name
+    CurrentUsername := username
 
-    ShowFunctionTooltip("Login ben trong")
     loop, 3
     {
         Sleep, 1000
@@ -929,46 +926,70 @@ Login(userInfo) {
     }
     
     CleanCache:="|<>*194$17.z1zs0zU0y00s01k011U240480QU0t01q03c03E0Sk0xU3zU7z0Tz1zxizllw10E40000U"
-    if (ok:=FindText(CleanCacheX := "wait", CleanCacheY := 1, 993-150000, 33-150000, 993+150000, 33+150000, 0, 0, CleanCache))
+    if (ok:=FindText(CleanCacheX := "wait", CleanCacheY := 5, 993-150000, 33-150000, 993+150000, 33+150000, 0, 0, CleanCache))
     {
         Sleep, 1000
         MouseClick, left, CleanCacheX, CleanCacheY
         Sleep, 1000
         MouseClick, left, CleanCacheX, CleanCacheY
-        Sleep, 3000
+        Sleep, 1000
 
         ; account
-        MouseClick, left, 98, 343
-        Sleep, 1000
-        ; remove
-        MouseClick, left, 330, 213
-        Sleep, 1000
-        MouseClick, left, 278, 344
-        
-        Sleep, 1000
-        ; add new
-        MouseClick, left, 300, 342
-        Sleep, 3000
+        Plus:="|<>*57$18.z0zw0Dsz7nznnznbntjnxjnxC0Qjnxjnxbntrzvnznsz7w0Dz0zU"
+        if (ok:=FindText(PlusX := "wait", PlusY := 10, 585-150000, 531-150000, 585+150000, 531+150000, 0, 0, Plus))
+        {
+            ; account
+            MouseClick, left, 98, 343
+            Sleep, 1000
+            ; remove
+            MouseClick, left, 330, 213
+            Sleep, 1000
+            MouseClick, left, 278, 344
+            
+            Sleep, 1000
+            ; add new
+            MouseClick, left, 300, 342
+            Sleep, 1000
+            ZingLogo:="|<>*182$16.U0600800k07zkzy3zkTy3zsTz1zsDz1zwDzUzw7zUzy00E0000200M"
+            if (ok:=FindText(ZingLogoX := "wait", ZingLogoY := 10, 376-150000, 446-150000, 376+150000, 446+150000, 0, 0, ZingLogo))
+            {
+                ; zing logo
+                MouseClick, left, 88, 265
 
-        ; zing logo
-        MouseClick, left, 88, 265
-        Sleep, 3000
-        Send, {Text}%CurrentUsername%
-        Sleep, 1000
-        Send, {Tab}
-        Send, {Text}Huy142857
-        Sleep, 1000
-        Send, {Enter}
-        Sleep, 20000
-
-        ; Dong y dieu khoan
-        MouseClick, left, 120, 222
-        Sleep, 1000
-        MouseClick, left, 190, 273
-        Sleep, 5000
-        MouseClick, left, 510, 634
-
-        DoiNhanVat()
+                VIcon:="|<>*58$12.7s7s7s7s7s7s7s7s7l7l7V7363070T1zU"
+                if (ok:=FindText(VIconX := "wait", VIconY := 10, 418-150000, 238-150000, 418+150000, 238+150000, 0, 0, VIcon))
+                {
+                    Sleep, 1000
+                    Send, {Text}%CurrentUsername%
+                    Sleep, 1000
+                    Send, {Tab}
+                    Send, {Text}Huy142857
+                    Sleep, 1000
+                    Send, {Enter}
+                    Sleep, 1000
+                    loop
+                    {
+                        MouseClick, left, 510, 634
+                        LoginSuccess:="|<>*100$15.z3zrjU0000zzw01U0A01UYA4VUYA4VUYA4VUYA01U0A01U0A"
+                        if (ok:=FindText(LoginSuccessX := "wait", LoginSuccessY := 1, 962-150000, 626-150000, 962+150000, 626+150000, 0, 0, LoginSuccess))
+                        {
+                          break
+                        }
+                        ; Quan trong
+                        ShowFunctionTooltip("Login: wait DieuKhoan...")
+                        CheckBoxDieuKhoan:="|<>*90$20.k00s004TzsDzz3zzkzzwDzz3zzkzzwDzz3zzkzzwDzz3zzkzzwDzz3zzkTzsU00Q00C"
+                        if (ok:=FindText(CheckBoxDieuKhoanX := "wait", CheckBoxDieuKhoanY := 1, 368-150000, 411-150000, 368+150000, 411+150000, 0, 0, CheckBoxDieuKhoan))
+                        {
+                            ; Dong y dieu khoan
+                            MouseClick, left, 120, 222
+                            Sleep, 1000
+                            MouseClick, left, 190, 273
+                        }
+                    }
+                    DoiNhanVat()
+                }
+            }
+        }
     }
 return
 }
@@ -1819,7 +1840,7 @@ Full10AccTo(startPos := 1, modehl := 0) {
             MenuMonAn := userInfo.monan
         }
 
-        Login(userInfo)
+        Login(username)
         FullAccTo(username, modehl)
     }
 
@@ -1981,7 +2002,7 @@ FullAccCloneMoi(startPos := 1) {
         userInfo := userList[index]
         username := userInfo.name
 
-        Login(userInfo)
+        Login(username)
         FullAccToCloneMoi(username)
     }
   return
