@@ -1490,7 +1490,7 @@ CheckCauca() {
         MouseMove, 500, 410, 20
         Send, {LButton up}
         
-        loop, 16
+        loop, 8
         {
             if (ok:=FindText(CheckCauOk1X, CheckCauOk1Y, 392-150000, 80-150000, 392+150000, 80+150000, 0, 0, CheckCauOk1))
             {
@@ -1522,6 +1522,7 @@ CauCa() {
 
     ; chuan bi cho cau
     SettingCauca:="|<>*137$22.zkDzz0zzw3zzkDz408s001U00400001s0UDk7VzVw7y3sTsT0z0k3w00302000M001l02Dz0zzw3zzkDzz0zs"
+    FailF:="|<>*158$21.z00700D007zUDzzUzzz1zzw7zzsTzzlw"
     loop
     {
         ; left
@@ -1539,6 +1540,11 @@ CauCa() {
         if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
         {
             break
+        } else {
+          if (ok:=FindText(FailFX, FailFY, 47-150000, 33-150000, 47+150000, 33+150000, 0, 0, FailF))
+          {
+            MouseClick, left, FailFX, FailFY
+          }
         }
 
         Send, {w down}
@@ -1554,6 +1560,11 @@ CauCa() {
         if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
         {
             break
+        } else {
+          if (ok:=FindText(FailFX, FailFY, 47-150000, 33-150000, 47+150000, 33+150000, 0, 0, FailF))
+          {
+            MouseClick, left, FailFX, FailFY
+          }
         }
 
         ; down
@@ -1571,6 +1582,11 @@ CauCa() {
         if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
         {
             break
+        } else {
+          if (ok:=FindText(FailFX, FailFY, 47-150000, 33-150000, 47+150000, 33+150000, 0, 0, FailF))
+          {
+            MouseClick, left, FailFX, FailFY
+          }
         }
 
         Send, {d down}
@@ -1586,6 +1602,11 @@ CauCa() {
         if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
         {
             break
+        } else {
+          if (ok:=FindText(FailFX, FailFY, 47-150000, 33-150000, 47+150000, 33+150000, 0, 0, FailF))
+          {
+            MouseClick, left, FailFX, FailFY
+          }
         }
 
         ; up
@@ -1602,6 +1623,11 @@ CauCa() {
         if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
         {
             break
+        } else {
+          if (ok:=FindText(FailFX, FailFY, 47-150000, 33-150000, 47+150000, 33+150000, 0, 0, FailF))
+          {
+            MouseClick, left, FailFX, FailFY
+          }
         }
 
         Send, {s down}
@@ -1617,6 +1643,11 @@ CauCa() {
         if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
         {
             break
+        } else {
+          if (ok:=FindText(FailFX, FailFY, 47-150000, 33-150000, 47+150000, 33+150000, 0, 0, FailF))
+          {
+            MouseClick, left, FailFX, FailFY
+          }
         }
 
         ; right
@@ -1634,6 +1665,11 @@ CauCa() {
         if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
         {
             break
+        } else {
+          if (ok:=FindText(FailFX, FailFY, 47-150000, 33-150000, 47+150000, 33+150000, 0, 0, FailF))
+          {
+            MouseClick, left, FailFX, FailFY
+          }
         }
 
         Send, {a down}
@@ -1649,6 +1685,11 @@ CauCa() {
         if (ok:=FindText(CauX := "wait", CauY := 1, 288-150000, 697-150000, 288+150000, 697+150000, 0, 0, SettingCauca))
         {
             break
+        } else {
+          if (ok:=FindText(FailFX, FailFY, 47-150000, 33-150000, 47+150000, 33+150000, 0, 0, FailF))
+          {
+            MouseClick, left, FailFX, FailFY
+          }
         }
     }
 
