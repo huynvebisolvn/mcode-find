@@ -1973,7 +1973,8 @@ FullAccTo(username, modehl) {
           QuaDuNgoan()
           Sleep, 1000
           Monghoaluc()
-          Sleep, 1000
+          ; can thiet
+          Sleep, 2000
           Haocam()
         }
         ; mode nau an
@@ -2061,7 +2062,8 @@ FullAccToCloneMoi(username) {
           QuaDuNgoan()
           Sleep, 1000
           Monghoaluc()
-          Sleep, 1000
+          ; can thiet
+          Sleep, 2000
           Haocam()
         }
         ; moi ngay ta mua 1 con ngheu
