@@ -793,6 +793,7 @@ BanKhoan() {
         Sleep, 1000
 
         giacho := CheckGiaCho()
+        ShowFunctionTooltip("BanKhoan gia: " . giacho)
         loop, 15
         {
             MouseClick, left, 726, 535
@@ -1794,7 +1795,7 @@ CauCa() {
 
 PhanGiaiCa() {
     Send, {b}
-    Sleep, 1000
+    Sleep, 2000
     MouseClick, left, 965, 510
     Sleep, 1000
     MouseClick, left, 800, 125
@@ -1860,6 +1861,7 @@ BanCa() {
         Sleep, 1000
 
         giacho := CheckGiaCho()
+        ShowFunctionTooltip("BanCa gia: " . giacho)
         loop, 15
         {
             MouseClick, left, 726, 535
