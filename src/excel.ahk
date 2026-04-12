@@ -702,7 +702,7 @@ MuaDatCat() {
 
 
 NhanDienGiaCho() {
-    NumberLib := "|<0>*112$6.V0AAAAAA0VU|<0>**75$8.S8M2AbZ9GLgm0gNwU|<1>**65$5.TbCIdGZ+IjU|<2>**60$7.zMl9bmvNtds43zU|<3>**50$8.TyCNiThXSrbtUwTyU|<4>**50$6.DRNlVhBR0xBDU|<5>*70$6.0007000w001U|<5>**70$7.Ts84mT1UT1XW3zU|<6>*120$6.V4DD0AAA0VU|<6>**60$8.TiD9bty3aNqNkSByU|<7>**70$5.y0bQvZMl2QU|<8>**70$6.zVAAAV0AA0VzU|<9>**70$8.DAO1aNaNUTYNwMDzU"
+    NumberLib := "|<0>*112$6.V0AAAAAA0VU|<0>**75$8.S8M2AbZ9GLgm0gNwU|<1>*114$3.UYYYYU|<1>**65$5.TbCIdGZ+IjU|<2>*114$6.U0Awslnb00U|<2>**60$7.zMl9bmvNtds43zU|<3>*114$6.V4QsVUww01U|<3>**50$8.TyCNiThXSrbtUwTyU|<4>*117$6.wsskoY00wwU|<4>**50$6.DRNlVhBR0xBDU|<5>*70$6.0007000w001U|<5>**70$7.Ts84mT1UT1XW3zU|<6>*120$6.V4DD0AAA0VU|<6>**60$8.TiD9bty3aNqNkSByU|<7>*115$6.0UstlnXXbbU|<7>**70$5.y0bQvZMl2QU|<8>*120$6.n0AA010AA0VU|<8>**70$6.zVAAAV0AA0VzU|<9>*134$6.n0AQA0ww01U|<9>**70$8.DAO1aNaNUTYNwMDzU"
     ft := FindText()
     ok := ft.FindText(,, 557, 160, 612, 189, 0.1, 0.1, NumberLib, 1, 1)
     if !IsObject(ok)
@@ -799,18 +799,18 @@ BanKhoan() {
             MouseClick, left, 726, 535
             giaban := CheckGiaBan()
             if (giaban = giacho) {
+                Sleep, 500
+                MouseClick, left, 970, 466
+                Sleep, 500
+                ; len ke
+                LenKe:="|<>*132$23.s3U1kD03UG07040C0wrQ6xzsAvDkzaDVyAT3UMy3UlzrtXT7X7"
+                if (ok:=FindText(LenKeX := "wait", LenKeY := 3, 933-150000, 673-150000, 933+150000, 673+150000, 0, 0, LenKe))
+                {
+                  MouseClick, left, LenKeX, LenKeY
+                }
                 break
             }
             Sleep, 100
-        }
-        Sleep, 500
-        MouseClick, left, 970, 466
-        Sleep, 500
-        ; len ke
-        LenKe:="|<>*132$23.s3U1kD03UG07040C0wrQ6xzsAvDkzaDVyAT3UMy3UlzrtXT7X7"
-        if (ok:=FindText(LenKeX := "wait", LenKeY := 3, 933-150000, 673-150000, 933+150000, 673+150000, 0, 0, LenKe))
-        {
-          MouseClick, left, LenKeX, LenKeY
         }
       }
     }
@@ -1800,6 +1800,9 @@ PhanGiaiCa() {
     Sleep, 1000
     MouseClick, left, 800, 125
     Sleep, 1000
+    
+    MouseClick, left, 905, 735
+    Sleep, 1000
 
     nx_position := 680
     loop, 12
@@ -1867,18 +1870,18 @@ BanCa() {
             MouseClick, left, 726, 535
             giaban := CheckGiaBan()
             if (giaban = giacho) {
+                Sleep, 500
+                MouseClick, left, 970, 466
+                Sleep, 500
+                ; len ke
+                LenKe:="|<>*132$23.s3U1kD03UG07040C0wrQ6xzsAvDkzaDVyAT3UMy3UlzrtXT7X7"
+                if (ok:=FindText(LenKeX := "wait", LenKeY := 3, 933-150000, 673-150000, 933+150000, 673+150000, 0, 0, LenKe))
+                {
+                  MouseClick, left, LenKeX, LenKeY
+                }
                 break
             }
             Sleep, 100
-        }
-        Sleep, 500
-        MouseClick, left, 970, 466
-        Sleep, 500
-        ; len ke
-        LenKe:="|<>*132$23.s3U1kD03UG07040C0wrQ6xzsAvDkzaDVyAT3UMy3UlzrtXT7X7"
-        if (ok:=FindText(LenKeX := "wait", LenKeY := 3, 933-150000, 673-150000, 933+150000, 673+150000, 0, 0, LenKe))
-        {
-          MouseClick, left, LenKeX, LenKeY
         }
       }
     }
