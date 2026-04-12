@@ -803,11 +803,7 @@ BanKhoan() {
                 MouseClick, left, 970, 466
                 Sleep, 500
                 ; len ke
-                LenKe:="|<>*132$23.s3U1kD03UG07040C0wrQ6xzsAvDkzaDVyAT3UMy3UlzrtXT7X7"
-                if (ok:=FindText(LenKeX := "wait", LenKeY := 3, 933-150000, 673-150000, 933+150000, 673+150000, 0, 0, LenKe))
-                {
-                  MouseClick, left, LenKeX, LenKeY
-                }
+                MouseClick, left, 888, 670
                 break
             }
             Sleep, 100
@@ -1874,11 +1870,7 @@ BanCa() {
                 MouseClick, left, 970, 466
                 Sleep, 500
                 ; len ke
-                LenKe:="|<>*132$23.s3U1kD03UG07040C0wrQ6xzsAvDkzaDVyAT3UMy3UlzrtXT7X7"
-                if (ok:=FindText(LenKeX := "wait", LenKeY := 3, 933-150000, 673-150000, 933+150000, 673+150000, 0, 0, LenKe))
-                {
-                  MouseClick, left, LenKeX, LenKeY
-                }
+                MouseClick, left, 888, 670
                 break
             }
             Sleep, 100
