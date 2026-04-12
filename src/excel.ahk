@@ -2110,6 +2110,7 @@ FullAccCloneMoi(startPos := 1) {
     userList.Push({name: "thaonnl1"})
     userList.Push({name: "thaonnl2"})
     userList.Push({name: "thaonnl3"})
+    userList.Push({name: "rrntt0"})
 
     Loop % (userList.Length() - startPos + 1)
     {
