@@ -2068,6 +2068,10 @@ FullAccToCloneMoi(username) {
         Sleep, 1000
         CauCa()
         Sleep, 1000
+        PhanGiaiCa()
+        Sleep, 1000
+        BanCa()
+        Sleep, 1000
         Send, {Esc}
 
         if (not daNhan)
