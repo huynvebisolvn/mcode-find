@@ -288,7 +288,7 @@ Chuphinh() {
 }
 
 
-Monghoaluc() {
+Monghoaluc(modehl := 0) {
     ShowFunctionTooltip("Monghoaluc")
     loop
     {
@@ -311,20 +311,25 @@ Monghoaluc() {
         break
       }
     }
-    Thu:="|<>*171$18.U01k03M07A0C60Q7Us7lwCvyQT6kC3U"
-    if (ok:=FindText(ThuX := "wait", ThuY := 1, 25-150000, 187-150000, 25+150000, 187+150000, 0, 0, Thu))
+    ; Chi nhan thu khi dao khoan
+    if (modehl == 2)
     {
-      MouseClick, left, ThuX, ThuY
-
-      NhanNhanh:="|<>*117$34.0M00301U00A06000kyTbbnvRy3PhwqMBannNbqPDBaHNgwqPxannNaqPC"
-      if (ok:=FindText(NhanNhanhX := "wait", NhanNhanhY := 1, 285-150000, 739-150000, 285+150000, 739+150000, 0, 0, NhanNhanh))
+      Thu:="|<>*171$18.U01k03M07A0C60Q7Us7lwCvyQT6kC3U"
+      if (ok:=FindText(ThuX := "wait", ThuY := 1, 25-150000, 187-150000, 25+150000, 187+150000, 0, 0, Thu))
       {
-        MouseClick, left, NhanNhanhX, NhanNhanhY
-        Sleep, 1000
-        MouseClick, left, MongHoaX, MongHoaY
-        Sleep, 500
-        MouseClick, left, MongHoaX, MongHoaY
+        MouseClick, left, ThuX, ThuY
+
+        NhanNhanh:="|<>*117$34.0M00301U00A06000kyTbbnvRy3PhwqMBannNbqPDBaHNgwqPxannNaqPC"
+        if (ok:=FindText(NhanNhanhX := "wait", NhanNhanhY := 1, 285-150000, 739-150000, 285+150000, 739+150000, 0, 0, NhanNhanh))
+        {
+          MouseClick, left, NhanNhanhX, NhanNhanhY
+          Sleep, 1000
+          MouseClick, left, MongHoaX, MongHoaY
+          Sleep, 1000
+          MouseClick, left, MongHoaX, MongHoaY
+        }
       }
+      Sleep, 1000
     }
     Sleep, 1000
     Send, {Esc}
@@ -1970,7 +1975,7 @@ FullAccTo(username, modehl) {
           Sleep, 1000
           QuaDuNgoan()
           Sleep, 1000
-          Monghoaluc()
+          Monghoaluc(modehl)
           ; can thiet
           Sleep, 2000
           Haocam()
@@ -2059,7 +2064,7 @@ FullAccToCloneMoi(username) {
           Sleep, 1000
           QuaDuNgoan()
           Sleep, 1000
-          Monghoaluc()
+          Monghoaluc(0)
           ; can thiet
           Sleep, 2000
           Haocam()
