@@ -1774,7 +1774,7 @@ CauCa() {
             {
                 HetthelucCount++
                 ShowFunctionTooltip("Hettheluc: " . HetthelucCount)
-                if (HetthelucCount >= 5)
+                if (HetthelucCount >= 3)
                 {
                     ShowFunctionTooltip("Het the luc CauCa")
                     break
