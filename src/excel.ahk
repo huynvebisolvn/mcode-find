@@ -900,16 +900,19 @@ DoiNhanVat() {
         MouseClick, left, 170, 350
         Sleep, 1000
         MouseClick, left, 836, 688
-        Sleep, 10000
+        Sleep, 15000
         loop
         {
+          SkipHuongDan(1000)
+          ; skip duoc gioi thieu phien ban
+          Send, {Esc}
+          Sleep, 1000
+          Nghe:="|<>*122$31.7DyTzVbzByIHUUQ39gF4lkb9W0sFgl/SACMbj6zAE7n1aADzUTzzzrDzzzkDzzU"
+          if (ok:=FindText(NgheX := "wait", NgheY := 3, 702-150000, 261-150000, 702+150000, 261+150000, 0, 0, Nghe))
+          {
             SkipHuongDan(1000)
-            SettingIcon:="|<>*170$13.kXsMwCM4020l0zzzzU8U4021b3lXsFs"
-            if (ok:=FindText(SettingIconX := "wait", SettingIconY := 1, 991-150000, 23-150000, 991+150000, 23+150000, 0, 0, SettingIcon))
-            {
-                SkipHuongDan(1000)
-                break
-            }
+            break
+          }
         }
         break
       }
