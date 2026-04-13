@@ -323,16 +323,17 @@ Monghoaluc(modehl := 0) {
         if (ok:=FindText(NhanNhanhX := "wait", NhanNhanhY := 1, 285-150000, 739-150000, 285+150000, 739+150000, 0, 0, NhanNhanh))
         {
           MouseClick, left, NhanNhanhX, NhanNhanhY
-          Sleep, 1000
-          MouseClick, left, MongHoaX, MongHoaY
-          Sleep, 1000
-          MouseClick, left, MongHoaX, MongHoaY
         }
+        Sleep, 1000
+        MouseClick, left, MongHoaX, MongHoaY
+        Sleep, 1000
+        MouseClick, left, MongHoaX, MongHoaY
       }
       Sleep, 1000
     }
+    ; thoat mong hoa luc
     Sleep, 1000
-    Send, {Esc}
+    MouseClick, left, 680, 580
     return
 }
 
@@ -1976,8 +1977,7 @@ FullAccTo(username, modehl) {
           QuaDuNgoan()
           Sleep, 1000
           Monghoaluc(modehl)
-          ; can thiet
-          Sleep, 2000
+          Sleep, 1000
           Haocam()
         }
         ; mode nau an
@@ -2065,8 +2065,7 @@ FullAccToCloneMoi(username) {
           QuaDuNgoan()
           Sleep, 1000
           Monghoaluc(0)
-          ; can thiet
-          Sleep, 2000
+          Sleep, 1000
           Haocam()
         }
         ; moi ngay ta mua 1 con ngheu
