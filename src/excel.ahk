@@ -10,7 +10,6 @@ global EnableMuaDatCat := 1
 global EnableBanKhoan := 0
 global EnableBanCa := 0
 global MenuMonAn := 1
-global EnableAutoMenuMonAn := 1
 global ShowMouseCoords := false
 global CurrentUsername := ""
 global CookingSuccessOnce := false
@@ -1342,10 +1341,6 @@ MenuNhiemVuNgay() {
     Gui, Add, Checkbox, vEnableBanCa w200, Ban Ca
 
     Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an
-    Gui, Add, Checkbox, vEnableAutoMenuMonAn Checked w200, Auto Mon An
-    Gui, Add, Radio, vMenuMonAn Checked w200, Canh Thach Tuy
-    Gui, Add, Radio, w200, Sashimi
-    Gui, Add, Radio, w200, Ca Chua Tay Ho
 
     Gui, Add, Button, gHoatLuc3 w200, Daily + Dao khoan
     Gui, Add, Checkbox, vEnableMuaDatCat Checked w200, Mua Dat Cat
@@ -1355,28 +1350,28 @@ MenuNhiemVuNgay() {
     return
 
     HoatLuc1:
-        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
+        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 0)
     return
 
     HoatLuc2:
-        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
+        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 1)
     return
 
     HoatLuc3:
-        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
+        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 2)
     return
     
     HoatLuc4:
-        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, MenuMonAn, EnableAutoMenuMonAn
+        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 3)
@@ -1907,7 +1902,7 @@ MuaNgheu() {
 
 
 Full10AccTo(startPos := 1, modehl := 0) {
-    global MenuMonAn, EnableAutoMenuMonAn
+    global MenuMonAn
     ShowFunctionTooltip("Full10AccTo")
 
     userList := []
@@ -1926,10 +1921,8 @@ Full10AccTo(startPos := 1, modehl := 0) {
         index := startPos + A_Index - 1
         userInfo := userList[index]
         username := userInfo.name
-
-        if (EnableAutoMenuMonAn == 1) {
-            MenuMonAn := userInfo.monan
-        }
+        ; nau an auto
+        MenuMonAn := userInfo.monan
 
         Login(username)
         FullAccTo(username, modehl)
