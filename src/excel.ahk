@@ -994,12 +994,8 @@ Login(username) {
         MouseClick, left, CleanCacheX, CleanCacheY
         Sleep, 1000
         MouseClick, left, CleanCacheX, CleanCacheY
-        Sleep, 1000
+        Sleep, 3000
 
-        ; find account
-        Plus:="|<>*57$18.z0zw0Dsz7nznnznbntjnxjnxC0Qjnxjnxbntrzvnznsz7w0Dz0zU"
-        ok:=FindText(PlusX := "wait", PlusY := 10, 585-150000, 531-150000, 585+150000, 531+150000, 0, 0, Plus)
-        
         ; account
         MouseClick, left, 98, 343
         Sleep, 1000
@@ -1011,20 +1007,12 @@ Login(username) {
         Sleep, 1000
         ; add new
         MouseClick, left, 300, 342
-        Sleep, 1000
-        
-        ; find zing logo
-        ZingLogo:="|<>*182$16.U0600800k07zkzy3zkTy3zsTz1zsDz1zwDzUzw7zUzy00E0000200M"
-        ok:=FindText(ZingLogoX := "wait", ZingLogoY := 10, 376-150000, 446-150000, 376+150000, 446+150000, 0, 0, ZingLogo)
-        
+        Sleep, 3000
+
         ; zing logo
         MouseClick, left, 88, 265
-        Sleep, 1000
+        Sleep, 3000
 
-        ; find VIcon
-        VIcon:="|<>*58$12.7s7s7s7s7s7s7s7s7l7l7V7363070T1zU"
-        ok:=FindText(VIconX := "wait", VIconY := 10, 418-150000, 238-150000, 418+150000, 238+150000, 0, 0, VIcon)
-        
         Send, {Text}%CurrentUsername%
         Sleep, 1000
         Send, {Tab}
@@ -1034,7 +1022,9 @@ Login(username) {
         Sleep, 1000
         loop
         {
+            ; vao game
             MouseClick, left, 510, 634
+
             LoginSuccess:="|<>*100$15.z3zrjU0000zzw01U0A01UYA4VUYA4VUYA4VUYA01U0A01U0A"
             if (ok:=FindText(LoginSuccessX := "wait", LoginSuccessY := 1, 962-150000, 626-150000, 962+150000, 626+150000, 0, 0, LoginSuccess))
             {
