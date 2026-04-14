@@ -808,6 +808,8 @@ BanKhoan() {
                 Sleep, 500
                 MouseClick, left, 970, 466
                 Sleep, 500
+                MouseClick, left, 915, 535
+                Sleep, 500
                 ; len ke
                 MouseClick, left, 888, 670
                 break
@@ -1859,6 +1861,8 @@ BanCa() {
             if (giaban = giacho) {
                 Sleep, 500
                 MouseClick, left, 970, 466
+                Sleep, 500
+                MouseClick, left, 915, 535
                 Sleep, 500
                 ; len ke
                 MouseClick, left, 888, 670
