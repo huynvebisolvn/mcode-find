@@ -999,13 +999,13 @@ Login(username) {
 
         ; account
         MouseClick, left, 98, 343
-        Sleep, 1000
+        Sleep, 3000
         ; remove
         MouseClick, left, 330, 213
-        Sleep, 1000
+        Sleep, 3000
         MouseClick, left, 278, 344
         
-        Sleep, 1000
+        Sleep, 3000
         ; add new
         MouseClick, left, 300, 342
         Sleep, 3000
