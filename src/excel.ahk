@@ -1951,6 +1951,10 @@ Full10AccTo(startPos := 1, modehl := 0) {
     userList.Push({name: "rrntt7", monan: 3})
     userList.Push({name: "rrntt8", monan: 3})
     userList.Push({name: "rrntt9", monan: 3})
+    userList.Push({name: "thaonnl1", monan: 3})
+    userList.Push({name: "thaonnl2", monan: 3})
+    userList.Push({name: "thaonnl3", monan: 3})
+    userList.Push({name: "rrntt0", monan: 2})
 
     Loop % (userList.Length() - startPos + 1)
     {
