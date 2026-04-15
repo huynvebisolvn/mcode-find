@@ -1055,16 +1055,28 @@ SashimiCaBac() {
 
     loop, 5
     {
-      Bang:="|<>*123$21.zxzzzbzzuzzzLzzvTtyvyULM43K1k8UT0g7y71zzzzw71z0g7kAUQ3K11nQ7yvzzzTzzTzzuzzzbzzxzw"
-      if (ok:=FindText(BangX := "wait", BangY := 2, 569-150000, 652-150000, 569+150000, 652+150000, 0, 0, Bang))
+      Bang1:="|<>*123$21.zxzzzbzzuzzzLzzvTtyvyULM43K1k8UT0g7y71zzzzw71z0g7kAUQ3K11nQ7yvzzzTzzTzzuzzzbzzxzw"
+      if (ok:=FindText(Bang1X := "wait", Bang1Y := 1, 569-150000, 652-150000, 569+150000, 652+150000, 0, 0, Bang1))
       {
-        MouseClick, left, BangX, BangY
+        MouseClick, left, Bang1X, Bang1Y
         break
       }
       Bang2:="|<>*113$20.zxzzyTzzbzzyzzxjzzPz0qE85c70W1s90z1kTzzzw61y3ED1a1UOUEBg3zNzzqzzxjzzfzztzzzTy"
-      if (ok:=FindText(Bang2X := "wait", Bang2Y := 2, 482-150000, 641-150000, 482+150000, 641+150000, 0, 0, Bang2))
+      if (ok:=FindText(Bang2X := "wait", Bang2Y := 1, 482-150000, 641-150000, 482+150000, 641+150000, 0, 0, Bang2))
       {
           MouseClick, left, Bang2X, Bang2Y
+          break
+      }
+      Bang3:="|<>**50$24.03U002k006E005E005M0wBcDjvjxk/g3sBM6Q5EAA2kM7zXk3yzU63UkA6kMM6EAkBM6Uxi2zvfy0Bc00Bs005E006E002k003U003U0U"
+      if (ok:=FindText(Bang3X := "wait", Bang3Y := 1, 570-150000, 653-150000, 570+150000, 653+150000, 0, 0, Bang3))
+      {
+        MouseClick, left, Bang3X, Bang3Y
+        break
+      }
+      Bang4:="|<>**50$24.03k003E002E006M007c0w5c7jxjzkBg3M5g6A6MC62EQ31ks1zTk31ks63EQA6MCM6g6ERj2Tpby05g005c006c002M003E003k0U"
+      if (ok:=FindText(Bang4X := "wait", Bang4Y := 1, 482-150000, 641-150000, 482+150000, 641+150000, 0, 0, Bang4))
+      {
+          MouseClick, left, Bang4X, Bang4Y
           break
       }
     }
@@ -1147,17 +1159,29 @@ CanhThachTuy() {
 
     loop, 5
     {
-      Hoa:="|<>*107$16.kzz3vsDXUQ600Ez0Dz3zqDz8zwXzmDz9zsby4z0jU"
-      if (ok:=FindText(HoaX := "wait", HoaY := 2, 512-150000, 640-150000, 512+150000, 640+150000, 0, 0, Hoa))
+      Hoa1:="|<>*107$16.kzz3vsDXUQ600Ez0Dz3zqDz8zwXzmDz9zsby4z0jU"
+      if (ok:=FindText(Hoa1X := "wait", Hoa1Y := 1, 512-150000, 640-150000, 512+150000, 640+150000, 0, 0, Hoa1))
       {
-          MouseClick, left, HoaX, HoaY
+          MouseClick, left, Hoa1X, Hoa1Y
           break
       }
       Hoa2:="|<>*106$16.00400FzVTz3zqDz8zwXzmTy9zlDU9zXTU"
-      if (ok:=FindText(Hoa2X := "wait", Hoa2Y := 2, 431-150000, 677-150000, 431+150000, 677+150000, 0, 0, Hoa2))
+      if (ok:=FindText(Hoa2X := "wait", Hoa2Y := 1, 431-150000, 677-150000, 431+150000, 677+150000, 0, 0, Hoa2))
       {
           MouseClick, left, Hoa2X, Hoa2Y
           break
+      }
+      Hoa3:="|<>**50$18.AFkMFQEP6EC6k03Vy3b3Vw2l02F02F02F06H6Qm1ka63Q3zkU"
+      if (ok:=FindText(Hoa3X := "wait", Hoa3Y := 1, 512-150000, 641-150000, 512+150000, 641+150000, 0, 0, Hoa3))
+      {
+        MouseClick, left, Hoa3X, Hoa3Y
+        break
+      }
+      Hoa4:="|<>**50$18.EHAkS6k02U02Xz3i3Vs2l02F02F06H0AG7sa41A76s1zUU"
+      if (ok:=FindText(Hoa4X := "wait", Hoa4Y := 1, 431-150000, 676-150000, 431+150000, 676+150000, 0, 0, Hoa4))
+      {
+        MouseClick, left, Hoa4X, Hoa4Y
+        break
       }
     }
 
@@ -1242,17 +1266,29 @@ CaChuaTayHo() {
 
     loop, 5
     {
-      Hoa:="|<>*107$16.kzz3vsDXUQ600Ez0Dz3zqDz8zwXzmDz9zsby4z0jU"
-      if (ok:=FindText(HoaX := "wait", HoaY := 2, 512-150000, 640-150000, 512+150000, 640+150000, 0, 0, Hoa))
+      Hoa1:="|<>*107$16.kzz3vsDXUQ600Ez0Dz3zqDz8zwXzmDz9zsby4z0jU"
+      if (ok:=FindText(Hoa1X := "wait", Hoa1Y := 1, 512-150000, 640-150000, 512+150000, 640+150000, 0, 0, Hoa1))
       {
-          MouseClick, left, HoaX, HoaY
+          MouseClick, left, Hoa1X, Hoa1Y
           break
       }
       Hoa2:="|<>*106$16.00400FzVTz3zqDz8zwXzmTy9zlDU9zXTU"
-      if (ok:=FindText(Hoa2X := "wait", Hoa2Y := 2, 431-150000, 677-150000, 431+150000, 677+150000, 0, 0, Hoa2))
+      if (ok:=FindText(Hoa2X := "wait", Hoa2Y := 1, 431-150000, 677-150000, 431+150000, 677+150000, 0, 0, Hoa2))
       {
           MouseClick, left, Hoa2X, Hoa2Y
           break
+      }
+      Hoa3:="|<>**50$18.AFkMFQEP6EC6k03Vy3b3Vw2l02F02F02F06H6Qm1ka63Q3zkU"
+      if (ok:=FindText(Hoa3X := "wait", Hoa3Y := 1, 512-150000, 641-150000, 512+150000, 641+150000, 0, 0, Hoa3))
+      {
+        MouseClick, left, Hoa3X, Hoa3Y
+        break
+      }
+      Hoa4:="|<>**50$18.EHAkS6k02U02Xz3i3Vs2l02F02F06H0AG7sa41A76s1zUU"
+      if (ok:=FindText(Hoa4X := "wait", Hoa4Y := 1, 431-150000, 676-150000, 431+150000, 676+150000, 0, 0, Hoa4))
+      {
+        MouseClick, left, Hoa4X, Hoa4Y
+        break
       }
     }
 
