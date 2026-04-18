@@ -2147,6 +2147,7 @@ FullAccCloneMoi(startPos := 1) {
         Login(username)
         FullAccToCloneMoi(username)
     }
+    Shutdown, 1
   return
 }
 
