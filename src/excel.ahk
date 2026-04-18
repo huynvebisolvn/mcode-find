@@ -1137,7 +1137,7 @@ SashimiCaBac() {
             ; Khong tim thay GiaVi
             notFoundGiaViCount++
             ; khong tim thay gia vi lan dau tien
-            if (notFoundGiaViCount = 1) {
+            if (notFoundGiaViCount = 1 || notFoundGiaViCount = 2) {
                 MuaGiaViAuto(3, 0)
             }
             if (notFoundGiaViCount >= 3)
@@ -1244,7 +1244,7 @@ CanhThachTuy() {
             ; Khong tim thay GiaVi
             notFoundGiaViCount++
             ; khong tim thay gia vi lan dau tien
-            if (notFoundGiaViCount = 1) {
+            if (notFoundGiaViCount = 1 || notFoundGiaViCount = 2) {
                 MuaGiaViAuto(1, 0)
             }
             if (notFoundGiaViCount >= 3)
@@ -1348,7 +1348,7 @@ CaChuaTayHo() {
             ; Khong tim thay GiaVi
             notFoundGiaViCount++
             ; khong tim thay gia vi lan dau tien
-            if (notFoundGiaViCount = 1) {
+            if (notFoundGiaViCount = 1 || notFoundGiaViCount = 2) {
                 MuaGiaViAuto(2, 0)
             }
             if (notFoundGiaViCount >= 3)
