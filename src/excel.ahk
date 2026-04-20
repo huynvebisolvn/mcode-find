@@ -1851,6 +1851,21 @@ PhanGiaiCa() {
     return
 }
 
+
+GhepNguyenLieuNauAn() {
+    Send, {b}
+    Sleep, 2000
+    MouseClick, left, 965, 510
+    Sleep, 1000
+    MouseClick, left, 800, 165
+    Sleep, 1000
+    MouseClick, left, 905, 735
+    Sleep, 1000
+    MouseClick, left, 500, 0
+    return
+}
+
+
 BanCa() {
     ShowFunctionTooltip("BanCa")
     Send, {f5}
@@ -2002,6 +2017,8 @@ FullAccTo(username, modehl) {
         ; mode nau an
         if (modehl == 1)
         {
+          GhepNguyenLieuNauAn()
+          Sleep, 1000
           FullNauAn()
           Sleep, 1000
           Send, {Esc}
