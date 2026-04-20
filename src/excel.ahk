@@ -538,7 +538,7 @@ NhanThuong(modehl) {
 
     Sleep, 1000
     Send, {Esc}
-    return
+    return countNhanThuong
 }
 
 
@@ -1987,8 +1987,8 @@ Full10AccTo(startPos := 1, modehl := 0) {
   return
 }
 
-SendCurlNotification(username, index) {
-    message := "Username: " . username . " - Index: " . index
+SendCurlNotification(username, index, countNhanThuong) {
+    message := "Username: " . username . " - Index: " . index . " - NhanThuong: " . countNhanThuong
     jsonBody := "{""message"": """ . message . """}"
 
     http := ComObjCreate("WinHttp.WinHttpRequest.5.1")
@@ -2002,7 +2002,7 @@ FullAccTo(username, modehl) {
     ShowFunctionTooltip("FullAccTo")
     Loop, 6
     {
-        SendCurlNotification(username, A_Index)
+        countNhanThuong := 0
         daNhan := CheckNhiemVuNgay()
         if (not daNhan)
         {
@@ -2057,7 +2057,7 @@ FullAccTo(username, modehl) {
         if (not daNhan)
         {
           Sleep, 1000
-          NhanThuong(modehl)
+          countNhanThuong := NhanThuong(modehl)
         }
 
         ; moi ngay ta mua 1 con ngheu
@@ -2084,6 +2084,7 @@ FullAccTo(username, modehl) {
             Sleep, 2000
           }
         }
+        SendCurlNotification(username, A_Index, countNhanThuong)
     }
     return
 }
@@ -2092,7 +2093,7 @@ FullAccToCloneMoi(username) {
     ShowFunctionTooltip("FullAccToCloneMoi")
     Loop, 6
     {
-        SendCurlNotification(username, A_Index)
+        countNhanThuong := 0
         daNhan := CheckNhiemVuNgay()
         if (not daNhan)
         {
@@ -2119,7 +2120,7 @@ FullAccToCloneMoi(username) {
         if (not daNhan)
         {
           Sleep, 1000
-          NhanThuong(modehl)
+          countNhanThuong := NhanThuong(modehl)
         }
 
         Sleep, 1000
@@ -2142,6 +2143,7 @@ FullAccToCloneMoi(username) {
             Sleep, 2000
           }
         }
+        SendCurlNotification(username, A_Index, countNhanThuong)
     }
     return
 }
