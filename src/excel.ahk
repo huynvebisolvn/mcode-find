@@ -1966,10 +1966,7 @@ Full10AccTo(startPos := 1, modehl := 0) {
     userList.Push({name: "rrntt7", monan: 3})
     userList.Push({name: "rrntt8", monan: 3})
     userList.Push({name: "rrntt9", monan: 3})
-    userList.Push({name: "thaonnl1", monan: 3})
-    userList.Push({name: "thaonnl2", monan: 3})
-    userList.Push({name: "thaonnl3", monan: 3})
-    userList.Push({name: "rrntt0", monan: 2})
+    userList.Push({name: "rrntt0", monan: 3})
 
     Loop % (userList.Length() - startPos + 1)
     {
@@ -2059,6 +2056,7 @@ FullAccTo(username, modehl) {
           Sleep, 1000
           countNhanThuong := NhanThuong(modehl)
         }
+        SendCurlNotification(username, A_Index, countNhanThuong)
 
         ; moi ngay ta mua 1 con ngheu
         Sleep, 1000
@@ -2084,7 +2082,6 @@ FullAccTo(username, modehl) {
             Sleep, 2000
           }
         }
-        SendCurlNotification(username, A_Index, countNhanThuong)
     }
     return
 }
@@ -2122,6 +2119,7 @@ FullAccToCloneMoi(username) {
           Sleep, 1000
           countNhanThuong := NhanThuong(modehl)
         }
+        SendCurlNotification(username, A_Index, countNhanThuong)
 
         Sleep, 1000
         LogoutNhanVat()
@@ -2143,7 +2141,6 @@ FullAccToCloneMoi(username) {
             Sleep, 2000
           }
         }
-        SendCurlNotification(username, A_Index, countNhanThuong)
     }
     return
 }
@@ -2152,9 +2149,6 @@ FullAccCloneMoi(startPos := 1) {
     ShowFunctionTooltip("FullAccCloneMoi")
 
     userList := []
-    userList.Push({name: "thaonnl1"})
-    userList.Push({name: "thaonnl2"})
-    userList.Push({name: "thaonnl3"})
     userList.Push({name: "rrntt0"})
 
     Loop % (userList.Length() - startPos + 1)
