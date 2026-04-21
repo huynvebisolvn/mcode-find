@@ -1125,6 +1125,9 @@ SashimiCaBac() {
             {
                 ; Khong tim thay ThuySanCap1
                 notFoundThuySanCount++
+                if (notFoundThuySanCount = 1) {
+                    MuaThuySanCap1Auto()
+                }
                 if (notFoundThuySanCount >= 3)
                 {
                     break  ; Thoat neu khong tim thay ThuySan 3 lan
@@ -1336,6 +1339,9 @@ CaChuaTayHo() {
             {
                 ; Khong tim thay ThuySanCap1
                 notFoundThuySanCount++
+                if (notFoundThuySanCount = 1) {
+                    MuaThuySanCap1Auto()
+                }
                 if (notFoundThuySanCount >= 3)
                 {
                     break  ; Thoat neu khong tim thay ThuySan 3 lan
@@ -1440,6 +1446,57 @@ MenuForNewClone() {
 }
 
 
+MuaThuySanCap1Auto() {
+    MouseClick, left, 95, 70
+    Sleep, 1000
+    MouseClick, left, 160, 110
+    Step1Giavi:="|<>*131$36.zzzvzzzzzWzzzzw2Dzzzw03zzzU01zxz000zs4000DU80005080001U80001k40003w20003y3000Dz0M00zzk0k61zy08E3zy032Dzz000TzjU01zzzk03zzzw07zzzy0DzzzzUDzzzzkTzzzzwzzU"
+    if (ok:=FindText(Step1GiaviX := "wait", Step1GiaviY := 2, 772-150000, 405-150000, 772+150000, 405+150000, 0, 0, Step1Giavi))
+    {
+        MouseClick, left, Step1GiaviX, Step1GiaviY
+        Step2:="|<>*85$13.yzzDzXzszyDjXXsUy0T4T7T7z7z7z7zbzry"
+        if (ok:=FindText(Step2X := "wait", Step2Y := 2, 707-150000, 508-150000, 707+150000, 508+150000, 0, 0, Step2))
+        {
+            MouseClick, left, Step2X, Step2Y
+            Step3:="|<>*149$8.TvyTrwz7sy7kwC7XlwzDbvxzU"
+            if (ok:=FindText(Step3X := "wait", Step3Y := 2, 711-150000, 474-150000, 711+150000, 474+150000, 0, 0, Step3))
+            {
+                MouseClick, left, Step3X, Step3Y
+                Sleep, 1000
+
+                ; giao dich
+                MouseClick, left, 818, 735
+                Hoat:="|<>*91$10.7US1s7US000001s7US1s7W"
+                if (ok:=FindText(HoatX := "wait", HoatY := 2, 52-150000, 393-150000, 52+150000, 393+150000, 0, 0, Hoat))
+                {
+                  MouseClick, left, HoatX, HoatY
+                  Cauca:="|<>*90$24.wzDzkC7zaDrzbDzz7w6A7xmA7xWA7w2A78WAX1X8U830sQ/aU"
+                  if (ok:=FindText(CaucaX := "wait", CaucaY := 2, 273-150000, 75-150000, 273+150000, 75+150000, 0, 0, Cauca))
+                  {
+                    MouseClick, left, CaucaX, CaucaY
+                    Sleep, 1000
+                    ; click vao thuy san cap 1
+                    MouseClick, left, 380, 480
+                    ; chon mua max
+                    Sleep, 1000
+                    MouseClick, left, 970, 580
+                    Sleep, 1000
+                    Send, {v}
+                    Sleep, 1000
+                    MouseClick, left, 500, 0
+                  }
+                }
+                Sleep, 1000
+                Send, {Esc}
+                Sleep, 1000
+                MouseClick, left, 230, 65
+            }
+        }
+    }
+    return
+}
+
+
 MuaGiaViAuto(slgiavi := 0, slluanuoc := 0) {
     MouseClick, left, 95, 70
     Sleep, 1000
@@ -1514,6 +1571,7 @@ MuaGiaViAuto(slgiavi := 0, slluanuoc := 0) {
             }
         }
     }
+    return
 }
 
 
