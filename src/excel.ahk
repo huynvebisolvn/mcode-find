@@ -2207,7 +2207,7 @@ FullAccCloneMoi(startPos := 1) {
     ShowFunctionTooltip("FullAccCloneMoi")
 
     userList := []
-    userList.Push({name: "rrntt0"})
+    userList.Push({name: "huynnl1"})
 
     Loop % (userList.Length() - startPos + 1)
     {
