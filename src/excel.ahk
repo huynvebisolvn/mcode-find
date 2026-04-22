@@ -2005,6 +2005,17 @@ MuaNgheu() {
             }
         }
     }
+    Ban:="|<>*91$23.0zTy0yzwlvztnrznD3U0Q300T6MMsAktYNVn8n0C1a0wLQU"
+    if (ok:=FindText(BanX := "wait", BanY := 2, 82-150000, 441-150000, 82+150000, 441+150000, 0, 0, Ban))
+    {
+      MouseClick, left, BanX, BanY
+      Sleep, 1000
+      Rut:="|<>*132$23.y081z0k3C306A01gM07NVbDy7CRw6QvwAtqsNngsnbMtzClnyD"
+      if (ok:=FindText(RutX := "wait", RutY := 2, 873-150000, 665-150000, 873+150000, 665+150000, 0, 0, Rut))
+      {
+        MouseClick, left, RutX, RutY
+      }
+    }
     Sleep, 1000
     Send, {Esc}
 }
