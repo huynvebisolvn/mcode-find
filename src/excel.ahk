@@ -101,6 +101,10 @@ Home::
   ShowPriceTargetSelector()
 return
 
+End::
+  HopNhat()
+return
+
 PgDn::
   MenuNhiemVuNgay()
 return
@@ -111,7 +115,7 @@ return
 return
 
 ]::
-  MenuForNewClone()
+  HopNhat()
 return
 
 \::
@@ -260,6 +264,25 @@ RunPriceTargetScript() {
         }
     }
     return
+}
+
+
+HopNhat() {
+  MouseGetPos, xpos, ypos
+  loop
+  {
+    MouseClick, left, xpos, ypos
+    HopNhat:="|<>*145$20.CzznjzwvV10kGEBYkuNACqH3g45vX3zznzyQy"
+    if (ok:=FindText(HopNhatX := "wait", HopNhatY := 1, 616-150000, 164-150000, 616+150000, 164+150000, 0, 0, HopNhat))
+    {
+      MouseClick, left, HopNhatX, HopNhatY
+      Sleep, 350
+      Send, {Space}
+    } else {
+      break
+    }
+  }
+  return
 }
 
 
@@ -1422,29 +1445,6 @@ MenuNhiemVuNgay() {
     return
 }
 
-MenuForNewClone() {
-    ShowFunctionTooltip("MenuForNewClone")
-    ; Create GUI
-    Gui, PriceSelect:New
-    Gui, Font, s10
-    
-    Gui, Add, Edit, vStartPos w100, 1
-
-    Gui, Add, Button, gNewCloneHoatLuc1 Default w200, Daily + Cau ca
-
-    Gui, Show,, Menu
-    return
-
-    NewCloneHoatLuc1:
-        global StartPos
-        Gui, Submit, NoHide
-        Gui, Destroy
-        FullAccCloneMoi(StartPos)
-    return
-
-    return
-}
-
 
 MuaThuySanCap1Auto() {
     MouseClick, left, 95, 70
@@ -2155,83 +2155,6 @@ FullAccTo(username, modehl) {
     return
 }
 
-FullAccToCloneMoi(username) {
-    ShowFunctionTooltip("FullAccToCloneMoi")
-    Loop, 6
-    {
-        countNhanThuong := 0
-        daNhan := CheckNhiemVuNgay()
-        if (not daNhan)
-        {
-          Chuphinh()
-          Sleep, 1000
-          QuaDuNgoan()
-          Sleep, 1000
-          Monghoaluc(0)
-          Sleep, 1000
-          Haocam()
-        }
-        ; moi ngay ta mua 1 con ngheu
-        Sleep, 1000
-        MuaNgheu()
-        Sleep, 1000
-        CauCa()
-        Sleep, 1000
-        PhanGiaiCa()
-        Sleep, 1000
-        BanCa()
-        Sleep, 1000
-        Send, {Esc}
-
-        if (not daNhan)
-        {
-          Sleep, 1000
-          countNhanThuong := NhanThuong(modehl)
-        }
-        SendCurlNotification(username, A_Index, countNhanThuong)
-
-        Sleep, 1000
-        LogoutNhanVat()
-        if (A_Index < 6)
-        {
-            DoiNhanVat()
-            Sleep, 1000
-        }
-        else
-        {
-          ; wait to success
-          loop
-          {
-            LoginSuccess:="|<>*100$15.z3zrjU0000zzw01U0A01UYA4VUYA4VUYA4VUYA01U0A01U0A"
-            if (ok:=FindText(LoginSuccessX := "wait", LoginSuccessY := 3, 962-150000, 626-150000, 962+150000, 626+150000, 0, 0, LoginSuccess))
-            {
-              break
-            }
-            Sleep, 2000
-          }
-        }
-    }
-    return
-}
-
-FullAccCloneMoi(startPos := 1) {
-    ShowFunctionTooltip("FullAccCloneMoi")
-
-    userList := []
-    userList.Push({name: "huynnl1"})
-
-    Loop % (userList.Length() - startPos + 1)
-    {
-        index := startPos + A_Index - 1
-        userInfo := userList[index]
-        username := userInfo.name
-
-        Login(username)
-        FullAccToCloneMoi(username)
-    }
-    Shutdown, 1
-  return
-}
 
 ;===== Copy The Following Functions To Your Own Code Just once =====
 
