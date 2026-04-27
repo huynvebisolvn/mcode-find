@@ -4,8 +4,6 @@
 
 ; Global variables
 global SelectedPriceTarget := ""
-global SelectedTarget := ""
-global PriceTargets := {}
 global EnableMuaDatCat := 1
 global EnableBanKhoan := 0
 global EnableBanCa := 0
@@ -133,35 +131,6 @@ return
 return
 
 ; ==============================
-; Load Price Targets from config file
-LoadPriceTargets() {
-    ShowFunctionTooltip("LoadPriceTargets")
-    global PriceTargets
-    PriceTargets := {}
-    
-    configFile := A_ScriptDir . "\config.txt"
-    if !FileExist(configFile) {
-        return false
-    }
-    
-    Loop, Read, %configFile%
-    {
-        line := A_LoopReadLine
-        ; Skip empty lines and comments
-        if (line = "" || SubStr(line, 1, 1) = ";")
-            continue
-        
-        ; Parse line: Name=Value
-        pos := InStr(line, "=")
-        if (pos > 0) {
-            name := SubStr(line, 1, pos - 1)
-            value := SubStr(line, pos + 1)
-            PriceTargets[name] := value
-        }
-    }
-    return true
-}
-
 ChangeResolutionOnly(TargetWidth, TargetHeight) {
     cD := 32
     rR := 60
@@ -175,60 +144,23 @@ ChangeResolutionOnly(TargetWidth, TargetHeight) {
 ; Show GUI to select Price Target
 ShowPriceTargetSelector() {
     ShowFunctionTooltip("ShowPriceTargetSelector")
-    global SelectedPriceTarget, PriceTargets, SelectedTarget
-    
-    ; Load price targets from config file
-    hasConfig := LoadPriceTargets()
-    
-    ; Create GUI
+    global SelectedPriceTarget
+
     Gui, PriceSelect:New
     Gui, Font, s10
-    
-    ; Only show price target selector if config file exists
-    if (hasConfig) {
-        Gui, Add, Text,, Select Price Target:
-        
-        ; Create dropdown list with all available price targets
-        targetList := ""
-        for targetName, targetValue in PriceTargets {
-            if (targetList != "")
-                targetList .= "|"
-            targetList .= targetName
-        }
-        
-        Gui, Add, DropDownList, vSelectedTarget w200, %targetList%
-        Gui, Add, Button, gStartScript Default w200, Start
-    }
-    
-    Gui, Add, Button, gResolution0 w200, 1024x768
-    Gui, Add, Button, gResolution1 w200, 1280x768
-    Gui, Add, Button, gResolution2 w200, 1920x1080
+    Gui, Add, Text,, Select Price Target:
+    Gui, Add, DropDownList, vSelectedTarget w200, Food480|Null
+    Gui, Add, Button, gStartScript Default w200, Start
     Gui, Show,, Price Target Selector
     return
-    
+
     StartScript:
         Gui, Submit, NoHide
         Gui, Destroy
-        
-        if (SelectedTarget = "") {
-            MsgBox, 48, Warning, Please select a Price Target!
-            return
-        }
-        
-        SelectedPriceTarget := PriceTargets[SelectedTarget]
+        if (SelectedTarget = "Food480")
+          SelectedPriceTarget := "|<>*180$22.37XUArTVmB6DBwMgSlqnv7lwwPzXtUrxy3DXm"
+
         RunPriceTargetScript()
-    return
-    
-    Resolution0:
-        ChangeResolutionOnly(1024, 768)
-    return
-    
-    Resolution1:
-        ChangeResolutionOnly(1280, 768)
-    return
-    
-    Resolution2:
-        ChangeResolutionOnly(1920, 1080)
     return
 }
 

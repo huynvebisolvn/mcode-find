@@ -64,11 +64,6 @@ jobs:
             exit 1
           }
           
-          # Copy config.txt vào build directory
-          Write-Host "`n=== Copying config.txt ==="
-          Copy-Item "src\config.txt" "build\config.txt"
-          Write-Host "config.txt copied to build directory"
-          
           Write-Host "`n=== Build directory contents ==="
           if (Test-Path "build") {
             Get-ChildItem -Path "build" | Format-Table -AutoSize
@@ -152,7 +147,6 @@ jobs:
           tag_name: v1.0.0
           files: |
             build/excel.exe
-            build/config.txt
           draft: false
           prerelease: false
           generate_release_notes: true
