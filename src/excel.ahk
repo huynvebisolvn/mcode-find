@@ -13,6 +13,9 @@ global MenuMonAn := 1
 global ShowMouseCoords := false
 global CurrentUsername := ""
 global CookingSuccessOnce := false
+global EnableLikeViTri1 := 0
+global EnableLikeViTri2 := 0
+global EnableLikeViTri3 := 0
 
 ; Change Resolution on start
 ChangeResolutionOnly(1024, 768)
@@ -1399,13 +1402,16 @@ MenuNhiemVuNgay() {
     Gui, Font, s10
     
     Gui, Add, Edit, vStartPos w100, 1
+    Gui, Add, Checkbox, vEnableLikeViTri1 w100, Like 1
+    Gui, Add, Checkbox, vEnableLikeViTri2 w100, Like 2
+    Gui, Add, Checkbox, vEnableLikeViTri3 w100, Like 3
 
     Gui, Add, Button, gHoatLuc1 Default w200, Only Daily
+
+    Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an
     
     Gui, Add, Button, gHoatLuc4 w200, Daily + Cau ca
     Gui, Add, Checkbox, vEnableBanCa w200, Ban Ca
-
-    Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an
 
     Gui, Add, Button, gHoatLuc3 w200, Daily + Dao khoan
     Gui, Add, Checkbox, vEnableMuaDatCat Checked w200, Mua Dat Cat
@@ -1415,28 +1421,28 @@ MenuNhiemVuNgay() {
     return
 
     HoatLuc1:
-        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa
+        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 0)
     return
 
     HoatLuc2:
-        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa
+        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 1)
     return
 
     HoatLuc3:
-        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa
+        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 2)
     return
     
     HoatLuc4:
-        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa
+        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, 3)
@@ -2059,6 +2065,59 @@ MuaNgheu() {
 }
 
 
+HanhDongLike() {
+  Sleep, 1000
+  TrangVien:="|<>**50$19.0P00Qs0QC1s1sU04TySzUDY00jzxxbyqm1Pt0j0UKDzvw00Dzzy"
+  if (ok:=FindText(TrangVienX := "wait", TrangVienY := 2, 780-150000, 278-150000, 780+150000, 278+150000, 0, 0, TrangVien))
+  {
+    MouseClick, left, TrangVienX, TrangVienY
+    Sleep, 1000
+    Like:="|<>*126$18.20E7VsDnwTzyzzzzzzzzzzzzzzyDzw7zs1zU0z00S0080U"
+    if (ok:=FindText(LikeX := "wait", LikeY := 2, 944-150000, 219-150000, 944+150000, 219+150000, 0, 0, Like))
+    {
+      MouseClick, left, LikeX, LikeY
+    }
+  }
+  Sleep, 1000
+  Send, {Esc}
+  Sleep, 1000
+  return
+}
+
+FullLikeTrangVien() {
+  global EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
+  if (EnableLikeViTri1 = 0 && EnableLikeViTri2 = 0 && EnableLikeViTri3 = 0) {
+    return
+  }
+
+  ShowFunctionTooltip("LikeTrangVien")
+  Sleep, 1000
+  Send, {Enter}
+  Sleep, 1000
+  MouseClick, left, 17, 63
+  Sleep, 1000
+  MouseClick, left, 90, 25
+  Sleep, 1000
+
+  if (EnableLikeViTri1 == 1) {
+    MouseClick, left, 195, 35
+    HanhDongLike()
+  }
+  
+  if (EnableLikeViTri2 == 1) {
+    MouseClick, left, 195, 90
+    HanhDongLike()
+  }
+  
+  if (EnableLikeViTri3 == 1) {
+    MouseClick, left, 195, 150
+    HanhDongLike()
+  }
+  
+  MouseClick, left, 500, 0
+  return
+}
+
 Full10AccTo(startPos := 1, modehl := 0) {
     global MenuMonAn
     ShowFunctionTooltip("Full10AccTo")
@@ -2166,8 +2225,10 @@ FullAccTo(username, modehl) {
         SendCurlNotification(username, A_Index, countNhanThuong)
 
         ; moi ngay ta mua 1 con ngheu
-        Sleep, 1000
-        MuaNgheu()
+        ; Sleep, 1000
+        ; MuaNgheu()
+
+        FullLikeTrangVien()
 
         Sleep, 1000
         LogoutNhanVat()
