@@ -2015,6 +2015,44 @@ MuaNgheu() {
       {
         MouseClick, left, RutX, RutY
       }
+
+      ; ban ca la CanhThachTuy
+      if (MenuMonAn == 1) {
+        Sleep, 500
+        ; Go vat pham
+        loop, 2
+        {
+          MouseClick, left, 720, 235
+          Sleep, 500
+        }
+        Sleep, 500
+        ; nhan dien ca
+        CaCap1:="|<>*124$25.TzzzjzzzkzzzsTzzw5zzz0Dzzm1zzs0Tzz0DzzE1zzw0Tzy0DzzU1zzk0zzs0Dzy03zzU0zzs0Tzy07zzU3zzs0zzz0Dzzk7zzw3zzz1zzzsDzzz4"
+        if (ok:=FindText(CaCap1X, CaCap1Y, 186-150000, 125-150000, 186+150000, 125+150000, 0, 0, CaCap1))
+        {
+          MouseClick, left, CaCap1X, CaCap1Y
+          Sleep, 1000
+
+          giacho := CheckGiaCho()
+          ShowFunctionTooltip("BanCa gia: " . giacho)
+          loop, 15
+          {
+              MouseClick, left, 726, 535
+              giaban := CheckGiaBan()
+              if (giaban = giacho) {
+                  Sleep, 500
+                  MouseClick, left, 970, 466
+                  Sleep, 500
+                  MouseClick, left, 915, 535
+                  Sleep, 500
+                  ; len ke
+                  MouseClick, left, 888, 670
+                  break
+              }
+              Sleep, 100
+          }
+        }
+      }
     }
     Sleep, 1000
     Send, {Esc}
