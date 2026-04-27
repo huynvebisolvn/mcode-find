@@ -144,21 +144,24 @@ ChangeResolutionOnly(TargetWidth, TargetHeight) {
 ; Show GUI to select Price Target
 ShowPriceTargetSelector() {
     ShowFunctionTooltip("ShowPriceTargetSelector")
-    global SelectedPriceTarget
+    global SelectedPriceTarget, SelectedTarget
 
     Gui, PriceSelect:New
     Gui, Font, s10
-    Gui, Add, Text,, Select Price Target:
-    Gui, Add, DropDownList, vSelectedTarget w200, Food480|Null
+    Gui, Add, DropDownList, vSelectedTarget w200, Food480|Quang72
     Gui, Add, Button, gStartScript Default w200, Start
-    Gui, Show,, Price Target Selector
+    Gui, Show,, Price
     return
 
     StartScript:
         Gui, Submit, NoHide
         Gui, Destroy
+
         if (SelectedTarget = "Food480")
           SelectedPriceTarget := "|<>*180$22.37XUArTVmB6DBwMgSlqnv7lwwPzXtUrxy3DXm"
+
+        if (SelectedTarget = "Quang72")
+          SelectedPriceTarget := "|<>*193$14.zbbvwAn79lUQMCC733UlzATs"
 
         RunPriceTargetScript()
     return
