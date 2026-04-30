@@ -656,7 +656,11 @@ MuaDatCat() {
       MouseClick, left, DatCatX, DatCatY
       Sleep, 1000
       ; plus
-      MouseClick, left, 988, 550
+      MouseClick, left, 845, 541
+      Sleep, 500
+      MouseClick, left, 835, 362 ;4
+      Sleep, 500
+      MouseClick, left, 897, 485 ;0
       Sleep, 1000
       Send, {v}
       Sleep, 1000
@@ -1348,7 +1352,7 @@ MenuNhiemVuNgay() {
     Gui, Add, Button, gNauan w200, Nau an
     
     Gui, Add, Button, gCauca w200, Cau ca
-    Gui, Add, Checkbox, vEnableBanCa w200, Ban Ca
+    Gui, Add, Checkbox, vEnableBanCa Checked w200, Ban Ca
 
     Gui, Add, Button, gDaokhoan w200, Dao khoan
     Gui, Add, Checkbox, vEnableMuaDatCat Checked w200, Mua Dat Cat
@@ -1488,7 +1492,6 @@ MuaGiaViAuto(slgiavi := 0, slluanuoc := 0) {
                     MouseClick, left, 897, 485 ;0
                     Sleep, 500
                     MouseClick, left, 897, 485 ;0
-                    Sleep, 500
                     Sleep, 1000
                     Send, {v}
                     Sleep, 1000
