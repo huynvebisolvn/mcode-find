@@ -6,7 +6,7 @@
 global SelectedPriceTarget := ""
 global EnableMuaDatCat := 1
 global EnableBanKhoan := 0
-global EnableBanCa := 0
+global EnableBanCa := 1
 global MenuMonAn := 1
 global ShowMouseCoords := false
 global CurrentUsername := ""
@@ -248,7 +248,7 @@ Chuphinh() {
 }
 
 
-Monghoaluc(modehl := 0) {
+Monghoaluc(modehl := "daily") {
     ShowFunctionTooltip("Monghoaluc")
     loop
     {
@@ -272,7 +272,7 @@ Monghoaluc(modehl := 0) {
       }
     }
     ; Chi nhan thu khi dao khoan
-    if (modehl == 2)
+    if (modehl == "daokhoan")
     {
       Thu:="|<>*171$18.U01k03M07A0C60Q7Us7lwCvyQT6kC3U"
       if (ok:=FindText(ThuX := "wait", ThuY := 1, 25-150000, 187-150000, 25+150000, 187+150000, 0, 0, Thu))
@@ -393,12 +393,12 @@ NhanThuong(modehl) {
     global CookingSuccessOnce
     ShowFunctionTooltip("NhanThuong")
     countNhanThuong := 4
-    if (modehl == 0) {
+    if (modehl == "daily") {
         countNhanThuong := 3
     }
 
     ; Check nau an thanh cong / that bai
-    if (modehl == 1) {
+    if (modehl == "nauan") {
         if (CookingSuccessOnce) {
           countNhanThuong := 4
         } else {
@@ -1341,46 +1341,55 @@ MenuNhiemVuNgay() {
     Gui, Add, Checkbox, vEnableLikeViTri2 w100, Like 2
     Gui, Add, Checkbox, vEnableLikeViTri3 w100, Like 3
 
-    Gui, Add, Button, gHoatLuc1 Default w200, Only Daily
+    Gui, Add, Button, gDaily Default w200, Only Daily
 
-    Gui, Add, Button, gHoatLuc2 w200, Daily + Nau an
+    Gui, Add, Button, gCustom w200, Auto Nghe
+
+    Gui, Add, Button, gNauan w200, Nau an
     
-    Gui, Add, Button, gHoatLuc4 w200, Daily + Cau ca
+    Gui, Add, Button, gCauca w200, Cau ca
     Gui, Add, Checkbox, vEnableBanCa w200, Ban Ca
 
-    Gui, Add, Button, gHoatLuc3 w200, Daily + Dao khoan
+    Gui, Add, Button, gDaokhoan w200, Dao khoan
     Gui, Add, Checkbox, vEnableMuaDatCat Checked w200, Mua Dat Cat
     Gui, Add, Checkbox, vEnableBanKhoan w200, Ban Khoan
 
     Gui, Show,, Menu
     return
 
-    HoatLuc1:
+    Daily:
         global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
         Gui, Submit, NoHide
         Gui, Destroy
-        Full10AccTo(StartPos, 0)
+        Full10AccTo(StartPos, "daily")
     return
 
-    HoatLuc2:
+    Nauan:
         global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
         Gui, Submit, NoHide
         Gui, Destroy
-        Full10AccTo(StartPos, 1)
+        Full10AccTo(StartPos, "nauan")
     return
 
-    HoatLuc3:
+    Daokhoan:
         global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
         Gui, Submit, NoHide
         Gui, Destroy
-        Full10AccTo(StartPos, 2)
+        Full10AccTo(StartPos, "daokhoan")
     return
     
-    HoatLuc4:
+    Cauca:
         global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
         Gui, Submit, NoHide
         Gui, Destroy
-        Full10AccTo(StartPos, 3)
+        Full10AccTo(StartPos, "cauca")
+    return
+    
+    Custom:
+        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
+        Gui, Submit, NoHide
+        Gui, Destroy
+        Full10AccTo(StartPos, "custom")
     return
 
     return
@@ -2045,25 +2054,26 @@ FullLikeTrangVien() {
   return
 }
 
-Full10AccTo(startPos := 1, modehl := 0) {
+Full10AccTo(startPos := 1, modehl := "daily") {
     global MenuMonAn
     ShowFunctionTooltip("Full10AccTo")
 
+    ; modehl: "custom", "daily", "nauan", "daokhoan", "cauca"
     userList := []
-    userList.Push({name: "rrntt1", monan: 1})
-    userList.Push({name: "rrntt2", monan: 1})
-    userList.Push({name: "rrntt3", monan: 1})
+    userList.Push({name: "rrntt1", monan: 1, modehl: "nauan"})
+    userList.Push({name: "rrntt2", monan: 1, modehl: "nauan"})
+    userList.Push({name: "rrntt3", monan: 1, modehl: "nauan"})
 
-    userList.Push({name: "rrntt4", monan: 2})
-    userList.Push({name: "rrntt5", monan: 2})
-    userList.Push({name: "rrntt6", monan: 2})
+    userList.Push({name: "rrntt4", monan: 2, modehl: "cauca"})
+    userList.Push({name: "rrntt5", monan: 2, modehl: "cauca"})
+    userList.Push({name: "rrntt6", monan: 2, modehl: "cauca"})
  
-    userList.Push({name: "rrntt7", monan: 3})
-    userList.Push({name: "rrntt8", monan: 3})
-    userList.Push({name: "rrntt9", monan: 3})
+    userList.Push({name: "rrntt7", monan: 3, modehl: "nauan"})
+    userList.Push({name: "rrntt8", monan: 3, modehl: "nauan"})
+    userList.Push({name: "rrntt9", monan: 3, modehl: "nauan"})
 
-    userList.Push({name: "rrntt0", monan: 3})
-    userList.Push({name: "huynnl1", monan: 3})
+    userList.Push({name: "rrntt0", monan: 3, modehl: "nauan"})
+    userList.Push({name: "huynnl1", monan: 3, modehl: "cauca"})
 
     Loop % (userList.Length() - startPos + 1)
     {
@@ -2072,9 +2082,12 @@ Full10AccTo(startPos := 1, modehl := 0) {
         username := userInfo.name
         ; nau an auto
         MenuMonAn := userInfo.monan
+        
+        ; neu modehl = "custom" thi dung modehl cua user, nguoc lai dung modehl chung
+        userModehl := (modehl = "custom") ? userInfo.modehl : modehl
 
         Login(username)
-        FullAccTo(username, modehl)
+        FullAccTo(username, userModehl)
     }
 
   Shutdown, 1
@@ -2109,7 +2122,7 @@ FullAccTo(username, modehl) {
           Haocam()
         }
         ; mode nau an
-        if (modehl == 1)
+        if (modehl == "nauan")
         {
           GhepNguyenLieuNauAn()
           Sleep, 1000
@@ -2119,7 +2132,7 @@ FullAccTo(username, modehl) {
         }
 
         ; mode dao khoan
-        if (modehl == 2)
+        if (modehl == "daokhoan")
         {
           Sleep, 1000
           if (EnableMuaDatCat == 1) {
@@ -2136,7 +2149,7 @@ FullAccTo(username, modehl) {
         }
         
         ; mode cau ca
-        if (modehl == 3)
+        if (modehl == "cauca")
         {
             CauCa()
             Sleep, 1000
