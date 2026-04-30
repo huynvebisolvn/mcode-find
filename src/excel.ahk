@@ -4,7 +4,6 @@
 
 ; Global variables
 global SelectedPriceTarget := ""
-global EnableMuaDatCat := 1
 global EnableBanKhoan := 0
 global EnableBanCa := 1
 global MenuMonAn := 1
@@ -636,40 +635,6 @@ DaoKhoan() {
 }
 
 
-MuaDatCat() {
-    ShowFunctionTooltip("MuaDatCat")
-    Send, {f5}
-    Sleep, 2500
-    MouseClick, left, 568, 730
-    Sleep, 1500
-    MouseClick, left, 50, 160
-    Sleep, 1500
-    MouseClick, left, 280, 65
-    Sleep, 1500
-    MouseMove, 676, 295
-    Sleep, 1000
-    Click, WheelDown, 10
-    Sleep, 1000
-    DatCat:="|<>*126$46.zzzzznzzzzzzyDzzzzzzUzzzzzzy3zzzzzzUDzzzzzw0zzzzzzU3zzzzzw0Tzzzzzw1zzzzzzs3zzzzzzkDzzzzzy0Tzzzzzk2zzzzzz0Dzzzzzs0zzzzzz03zzzzzs0/zzzzz00Tzzzzs01zzzzTU0Dzzzvw00Tzzz7U01zzzk0007zzw0000Dzz00000zzk00000zs00001Xz00s0067w01000ATk00000kzU00007Vzy0000TXzsTsM0jCyTzzs027zzzzsTzzzzzzbzzU"
-    if (ok:=FindText(DatCatX := "wait", DatCatY := 5, 541-150000, 266-150000, 541+150000, 266+150000, 0, 0, DatCat))
-    {
-      MouseClick, left, DatCatX, DatCatY
-      Sleep, 1000
-      ; plus
-      MouseClick, left, 845, 541
-      Sleep, 500
-      MouseClick, left, 835, 362 ;4
-      Sleep, 500
-      MouseClick, left, 897, 485 ;0
-      Sleep, 1000
-      Send, {v}
-      Sleep, 1000
-      MouseClick, left, 640, 480
-    }
-    Sleep, 1000
-    Send, {Esc}
-}
-
 
 NhanDienGiaCho() {
     NumberLib := "|<0>*112$6.V0AAAAAA0VU|<0>**75$8.S8M2AbZ9GLgm0gNwU|<1>*114$3.UYYYYU|<1>**65$5.TbCIdGZ+IjU|<2>*114$6.U0Awslnb00U|<2>**60$7.zMl9bmvNtds43zU|<3>*114$6.V4QsVUww01U|<3>**50$8.TyCNiThXSrbtUwTyU|<4>*117$6.wsskoY00wwU|<4>**50$6.DRNlVhBR0xBDU|<5>*70$6.0007000w001U|<5>**70$7.Ts84mT1UT1XW3zU|<6>*120$6.V4DD0AAA0VU|<6>**60$8.TiD9bty3aNqNkSByU|<7>*115$6.0UstlnXXbbU|<7>**70$5.y0bQvZMl2QU|<8>*120$6.n0AA010AA0VU|<8>**70$6.zVAAAV0AA0VzU|<9>*117$6.V8AA0Uww01U|<9>*134$6.n0AQA0ww01U|<9>**70$8.DAO1aNaNUTYNwMDzU"
@@ -806,8 +771,38 @@ FullGhepKhoan() {
             Sleep, 1000
             MouseClick, left, 194, 141
             Sleep, 1000
-            ; Tinh luyen dong
-            MouseClick, left, 260, 195
+
+            ; Tinh luyen long dam thach
+            MouseClick, left, 260, 330
+            Sleep, 1000
+
+            ; mua dat cat cho 300 the luc
+            MouseClick, left, 656, 372
+            Step1:="|<>*82$14.yzzbzszy7zszz7rssz47s1y8z7TXzlzszwTyDzbzvzU"
+            if (ok:=FindText(Step1X := "wait", Step1Y := 2, 588-150000, 508-150000, 588+150000, 508+150000, 0, 0, Step1))
+            {
+                MouseClick, left, Step1X, Step1Y
+                Step2:="|<>*152$7.TrtyT7XswC773Xnnvvxz"
+                if (ok:=FindText(Step2X := "wait", Step2Y := 2, 591-150000, 474-150000, 591+150000, 474+150000, 0, 0, Step2))
+                {
+                    MouseClick, left, Step2X, Step2Y
+                    Sleep, 1000
+                    ; plus
+                    MouseClick, left, 845, 541
+                    Sleep, 500
+                    MouseClick, left, 890, 307 ;2
+                    Sleep, 500
+                    MouseClick, left, 837, 423 ;7
+                    Sleep, 500
+                    MouseClick, left, 897, 485 ;0
+                    Sleep, 1000
+                    Send, {v}
+                    Sleep, 1000
+                    MouseClick, left, 640, 480
+                    Sleep, 1000
+                    Send, {Esc}
+                }
+            }
             Sleep, 1000
             ; Max
             MouseClick, left, 656, 639
@@ -1355,42 +1350,41 @@ MenuNhiemVuNgay() {
     Gui, Add, Checkbox, vEnableBanCa Checked w200, Ban Ca
 
     Gui, Add, Button, gDaokhoan w200, Dao khoan
-    Gui, Add, Checkbox, vEnableMuaDatCat Checked w200, Mua Dat Cat
     Gui, Add, Checkbox, vEnableBanKhoan w200, Ban Khoan
 
     Gui, Show,, Menu
     return
 
     Daily:
-        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
+        global StartPos, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, "daily")
     return
 
     Nauan:
-        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
+        global StartPos, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, "nauan")
     return
 
     Daokhoan:
-        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
+        global StartPos, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, "daokhoan")
     return
     
     Cauca:
-        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
+        global StartPos, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, "cauca")
     return
     
     Custom:
-        global StartPos, EnableMuaDatCat, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
+        global StartPos, EnableBanKhoan, EnableBanCa, EnableLikeViTri1, EnableLikeViTri2, EnableLikeViTri3
         Gui, Submit, NoHide
         Gui, Destroy
         Full10AccTo(StartPos, "custom")
@@ -2063,7 +2057,7 @@ Full10AccTo(startPos := 1, modehl := "daily") {
 
     ; modehl: "custom", "daily", "nauan", "daokhoan", "cauca"
     userList := []
-    userList.Push({name: "rrntt1", monan: 1, modehl: "nauan"})
+    userList.Push({name: "rrntt1", monan: 1, modehl: "daokhoan"})
     userList.Push({name: "rrntt2", monan: 1, modehl: "nauan"})
     userList.Push({name: "rrntt3", monan: 1, modehl: "nauan"})
 
@@ -2118,12 +2112,31 @@ FullAccTo(username, modehl) {
         {
           Chuphinh()
           Sleep, 1000
+        }
+
+        ; mode dao khoan
+        if (modehl == "daokhoan")
+        {
+          Sleep, 1000
+          FullGhepKhoan()
+          Sleep, 1000
+          if (EnableBanKhoan == 1) {
+              BanKhoan()
+              Sleep, 1000
+            }
+          DaoKhoan()
+        }
+
+        if (not daNhan)
+        {
+          Sleep, 1000
           QuaDuNgoan()
           Sleep, 1000
           Monghoaluc(modehl)
           Sleep, 1000
           Haocam()
         }
+
         ; mode nau an
         if (modehl == "nauan")
         {
@@ -2134,23 +2147,6 @@ FullAccTo(username, modehl) {
           Send, {Esc}
         }
 
-        ; mode dao khoan
-        if (modehl == "daokhoan")
-        {
-          Sleep, 1000
-          if (EnableMuaDatCat == 1) {
-            MuaDatCat()
-            Sleep, 1000
-          }
-          FullGhepKhoan()
-          Sleep, 1000
-          if (EnableBanKhoan == 1) {
-              BanKhoan()
-              Sleep, 1000
-            }
-          DaoKhoan()
-        }
-        
         ; mode cau ca
         if (modehl == "cauca")
         {
