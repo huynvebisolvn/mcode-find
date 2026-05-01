@@ -1339,7 +1339,36 @@ MenuNhiemVuNgay() {
     Gui, PriceSelect:New
     Gui, Font, s10
     
-    Gui, Add, Edit, vStartPos w100, 1
+    ; modehl: "custom", "daily", "nauan", "daokhoan", "cauca"
+    global GlobalUserList := []
+    GlobalUserList.Push({name: "rrntt2", monan: "canhthachtuy", modehl: "nauan"})
+    GlobalUserList.Push({name: "rrntt3", monan: "canhthachtuy", modehl: "nauan"})
+
+    GlobalUserList.Push({name: "rrntt7", monan: "cachuatayho", modehl: "nauan"})
+    GlobalUserList.Push({name: "rrntt8", monan: "cachuatayho", modehl: "nauan"})
+    GlobalUserList.Push({name: "rrntt9", monan: "cachuatayho", modehl: "nauan"})
+    GlobalUserList.Push({name: "rrntt0", monan: "cachuatayho", modehl: "nauan"})
+
+    GlobalUserList.Push({name: "rrntt1", monan: "canhthachtuy", modehl: "cauca"})
+
+    GlobalUserList.Push({name: "rrntt4", monan: "sashimicabac", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt5", monan: "sashimicabac", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt6", monan: "sashimicabac", modehl: "cauca"})
+
+    GlobalUserList.Push({name: "huynnl1", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "huynnl02", monan: "sashimicabac", modehl: "cauca"})
+
+    userListStr := ""
+    Loop % GlobalUserList.Length()
+    {
+        if (A_Index = 1)
+            userListStr .= "||"  ; First item is default
+        else if (A_Index > 1)
+            userListStr .= "|"  
+        userListStr .= GlobalUserList[A_Index].name
+    }
+
+    Gui, Add, DropDownList, vStartPos w150, %userListStr%
     Gui, Add, Checkbox, vEnableLikeViTri1 w100, Like 1
     Gui, Add, Checkbox, vEnableLikeViTri2 w100, Like 2
     Gui, Add, Checkbox, vEnableLikeViTri3 w100, Like 3
@@ -2059,32 +2088,25 @@ Full10AccTo(startPos := 1, modehl := "daily") {
     global MenuMonAn
     global TotalUsers
     global CurrentUserIndex
+    global GlobalUserList
     ShowFunctionTooltip("Full10AccTo")
 
-    ; modehl: "custom", "daily", "nauan", "daokhoan", "cauca"
-    userList := []
-    userList.Push({name: "rrntt2", monan: "canhthachtuy", modehl: "nauan"})
-    userList.Push({name: "rrntt3", monan: "canhthachtuy", modehl: "nauan"})
-
-    userList.Push({name: "rrntt7", monan: "cachuatayho", modehl: "nauan"})
-    userList.Push({name: "rrntt8", monan: "cachuatayho", modehl: "nauan"})
-    userList.Push({name: "rrntt9", monan: "cachuatayho", modehl: "nauan"})
-    userList.Push({name: "rrntt0", monan: "cachuatayho", modehl: "nauan"})
-
-    userList.Push({name: "rrntt1", monan: "canhthachtuy", modehl: "cauca"})
-
-    userList.Push({name: "rrntt4", monan: "sashimicabac", modehl: "cauca"})
-    userList.Push({name: "rrntt5", monan: "sashimicabac", modehl: "cauca"})
-    userList.Push({name: "rrntt6", monan: "sashimicabac", modehl: "cauca"})
-
-    userList.Push({name: "huynnl1", monan: "cachuatayho", modehl: "cauca"})
-    userList.Push({name: "huynnl02", monan: "sashimicabac", modehl: "cauca"})
+    userList := GlobalUserList
+    ; startPos la username trong DropDownList
+    actualStartPos := 1
+    Loop % userList.Length()
+    {
+        if (userList[A_Index].name = startPos) {
+            actualStartPos := A_Index
+            break
+        }
+    }
 
     TotalUsers := userList.Length()
 
-    Loop % (userList.Length() - startPos + 1)
+    Loop % (userList.Length() - actualStartPos + 1)
     {
-        index := startPos + A_Index - 1
+        index := actualStartPos + A_Index - 1
         CurrentUserIndex := index
         userInfo := userList[index]
         username := userInfo.name
