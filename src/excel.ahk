@@ -2178,8 +2178,8 @@ FullAccTo(username, modehl) {
         }
         SendCurlNotification(username, A_Index, countNhanThuong)
 
-        Sleep, 1000
-        LichSuMuaban()
+        ; Sleep, 1000
+        ; LichSuMuaban()
 
         FullLikeTrangVien()
 
