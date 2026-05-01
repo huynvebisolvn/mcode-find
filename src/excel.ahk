@@ -6,9 +6,11 @@
 global SelectedPriceTarget := ""
 global EnableBanKhoan := 0
 global EnableBanCa := 1
-global MenuMonAn := 1
+global MenuMonAn := "canhthachtuy"
 global ShowMouseCoords := false
 global CurrentUsername := ""
+global CurrentUserIndex := 0
+global TotalUsers := 0
 global CookingSuccessOnce := false
 global EnableLikeViTri1 := 0
 global EnableLikeViTri2 := 0
@@ -20,7 +22,11 @@ ChangeResolutionOnly(1024, 768)
 ; Show function name in tooltip
 ShowFunctionTooltip(functionName) {
     global CurrentUsername
-    if (CurrentUsername != "") {
+    global CurrentUserIndex
+    global TotalUsers
+    if (CurrentUsername != "" && TotalUsers > 0) {
+        ToolTip, %CurrentUsername% (%CurrentUserIndex%/%TotalUsers%): %functionName%, 0, 0
+    } else if (CurrentUsername != "") {
         ToolTip, %CurrentUsername%: %functionName%, 0, 0
     } else {
         ToolTip, %functionName%, 0, 0
@@ -1545,13 +1551,13 @@ FullNauAn() {
                     Sleep, 1000
                     MouseClick, left, 230, 65
 
-                    if (MenuMonAn == 1) {
+                    if (MenuMonAn == "canhthachtuy") {
                         CanhThachTuy()
                     }
-                    if (MenuMonAn == 2) {
+                    if (MenuMonAn == "sashimicabac") {
                         SashimiCaBac()
                     }
-                    if (MenuMonAn == 3) {
+                    if (MenuMonAn == "cachuatayho") {
                         CaChuaTayHo()
                     }
                 }
@@ -1954,7 +1960,7 @@ LichSuMuaban() {
       }
 
       ; ban ca la CanhThachTuy
-      if (MenuMonAn == 1) {
+      if (MenuMonAn == "canhthachtuy") {
         Sleep, 500
         ; Go vat pham
         loop, 2
@@ -2051,28 +2057,35 @@ FullLikeTrangVien() {
 
 Full10AccTo(startPos := 1, modehl := "daily") {
     global MenuMonAn
+    global TotalUsers
+    global CurrentUserIndex
     ShowFunctionTooltip("Full10AccTo")
 
     ; modehl: "custom", "daily", "nauan", "daokhoan", "cauca"
     userList := []
-    userList.Push({name: "rrntt1", monan: 1, modehl: "cauca"})
-    userList.Push({name: "rrntt2", monan: 1, modehl: "nauan"})
-    userList.Push({name: "rrntt3", monan: 1, modehl: "nauan"})
+    userList.Push({name: "rrntt2", monan: "canhthachtuy", modehl: "nauan"})
+    userList.Push({name: "rrntt3", monan: "canhthachtuy", modehl: "nauan"})
 
-    userList.Push({name: "rrntt4", monan: 2, modehl: "cauca"})
-    userList.Push({name: "rrntt5", monan: 2, modehl: "cauca"})
-    userList.Push({name: "rrntt6", monan: 2, modehl: "cauca"})
- 
-    userList.Push({name: "rrntt7", monan: 3, modehl: "nauan"})
-    userList.Push({name: "rrntt8", monan: 3, modehl: "nauan"})
-    userList.Push({name: "rrntt9", monan: 3, modehl: "nauan"})
+    userList.Push({name: "rrntt7", monan: "cachuatayho", modehl: "nauan"})
+    userList.Push({name: "rrntt8", monan: "cachuatayho", modehl: "nauan"})
+    userList.Push({name: "rrntt9", monan: "cachuatayho", modehl: "nauan"})
+    userList.Push({name: "rrntt0", monan: "cachuatayho", modehl: "nauan"})
 
-    userList.Push({name: "rrntt0", monan: 3, modehl: "nauan"})
-    userList.Push({name: "huynnl1", monan: 3, modehl: "cauca"})
+    userList.Push({name: "rrntt1", monan: "canhthachtuy", modehl: "cauca"})
+
+    userList.Push({name: "rrntt4", monan: "sashimicabac", modehl: "cauca"})
+    userList.Push({name: "rrntt5", monan: "sashimicabac", modehl: "cauca"})
+    userList.Push({name: "rrntt6", monan: "sashimicabac", modehl: "cauca"})
+
+    userList.Push({name: "huynnl1", monan: "cachuatayho", modehl: "cauca"})
+    userList.Push({name: "huynnl02", monan: "sashimicabac", modehl: "cauca"})
+
+    TotalUsers := userList.Length()
 
     Loop % (userList.Length() - startPos + 1)
     {
         index := startPos + A_Index - 1
+        CurrentUserIndex := index
         userInfo := userList[index]
         username := userInfo.name
         ; nau an auto
