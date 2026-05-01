@@ -790,9 +790,7 @@ FullGhepKhoan() {
                     ; plus
                     MouseClick, left, 845, 541
                     Sleep, 500
-                    MouseClick, left, 890, 307 ;2
-                    Sleep, 500
-                    MouseClick, left, 837, 423 ;7
+                    MouseClick, left, 947, 422 ;9
                     Sleep, 500
                     MouseClick, left, 897, 485 ;0
                     Sleep, 1000
@@ -2057,7 +2055,7 @@ Full10AccTo(startPos := 1, modehl := "daily") {
 
     ; modehl: "custom", "daily", "nauan", "daokhoan", "cauca"
     userList := []
-    userList.Push({name: "rrntt1", monan: 1, modehl: "daokhoan"})
+    userList.Push({name: "rrntt1", monan: 1, modehl: "cauca"})
     userList.Push({name: "rrntt2", monan: 1, modehl: "nauan"})
     userList.Push({name: "rrntt3", monan: 1, modehl: "nauan"})
 
