@@ -1361,14 +1361,12 @@ MenuNhiemVuNgay() {
     userListStr := ""
     Loop % GlobalUserList.Length()
     {
-        if (A_Index = 1)
-            userListStr .= "||"  ; First item is default
-        else if (A_Index > 1)
+        if (A_Index > 1)
             userListStr .= "|"  
         userListStr .= GlobalUserList[A_Index].name
     }
 
-    Gui, Add, DropDownList, vStartPos w150, %userListStr%
+    Gui, Add, DropDownList, vStartPos Choose1 w150, %userListStr%
     Gui, Add, Checkbox, vEnableLikeViTri1 w100, Like 1
     Gui, Add, Checkbox, vEnableLikeViTri2 w100, Like 2
     Gui, Add, Checkbox, vEnableLikeViTri3 w100, Like 3
@@ -1376,14 +1374,12 @@ MenuNhiemVuNgay() {
     Gui, Add, Button, gDaily Default w200, Only Daily
 
     Gui, Add, Button, gCustom w200, Auto Nghe
-
-    Gui, Add, Button, gNauan w200, Nau an
-    
-    Gui, Add, Button, gCauca w200, Cau ca
     Gui, Add, Checkbox, vEnableBanCa Checked w200, Ban Ca
 
-    Gui, Add, Button, gDaokhoan w200, Dao khoan
-    Gui, Add, Checkbox, vEnableBanKhoan w200, Ban Khoan
+    ; Gui, Add, Button, gNauan w200, Nau an
+    ; Gui, Add, Button, gCauca w200, Cau ca
+    ; Gui, Add, Button, gDaokhoan w200, Dao khoan
+    ; Gui, Add, Checkbox, vEnableBanKhoan w200, Ban Khoan
 
     Gui, Show,, Menu
     return
