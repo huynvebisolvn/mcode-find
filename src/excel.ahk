@@ -5,7 +5,7 @@
 ; Global variables
 global SelectedPriceTarget := ""
 global EnableBanKhoan := 0
-global EnableBanCa := 1
+global EnableBanCa := 0
 global MenuMonAn := "canhthachtuy"
 global ShowMouseCoords := false
 global CurrentUsername := ""
@@ -1374,7 +1374,7 @@ MenuNhiemVuNgay() {
     Gui, Add, Button, gDaily Default w200, Only Daily
 
     Gui, Add, Button, gCustom w200, Auto Nghe
-    Gui, Add, Checkbox, vEnableBanCa Checked w200, Ban Ca
+    Gui, Add, Checkbox, vEnableBanCa w200, Ban Ca
 
     ; Gui, Add, Button, gNauan w200, Nau an
     ; Gui, Add, Button, gCauca w200, Cau ca
