@@ -2184,6 +2184,9 @@ FullAccTo(username, modehl) {
             PhanGiaiCa()
             Sleep, 1000
             if (EnableBanCa == 1) {
+                ; sap xem lai ca thanh slot 1
+                GhepNguyenLieuNauAn()
+                Sleep, 1000
                 BanCa()
                 Sleep, 1000
             }
