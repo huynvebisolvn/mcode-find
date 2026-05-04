@@ -3892,7 +3892,7 @@ GetRange(ww:=25, hh:=8, key:="RButton")
     if (oldx=x2 && oldy=y2)
       Continue
     oldx:=x2, oldy:=y2
-    ToolTip % "x: " x " y: " y "`n" tip
+    ToolTip % "x: " (x-ww) " y: " (y-hh) " w: " (2*ww+1) " h: " (2*hh+1) "`n" tip
   }
   ToolTip
   this.RangeTip()
@@ -4989,6 +4989,8 @@ Gui(cmd, arg1:="", args*)
     return Text
   Case "CaptureUpdate":
     nX:=sx, nY:=sy, nW:=sw, nH:=sh
+    ; Save capture range for Test function
+    this.LastCaptureRange:=[nX, nY, nW, nH]
     bits:=this.GetBitsFromScreen(nX,nY,nW,nH,0,zx,zy)
     cors:=[], show:=[], ascii:=[]
     , SelPos:=bg:=color:=Result:=""
@@ -5144,7 +5146,16 @@ Gui(cmd, arg1:="", args*)
     {
       t:=A_TickCount, v:=X:=Y:=""
       if RegExMatch(s, "O)<[^>\n]*>[^$\n]+\$[^""\r\n]+", r)
-        v:=this.FindText(X, Y, 0,0,0,0, 0,0, r[0])
+      {
+        ; Use last captured range if available, otherwise full screen
+        if IsObject(this.LastCaptureRange)
+        {
+          cr:=this.LastCaptureRange
+          v:=this.FindText(X, Y, cr[1], cr[2], cr[1]+cr[3], cr[2]+cr[4], 0,0, r[0])
+        }
+        else
+          v:=this.FindText(X, Y, 0,0,0,0, 0,0, r[0])
+      }
       r:=StrSplit(Lang["s8"] "||||", "|")
       MsgBox, 4096, Tip, % r[1] ":`t" (IsObject(v)?v.Length():v) "`n`n"
         . r[2] ":`t" (A_TickCount-t) " " r[3] "`n`n"
@@ -5657,11 +5668,12 @@ Gui(cmd, arg1:="", args*)
     }
     x:=nX+CutLeft+(nW-CutLeft-CutRight)//2
     y:=nY+CutUp+(nH-CutUp-CutDown)//2
+    ; Generate code with width/height calculation for easier editing
+    x1:=nX, y1:=nY, w:=nW, h:=nH
     s:=StrReplace(s, "Text.=", "Text:="), r:=StrSplit(Lang["s8"] "|||||||", "|")
     s:="`; #Include <FindText>`n"
     . "`nt1:=A_TickCount, Text:=X:=Y:=""""`n" s
-    . "`nif (ok:=FindText(X, Y, " x "-150000, "
-    . y "-150000, " x "+150000, " y "+150000, 0, 0, Text))"
+    . "`nif (ok:=FindText(X, Y, " x1 ", " y1 ", " x1 "+" w ", " y1 "+" h ", 0, 0, Text))"
     . "`n{"
     . "`n  `; FindText()." . "Click(" . "X, Y, ""L"")"
     . "`n}`n"
