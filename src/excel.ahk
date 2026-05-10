@@ -1349,14 +1349,18 @@ MenuNhiemVuNgay() {
     GlobalUserList.Push({name: "rrntt9", monan: "cachuatayho", modehl: "nauan"})
     GlobalUserList.Push({name: "rrntt0", monan: "cachuatayho", modehl: "nauan"})
 
+    ; delay 30 day
     GlobalUserList.Push({name: "rrntt1", monan: "canhthachtuy", modehl: "cauca"})
-
     GlobalUserList.Push({name: "rrntt4", monan: "sashimicabac", modehl: "cauca"})
     GlobalUserList.Push({name: "rrntt5", monan: "sashimicabac", modehl: "cauca"})
     GlobalUserList.Push({name: "rrntt6", monan: "sashimicabac", modehl: "cauca"})
 
+    ; create new
     GlobalUserList.Push({name: "huynnl1", monan: "cachuatayho", modehl: "cauca"})
-    ; GlobalUserList.Push({name: "huynnl02", monan: "sashimicabac", modehl: "cauca"})
+    GlobalUserList.Push({name: "huynnl02", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "huynnl3", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "huynnl4", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "huynnl5", monan: "cachuatayho", modehl: "cauca"})
 
     userListStr := ""
     Loop % GlobalUserList.Length()
