@@ -1603,7 +1603,7 @@ CheckCauca() {
     CheckCauOk1:="|<>**50$13.1s1a1VVUNU7U1U0s0q0lUkMk6k1kE"
     CheckCauOk2:="|<>**50$13.1k1g1X1UlUBU3U0s0q0lUkMk6k1kE"
     timThay := 0
-    loop
+    loop, 2
     {
         MouseMove, 500, 0
         Send, {LButton down}
@@ -1823,8 +1823,13 @@ CauCa() {
     ; bat dau cau ca
     ShowFunctionTooltip("bat dau CauCa")
     HetthelucCount := 0
+    BugCauca := 0
     loop
     {
+        if (BugCauca >= 20) {
+          ShowFunctionTooltip("Bug Cauca")
+          break
+        }
         CauNgay:="|<>*168$18.0zz07z01U000U01U07k03w01y00z00z80zA0U"
         if (ok:=FindText(CauNgayX := "wait", CauNgayY := 0.5, 896-150, 631-150, 896+150, 631+150, 0, 0, CauNgay))
         {
@@ -1841,6 +1846,9 @@ CauCa() {
                     break
                 }
             }
+        } else {
+          BugCauca++
+          ShowFunctionTooltip("BugCauca: " . BugCauca)
         }
         ThuHoach:="|<>*131$25.za00Tn003XU01lk00st00QTlbCDxnb7CtnXbQtlniQstrCQQtzCCQzk"
         if (ok:=FindText(ThuHoachX := "wait", ThuHoachY := 0.5, 853-150, 717-150, 853+150, 717+150, 0, 0, ThuHoach))
