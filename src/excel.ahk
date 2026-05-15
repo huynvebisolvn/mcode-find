@@ -88,10 +88,40 @@ SuKienBatNgo() {
     return
 }
 
+CheckResetAPI() {
+  ; GET request to check reset status
+  http := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+  http.Open("GET", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708/latest", false)
+  http.Send()
+
+  response := http.ResponseText
+
+  ; Parse JSON to check reset value
+  if (InStr(response, """reset"":true")) {
+      ; Update reset to false via PUT request
+      jsonBody := "{""reset"": false}"
+
+      httpPut := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+      httpPut.Open("PUT", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708", false)
+      httpPut.SetRequestHeader("Content-Type", "application/json")
+      httpPut.Send(jsonBody)
+
+      Sleep, 1000
+
+      ; Restart computer
+      Shutdown, 2
+  }
+  return
+}
+
+
 ; Timer to update mouse position
 SetTimer, ShowMousePosition, 100
 
 SetTimer, SuKienBatNgo, 1000
+
+; Timer to check reset API every 60 seconds
+SetTimer, CheckResetAPI, 60000
 
 ; ==============================
 ; Toggle mouse coordinates display (for debugging)
