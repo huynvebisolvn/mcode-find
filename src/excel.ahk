@@ -934,17 +934,12 @@ QuaDuNgoan() {
     Sleep, 1000
     MouseClick, left, 500, 0
     Sleep, 1000
-    ; check out success
-    loop
+    Thoat:="|<>*138$20.zy7zs03k07U0Dk0DzwDzzUzzy7zzxzU"
+    if (ok:=FindText(X := "wait", Y := 2, 52-150, 31-150, 52+150, 31+150, 0, 0, Thoat))
     {
-      Text:="|<>*138$20.zy7zs03k07U0Dk0DzwDzzUzzy7zzxzU"
-      if (ok:=FindText(X, Y, 52-150, 31-150, 52+150, 31+150, 0, 0, Text))
-      {
-        MouseClick, left, X, Y
-        break
-      }
-      MouseClick, left, 500, 0
-      Sleep, 1000
+      MouseClick, left, X, Y
+    } else {
+      Send, {Esc}
     }
 }
 
