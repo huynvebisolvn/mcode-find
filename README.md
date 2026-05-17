@@ -46,3 +46,11 @@ const YOUR_COOKIE = 'your-jwt-token-here';
 ```bash
 node trumbox-client.js
 ```
+
+```
+curl -X GET "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708/latest"
+
+curl -X PUT "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708" \
+  -H "Content-Type: application/json" \
+  -d '{"reset": true}'
+```

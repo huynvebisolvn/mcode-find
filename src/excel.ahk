@@ -5,7 +5,7 @@
 ; Global variables
 global SelectedPriceTarget := ""
 global EnableBanKhoan := 0
-global EnableBanCa := 0
+global EnableBanCa := 1
 global MenuMonAn := "canhthachtuy"
 global ShowMouseCoords := false
 global CurrentUsername := ""
@@ -898,6 +898,8 @@ DoiNhanVat() {
         Sleep, 1000
         Click, WheelDown, 10
         Sleep, 1000
+        Click, WheelDown, 10
+        Sleep, 1000
         MouseClick, left, 170, 350
         Sleep, 1000
         MouseClick, left, 836, 688
@@ -1377,7 +1379,8 @@ MenuNhiemVuNgay() {
     GlobalUserList.Push({name: "rrntt7", monan: "cachuatayho", modehl: "nauan"})
     GlobalUserList.Push({name: "rrntt8", monan: "cachuatayho", modehl: "nauan"})
     GlobalUserList.Push({name: "rrntt9", monan: "cachuatayho", modehl: "nauan"})
-    GlobalUserList.Push({name: "rrntt0", monan: "cachuatayho", modehl: "nauan"})
+
+    GlobalUserList.Push({name: "rrntt0", monan: "cachuatayho", modehl: "cauca"})
 
     ; delay 30 day
     GlobalUserList.Push({name: "rrntt1", monan: "canhthachtuy", modehl: "cauca"})
@@ -1408,7 +1411,7 @@ MenuNhiemVuNgay() {
     Gui, Add, Button, gDaily Default w200, Only Daily
 
     Gui, Add, Button, gCustom w200, Auto Nghe
-    Gui, Add, Checkbox, vEnableBanCa w200, Ban Ca
+    Gui, Add, Checkbox, vEnableBanCa Checked w200, Ban Ca
 
     ; Gui, Add, Button, gNauan w200, Nau an
     ; Gui, Add, Button, gCauca w200, Cau ca

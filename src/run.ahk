@@ -1,5 +1,5 @@
-; mac dinh tat may sau 10h
-timeout := 10 * 3600
+; mac dinh tat may sau 12h
+timeout := 12 * 3600
 Run, %ComSpec% /c shutdown.exe /s /f /t %timeout%,, Hide
 
 Sleep, 120000
