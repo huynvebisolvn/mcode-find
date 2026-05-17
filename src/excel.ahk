@@ -441,6 +441,15 @@ NhanThuong(modehl) {
         }
     }
 
+    ; Check cau ca thanh cong / that bai
+    if (modehl == "cauca") {
+        if (CookingSuccessOnce) {
+          countNhanThuong := 4
+        } else {
+          countNhanThuong := 3
+        }
+    }
+
     Send, {F1}
     Sleep, 1000
     ; TODO
@@ -1399,8 +1408,8 @@ MenuNhiemVuNgay() {
     }
 
     Gui, Add, DropDownList, vStartPos Choose1 w150, %userListStr%
-    Gui, Add, Checkbox, vEnableLikeViTri1 w100, Like 1
-    Gui, Add, Checkbox, vEnableLikeViTri2 w100, Like 2
+    Gui, Add, Checkbox, vEnableLikeViTri1 Checked w100, Like 1
+    Gui, Add, Checkbox, vEnableLikeViTri2 Checked w100, Like 2
     Gui, Add, Checkbox, vEnableLikeViTri3 w100, Like 3
 
     Gui, Add, Button, gDaily Default w200, Only Daily
@@ -1671,6 +1680,8 @@ CheckCauca() {
 
 
 CauCa() {
+    global CookingSuccessOnce
+    CookingSuccessOnce := false  ; Reset cho moi nhan vat
     ShowFunctionTooltip("CauCa")
 
     ; chuan bi cho cau
@@ -1883,6 +1894,7 @@ CauCa() {
         {
             MouseClick, left, ThuHoachX, ThuHoachY
             HetthelucCount := 0
+            CookingSuccessOnce := true  ; Danh dau nghe nghiep thanh cong
         }
         MouseClick, left, 900, 610
         Sleep, 1000
