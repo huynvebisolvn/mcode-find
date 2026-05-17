@@ -1412,9 +1412,9 @@ MenuNhiemVuNgay() {
     Gui, Add, Checkbox, vEnableLikeViTri2 Checked w100, Like 2
     Gui, Add, Checkbox, vEnableLikeViTri3 w100, Like 3
 
-    Gui, Add, Button, gDaily Default w200, Only Daily
+    Gui, Add, Button, gDaily w200, Only Daily
 
-    Gui, Add, Button, gCustom w200, Auto Nghe
+    Gui, Add, Button, gCustom Default w200, Auto Nghe
     Gui, Add, Checkbox, vEnableBanCa Checked w200, Ban Ca
 
     ; Gui, Add, Button, gNauan w200, Nau an
