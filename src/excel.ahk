@@ -1894,6 +1894,7 @@ CauCa() {
         {
             MouseClick, left, ThuHoachX, ThuHoachY
             HetthelucCount := 0
+            BugCauca := 0
             CookingSuccessOnce := true  ; Danh dau nghe nghiep thanh cong
         }
         MouseClick, left, 900, 610
