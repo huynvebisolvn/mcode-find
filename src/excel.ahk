@@ -89,26 +89,26 @@ SuKienBatNgo() {
 }
 
 CheckResetAPI() {
-  ; GET request to check reset status
   http := ComObjCreate("WinHttp.WinHttpRequest.5.1")
   http.Open("GET", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708/latest", false)
   http.Send()
-
   response := http.ResponseText
-
-  ; Parse JSON to check reset value
-  if (InStr(response, """reset"":true")) {
-      ; Update reset to false via PUT request
-      jsonBody := "{""reset"": false}"
-
+  if (InStr(response, """pow"":""off""")) {
+      jsonBody := "{""pow"": ""null""}"
       httpPut := ComObjCreate("WinHttp.WinHttpRequest.5.1")
       httpPut.Open("PUT", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708", false)
       httpPut.SetRequestHeader("Content-Type", "application/json")
       httpPut.Send(jsonBody)
-
       Sleep, 1000
-
-      ; Restart computer
+      Shutdown, 1
+  }
+  if (InStr(response, """pow"":""reset""")) {
+      jsonBody := "{""pow"": ""null""}"
+      httpPut := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+      httpPut.Open("PUT", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708", false)
+      httpPut.SetRequestHeader("Content-Type", "application/json")
+      httpPut.Send(jsonBody)
+      Sleep, 1000
       Shutdown, 2
   }
   return
