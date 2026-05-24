@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Điều khiển API - Turn Off / Reset</title>
+</head>
+<body>
+    <h1>Điều khiển</h1>
+    <div>
+        <button id="btnTurnOff" style="font-size: 2rem; padding: 8px 12px; margin-right: 20px;">Turn Off</button>
+        <button id="btnReset" style="font-size: 2rem; padding: 8px 12px;">Reset</button>
+    </div>
+    <div id="dataDisplay" style="margin-top: 20px; font-family: monospace;">
+        Đang tải dữ liệu...
+    </div>
+    <script>
+        // Định nghĩa các URL API
+        const GET_URL = "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708/latest";
+        const PUT_BASE_URL = "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708";
+        // Hàm lấy dữ liệu từ GET và hiển thị lên màn hình
+        async function fetchAndDisplayData() {
+            const displayDiv = document.getElementById("dataDisplay");
+            displayDiv.innerHTML = "Đang tải dữ liệu...";
+            
+            try {
+                const response = await fetch(GET_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                // Dữ liệu trả về từ /latest là nội dung JSON của bin
+                const data = await response.json();
+                
+                // Hiển thị đẹp: lấy giá trị pow nếu có, kèm toàn bộ JSON
+                let prettyJson = JSON.stringify(data, null, 2);
+                
+                displayDiv.innerHTML = `
+                    <strong>json:</strong><br>
+                    <pre style="background:#f4f4f4; padding:8px; border-radius:4px;">${prettyJson}</pre>
+                `;
+            } catch (error) {
+                console.error("Lỗi khi fetch GET:", error);
+                displayDiv.innerHTML = `❌ Lỗi khi tải dữ liệu: ${error.message}<br>Vui lòng kiểm tra kết nối hoặc thử lại.`;
+            }
+        }
+        // Hàm gửi PUT request với nội dung body
+        async function sendPutRequest(bodyData, actionName) {
+            try {
+                const response = await fetch(PUT_BASE_URL, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(bodyData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                // Sau khi PUT thành công, cập nhật lại dữ liệu từ GET
+                await fetchAndDisplayData();
+                return true;
+            } catch (error) {
+                console.error(`Lỗi khi gửi PUT (${actionName}):`, error);
+                const displayDiv = document.getElementById("dataDisplay");
+                displayDiv.innerHTML = `❌ Lỗi khi thực hiện "${actionName}": ${error.message}<br>Không thể cập nhật trạng thái.`;
+                return false;
+            }
+        }
+        // Hành động Turn Off: gửi {"pow": "off"}
+        async function turnOff() {
+            await sendPutRequest({ pow: "off" }, "Turn Off");
+        }
+        // Hành động Reset: gửi {"pow": "reset"}
+        async function reset() {
+            await sendPutRequest({ pow: "reset" }, "Reset");
+        }
+        // Gán sự kiện cho các nút khi DOM đã sẵn sàng
+        window.addEventListener("DOMContentLoaded", () => {
+            // Nạp dữ liệu ban đầu
+            fetchAndDisplayData();
+            // Gắn sự kiện click cho nút Turn Off
+            const turnOffBtn = document.getElementById("btnTurnOff");
+            if (turnOffBtn) {
+                turnOffBtn.addEventListener("click", turnOff);
+            }
+            // Gắn sự kiện click cho nút Reset
+            const resetBtn = document.getElementById("btnReset");
+            if (resetBtn) {
+                resetBtn.addEventListener("click", reset);
+            }
+        });
+    </script>
+</body>
+</html>
