@@ -110,7 +110,8 @@ CheckResetAPI() {
         Sleep, 1000
         Shutdown, 2
     }
-  } catch e {}
+  } catch e {
+  }
   return
 }
 
@@ -2187,7 +2188,8 @@ SendCurlNotification(username, index, countNhanThuong) {
     http.Open("POST", "https://hkdk.events/7er7u1w2bs9s5d", false)
     http.SetRequestHeader("Content-Type", "application/json")
     http.Send(jsonBody)
-  } catch e {}
+  } catch e {
+  }
   return
 }
 
