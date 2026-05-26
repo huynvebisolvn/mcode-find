@@ -89,28 +89,30 @@ SuKienBatNgo() {
 }
 
 CheckResetAPI() {
-  http := ComObjCreate("WinHttp.WinHttpRequest.5.1")
-  http.Open("GET", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708/latest", false)
-  http.Send()
-  response := http.ResponseText
-  if (InStr(response, """pow"":""off""")) {
-      jsonBody := "{""pow"": ""null""}"
-      httpPut := ComObjCreate("WinHttp.WinHttpRequest.5.1")
-      httpPut.Open("PUT", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708", false)
-      httpPut.SetRequestHeader("Content-Type", "application/json")
-      httpPut.Send(jsonBody)
-      Sleep, 1000
-      Shutdown, 1
-  }
-  if (InStr(response, """pow"":""reset""")) {
-      jsonBody := "{""pow"": ""null""}"
-      httpPut := ComObjCreate("WinHttp.WinHttpRequest.5.1")
-      httpPut.Open("PUT", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708", false)
-      httpPut.SetRequestHeader("Content-Type", "application/json")
-      httpPut.Send(jsonBody)
-      Sleep, 1000
-      Shutdown, 2
-  }
+  try {
+    http := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+    http.Open("GET", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708/latest", false)
+    http.Send()
+    response := http.ResponseText
+    if (InStr(response, """pow"":""off""")) {
+        jsonBody := "{""pow"": ""null""}"
+        httpPut := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+        httpPut.Open("PUT", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708", false)
+        httpPut.SetRequestHeader("Content-Type", "application/json")
+        httpPut.Send(jsonBody)
+        Sleep, 1000
+        Shutdown, 1
+    }
+    if (InStr(response, """pow"":""reset""")) {
+        jsonBody := "{""pow"": ""null""}"
+        httpPut := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+        httpPut.Open("PUT", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708", false)
+        httpPut.SetRequestHeader("Content-Type", "application/json")
+        httpPut.Send(jsonBody)
+        Sleep, 1000
+        Shutdown, 2
+    }
+  } catch e {}
   return
 }
 
@@ -2177,6 +2179,7 @@ Full10AccTo(startPos := 1, modehl := "daily") {
 }
 
 SendCurlNotification(username, index, countNhanThuong) {
+  try {
     message := "Username: " . username . " - Index: " . index . " - NhanThuong: " . countNhanThuong
     jsonBody := "{""message"": """ . message . """}"
 
@@ -2184,7 +2187,8 @@ SendCurlNotification(username, index, countNhanThuong) {
     http.Open("POST", "https://hkdk.events/7er7u1w2bs9s5d", false)
     http.SetRequestHeader("Content-Type", "application/json")
     http.Send(jsonBody)
-    return
+  } catch e {}
+  return
 }
 
 
