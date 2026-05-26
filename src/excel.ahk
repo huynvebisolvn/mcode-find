@@ -1400,6 +1400,8 @@ MenuNhiemVuNgay() {
     GlobalUserList.Push({name: "huynnl4", monan: "cachuatayho", modehl: "cauca"})
     GlobalUserList.Push({name: "huynnl5", monan: "cachuatayho", modehl: "cauca"})
 
+    GlobalUserList.Push({name: "tieuthao3008", monan: "cachuatayho", modehl: "cauca"})
+
     userListStr := ""
     Loop % GlobalUserList.Length()
     {
