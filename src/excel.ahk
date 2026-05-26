@@ -91,24 +91,22 @@ SuKienBatNgo() {
 CheckResetAPI() {
   try {
     http := ComObjCreate("WinHttp.WinHttpRequest.5.1")
-    http.Open("GET", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708/latest", false)
+    http.Open("GET", "https://countapi.mileshilliard.com/api/v1/get/nvhuy", false)
     http.Send()
     response := http.ResponseText
-    if (InStr(response, """pow"":""off""")) {
-        jsonBody := "{""pow"": ""null""}"
-        httpPut := ComObjCreate("WinHttp.WinHttpRequest.5.1")
-        httpPut.Open("PUT", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708", false)
-        httpPut.SetRequestHeader("Content-Type", "application/json")
-        httpPut.Send(jsonBody)
+    ; Check if value is 1 (Tat may)
+    if (InStr(response, """value"": 1") || InStr(response, """value"":1")) {
+        httpReset := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+        httpReset.Open("GET", "https://countapi.mileshilliard.com/api/v1/set/nvhuy?value=0", false)
+        httpReset.Send()
         Sleep, 1000
         Shutdown, 1
     }
-    if (InStr(response, """pow"":""reset""")) {
-        jsonBody := "{""pow"": ""null""}"
-        httpPut := ComObjCreate("WinHttp.WinHttpRequest.5.1")
-        httpPut.Open("PUT", "https://api.jsonbin.io/v3/b/6a068610adc21f119aa12708", false)
-        httpPut.SetRequestHeader("Content-Type", "application/json")
-        httpPut.Send(jsonBody)
+    ; Check if value is 2 (Reset may)
+    if (InStr(response, """value"": 2") || InStr(response, """value"":2")) {
+        httpReset := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+        httpReset.Open("GET", "https://countapi.mileshilliard.com/api/v1/set/nvhuy?value=0", false)
+        httpReset.Send()
         Sleep, 1000
         Shutdown, 2
     }
