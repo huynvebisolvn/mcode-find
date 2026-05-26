@@ -142,6 +142,10 @@ End::
   HopNhat()
 return
 
+PgUp::
+  MenuNauAn()
+return
+
 PgDn::
   MenuNhiemVuNgay()
 return
@@ -1467,6 +1471,28 @@ MenuNhiemVuNgay() {
     return
 }
 
+MenuNauAn() {
+    ShowFunctionTooltip("MenuNauAn")
+    global  SelectedTarget
+    Gui, NauAn:New
+    Gui, Font, s10
+    Gui, Add, DropDownList, vSelectedTarget Choose1 w200, canhthachtuy|sashimicabac|cachuatayho
+    Gui, Add, Button, gStartNauAn Default w200, Start
+    Gui, Show,, NauAn
+    return
+    StartNauAn:
+        Gui, Submit, NoHide
+        Gui, Destroy
+        if (SelectedTarget = "canhthachtuy")
+          CanhThachTuy()
+
+        if (SelectedTarget = "sashimicabac")
+          SashimiCaBac()
+
+        if (SelectedTarget = "cachuatayho")
+          CaChuaTayHo()
+    return
+}
 
 MuaThuySanCap1Auto() {
     MouseClick, left, 95, 70
