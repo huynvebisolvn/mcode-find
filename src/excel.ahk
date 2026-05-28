@@ -1047,6 +1047,12 @@ Login(username) {
                 Sleep, 1000
                 MouseClick, left, 190, 273
             }
+            ; banner quang cao lan dau
+            DongQuangCao:="|<>*122$36.001000003U00007k00007k0000Ds0000Ds0000Tw0000zy0000zz0001zz0003zzU006Ttk00CTss00wDky01z7Vz07zX7zsTzk7zwzzsDzyzztTzzzzsDzyTzk7zwDzX3zk1z7Vz00wDkw00STss00DTtk007zzU003zz0001zy0000zw0000Ts0000Ds0000Dk0000Dk00007U00003000U"
+            if (ok:=FindText(DongQuangCaoX, DongQuangCaoY, 931-150000, 165-150000, 931+150000, 165+150000, 0, 0, DongQuangCao))
+            {
+                MouseClick, left, DongQuangCaoX, DongQuangCaoY
+            }
         }
         DoiNhanVat()
     }
