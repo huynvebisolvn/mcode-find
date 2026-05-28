@@ -16,6 +16,13 @@ Sleep, 20000
 
 loop
 {
+	if (A_Index > 600)
+	{
+		Process, Close, nshm.exe
+		Sleep, 5000
+		Run, %gameURI%
+		Sleep, 20000
+	}
 	Send, {Enter}
 	Sleep, 1000
     MouseClick, left, 510, 634

@@ -1137,7 +1137,7 @@ SashimiCaBac() {
             {
                 ; Khong tim thay ThuySanCap1
                 notFoundThuySanCount++
-                if (notFoundThuySanCount = 1) {
+                if (notFoundThuySanCount = 1 || notFoundThuySanCount = 2) {
                     MuaThuySanCap1Auto()
                 }
                 if (notFoundThuySanCount >= 3)
@@ -1351,7 +1351,7 @@ CaChuaTayHo() {
             {
                 ; Khong tim thay ThuySanCap1
                 notFoundThuySanCount++
-                if (notFoundThuySanCount = 1) {
+                if (notFoundThuySanCount = 1 || notFoundThuySanCount = 2) {
                     MuaThuySanCap1Auto()
                 }
                 if (notFoundThuySanCount >= 3)
@@ -1531,9 +1531,13 @@ MuaThuySanCap1Auto() {
                     Sleep, 1000
                     ; click vao thuy san cap 1
                     MouseClick, left, 380, 480
-                    ; chon mua max
                     Sleep, 1000
-                    MouseClick, left, 970, 580
+                    ; plus
+                    MouseClick, left, 820, 580
+                    Sleep, 500
+                    MouseClick, left, 900, 450 ;9
+                    Sleep, 500
+                    MouseClick, left, 845, 517 ;0
                     Sleep, 1000
                     Send, {v}
                     Sleep, 1000
