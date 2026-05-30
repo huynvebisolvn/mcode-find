@@ -12,7 +12,27 @@ Sleep, 60000
 gameURI := "vga-nexus://launch-game/?gameId=264974456275954126"
 Run, %gameURI%
 
-Sleep, 20000
+; Chờ cửa sổ của tiến trình game
+WinWait, ahk_exe nshm.exe, , 600
+if ErrorLevel
+{
+    Shutdown, 2
+    ExitApp
+}
+
+; Đợi game tải giao diện
+Sleep, 6000
+
+; Kích hoạt cửa sổ
+WinActivate, ahk_exe nshm.exe
+
+; Loại bỏ toàn bộ viền, thanh tiêu đề
+WinSet, Style, -0xC00000, ahk_exe nshm.exe    ; WS_CAPTION, WS_SYSMENU, WS_THICKFRAME
+WinSet, Style, -0x40000, ahk_exe nshm.exe     ; WS_SIZEBOX
+WinSet, ExStyle, -0x80, ahk_exe nshm.exe      ; WS_EX_DLGMODALFRAME
+
+; kéo ra toàn màn hình
+WinMove, ahk_exe nshm.exe, , 0, 0, A_ScreenWidth, A_ScreenHeight
 
 loop
 {
