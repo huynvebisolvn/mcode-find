@@ -1411,10 +1411,10 @@ MenuNhiemVuNgay() {
     GlobalUserList.Push({name: "rrntt0", monan: "cachuatayho", modehl: "nauan"})
 
     ; delay 30 day
-    GlobalUserList.Push({name: "rrntt1", monan: "cachuatayho", modehl: "cauca"})
-    GlobalUserList.Push({name: "rrntt4", monan: "cachuatayho", modehl: "cauca"})
-    GlobalUserList.Push({name: "rrntt5", monan: "cachuatayho", modehl: "cauca"})
-    GlobalUserList.Push({name: "rrntt6", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt1", monan: "cachuatayho", modehl: "nauan"})
+    GlobalUserList.Push({name: "rrntt4", monan: "cachuatayho", modehl: "nauan"})
+    GlobalUserList.Push({name: "rrntt5", monan: "cachuatayho", modehl: "nauan"})
+    GlobalUserList.Push({name: "rrntt6", monan: "cachuatayho", modehl: "nauan"})
 
     ; create new
     GlobalUserList.Push({name: "huynnl1", monan: "canhthachtuy", modehl: "nauan"})
