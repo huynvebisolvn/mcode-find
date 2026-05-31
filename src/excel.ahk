@@ -429,6 +429,16 @@ CountOk() {
 }
 
 
+NhanDienTheLuc() {
+    NumberLib := "|<0>*146$10.10D3y8xVq7MDUy3sDUr6SMz1kU|<1>*155$3.zzzzzzzU|<2>*150$8.A7ny3kQ71kQ61Uk8SDzzU|<3>*152$7.ADjkQC62DDkwC3FzjY|<4>*154$9.3UQ7Ug9XAFaSzsQ1UA1UAU|<5>*147$7.zTg631wzXkMA6WzT8|<6>*149$9.30yDn4M70zbytq7sT2wnwD4|<7>*150$8.Tzw31UM6DVkA30UM612|<8>*148$7.67byT7nzD7mzDXtzbY|<9>*149$9.21wTqCky7kzDTtr0k6MbwT4"
+    ft := FindText()
+    ok := ft.FindText(,, 438, 240, 438+69, 240+25, 0.1, 0.1, NumberLib, 1, 1)
+    if !IsObject(ok)
+        return ""
+    return ft.Ocr(ok, 15, 10, 0).text
+}
+
+
 NhanThuong(modehl) {
     global CookingSuccessOnce
     ShowFunctionTooltip("NhanThuong")
@@ -457,6 +467,9 @@ NhanThuong(modehl) {
 
     Send, {F1}
     Sleep, 1000
+
+    theLucHienTai := NhanDienTheLuc()
+
     ; TODO
     Loop, 40
     {
@@ -548,7 +561,7 @@ NhanThuong(modehl) {
 
     Sleep, 1000
     Send, {Esc}
-    return countNhanThuong
+    return {theluc: theLucHienTai, count: countNhanThuong}
 }
 
 
@@ -1657,6 +1670,12 @@ FullNauAn() {
                     Sleep, 1000
                     MouseClick, left, 230, 65
 
+                    ; an the luc
+                    Sleep, 1000
+                    MouseClick, left, 900, 30
+                    Sleep, 500
+                    MouseClick, left, 815, 378
+
                     if (MenuMonAn == "canhthachtuy") {
                         CanhThachTuy()
                     }
@@ -1898,6 +1917,12 @@ CauCa() {
     }
 
     CheckCauca()
+
+    ; an The luc
+    Sleep, 1000
+    MouseClick, left, 98, 558
+    Sleep, 500
+    MouseClick, left, 328, 450
 
     ; bat dau cau ca
     ShowFunctionTooltip("bat dau CauCa")
@@ -2215,9 +2240,9 @@ Full10AccTo(startPos := 1, modehl := "daily") {
   return
 }
 
-SendCurlNotification(username, index, countNhanThuong) {
+SendCurlNotification(username, index, count, theLuc) {
   try {
-    message := "Username: " . username . " - Index: " . index . " - NhanThuong: " . countNhanThuong
+    message := username . "-" . index . " cnt:" . count . " tl:" . theLuc
     jsonBody := "{""message"": """ . message . """}"
 
     http := ComObjCreate("WinHttp.WinHttpRequest.5.1")
@@ -2305,6 +2330,7 @@ FullAccTo(username, modehl) {
     Loop, 6
     {
         countNhanThuong := 0
+        theLuc := -1
         daNhan := CheckNhiemVuNgay()
         if (not daNhan)
         {
@@ -2364,9 +2390,11 @@ FullAccTo(username, modehl) {
         if (not daNhan)
         {
           Sleep, 1000
-          countNhanThuong := NhanThuong(modehl)
+          resultNhanThuong := NhanThuong(modehl)
+          countNhanThuong := resultNhanThuong.count
+          theLuc := resultNhanThuong.theluc
         }
-        SendCurlNotification(username, A_Index, countNhanThuong)
+        SendCurlNotification(username, A_Index, countNhanThuong, theLuc)
 
         ; Sleep, 1000
         ; LichSuMuaban()
