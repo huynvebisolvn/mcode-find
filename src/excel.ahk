@@ -1395,21 +1395,21 @@ MenuNhiemVuNgay() {
     GlobalUserList.Push({name: "rrntt7", monan: "cachuatayho", modehl: "nauan"})
     GlobalUserList.Push({name: "rrntt8", monan: "cachuatayho", modehl: "nauan"})
     GlobalUserList.Push({name: "rrntt9", monan: "cachuatayho", modehl: "nauan"})
-
-    GlobalUserList.Push({name: "rrntt0", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt0", monan: "cachuatayho", modehl: "nauan"})
 
     ; delay 30 day
-    GlobalUserList.Push({name: "rrntt1", monan: "canhthachtuy", modehl: "cauca"})
-    GlobalUserList.Push({name: "rrntt4", monan: "sashimicabac", modehl: "cauca"})
-    GlobalUserList.Push({name: "rrntt5", monan: "sashimicabac", modehl: "cauca"})
-    GlobalUserList.Push({name: "rrntt6", monan: "sashimicabac", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt1", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt4", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt5", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt6", monan: "cachuatayho", modehl: "cauca"})
 
     ; create new
-    GlobalUserList.Push({name: "huynnl1", monan: "cachuatayho", modehl: "cauca"})
-    GlobalUserList.Push({name: "huynnl02", monan: "cachuatayho", modehl: "cauca"})
-    GlobalUserList.Push({name: "huynnl3", monan: "cachuatayho", modehl: "cauca"})
-    GlobalUserList.Push({name: "huynnl4", monan: "cachuatayho", modehl: "cauca"})
-    GlobalUserList.Push({name: "huynnl5", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "huynnl1", monan: "canhthachtuy", modehl: "nauan"})
+    GlobalUserList.Push({name: "huynnl02", monan: "canhthachtuy", modehl: "nauan"})
+    GlobalUserList.Push({name: "huynnl3", monan: "canhthachtuy", modehl: "nauan"})
+
+    GlobalUserList.Push({name: "huynnl4", monan: "cachuatayho", modehl: "nauan"})
+    GlobalUserList.Push({name: "huynnl5", monan: "cachuatayho", modehl: "nauan"})
 
     GlobalUserList.Push({name: "tieuthao3008", monan: "cachuatayho", modehl: "cauca"})
 
