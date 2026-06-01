@@ -32,7 +32,7 @@ WinMove, ahk_exe nshm.exe, , 0, 0, A_ScreenWidth, A_ScreenHeight
 
 loop
 {
-	if (A_Index > 300)
+	if (A_Index > 50)
 	{
 		Process, Close, nshm.exe
 		Sleep, 5000
