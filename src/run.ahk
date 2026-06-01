@@ -1,8 +1,4 @@
-; mac dinh tat may sau 12h
-timeout := 12 * 3600
-Run, %ComSpec% /c shutdown.exe /s /f /t %timeout%,, Hide
-
-Sleep, 120000
+Sleep, 300000
 
 exePath := "D:\mcode-find\src\excel.ahk"
 Run, %exePath%
