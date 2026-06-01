@@ -1,4 +1,4 @@
-Sleep, 300000
+Sleep, 60000
 
 exePath := "D:\mcode-find\src\excel.ahk"
 Run, %exePath%
@@ -17,7 +17,7 @@ if ErrorLevel
 }
 
 ; Đợi game tải giao diện
-Sleep, 6000
+Sleep, 10000
 
 ; Kích hoạt cửa sổ
 WinActivate, ahk_exe nshm.exe
@@ -32,7 +32,7 @@ WinMove, ahk_exe nshm.exe, , 0, 0, A_ScreenWidth, A_ScreenHeight
 
 loop
 {
-	if (A_Index > 600)
+	if (A_Index > 300)
 	{
 		Process, Close, nshm.exe
 		Sleep, 5000
