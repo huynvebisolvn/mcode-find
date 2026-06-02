@@ -188,7 +188,7 @@ ShowPriceTargetSelector() {
 
     Gui, PriceSelect:New
     Gui, Font, s10
-    Gui, Add, DropDownList, vSelectedTarget w200, Food480|Quang72
+    Gui, Add, DropDownList, vSelectedTarget Choose1 w200, Food
     Gui, Add, Button, gStartScript Default w200, Start
     Gui, Show,, Price
     return
@@ -197,11 +197,8 @@ ShowPriceTargetSelector() {
         Gui, Submit, NoHide
         Gui, Destroy
 
-        if (SelectedTarget = "Food480")
-          SelectedPriceTarget := "|<>*180$22.37XUArTVmB6DBwMgSlqnv7lwwPzXtUrxy3DXm"
-
-        if (SelectedTarget = "Quang72")
-          SelectedPriceTarget := "|<>*193$14.zbbvwAn79lUQMCC733UlzATs"
+        if (SelectedTarget = "Food")
+          SelectedPriceTarget := "|<541>*180$19.TVVj0lq0sP0wBwK6nP31slUzsruMPsAC"
 
         RunPriceTargetScript()
     return
@@ -209,7 +206,7 @@ ShowPriceTargetSelector() {
 
 ; Main script - unified for all price targets
 RunPriceTargetScript() {
-    ShowFunctionTooltip("RunPriceTargetScript")
+    ShowFunctionTooltip("Mua food")
     global SelectedPriceTarget
 
     Refresh:="|<>*123$22.bUU2Qm99s9Yb0aEQmN001YUUqO"
@@ -221,8 +218,10 @@ RunPriceTargetScript() {
         {
             MouseMove, PlusMaxX, PlusMaxY
             ; main logic
+            countBuy := 0
             Loop
             {
+                ShowFunctionTooltip("Buy: " . countBuy)
                 ; Use the selected price target from GUI
                 if (ok:=FindText(FirstTargetX := "wait", FirstTargetY := 0.5, 838-150, 661-150, 838+150, 661+150, 0, 0, SelectedPriceTarget))
                 {
@@ -232,6 +231,7 @@ RunPriceTargetScript() {
                     Send, {v up}
                     Sleep, 200
                     MouseClick, left, 480, 65
+                    countBuy++
                 }
                 else
                 {
@@ -1431,6 +1431,7 @@ MenuNhiemVuNgay() {
     GlobalUserList.Push({name: "tieuthao3008", monan: "cachuatayho", modehl: "cauca"})
 
     ; Acc cay xu ban
+    ; https://vlcm.zing.vn/
     GlobalUserList.Push({name: "keome027155", modehl: "sell"})
 
     userListStr := ""
