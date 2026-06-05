@@ -1406,25 +1406,21 @@ MenuNhiemVuNgay() {
     
     ; modehl: "custom", "daily", "nauan", "daokhoan", "cauca"
     global GlobalUserList := []
-    GlobalUserList.Push({name: "rrntt2", monan: "canhthachtuy", modehl: "nauan"})
-    GlobalUserList.Push({name: "rrntt3", monan: "canhthachtuy", modehl: "nauan"})
-
-    GlobalUserList.Push({name: "rrntt7", monan: "cachuatayho", modehl: "nauan"})
-    GlobalUserList.Push({name: "rrntt8", monan: "cachuatayho", modehl: "nauan"})
-    GlobalUserList.Push({name: "rrntt9", monan: "cachuatayho", modehl: "nauan"})
-    GlobalUserList.Push({name: "rrntt0", monan: "cachuatayho", modehl: "nauan"})
-
-    ; delay 30 day
-    GlobalUserList.Push({name: "rrntt1", monan: "cachuatayho", modehl: "nauan"})
-    GlobalUserList.Push({name: "rrntt4", monan: "cachuatayho", modehl: "nauan"})
-    GlobalUserList.Push({name: "rrntt5", monan: "cachuatayho", modehl: "nauan"})
-    GlobalUserList.Push({name: "rrntt6", monan: "cachuatayho", modehl: "nauan"})
+    GlobalUserList.Push({name: "rrntt1", monan: "canhthachtuy", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt2", monan: "canhthachtuy", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt3", monan: "canhthachtuy", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt4", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt5", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt6", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt7", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt8", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt9", monan: "cachuatayho", modehl: "cauca"})
+    GlobalUserList.Push({name: "rrntt0", monan: "cachuatayho", modehl: "cauca"})
 
     ; create new
     GlobalUserList.Push({name: "huynnl1", monan: "canhthachtuy", modehl: "nauan"})
     GlobalUserList.Push({name: "huynnl02", monan: "canhthachtuy", modehl: "nauan"})
     GlobalUserList.Push({name: "huynnl3", monan: "canhthachtuy", modehl: "nauan"})
-
     GlobalUserList.Push({name: "huynnl4", monan: "cachuatayho", modehl: "nauan"})
     GlobalUserList.Push({name: "huynnl5", monan: "cachuatayho", modehl: "nauan"})
 
@@ -1444,13 +1440,13 @@ MenuNhiemVuNgay() {
 
     Gui, Add, DropDownList, vStartPos Choose1 w150, %userListStr%
     Gui, Add, Checkbox, vEnableLikeViTri1 Checked w100, Like 1
-    Gui, Add, Checkbox, vEnableLikeViTri2 Checked w100, Like 2
+    Gui, Add, Checkbox, vEnableLikeViTri2 w100, Like 2
     Gui, Add, Checkbox, vEnableLikeViTri3 w100, Like 3
 
     Gui, Add, Button, gDaily w200, Only Daily
 
     Gui, Add, Button, gCustom Default w200, Auto Nghe
-    Gui, Add, Checkbox, vEnableBanCa Checked w200, Ban Ca
+    Gui, Add, Checkbox, vEnableBanCa w200, Ban Ca
 
     ; Gui, Add, Button, gNauan w200, Nau an
     ; Gui, Add, Button, gCauca w200, Cau ca
