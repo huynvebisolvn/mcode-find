@@ -914,25 +914,21 @@ LogoutNhanVat() {
 }
 
 
-DoiNhanVat(modehl := "") {
+DoiNhanVat() {
     ShowFunctionTooltip("DoiNhanVat")
     loop
     {
       LoginSuccess:="|<>*100$15.z3zrjU0000zzw01U0A01UYA4VUYA4VUYA4VUYA01U0A01U0A"
       if (ok:=FindText(LoginSuccessX := "wait", LoginSuccessY := 3, 962-150, 626-150, 962+150, 626+150, 0, 0, LoginSuccess))
       {
-        if (modehl != "sell") {
-            Sleep, 1000
-            MouseMove, 150, 300
-            Sleep, 1000
-            Click, WheelDown, 10
-            Sleep, 1000
-            Click, WheelDown, 10
-            ; chon nhan vat cuoi
-            Sleep, 1000
-            MouseClick, left, 170, 350
-        }
-        ; vao giang ho
+        Sleep, 1000
+        MouseMove, 150, 300
+        Sleep, 1000
+        Click, WheelDown, 10
+        Sleep, 1000
+        Click, WheelDown, 10
+        Sleep, 1000
+        MouseClick, left, 170, 350
         Sleep, 1000
         MouseClick, left, 836, 688
         Sleep, 15000
@@ -1425,10 +1421,6 @@ MenuNhiemVuNgay() {
     GlobalUserList.Push({name: "huynnl5", monan: "cachuatayho", modehl: "nauan"})
 
     GlobalUserList.Push({name: "tieuthao3008", monan: "cachuatayho", modehl: "cauca"})
-
-    ; Acc cay xu ban
-    ; https://vlcm.zing.vn/
-    GlobalUserList.Push({name: "keome027155", modehl: "sell"})
 
     userListStr := ""
     Loop % GlobalUserList.Length()
@@ -2331,8 +2323,7 @@ ChuanBiLikeTrangVien() {
 
 FullAccTo(username, modehl) {
     ShowFunctionTooltip("FullAccTo")
-    loopCount := (modehl == "sell") ? 1 : 6
-    Loop, %loopCount%
+    Loop, 6
     {
         countNhanThuong := 0
         theLuc := -1
@@ -2376,8 +2367,8 @@ FullAccTo(username, modehl) {
           Send, {Esc}
         }
 
-        ; mode cau ca / sell
-        if (modehl == "cauca" || modehl == "sell")
+        ; mode cau ca
+        if (modehl == "cauca")
         {
             CauCa()
             Sleep, 1000
@@ -2410,11 +2401,10 @@ FullAccTo(username, modehl) {
         LogoutNhanVat()
         if (A_Index < 6)
         {
-            DoiNhanVat(modehl)
+            DoiNhanVat()
             Sleep, 1000
         }
-        ; 1 nhan vat duy nhat
-        if (A_Index >= 6 || modehl == "sell")
+        else
         {
           ; wait to success
           loop
