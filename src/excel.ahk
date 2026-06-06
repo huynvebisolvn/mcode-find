@@ -1422,6 +1422,9 @@ MenuNhiemVuNgay() {
 
     GlobalUserList.Push({name: "tieuthao3008", monan: "cachuatayho", modehl: "cauca"})
 
+    ; acc sell (1 nhan vat, khong DoiNhanVat)
+    GlobalUserList.Push({name: "keome027155", modehl: "sell"})
+
     userListStr := ""
     Loop % GlobalUserList.Length()
     {
@@ -2228,8 +2231,11 @@ Full10AccTo(startPos := 1, modehl := "daily") {
         ; neu modehl = "custom" thi dung modehl cua user, nguoc lai dung modehl chung
         userModehl := (modehl = "custom") ? userInfo.modehl : modehl
 
+        ; acc sell chi co 1 nhan vat
+        loopCount := (userModehl = "sell") ? 1 : 6
+
         Login(username)
-        FullAccTo(username, userModehl)
+        FullAccTo(username, userModehl, loopCount)
     }
 
   Shutdown, 1
@@ -2321,9 +2327,9 @@ ChuanBiLikeTrangVien() {
 }
 
 
-FullAccTo(username, modehl) {
+FullAccTo(username, modehl, loopCount := 6) {
     ShowFunctionTooltip("FullAccTo")
-    Loop, 6
+    Loop, %loopCount%
     {
         countNhanThuong := 0
         theLuc := -1
@@ -2368,13 +2374,13 @@ FullAccTo(username, modehl) {
         }
 
         ; mode cau ca
-        if (modehl == "cauca")
+        if (modehl == "cauca" || modehl == "sell")
         {
             CauCa()
             Sleep, 1000
             PhanGiaiCa()
             Sleep, 1000
-            if (EnableBanCa == 1) {
+            if (EnableBanCa == 1 || modehl == "sell") {
                 ; sap xem lai ca thanh slot 1
                 GhepNguyenLieuNauAn()
                 Sleep, 1000
@@ -2399,7 +2405,7 @@ FullAccTo(username, modehl) {
 
         Sleep, 1000
         LogoutNhanVat()
-        if (A_Index < 6)
+        if (A_Index < loopCount)
         {
             DoiNhanVat()
             Sleep, 1000
