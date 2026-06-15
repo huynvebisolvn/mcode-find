@@ -1,17 +1,19 @@
 SendMode Input
 
-global nhanvat := ""
+global combo := ""
 
 NhanDienNhanVat() {
+  combo := "Mavuika"
+
   Ganyu:="|<>**30$19.TzzM00s00A7k63w31i1Uz0kT0MBUA6s63C3001U00s00rzzo"
   if (ok:=FindText(X, Y, 818, 708, 818+71, 708+25, 0, 0, Ganyu))
   {
-    nhanvat := "Ganyu"
-  } else {
-    nhanvat := "Hutao"
+    combo := "Ganyu"
   }
-  ToolTip, %nhanvat%, 0, 0
+  ToolTip, %combo%, 0, 0
 }
+
+NhanDienNhanVat()
 
 ~1::
 ~2::
@@ -26,7 +28,23 @@ return
 return
 
 $r::
-  if (nhanvat = "Hutao") {
+  if (combo = "Mavuika") {
+    While GetKeyState("r", "P") {
+      Send {lbutton down}
+      Sleep, 500
+      Send {lbutton up}
+
+      Send {lbutton down}
+      Sleep, 10
+      Send {lbutton up}
+      Sleep, 50
+      Send {rbutton down}
+      Sleep, 10
+      Send {rbutton up}
+    }
+  }
+
+  if (combo = "Hutao") {
     While GetKeyState("r", "P") {
       Send {lbutton down}
       Sleep, 500
@@ -35,7 +53,8 @@ $r::
       Sleep, 600
     }
   }
-  if (nhanvat = "Ganyu") {
+
+  if (combo = "Ganyu") {
     While GetKeyState("r", "P") {
       Send {lbutton down}
       Sleep, 1750
@@ -46,7 +65,11 @@ $r::
 return
 
 $f::
-While GetKeyState("f", "P") {
+isStop := False
+Loop
+{
+	if isStop
+	  break
   Send, f
 }
 return
@@ -55,6 +78,10 @@ return
   ToolTip, Reset, 0, 0
   Sleep, 300
   Reload
+return
+
+~rbutton::
+isStop := True
 return
 
 ;===== Copy The Following Functions To Your Own Code Just once =====
