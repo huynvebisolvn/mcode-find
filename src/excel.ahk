@@ -1424,6 +1424,15 @@ MenuNhiemVuNgay() {
 
     ; acc sell (1 nhan vat, khong DoiNhanVat)
     GlobalUserList.Push({name: "keome027155", modehl: "sell"})
+    GlobalUserList.Push({name: "duahau5544", modehl: "sell"})
+    GlobalUserList.Push({name: "kiemmong1640", modehl: "sell"})
+    GlobalUserList.Push({name: "fomo3856", modehl: "sell"})
+    GlobalUserList.Push({name: "cue627868", modehl: "sell"})
+    GlobalUserList.Push({name: "9tangmay2034", modehl: "sell"})
+    GlobalUserList.Push({name: "diepca7940", modehl: "sell"})
+    GlobalUserList.Push({name: "suonggia337", modehl: "sell"})
+    GlobalUserList.Push({name: "bundocmung9022", modehl: "sell"})
+    GlobalUserList.Push({name: "phucbontu1328", modehl: "sell"})
 
     userListStr := ""
     Loop % GlobalUserList.Length()
